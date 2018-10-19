@@ -1,0 +1,186 @@
+﻿<style>
+    .header-table {
+        font-size: 15px;
+        color: white;
+        background-color: #ff4365;
+    }
+
+    table {
+        border-collapse: collapse;
+    }
+
+    .subheader-table {
+        font-size: 13px;
+        min-width: 100px;
+        max-width: 100px;
+        width: 100px;
+        padding: 0px 16px;
+        border-left: 2px solid rgba(231,45,80,1);
+        text-align: center;
+    }
+
+    .static-header {
+        min-width: 100px;
+        padding: 0px 16px;
+        border-left: 2px solid rgba(231,45,80,1);
+        text-align:center;
+    }
+
+    .project-label {
+        padding: 8px;
+        background: #f2f2f2;
+        font-size: 13px;
+    }
+
+    .cell {
+        min-width: 133px;
+        max-width: 133px;
+        width: 123px;
+        margin: 0px;
+        padding: 0px;
+        margin: 0px;
+        height: 64px;
+        border-bottom: 1px solid #f2f2f2;
+        border-left: 1px solid #f2f2f2;
+        border-top: 1px solid #f2f2f2;
+    }
+
+    table tbody, table thead {
+        display: block;
+    }
+
+    table tbody {
+        overflow: auto;
+        font-size:13px;
+    }
+
+    .activate-cell {
+        width: 100%;
+        height: 100%;
+        background-color: #ff4365;
+        opacity: 0.6;
+        color: #FFF;
+        font-size: 13px;
+        display: table;
+        transition: opacity .5s ease;
+    }
+
+        .activate-cell:hover {
+            cursor: pointer;
+            opacity: 1;
+        }
+</style>
+
+<md-content>
+
+    <div style="width:auto;overflow:auto" class="style-3">
+        <table class="table1">
+            <thead class="header-table">
+                <tr>
+                    <td class="static-header" rowspan="2" translate="unit"></td>
+                    <td class="static-header" rowspan="2" translate="documentType"></td>
+                    <td class="static-header" rowspan="2" translate="deliveryDate"></td>
+                    <td class="static-header" style="height:45px" colspan="{{menu.items.length}}" ng-repeat="menu in menus">{{menu.name}}</td>
+                </tr>
+                <tr style="border-top: 2px solid rgba(231,45,80,1);">
+                    <td class="subheader-table" ng-repeat="item in wbschild track by $index">{{item}}</td>
+                </tr>
+            </thead>
+            <tbody ng-style="{'height':tableHeight}" class="style-3">
+                <tr ng-repeat="reunit in reunits | orderBy:'Code'">
+                    <td class="cell" style="border-left:1px solid #FFF">
+                        <span style="padding-left:8px;">{{reunit.Code}}</span>
+                    </td>
+                    <td class="cell">
+                        <span style="padding-left:8px;" translate="type"></span>
+                    </td>
+                    <td class="cell">
+                        <span style="padding-left:8px;"><md-icon md-svg-icon="content:add" aria-label="mode_edit"></md-icon></span>
+                    </td>
+                    <td class="cell" style="padding:0px" ng-repeat="wbs in wbschild track by $index">
+                        <div ng-if="$index == 2 && ($parent.$index == 2 || $parent.$index == 1)" class="activate-cell">
+                            <div style="display: table-cell; text-align: center; vertical-align: middle;">
+                                <span translate="overdue"></span><br />
+                                5 <span translate="days"></span>
+                            </div>
+                        </div>
+                        <div ng-if="$index == 1 && ($parent.$index == 2)" class="activate-cell" style="background-color: #FFC107">
+                            <div style="display: table-cell; text-align: center; vertical-align: middle;">
+                                5 <span translate="days"></span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</md-content>
+
+<!--<div style="width:100%;overflow-x:auto;position:relative">
+    <div layout="row" style="background:#ff4365;min-height:80px;">
+        <span class="menu-header" style="border-left:0px;" flex="10">ยูนิต</span>
+        <span class="menu-header" flex="10">ประเภทเอกสาร</span>
+        <span class="menu-header" style="border-right: 2px solid rgba(231,45,80,1);" flex="10">วันที่ส่งมอบ</span>
+
+        <div flex="70" layout="row">
+            <div ng-repeat="menu in menus" style="border-right: 2px solid rgba(231,45,80,1);">
+                <div class="menu-header head-subitem">{{menu.name}}</div>
+                <div layout="row">
+                    <span class="item-header" ng-repeat="item in menu.items" style="{{$index == 0 ? 'border-left:0px':''}}">{{item}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <md-content>
+        <div ng-repeat="(key,value) in reunits | groupBy:'PlanId'">
+            <section>
+                <md-subheader class="md-primary">{{value[$index].PlanName}}</md-subheader>
+                <md-list layout-padding style="background-color:white;">
+                    <md-list-item class="md-2-line" ng-repeat="reunit in value | orderBy:'Code'">
+                        <div class="md-list-item-text" layout="row" layout-align="start center">
+                            <span class="cell" style="border-left:0px" flex="10">{{reunit.Code}}</span>
+                        </div>
+                        <md-divider ng-if="!$last"></md-divider>
+                    </md-list-item>
+                </md-list>
+            </section>
+        </div>
+    </md-content>
+</div>-->
+<!--<md-toolbar class="md-whiteframe-2dp" style="min-height:100px;">
+    <md-content style="background:transparent;">
+        <md-list layout-padding style="padding: 0px;height: 100px;">
+            <md-list-item class="md-2-line" style="min-height: 100px;height: 100px;padding:0px;">
+                <div class="md-list-item-text" layout="row">
+                    <span class="menu-header" style="border-left:0px;" flex="10">ยูนิต</span>
+                    <span class="menu-header" flex="10">ประเภทเอกสาร</span>
+                    <span class="menu-header" style="border-right: 2px solid rgba(231,45,80,1);" flex="10">วันที่ส่งมอบ</span>
+
+                    <div flex="70" style="overflow-x:auto" layout="row">
+                        <div ng-repeat="menu in menus" style="border-right: 2px solid rgba(231,45,80,1);">
+                            <div class="menu-header" style="height: 36px;line-height: 36px;border-left:0px">{{menu.name}}</div>
+                            <div layout="row">
+                                <span class="submenu-header" ng-repeat="item in menu.items" style="{{$index == 0 ? 'border-left:0px':''}}">{{item}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </md-list-item>
+        </md-list>
+    </md-content>
+</md-toolbar>
+<md-content class="style-3">
+    <section ng-repeat="(key,value) in reunits | groupBy:'PlanId'">
+        <md-subheader class="md-primary">{{value[$index].PlanName}}</md-subheader>
+        <md-list layout-padding style="background:white">
+            <md-list-item class="md-2-line" ng-repeat="reunit in value | orderBy:'Code'">
+                <div class="md-list-item-text" layout="row" layout-align="start center">
+                    <span flex="10">{{reunit.Code}}</span>
+
+                </div>
+                <md-divider ng-if="!$last"></md-divider>
+            </md-list-item>
+        </md-list>
+    </section>
+</md-content>-->

@@ -1,0 +1,513 @@
+﻿<section style="overflow:hidden;font-size:13px;" ng-style="{'max-height':contentHeight}">
+
+    <global-filter options="myObject" sheet-action="getDataSheetAction(returnAction)" change-filter="changeGlobalFilter(returnFilter)"></global-filter>
+
+    <!-- Hide Import Button -->
+    <md-button id="import-button" class="import-button" ngf-accept="'.xlsx'" ngf-pattern="'.xlsx'" ngf-select="ImportMortgage($file,$event)" ng-hide="true"></md-button>
+
+    <!--<div style="padding:8px 16px;background:#F7DED0" ng-if="filter.HeadFilter != null">
+        <span>ตัวกรอง : </span>
+        <span style="border: 1px solid #FFF;padding: 2px 8px;padding-right: 30px;">
+            <span>{{filter.HeadFilter == 1 ? 'เวลาในระบบ ' : 'เปลี่ยนแปลงล่าสุด '}}</span>
+            <span>{{getRangeDate(filter.ValueFilter)}}</span>
+            <span style="position:relative;min-width:24px;margin-left:2px;">
+                <i class="material-icons" style="color:#FFF;position:absolute;top:-2px;cursor:pointer" ng-click="clearRangeFilter()">close</i>
+            </span>
+        </span>
+    </div>-->
+
+    <div layout="column" ng-class="{'borderBotNav': selectStatus.SubMenu == null}">
+        <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links" style="background-color:red;position:relative">
+            <md-nav-item ng-repeat="count in countStatus"
+                         md-nav-click="goto('{{count.Status}}')"
+                         ng-click="changeNav(count.Status,count.realStatus)"
+                         name="{{count.Status}}"
+                         class="customNavItem"
+                         id="nav{{count.Status}}"
+                         ng-hide="count.Name == 'อื่นๆ' && IsBank">
+                <div layout="row" layout-align="center center">
+                    <div layout="column">
+                        <span value="0" duration="0.5" style="font-size:26px;font-weight:bold">{{count.Count}}</span>
+                        <span style="margin-top:8px">{{count.Name}}</span>
+                    </div>
+                </div>
+                <div class="underLineMenu" ng-show="count.SubMenu == null && currentNavItem == count.Status"></div>
+            </md-nav-item>
+        </md-nav-bar>
+        <div ng-show="selectStatus.SubMenu != null" layout="row" layout-align="start center" style="width:100%;background-color:#FFF">
+            <md-button layout="row" layout-align="center center" class="submenu" ng-click="changsubMenu(sub.status,sub.realStatus)" ng-class="{'activeSubmenu':sub.status == filter.StatusSubHeader}" ng-repeat="sub in selectStatus.SubMenu">
+                <div style="padding-top:5px;">{{sub.Name}}</div>
+                <div style="position:relative;min-width:24px;padding-top:5px;" layout="column" layout-align="center center">
+                    <div class="numbercircle">{{sub.Count}}</div>
+                </div>
+            </md-button>
+        </div>
+    </div>
+
+    <div id="recentHeader" style="background-color:#EEEEEE;padding:8px 16px;line-height:36px" layout="row">
+        <span style="font-size:16px;font-weight:bold">{{filter.IsRecent ? 'รายการที่มีการแก้ไขล่าสุด' : 'รายการทั้งหมด'}}</span>
+        <!--<div>
+            <md-button class="md-raised buttonInRecentHead" style="margin-left:16px;" ng-class="{'md-primary':filter.IsRecent}" ng-click="filter.IsRecent = !filter.IsRecent;changeTo()">
+                รายการที่มีการแก้ไขล่าสุด
+            </md-button>
+            <md-button class="md-raised buttonInRecentHead" style="margin-left:16px;" ng-class="{'md-primary':filter.HasOwner}" ng-click="filter.HasOwner = !filter.HasOwner;changeTo()">
+                ยูนิตที่มีลูกค้าเท่านั้น
+            </md-button>
+        </div>-->
+        <span flex></span>
+        <div style="position:relative;min-width:200px;margin-right:36px;" ng-show="editeRowSelect.length > 0">
+            <div style="position:absolute;right:0px;top:-8px" layout="row">
+                <md-button aria-label="edit" class="md-raised" ng-click="cancelAllEdit()">
+                    <span translate="canceled"></span>
+                </md-button>
+                <md-button md-theme="green" aria-label="edit" class="md-raised md-primary" ng-click="saveEdit()">
+                    <md-icon md-svg-icon="content:save"></md-icon>
+                    <span><span translate="save"></span> ({{editeRowSelect.length}})</span>
+                </md-button>
+            </div>
+        </div>
+    </div>
+    <div ng-show="dataList != ''">
+        <table width="100" class="dataTable">
+            <thead>
+                <tr>
+                    <th ng-repeat="header in tableHeader" ng-style="{'min-width':header.width}" }">
+                        <div layout="row" layout-align="start center">
+                            <span>{{header.Name}}</span>
+                            <span flex></span>
+                            <span ng-show="$index == 2" layout="row" layout-align="start center" style="font-weight:normal;margin-right:8px;">
+                                <i class="material-icons" style="color:#ff4365;margin-right:8px;">how_to_reg</i> ผู้ถือกรรมสิทธิ์
+                            </span>
+                            <span style="margin-right: 16px;font-size: 16px;font-weight: bold;color:limegreen" ng-show="header.sumValue != null">{{'( ' + header.sumValue + ' )'}}</span>
+                        </div>
+                    </th>
+                </tr>
+            </thead>
+
+            <!--  (!pin ? 79 : ((selectStatus.SubMenu != null ? 69 : 0) - (filter.HeadFilter != null ? 37 : 0))) * -1 -->
+            <tbody ng-style="{'width':contentWidth,'max-height':tableHeight + 'px', 'min-height': tableHeight, 'background-color': '#ffffff'}" scrolly="loadMore()" isupdate="updating" id="dataBody">
+                <tr ng-repeat="data in dataList">
+                    <!-- Unit Detail -->
+                    <td ng-style="{'min-width':tableHeader[0].width}">
+                        <md-button ng-click="gotoUnitDetail(data)" style="margin:0px;padding:0px;margin-top:8px;" 
+                                   class="bankField overflowEllipsis" layout="row" layout-align="start start"
+                                    ng-style="{'width':tableHeader[1].widthInt - 16 + 'px'}">
+                            <i class="material-icons" style="margin-top:5px;">home</i>
+                            <span style="font-weight: bold;">{{data.ReUnitCode}}</span>
+                        </md-button>
+                        <div><span style="line-height:28px;">{{data.ProjectName}}</span></div>
+                        <div><span ng-show="!IsBank">{{'ราคา : '}}{{data.UnitPrice | number:0}}</span></div>
+                        <span style="position:absolute;min-width:48px;top:7px;right:0px;" ng-show="data.CustomerLoanId != null">
+                            <md-button aria-label="edit" class="md-icon-button" ng-hide="rowEditExist(data)" style="margin: 0px;position:absolute" ng-click="addRowtoEdit(data)">
+                                <md-icon md-svg-icon="editor:mode_edit"></md-icon>
+                            </md-button>
+                            <md-button aria-label="edit" class="md-icon-button md-primary" ng-show="rowEditExist(data)" style="margin: 0px;position:absolute" ng-click="deleteRowtoEdit(data)">
+                                <md-icon md-svg-icon="navigation:close"></md-icon>
+                            </md-button>
+                        </span>
+                        <span style="position:absolute;min-width:48px;top:7px;right:0px;" ng-show="data.CustomerName != null && data.CustomerLoanId == null">
+                            <md-button aria-label="edit" class="md-icon-button" style="margin: 0px;position:absolute" ng-click="addApp(data, $event)">
+                                <md-icon md-svg-icon="content:add_circle"></md-icon>
+                            </md-button>
+                        </span>
+                    </td>
+
+                    <!-- Customer Detail -->
+                    <td ng-style="{'min-width':tableHeader[1].width}" class="nonFixCell">
+                        <div ng-hide="data.CustomerName == null" style="padding-right:16px">
+                            <div class="bankField overflowEllipsis" ng-style="{'width':tableHeader[1].widthInt - 16 + 'px'}">
+                                <span style="font-weight: bold" ng-class="{'Highlight':checkIfLastLog(data,1,'Name',null)}">
+                                    {{data.CustomerName}}
+                                </span>
+                            </div>
+                            <span layout="row" layout-align="start center" ng-class="{'Highlight':checkIfLastLog(data,1,'Phone',null)}">
+                                <i class="material-icons" style="font-size:16px;margin-right:8px;">call</i>
+                                {{data.CustomerPhone}}
+                            </span>
+                            <div ng-class="{'Highlight':checkIfLastLog(data,1,'MaritalStatus',null)}">{{data.MaritalStatus | MaritalStatusFilter}}</div>
+
+                        </div>
+                        <!--<div style="padding-right:16px;">
+                            <md-input-container style="height:38px;" md-no-float class="md-block CustomizeMdContent">
+                                <input ng-model="data.CustomerName" placeholder="ชื่อ">
+                            </md-input-container>
+                            <md-input-container style="height:38px;" md-no-float class="md-block CustomizeMdContent">
+                                <input ng-model="data.CustomerPhone" placeholder="เบอร์โทรศัพท์">
+                            </md-input-container>
+                        </div>-->
+                    </td>
+
+                    <!-- CoBorrowerName -->
+                    <td ng-style="{'min-width':tableHeader[2].width}" class="nonFixCellBank">
+                        <div>
+                            <div ng-repeat="bank in data.BankDetail"
+                                 class="bankField"
+                                 layout="row"
+                                 id="style-4"
+                                 layout-align="start center"
+                                 style="max-width: 292px;"
+                                 ng-show="bank.MortgageStatus != 1">
+                                <div style="margin-right:8px;" ng-class="{'disableClick':backUpCo != null}" ng-if="rowEditExist(data)">
+                                    <md-icon md-svg-icon="content:add_circle" ng-click="addRowtoEditCo(data.CustomerLoanId,bank.BankApplicationId,bank.CoBorrower,$event)" style="color:dodgerblue;cursor:pointer"></md-icon>
+                                </div>
+                                <div ng-repeat="co in bank.CoBorrower" class="CustomChip" ng-show="co.Id != null">
+                                    <div layout="row" layout-align="start center">
+                                        <i class="material-icons" ng-show="co.isOwner == 1" style="color:#ff4365;">how_to_reg</i>
+                                        <span class="co-name">
+                                            {{co.Name}} {{co.MaritalStatus == null ? "" : "(" + (co.MaritalStatus | MaritalStatusFilter) + ")"}}
+                                        </span>
+                                        <md-tooltip>
+                                            <span> {{co.Name}} {{co.MaritalStatus == null ? "" : "(" + (co.MaritalStatus | MaritalStatusFilter) + ")"}}</span>
+                                        </md-tooltip>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <!-- Loan Date -->
+                    <td ng-style="{'min-width':tableHeader[3].width,}" style="padding-top:4px;">
+                        <div ng-hide="rowEditExist(data)" class="bankField" ng-repeat="bank in data.BankDetail"
+                             style="text-align:center">
+                            <span ng-class="{'Highlight':checkIfLastLog(data,3,'LoanDate',$index)}">
+                                {{bank.LoanDate | date:'dd/MM/yyyy'}}
+                            </span>
+                            <br />
+                        </div>
+                        <div ng-show="rowEditExist(data)&& bank.MortgageStatus != 1" class="bankField" ng-repeat="bank in data.BankDetail" layout="column" layout-align="start strat">
+                            <md-datepicker ng-model="bank.LoanDate" md-placeholder="Enter date"></md-datepicker>
+                        </div>
+                    </td>
+
+                    <!-- Mortgage Status -->
+                    <td ng-style="{'min-width':tableHeader[4].width}" class="nonFixCellBank">
+                        <div ng-repeat="bank in data.BankDetail" style="min-height:50px;" layout="row" layout-align="start center" ng-show="data.CustomerLoanId != null">
+                            <div layout="row" layout-align="start start">
+                                <span style="min-height:28px;"><img style="width:28px;" ng-src="{{bank.BankLogo != null ? bank.BankLogo : ''}}" /></span>
+                                <md-tooltip md-direction="top">{{bank.BankThaiName}}</md-tooltip>
+                                <md-select aria-label="mgstatus" style="min-width:163px;margin-left:8px;" class="customSelect md-no-underline" ng-model="bank.MortgageStatus" ng-change="updateMortgageStatus($event,data,bank)" ng-disabled="findChooseBank(data.BankDetail, bank)||bank.BankApplicationId == null || !rowEditExist(data)">
+                                    <md-option ng-repeat="status in mgStatus" ng-value="status.status" ng-hide="(bank.LoanBank == '000' && [0,1,2,3,4,5,7,9,10,11,13].indexOf(status.status) >= 0) || [0,1].indexOf(status.status) >= 0">{{status.name}}</md-option>
+                                </md-select>
+                            </div>
+                            <md-button aria-label="delete" class="md-icon-button" id="iconDelete" ng-show="rowEditExist(data) && bank.MortgageStatus == 3" ng-click="ShowConfirmDelete($event,bank.BankApplicationId)" >
+                                <i class="material-icons"><span translate="deleteForever"></span></i>
+                            </md-button>
+                        </div>
+                        <div style="margin-right:8px;" ng-class="{'disableClick':backUpCo != null}" ng-if="rowEditExist(data) && !IsBank">
+                            <md-icon md-svg-icon="content:add_circle" ng-click="addApp(data, $event)" style="color:dodgerblue;cursor:pointer"></md-icon>
+                        </div>
+                    </td>
+
+                    <!-- Grade -->
+                    <td ng-style="{'min-width':tableHeader[5].width}" class="nonFixCellBank">
+                        <div ng-repeat="bank in data.BankDetail" style="min-height:50px;" layout="row" layout-align="start center" ng-show="data.CustomerLoanId != null">
+                            <!--<span layout-align="start start">{{grades[bank.Grade].Name}}</span>-->
+                            <span layout="row" layout-align="start start">
+                                <md-select aria-label="mgstatus" style="min-width:60px;margin-left:14px;" class="customSelect md-no-underline" ng-model="bank.Grade" ng-disabled="!rowEditExist(data)">
+                                    <md-option ng-repeat="grade in grades" ng-value="grade.Id" seleceted>{{grade.Name}}</md-option>
+                                </md-select>
+                            </span>
+                        </div>
+                    </td>
+
+                    <!-- Last Status Reason -->
+                    <td ng-style="{'min-width':tableHeader[6].width}" class="nonFixCellBank">
+                        <div class="bankField overflowEllipsis"
+                             ng-style="{'width':tableHeader[6].widthInt - 16 + 'px'}"
+                             ng-repeat="bank in data.BankDetail"
+                             ng-click="showDetailReason($event,bank.Remark,1)">
+                            <span ng-class="{'ApproveRemark':bank.MortgageStatus == 10 || bank.MortgageStatus == 12,
+                                  'RejectRemark':bank.MortgageStatus == 11 || bank.MortgageStatus == 13}">
+                                {{bank.Remark}}
+                            </span>
+                            <md-tooltip><span translate="clickForMore"></span></md-tooltip>
+                        </div>
+                    </td>
+
+                    <td ng-style="{'min-width':tableHeader[7].width}" style="color:limegreen;padding-top:4px;">
+                        <div class="bankField" ng-repeat="bank in data.BankDetail" ng-show="data.CustomerLoanId != null" style="text-align:center">{{bank.PeriodDate}} <span translate="days"></span><br /></div>
+                    </td>
+
+                    <td ng-style="{'min-width':tableHeader[8].width}" style="color:limegreen;padding-top:4px;">
+                        <div class="bankField" ng-repeat="bank in data.BankDetail" style="text-align:center">{{bank.LastModifiedTimeStamp | date:'dd/MM/yyyy'}}<br /></div>
+                    </td>
+                    <td ng-style="{'min-width':tableHeader[9].width}" class="nonFixCellBank">
+                        <div class="bankField" ng-repeat="bank in data.BankDetail">{{bank.TrackNo}}<br /></div>
+                    </td>
+
+                    <!-- LoanApproveDate -->
+                    <td ng-style="{'min-width':tableHeader[10].width}" style="color:limegreen;padding-top:4px;">
+                        <div ng-hide="rowEditExist(data)" class="bankField" ng-repeat="bank in data.BankDetail" style="text-align:center">
+                            <span ng-class="{'Highlight':checkIfLastLog(data,3,'LoanApproveDate',$index)}">
+                                {{bank.LoanApproveDate | date:'dd/MM/yyyy'}}
+                            </span>
+                            <br />
+                        </div>
+                        <div ng-show="rowEditExist(data)" class="bankField" ng-repeat="bank in data.BankDetail" layout="column" layout-align="start strat">
+                            <div ng-show="bank.MortgageStatus >= 9"><md-datepicker aria-label="input" ng-model="bank.LoanApproveDate" md-placeholder="Enter date"></md-datepicker></div>
+                            <div ng-show="bank.MortgageStatus < 9 || bank.MortgageStatus == null"></div>
+                        </div>
+                    </td>
+
+                    <!-- TransferDate -->
+                    <td ng-style="{'min-width':tableHeader[11].width}" style="color:limegreen;padding-top:4px;">
+                        <div class="bankField" ng-hide="rowEditExist(data)" ng-repeat="bank in data.BankDetail" style="text-align:center">
+                            <span ng-class="{'Highlight':checkIfLastLog(data,3,'TransferDate',$index)}">
+                                {{bank.TransferDate | date:'dd/MM/yyyy'}}
+                            </span>
+                            <br />
+                        </div>
+                        <div ng-show="rowEditExist(data)&& bank.MortgageStatus != 1" class="bankField" ng-repeat="bank in data.BankDetail" layout="column" layout-align="start strat">
+                            <md-datepicker aria-label="input" ng-model="bank.TransferDate" md-placeholder="Enter date"></md-datepicker>
+                        </div>
+
+                    </td>
+
+                    <!-- LoanAmount -->
+                    <td ng-style="{'min-width':tableHeader[12].width}" class="nonFixCellBank">
+                        <div ng-hide="rowEditExist(data)" class="bankField" ng-repeat="bank in data.BankDetail" style="text-align:right;padding-right:8px;">
+                            <span ng-class="{'Highlight':checkIfLastLog(data,3,'LoanAmount',$index)}">{{bank.LoanAmount | number:2}}</span><br />
+                        </div>
+                        <div ng-show="rowEditExist(data) && bank.MortgageStatus != 1" class="bankField" ng-repeat="bank in data.BankDetail" layout="column" layout-align="center strat">
+                            <md-input-container class="md-block" style="margin:0px;" ng-style="{'width':tableHeader[11].widthInt - 16 + 'px'}">
+                                <input aria-label="input" style="padding: 0px;margin: 0px;height: 24px;text-align:right" ng-model="bank.LoanAmount" type="number">
+                            </md-input-container>
+                        </div>
+                    </td>
+
+                    <!-- TotalCredit -->
+                    <td ng-style="{'min-width':tableHeader[13].width}" class="nonFixCellBank">
+                        <div ng-hide="rowEditExist(data)" class="bankField" ng-repeat="bank in data.BankDetail" style="text-align:right;padding-right:8px;">
+                            <span ng-class="{'Highlight':checkIfLastLog(data,3,'TotalAmount',$index)}">{{bank.TotalAmount | number:2}}</span><br />
+                        </div>
+                        <div ng-show="rowEditExist(data) && bank.MortgageStatus != 1" class="bankField" ng-repeat="bank in data.BankDetail" layout="column" layout-align="center strat">
+                            <md-input-container class="md-block" style="margin:0px;" ng-style="{'width':tableHeader[12].widthInt - 16 + 'px'}">
+                                <input aria-label="input" style="padding: 0px;margin: 0px;height: 24px;text-align:right" ng-model="bank.TotalAmount" type="number">
+                            </md-input-container>
+                        </div>
+                    </td>
+
+                    <td ng-style="{'min-width':tableHeader[14].width}" class="nonFixCellBank">
+                        <div class="bankField overflowEllipsis"
+                             ng-repeat="bank in data.BankDetail"
+                             ng-style="{'width':tableHeader[14].widthInt - 16 + 'px'}"
+                             ng-click="showDetailReason($event,bank.NoteToProject,2)">
+                            {{bank.NoteToProject}}<br />
+                        </div>
+                        <md-tooltip><span translate="clickForMore"></span></md-tooltip>
+
+                    </td>
+                    <td ng-style="{'min-width':tableHeader[15].width}" class="nonFixCellBank">
+                        <div class="bankField overflowEllipsis" ng-repeat="bank in data.BankDetail"
+                             ng-style="{'width':tableHeader[15].widthInt - 16 + 'px'}"
+                             ng-click="showDetailReason($event,bank.NoteToBank,3)">{{bank.NoteToBank}}<br /></div>
+                        <md-tooltip><span translate="clickForMore"></span></md-tooltip>
+                    </td>
+
+                    <!-- BankAgent -->
+                    <td ng-style="{'min-width':tableHeader[16].width}" class="nonFixCellBank">
+                        <div ng-hide="rowEditExist(data)" class="bankField" ng-repeat="bank in data.BankDetail">
+                            <span ng-class="{'Highlight':checkIfLastLog(data,3,'BankAgentName',$index) || checkIfLastLog(data,3,'BankAgentPhone',$index)}">
+                                {{bank.BankAgentName}}
+                                <span ng-show="bank.BankAgentPhone != null && bank.BankAgentPhone != ''">({{bank.BankAgentPhone}})</span>
+                            </span><br />
+                        </div>
+                        <div ng-show="rowEditExist(data) && bank.MortgageStatus != 1" class="bankField" ng-repeat="bank in data.BankDetail" layout="row" layout-align="strat center">
+                            <md-input-container md-no-float class="md-block" style="margin:0px;" ng-style="{'width':(tableHeader[15].widthInt / 2) - 8 + 'px'}">
+                                <input placeholder="ชื่อ" aria-label="input" style="padding: 0px;margin: 0px;height: 24px" ng-model="bank.BankAgentName" type="text">
+                            </md-input-container>
+                            <md-input-container md-no-float class="md-block" style="margin:0px;" ng-style="{'width':(tableHeader[15].widthInt / 2) - 8 + 'px'}">
+                                <input placeholder="โทร" aria-label="input" style="padding: 0px;margin: 0px;height: 24px" ng-model="bank.BankAgentPhone" type="text">
+                            </md-input-container>
+                        </div>
+                    </td>
+
+                    <!-- CustomerService -->
+                    <td ng-style="{'min-width':tableHeader[17].width}" class="nonFixCellBank">
+                        <div ng-hide="rowEditExist(data)" class="bankField" ng-repeat="bank in data.BankDetail">
+                            <span ng-class="{'Highlight':checkIfLastLog(data,3,'CustomerServiceName',$index) || checkIfLastLog(data,3,'CustomerServicePhone',$index)}">
+                                {{bank.CustomerServiceName}}
+                                <span ng-show="bank.CustomerServiceName != null && bank.CustomerServicePhone != null">({{bank.CustomerServicePhone}})</span>
+                            </span><br />
+                        </div>
+                        <div ng-show="rowEditExist(data) && bank.MortgageStatus != 1" class="bankField" ng-repeat="bank in data.BankDetail" layout="row" layout-align="strat center">
+                            <md-input-container md-no-float class="md-block" style="margin:0px;" ng-style="{'width':(tableHeader[16].widthInt / 2) - 8 + 'px'}">
+                                <input placeholder="ชื่อ" aria-label="input" style="padding: 0px;margin: 0px;height: 24px" ng-model="bank.CustomerServiceName" type="text">
+                            </md-input-container>
+                            <md-input-container md-no-float class="md-block" style="margin:0px;" ng-style="{'width':(tableHeader[16].widthInt / 2) - 8 + 'px'}">
+                                <input placeholder="โทร" aria-label="input" style="padding: 0px;margin: 0px;height: 24px" ng-model="bank.CustomerServicePhone" type="text">
+                            </md-input-container>
+                        </div>
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div ng-show="dataList == '' && !loading" layout="column" layout-align="center center" style="min-height:200px;">
+        <div layout="row" layout-align="center center">
+            <i class="material-icons" style="font-size:42px;"><span translate="priorityHigh"></span></i>
+            <h2 translate="noItems"></h2>
+        </div>
+    </div>
+    <div ng-show="loading" layout="column" layout-align="center center" style="min-height:200px;">
+        <div layout="row" layout-align="center center">
+            <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+        </div>
+    </div>
+</section>
+
+<!--<div class="showSucgress" layout="column" layout-align="center center" ng-show="showSugges">
+    <div layout="row" layout-align="center center">
+        <div style="position:relative">
+            <div class="animate" style="transform: rotate(180deg);">
+                <img src="/Content/src/modules/Mortgage/Share/Pic/arrow1.png" style="width:70px;" />
+            </div>
+            <img src="/Content/src/modules/Mortgage/Share/Pic/shift.png" style="width:300px" />
+        </div>
+        <div>
+            <i class="material-icons" style="font-size:84px;color:#000">add</i>
+        </div>
+        <div style="position:relative">
+            <div class="animate" style="animation: scrollUp 2s infinite;right:72px">
+                <img src="/Content/src/modules/Mortgage/Share/Pic/arrow2.png" style="width:70px;" />
+            </div>
+            <div class="animate" style="animation: scrollDown 2s infinite;right:100px;transform: rotate(180deg);">
+                <img src="/Content/src/modules/Mortgage/Share/Pic/arrow2.png" style="width:70px;" />
+            </div>
+            <img src="/Content/src/modules/Mortgage/Share/Pic/mouse.png" style="width:200px" />
+        </div>
+    </div>
+    <div style="font-size:48px;color:#FFF">กด Shift + Srcoll ลูกกลิ้ง เพื่อนเลื่อน ซ้าย - ขวา</div>
+    <div>
+        <md-checkbox class="custoMizeCheckbox" ng-model="dontShowSugges" aria-label="Checkbox 1">
+            <span style="font-size:18px;color:#FFF">ไม่ต้องแสดงหน้านี้อีก</span>
+        </md-checkbox>
+    </div>
+
+    <div style="position:absolute;top:24px;right:24px;" ng-click="closeSugges()">
+        <md-button class="md-icon-button" aria-label="More" style="width:120px;height:120px">
+            <i class="material-icons" style="font-size:84px;color:red;">close</i>
+        </md-button>
+    </div>
+</div>-->
+
+<script>
+    $(document).ready(function () {
+        $('tbody').scroll(function (e) { //detect a scroll event on the tbody
+            $('thead').css("left", -$("tbody").scrollLeft()); //fix the thead relative to the body scrolling
+            $('thead th:nth-child(1)').css("left", $("tbody").scrollLeft()); //fix the first cell of the header
+            $('tbody td:nth-child(1)').css("left", $("tbody").scrollLeft()); //fix the first column of tdbody
+        });
+    });
+</script>
+
+<style>
+    table.dataTable {
+        position: relative;
+        background-color: #aaa;
+        overflow: hidden;
+        border-collapse: collapse;
+        font-size: 12px;
+    }
+
+        /*thead*/
+        table.dataTable > thead {
+            position: relative;
+            display: block; /*seperates the header from the body allowing it to be positioned*/
+            width: 700px;
+            overflow: visible;
+        }
+
+            table.dataTable > thead th {
+                text-align: left;
+                background-color: #FFF;
+                border: 1px solid #BDBDBD;
+            }
+
+                table.dataTable > thead th:nth-child(1) { /*first cell in the header*/
+                    position: relative;
+                    display: table-cell; /*seperates the first cell in the header from the header*/
+                    background-color: #EEEEEE;
+                }
+
+
+        /*tbody*/
+        table.dataTable > tbody {
+            position: relative;
+            display: block; /*seperates the tbody from the header*/
+            width: 700px;
+            overflow: scroll;
+        }
+
+            table.dataTable > tbody td {
+                background-color: #FFF;
+                min-width: 120px;
+                border: 1px solid #BDBDBD;
+                vertical-align: top;
+                text-align: left;
+            }
+
+            table.dataTable > tbody tr td:nth-child(1) { /*the first cell in each tr*/
+                position: relative;
+                display: table-cell; /*seperates the first column from the tbody*/
+                height: 40px;
+                background-color: #EEEEEE;
+                z-index: 9999;
+            }
+
+    .nonFixCell {
+        vertical-align: top;
+        text-align: left;
+        padding-top: 11px;
+    }
+
+    .nonFixCellBank {
+        vertical-align: top;
+        text-align: left;
+        padding-top: 4px;
+        z-index: 9999;
+    }
+
+    .md-nav-item:first-of-type {
+        margin: 0px;
+    }
+
+    .md-button._md-nav-button {
+        margin: 0px;
+    }
+
+    .md-subheader ._md-subheader-inner {
+        min-height: 53px;
+    }
+
+    .pinDiv {
+        position: absolute;
+        right: 7px;
+        top: 142px;
+        z-index: 9999;
+        outline: none;
+        cursor: pointer;
+    }
+
+    .md-datepicker-button {
+        display: none;
+    }
+
+    .md-icon-button + .md-datepicker-input-container {
+        height: 24px;
+    }
+
+    .md-datepicker-input-container {
+        padding-bottom: 12px;
+    }
+
+    .md-datepicker-triangle-button.md-button.md-icon-button {
+        top: 14px;
+    }
+
+    #iconDelete {
+        top: -10px;
+        padding: 6px;
+        width: 35px;
+    }
+</style>

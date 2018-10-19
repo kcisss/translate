@@ -1,0 +1,14 @@
+﻿@{
+    
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+
+}
+@Styles.Render(
+  
+    "~/bundles/css/lmlstyle"
+)
+@RenderSection("IncludeScripts", false)
+
+<div id="page-wrapper">
+    @RenderBody()
+</div><!-- /#page-wrapper -->

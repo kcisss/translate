@@ -1,0 +1,23 @@
+﻿<md-bottom-sheet class="md-grid">
+  <md-list>
+    <md-item ng-repeat="item in WorkFlow.WorkStages" ng-click="listItemClick($index)">
+      <md-button style="text-decoration: none;text-align: center" class="md-grid-item-content" aria-label="{{item.Name}}" ng-href="#!/{{param.projectId}}/unit/{{param.unitId}}/IssueForm/{{item.Id}}">
+
+        <div class="md-item-content" style="width:150px;">
+            <div class="md-icon-container">
+                <!-- <div class="fa fa-exchange"></div> -->
+            </div>
+            <p class="md-grid-text"> {{ item.Name }} </p>
+        </div>
+        </md-button>
+    </md-item>
+  </md-list>
+</md-bottom-sheet>
+
+<style type="text/css">
+  md-button a {
+    text-decoration: none;
+  }
+</style>
+
+

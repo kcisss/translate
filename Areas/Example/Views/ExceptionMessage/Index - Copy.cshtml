@@ -1,0 +1,750 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        .a4page {
+            /*position: relative;*/
+            width: 210mm;
+            height: 297mm;
+            box-sizing: border-box;
+            padding: 1mm 15mm 1mm 15mm;
+            box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+            margin: 3px auto;
+            line-height: 25px;
+            font-family: 'AngsanaUPC';
+            font-size: 14pt;
+            text-align: justify;
+        }
+
+        .a4head {
+            /*border-bottom: 1px solid black !important;*/
+            text-align: center;
+            /*font-size: 18pt;*/
+            /*text-decoration: underline;*/
+            /*line-height: 25px;*/
+        }
+
+        .a4body {
+            height: 240mm;
+        }
+
+        .a4foot {
+        }
+
+        .textinbody {
+            text-indent: 50px;
+        }
+
+        td {
+            height: 10px;
+        }
+
+        #a {
+            margin-top: -10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="a4page">
+        <div class="a4body">
+            <!--<div style="height: 245mm;">-->
+            <p style="text-align: right;">สัญญาเลขที่ <strong>{{quotation.REUnitCode}}</strong></p>
+            <p style="text-align: center;">&nbsp;</p>
+            <p style="text-align: center;"><span style="font-size: 18.6667px;"><strong>สัญญาจะซื้อจะขายที่ดินจัดสรร (มีสิ่งปลูกสร้าง)<br /></strong></span><span style="font-size: 18.6667px;"><strong>(โครงการ&nbsp; เค-อเวนิว)</strong></span></p>
+            <p style="text-align: center;">&nbsp;</p>
+            <p class="textinbody"><span style="font-size: 14pt;"><span lang="TH" style="text-indent: 1in; font-size: 14pt; font-family: 'Angsana New', serif;">สัญญาฉบับนี้ทำขึ้น เมื่อวันที่ <strong><span style="text-decoration: underline;">{{quotation.ContractDueDate| date:'dd/MM/yyyy'}}</span></strong>&nbsp;</span><span lang="TH" style="text-indent: 1in; font-size: 14pt; font-family: 'Angsana New', serif;">ณ บริษัท ชวนพัฒนา&nbsp; พร็อพเพอร์ตี้ จำกัด&nbsp; ระหว่าง&nbsp; บริษัท ชวนพัฒนา พร็อพเพอร์ตี้ จำกัด&nbsp; โดย นายธนวัช&nbsp; ภูเก้าล้วน ผู้รับมอบอำนาจกระทำการแทนบริษัท&nbsp; เลขทะเบียนนิติบุคคล&nbsp; 0815545000341&nbsp; สำนักงานแห่งใหญ่&nbsp; ตั้งอยู่เลขที่ </span><span style="text-indent: 1in; font-size: 14pt; font-family: 'Angsana New', serif;">&nbsp;&nbsp;<span lang="TH">999 - 999/1 &nbsp;&nbsp;ถนนมหาราช&nbsp; ตำบลปากน้ำ อำเภอเมืองกระบี่&nbsp; จังหวัดกระบี่ (เอกสารผนวก</span> 1.<span lang="TH">)</span>&nbsp; <span lang="TH">ซึ่งต่อไปในสัญญานี้เรียกว่า </span>&ldquo;<span lang="TH">ผู้จะขาย</span>&rdquo;<span lang="TH"> &nbsp;&nbsp;ฝ่ายหนึ่ง </span></span></span></p>
+            <p class="textinbody"><span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;"><span style="text-decoration: underline;"><strong>{{quotation.CustomerName}}</strong></span> อายุ <span style="text-decoration: underline;"><strong>{{quotation.CustomerAge}}</strong></span>&nbsp;ปี&nbsp; สัญชาติ&nbsp;<u>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>ไทย </strong>&nbsp; &nbsp; &nbsp;&nbsp;</u>ถือบัตร&nbsp;<strong><u>&nbsp;&nbsp; ประจำตัวประชาชน&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</u></strong></span>เลขที่ <strong><span style="text-decoration: underline;">{{quotation.CustomerIDNo}}</span></strong> ออกให้ ณ <u>&nbsp;&nbsp;&nbsp;<strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;กรมการปกครอง &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>&nbsp;&nbsp;</u>&nbsp;เมื่อวันที่&nbsp;<u> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>&nbsp;</u>อยู่บ้านเลขที่ <span style="text-decoration: underline;"><strong>{{quotation.CustomerAddress}}</strong></span> โทรศัพท์&nbsp;<strong><u>{{quotation.CustomerPhone}}</u></strong>&nbsp;<span style="text-indent: 1in; font-size: 14pt; font-family: 'Angsana New', serif;"><span lang="TH"><span lang="TH" style="font-size: 14pt;">ซึ่งต่อไปในสัญญานี้เรียกว่า </span><span style="font-size: 14pt;">&ldquo;<span lang="TH">ผู้จะซื้อ</span>&rdquo;<span lang="TH"> อีกฝ่ายหนึ่ง</span></span></span></span></p>
+            <p class="textinbody"><span style="font-family: 'Angsana New', serif;"><span style="font-size: 18.6667px;">คู่สัญญาทั้งสองฝ่ายตกลงทำสัญญากัน&nbsp; &nbsp;โดยมีข้อความต่อไปนี้&nbsp;</span></span></p>
+            <p class="textinbody"><strong><span style="font-family: 'Angsana New', serif;"><span style="font-size: 18.6667px;">ข้อ 1. คำรับรองของผู้จะขาย</span></span></strong></p>
+            <p class="textinbody"><span style="font-family: 'Angsana New', serif;"><span style="font-size: 18.6667px;">ผู้จะขายรับรองว่าเป็นผู้จัดสรรที่ดินโครงการชื่อว่า&nbsp; &ldquo;เค-อเวนิว @ ถ.มหาราช&nbsp; เทศบาล&rdquo;&nbsp;</span></span><span style="font-family: 'Angsana New', serif;"><span style="font-size: 18.6667px;">ตั้งอยู่ ถนน&nbsp; มหาราช หมู่ที่&nbsp; -&nbsp; &nbsp;ตำบลปากน้ำ อำเภอ เมืองกระบี่&nbsp; จังหวัดกระบี่&nbsp; &nbsp; โดยได้รับอนุญาตให้ทำการจัดสรรที่ดินตามกฎหมายว่าด้วยการจัดสรรที่ดิน ตามใบอนุญาตเลขที่&nbsp; &nbsp;๑/๒๕๖๐&nbsp;</span></span><span style="font-family: 'Angsana New', serif;"><span style="font-size: 18.6667px;">ลงวันที่&nbsp; ๑๙ มิถุนายน ๒๕๖๐ รายละเอียดปรากฏตามสำเนาแผนผังและที่ตั้งโครงการที่ได้รับอนุญาตให้จัดสรรที่ดิน&nbsp; (เอกสารผนวก 2.)</span></span></p>
+            <p class="textinbody"><span style="font-family: 'Angsana New', serif;"><span style="font-size: 18.6667px;">อนึ่ง สิ่งปลูกสร้างตลอดจนรายละเอียดของโครงการอาจมีการแก้ไขเปลี่ยนแปลงเพื่อให้สอดคล้องกับระเบียบข้อบังคับของทางราชการที่เกี่ยวข้อง หรือ คำสั่งของเจ้าพนักงานผู้มีอำนาจ หรือ มีเหตุจำเป็นทางวิศวกรรมหรือสถาปัตยกรรม หรือเหตุจำเป็นอย่างอื่น&nbsp;</span></span></p>
+            <p class="textinbody"><strong><span style="font-family: 'Angsana New', serif;"><span style="font-size: 18.6667px;">ข้อ 2. ข้อตกลงจะซื้อจะขาย</span></span></strong></p>
+            <p class="textinbody">ผู้จะขายตกลงจะขายและผู้จะซื้อตกลงจะซื้อที่ดินพร้อมสิ่งปลูกสร้างในบริเวณโครงการจัดสรรที่ดินตามสัญญานี้ จำนวน 1 แปลง เป็นที่ดินแปลงที่&nbsp;&nbsp; <strong><span style="text-decoration: underline;">{{quotation.REUnitCode}}</span></strong>&nbsp; มีจำนวนเนื้อที่ประมาณ&nbsp; <strong><span style="text-decoration: underline;">{{quotation.UnitLandPrice|number :0}}</span></strong>&nbsp; ตารางวา&nbsp; ปรากฏตามสำเนาแผนผังและที่ตั้งโครงการที่ยื่นขออนุญาตจัดสรรที่ดิน (เอกสารผนวก 2.) และสิ่งปลูกสร้างเป็นอาคารแบบ&nbsp; ทาวน์โฮม&nbsp; 2&nbsp; ชั้น&nbsp; แบบ&nbsp;<strong> {{quotation.UnitPlanName}}</strong> จำนวน&nbsp; &nbsp; &nbsp; 1&nbsp; &nbsp; &nbsp;หลัง&nbsp; รายละเอียดตามแผนผังบริเวณแบบแปลนการก่อสร้าง&nbsp; &nbsp;และรายการวัสดุประกอบแบบแปลนการก่อสร้าง (เอกสารผนวก&nbsp; 4.)&nbsp;</p>
+            <p class="textinbody">&nbsp;</p>
+            <div class="textinbody">&nbsp;</div>
+        </div>
+        <div class="a4foot" style="text-align: center;">
+            <table style="text-align: center; width: 100%;">
+                <tbody>
+                    <tr style="height: 1px;">
+                        <td style="height: 1px;">
+                            <p class="MsoNormal" align="center"><span lang="TH" style="font-size: 14pt; font-family: 'Angsana New', serif;">ลงชื่อ............................................</span><span style="font-size: 14pt; font-family: 'Angsana New', serif;">......<span lang="TH">ผู้จะขาย</span></span></p>
+                        </td>
+                        <td style="height: 1px;">
+                            <p class="MsoNormal" align="center"><span lang="TH" style="font-size: 14pt; font-family: 'Angsana New', serif;">ลงชื่อ............................................</span><span style="font-size: 14pt; font-family: 'Angsana New', serif;">...........<span lang="TH">ผู้จะซื้อ</span></span></p>
+                        </td>
+                    </tr>
+                    <tr style="height: 14px;">
+                        <td style="height: 14px;"><span class="MsoNormal"><span lang="TH" style="font-size: 14pt; font-family: 'Angsana New', serif;">( บริษัท&nbsp; ชวนพัฒนา พร็อพเพอร์ตี้ จำกัด )</span> </span></td>
+                        <td style="height: 14px;"><span style="font-family: 'Angsana New'; font-size: 14pt;">(<span style="text-indent: 50px;">&nbsp;{{quotation.CustomerName}} </span>)</span></td>
+                    </tr>
+                </tbody>
+            </table>
+            <br /> -1-
+        </div>
+    </div>
+    <div class="a4page">
+        <div class="a4body" style="padding-top: 5mm;">
+            <!--<div style="height: 250mm;">-->
+            <div class="textinbody">
+                <p class="MsoNoSpacing">
+                    <span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">ในขณะที่ทำสัญญา ที่ดินตามวรรคหนึ่ง เป็นโฉนดที่ดินเลขที่&nbsp; </span>
+                    <!-- [if supportFields]><span lang=TH
+                    style='font-size:14.0pt;font-family:"Angsana New",serif;mso-ascii-theme-font:
+                    major-bidi;mso-hansi-theme-font:major-bidi;mso-bidi-theme-font:major-bidi'><span
+                    style='mso-element:field-begin'></span><span style='mso-spacerun:yes'> </span></span><span
+                    style='font-size:14.0pt;font-family:"Angsana New",serif;mso-ascii-theme-font:
+                    major-bidi;mso-hansi-theme-font:major-bidi;mso-bidi-theme-font:major-bidi'>MERGEFIELD
+                    <span lang=TH>โฉนดเลขที่ </span></span><![endif]-->
+                    <!-- [if supportFields]><span
+                    lang=TH style='font-size:14.0pt;font-family:"Angsana New",serif;mso-ascii-theme-font:
+                    major-bidi;mso-hansi-theme-font:major-bidi;mso-bidi-theme-font:major-bidi'><span
+                    style='mso-element:field-end'></span></span><![endif]-->
+                    <span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">&nbsp; {{quotation.TitleDeed}}&nbsp; &nbsp;หน้าสำรวจ {{quotation.DealingFileNo}}&nbsp;</span><span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">เลขที่ดิน {{quotation.ParcelNo}}&nbsp;</span><span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">ตำบล&nbsp;<strong><u>&nbsp; ปากน้ำ&nbsp;&nbsp;</u>&nbsp;</strong>อำเภอ/เขต<strong><u>&nbsp;&nbsp; &nbsp;&nbsp;เมืองกระบี่&nbsp;&nbsp; &nbsp;</u></strong>จังหวัดกระบี่&nbsp; เป็นกรรมสิทธิ์ของผู้จะขาย&nbsp;&nbsp;&nbsp; ได้จดจำนองไว้กับ<u>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u></span><strong><u><span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">บมจ.ธนาคารกรุงไทย&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></u></strong><span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">โดยที่ดินแปลงดังกล่าวเป็นประกันหนี้จำนอง/หนี้บุริมสิทธิจำนวนเงิน<u>&nbsp;&nbsp;&nbsp;&nbsp; <strong>1</strong></u></span><strong><u><span style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">,400,000</span></u></strong><u><span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></u><span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">บาท (<strong><u>หนึ่งล้านสี่แสนบาทถ้วน</u></strong>)</span>
+                </p>
+                <p class="MsoNoSpacing"><strong><span lang="TH" style="font-size: 15pt; font-family: 'Angsana New', serif;">ข้อ </span></strong><strong><span style="font-size: 15pt; font-family: 'Angsana New', serif;">3. <span lang="TH">ราคาจะซื้อจะขาย</span></span></strong></p>
+                <p class="MsoNoSpacing">3.1 <span lang="TH">&nbsp;ผู้จะซื้อและผู้จะขายตกลงจะซื้อจะขายที่ดินพร้อมสิ่งปลูกสร้าง ตามข้อ</span> 2.&nbsp;<span lang="TH" style="font-size: 14pt; font-family: 'Angsana New', serif;">ในราคาที่ดินตารางวาละ<strong><u>&nbsp; &nbsp; &nbsp;30</u></strong></span><strong><u><span style="font-size: 14pt; font-family: 'Angsana New', serif;">,000&nbsp; </span></u></strong><span lang="TH" style="font-size: 14pt; font-family: 'Angsana New', serif;">บาท</span><span style="font-size: 14pt; font-family: 'Angsana New', serif;">&nbsp; &nbsp;(<strong><u><span lang="TH">สามหมื่นบาทถ้วน</span></u></strong>)&nbsp;</span><span style="font-size: 14pt; font-family: 'Angsana New', serif;"><span lang="TH">รวมเป็นเงินค่าที่ดินทั้งสิ้น&nbsp;</span><strong><u>{{30000*quotation.UnitLandPrice|number:0}}</u>&nbsp;</strong></span><span lang="TH" style="font-size: 14pt; font-family: 'Angsana New', serif;">บาท </span><span style="font-size: 14pt; font-family: 'Angsana New', serif;"><span style="font-family: 'Angsana New', serif;"><span style="font-size: 14pt;">&nbsp;&nbsp;&nbsp;</span></span><span lang="TH" style="font-family: 'Angsana New', serif; font-size: 14pt;">(</span><span style="font-family: 'Angsana New', serif;"><strong><u>&nbsp;{{30000*quotation.UnitLandPrice|bahttext}}</u></strong><span style="font-size: 14pt;">)&nbsp;</span></span></span><span style="font-size: 14pt; font-family: 'Angsana New', serif;"><span lang="TH">และสิ่งปลูกสร้างเป็นเงิน&nbsp;</span></span><span lang="TH" style="font-size: 14pt; font-family: 'Angsana New', serif;"><strong style="font-size: 18.6667px;"><u>&nbsp;{{quotation.NetPrice-30000*quotation.UnitLandPrice|number:0}}</u>&nbsp;</strong></span><span style="font-size: 14pt;">บาท </span><span style="font-size: 14pt; font-family: 'Angsana New', serif;">&nbsp;&nbsp;<span lang="TH">&nbsp;(<strong><u>หนึ่งล้านเก้าแสนหกพันบาทถ้วน</u></strong></span>)&nbsp;</span><span lang="TH" style="font-family: 'Angsana New', serif; font-size: 14pt;">รวมเป็นเงินค่าที่ดินและสิ่งปลูกสร้างทั้งสิ้น<u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>2</strong></u></span><strong style="font-family: 'Angsana New', serif; font-size: 14pt;"><u>,<span lang="TH">590</span>,<span lang="TH">000 &nbsp;&nbsp;&nbsp;</span></u></strong><u style="font-family: 'Angsana New', serif; font-size: 14pt;"><span lang="TH">&nbsp;&nbsp;&nbsp;</span></u><span lang="TH" style="font-family: 'Angsana New', serif; font-size: 14pt;">บาท &nbsp;(<strong><u>สองล้านห้าแสนเก้าหมื่นบาทถ้วน</u></strong></span><span style="font-family: 'Angsana New', serif; font-size: 14pt;">)</span></p>
+                <p class="MsoNoSpacing">3.2 <span lang="TH">ในกรณีที่ยังไม่ได้แบ่งแยกโฉนดที่ดิน&nbsp;&nbsp; เมื่อได้แบ่งแยกแล้ว หากปรากฏว่ามีเนื้อที่ดินเพิ่มขึ้นหรือลดลงจากจำนวนที่ระบุไว้ในสัญญา คู่สัญญาตกลงคิดราคาที่ดินส่วนที่เพิ่มขึ้นหรือลดลงในราคาต่อหน่วยตามที่กำหนดในข้อ</span> 3.1 <span lang="TH">และให้นำราคาที่ดินในส่วนที่เพิ่มขึ้นหรือลดลงไปเพิ่มหรือลดจากราคาที่ดิน&nbsp; ตามข้อ</span> 3.1 <span lang="TH">และจำนวนเงินที่ต้องชำระตามข้อ </span>4.</p>
+                <p class="MsoNoSpacing"><strong><span lang="TH" style="font-size: 15pt; font-family: 'Angsana New', serif;">ข้อ </span></strong><strong><span style="font-size: 15pt; font-family: 'Angsana New', serif;">4. <span lang="TH">การชำระเงินและการโอนกรรมสิทธิ์</span></span></strong></p>
+                <p class="MsoNoSpacing"><span style="font-size: 14pt; font-family: 'Angsana New', serif;">4.1&nbsp; <span lang="TH">ในการชำระราคาซื้อขายที่ดินพร้อมสิ่งปลูกสร้างตามข้อ 3.1 คู่สัญญาตกลงให้ถือเอาเงินที่ผู้จะซื้อได้ชำระในวันที่จอง เมื่อวันที่ <strong><u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;9 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u></strong>เดือน<u>&nbsp;&nbsp; <strong>&nbsp;กรกฎาคม&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;</strong></u>พ.ศ.</span><u>&nbsp;&nbsp;&nbsp; <strong>2561&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;</strong></u><span lang="TH">จำนวน<strong><u>&nbsp; </u></strong></span><strong><u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u></strong></span><strong><u><span style="font-size: 14pt; font-family: 'Angsana New', serif;"><span lang="TH">10</span>,<span lang="TH">000</span></span></u></strong><strong><u><span style="font-size: 14pt; font-family: 'Angsana New', serif;"> <span lang="TH">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span></u></strong><span lang="TH" style="font-size: 14pt; font-family: 'Angsana New', serif;">บาท&nbsp;&nbsp; (<strong><u>หนึ่งหมื่นบาท</u></strong>)&nbsp; และเงินที่ผู้จะซื้อได้ชำระในวันทำสัญญานี้อีกจำนวน<strong><u>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u></strong></span><strong><u><span lang="TH" style="font-size: 14pt; font-family: 'Angsana New', serif;">20</span></u></strong><strong><u><span style="font-size: 14pt; font-family: 'Angsana New', serif;">,<span lang="TH">000</span></span></u></strong><strong><u><span lang="TH" style="font-size: 14pt; font-family: 'Angsana New', serif;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></u></strong><span lang="TH" style="font-size: 14pt; font-family: 'Angsana New', serif;">บาท</span><span style="font-size: 14pt; font-family: 'Angsana New', serif;">&nbsp; (<strong><u><span lang="TH">สองหมื่นบาทถ้วน</span></u></strong>)&nbsp; <span lang="TH">รวมเงินที่ผู้จะซื้อได้ชำระให้แก่ผู้จะขายไปแล้วทั้งสิ้นจำนวน<strong><u>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;30</u></strong></span><strong><u>,<span lang="TH">000&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;</span></u></strong><span lang="TH">บาท (<strong><u>สามหมื่นบาทถ้วน</u></strong></span>)&nbsp; <span lang="TH">เป็นการชำระราคาค่าที่ดินพร้อมสิ่งปลูกสร้างตามข้อ</span> 3.1 <span lang="TH">ส่วนหนึ่งด้วย</span></span></p>
+                <p class="MsoNoSpacing">4.2&nbsp; <span lang="TH">ผู้จะซื้อตกลงชำระเงินดาวน์เป็นเงินจำนวน<strong><u> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;115</u></strong></span><strong><u>,700<span lang="TH">&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></u></strong><span lang="TH">บาท (<strong><u>หนึ่งแสนหนึ่งหมื่นห้าพันเจ็ดร้อยบาทถ้วน</u></strong>) โดยตกลงผ่อนชำระ จำนวน<u>&nbsp;&nbsp;&nbsp; <strong>&nbsp;&nbsp;&nbsp;13&nbsp;&nbsp;&nbsp;&nbsp; </strong></u>งวด&nbsp; รายละเอียดจำนวนเงินที่ต้องชำระในแต่ละงวด และกำหนดวันที่ชำระ ปรากฏตามตารางการชำระเงิน (เอกสารผนวก&nbsp; </span>3.<span lang="TH">)</span></p>
+                <p class="MsoNoSpacing">4.3 <span lang="TH">&nbsp;ชำระส่วนที่เหลือทั้งหมด<strong><u> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2</u></strong></span><strong><u>,<span lang="TH">444</span>,<span lang="TH">300&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></u></strong><span lang="TH">เป็นจำนวนเงินบาท (<strong><u>สองล้านสี่แสนสี่หมื่นสี่พัน</u></strong></span><strong><u><span lang="TH" style="font-size: 14pt; font-family: 'Angsana New', serif;">สามร้อยบาทถ้วน</span></u></strong><span style="font-size: 14pt; font-family: 'Angsana New', serif;">) <span lang="TH">ในวันจดทะเบียนโอนกรรมสิทธิ์ที่ดินพร้อมสิ่งปลูกสร้าง วันที่&nbsp; <strong><u>&nbsp; &nbsp; &nbsp;30&nbsp;&nbsp; สิงหาคม&nbsp;&nbsp; 2562&nbsp; &nbsp;&nbsp;</u></strong></span></span></p>
+                <p><span lang="TH" style="text-indent: 1in; font-size: 14pt; font-family: 'Angsana New', serif;">ทั้งนี้ ผู้จะขายต้องแจ้งกำหนดวันจดทะเบียนโอนกรรมสิทธิ์ที่ดินพร้อมสิ่งปลูกสร้างให้ผู้จะซื้อทราบล่วงหน้าไม่น้อยกว่า &nbsp;&nbsp;30 (สามสิบ) วัน</span><span style="text-indent: 1in; font-size: 14pt; font-family: 'Angsana New', serif;">&nbsp;<span lang="TH">และผู้จะซื้อตกลงว่าพร้อมที่จะไปจดทะเบียนรับโอนกรรมสิทธิ์ตามที่ผู้จะขายได้นัดไว้ดังกล่าว</span></span><strong>ข้อ 2 <span style="text-decoration: underline;">การชำระเงินและการโอนกรรมสิทธิ์</span></strong></p>
+                <p>อนึ่ง&nbsp; ผู้จะซื้อทราบและตกลงว่า&nbsp; หากการก่อสร้างที่ดินพร้อมสิ่งปลูกสร้างแล้วเสร็จก่อนกำหนดการ<span lang="TH" style="font-size: 14pt; font-family: 'Angsana New', serif;">โอนกรรมสิทธิ์ตามข้อ 4.3&nbsp; ผู้จะขายมีสิทธิเรียกให้ผู้จะซื้อมารับโอนกรรมสิทธิ์ที่ดินพร้อมสิ่งปลูกสร้างได้ทันที&nbsp; โดยการบอกกล่าวล่วงหน้าเป็นหนังสือไม่น้อยกว่า </span><span lang="TH" style="font-size: 14pt; font-family: 'Angsana New', serif;">30 (สามสิบ) วัน</span><span style="font-size: 14pt; font-family: 'Angsana New', serif;">&nbsp;</span><span lang="TH" style="font-size: 14pt; font-family: 'Angsana New', serif;">&nbsp; และผู้จะซื้อตกลงให้บรรดาค่างวดหรือเงินจำนวนใด ๆ&nbsp; ที่ต้องผ่อนชำระที่ยังไม่ถึงกำหนดชำระเป็นอันถึงกำหนดชำระทั้งหมดในวันที่เรียกให้มาโอนกรรมสิทธิ์&nbsp; ตามกำหนดเวลาที่</span><span style="font-family: 'Angsana New', serif; font-size: 14pt;">กำหนดในหนังสือดังกล่าว</span><span style="font-family: 'Angsana New', serif; font-size: 14pt;">&nbsp; </span><span style="font-family: 'Angsana New', serif; font-size: 14pt;">โดยผู้จะซื้อตกลงไปจดทะเบียนรับโอนกรรมสิทธิ์ที่ดินพร้อมสิ่งปลูกสร้าง</span><span style="font-family: 'Angsana New', serif; font-size: 14pt;">&nbsp; </span><span style="font-family: 'Angsana New', serif; font-size: 14pt;">และชำระราคาที่ดินพร้อมสิ่งปลูกสร้างส่วนที่เหลือทั้งหมดให้ครบถ้วนในวันที่ได้รับแจ้งดังกล่าว</span><span style="font-family: 'Angsana New', serif; font-size: 14pt;">&nbsp;&nbsp; </span><span style="font-family: 'Angsana New', serif; font-size: 14pt;">พร้อมปฏิบัติตามเงื่อนไขในสัญญาฉบับนี้จนครบถ้วนและผู้จะซื้อจะไม่ใช้สิทธิโต้แย้งใด ๆ ทั้งสิ้น</span></p>
+                <table style="text-align: center; width: 100%;">
+                    <tbody>
+                        <tr style="height: 1px;">
+                            <td style="height: 1px;">
+                                <p class="MsoNormal" align="center"><span lang="TH" style="font-size: 14pt; font-family: 'Angsana New', serif;">ลงชื่อ............................................</span><span style="font-size: 14pt; font-family: 'Angsana New', serif;">......<span lang="TH">ผู้จะขาย</span></span></p>
+                            </td>
+                            <td style="height: 1px;">
+                                <p class="MsoNormal" align="center"><span lang="TH" style="font-size: 14pt; font-family: 'Angsana New', serif;">ลงชื่อ............................................</span><span style="font-size: 14pt; font-family: 'Angsana New', serif;">...........<span lang="TH">ผู้จะซื้อ</span></span></p>
+                            </td>
+                        </tr>
+                        <tr style="height: 14px;">
+                            <td style="height: 14px;"><span class="MsoNormal"><span lang="TH" style="font-size: 14pt; font-family: 'Angsana New', serif;">( บริษัท&nbsp; ชวนพัฒนา พร็อพเพอร์ตี้ จำกัด )</span></span></td>
+                            <td style="height: 14px;"><span style="font-family: 'Angsana New'; font-size: 14pt;">(<span style="text-indent: 50px;">&nbsp;{{quotation.CustomerName}}&nbsp;</span>)</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br style="font-size: 18.6667px; text-align: center;" />&nbsp; &nbsp;-2-
+            </div>
+        </div>
+    </div>
+    <div class="a4page">
+        <div class="a4body">
+            <!--<div style="height: 240mm;">-->
+            <div class="textinbody">
+                <p class="MsoNoSpacing" style="text-indent: 1.0in;">&nbsp;</p>
+                <p style="text-align: justify;"><span style="font-size: 18.6667px;"><strong>ในระหว่างที่ผู้จะซื้อชำระราคาให้แก่ผู้จะขายยังไม่ครบถ้วน หรือในกรณีที่ผู้จะซื้อผิดนัดไม่ชำระหนี้อย่างใดในสัญญานี้ ผู้จะซื้อจะนำเอาที่ดินพร้อมสิ่งปลูกสร้างดังกล่าวไปให้ผู้อื่นเช่าโดยตรงหรือโดยปริยาย หรือทำนิติกรรมใดๆ อันจะเป็นผลผูกพันที่ดินพร้อมสิ่งปลูกสร้างไม่ได้เป็นอันขาด รวมทั้งจะไม่ก่อให้เกิดความเสียหายแก่ผู้จะขายหรือเจ้าของที่ดินข้างเคียงไม่ว่าด้วยประการใดๆ</strong></span></p>
+                <p style="text-align: justify;"><strong><span lang="TH" style="font-size: 15pt; font-family: 'Angsana New', serif;">ข้อ </span></strong><strong><span style="font-size: 15pt; font-family: 'Angsana New', serif;">5. <span lang="TH">หลักฐานการชำระเงิน</span></span></strong></p>
+                <p style="text-align: justify;"><span lang="TH" style="font-size: 14pt; font-family: 'Angsana New', serif;">ในการชำระเงินค่าที่ดินพร้อมสิ่งปลูกสร้าง &nbsp;&nbsp;ผู้จะขายต้องออกหลักฐานเป็นหนังสือลงลายมือชื่อผู้จะขายหรือผู้รับเงินให้แก่ผู้จะซื้อ และผู้จะขายยอมรับว่าหลักฐานการชำระเงินดังกล่าวและหลักฐานการชำระหนี้บุริมสิทธิในมูลซื้อขายอสังหาริมทรัพย์หรือหนี้จำนองของผู้จะซื้อเป็นหลักฐานการแสดงการชำระราคาที่ดินพร้อมสิ่งปลูกสร้างด้วย</span></p>
+                <p class="MsoNoSpacing"><span lang="TH" style="font-size: 14pt; font-family: 'Angsana New', serif;">ในการชำระเงินดาวน์แต่ละงวด&nbsp; ผู้จะซื้อตกลงนำเงินไปผ่อนชำระให้แก่ผู้จะขาย โดยการ โอนเข้าบัญชี&nbsp; </span></p>
+                <p class="MsoNoSpacing" style="margin-left: .5in; text-indent: .5in;"><span lang="TH" style="font-size: 14pt; font-family: 'Angsana New', serif;">1. บมจ.ธนาคารกรุงเทพ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>(</strong></span><strong><span style="font-size: 14pt; font-family: 'Angsana New', serif;">Br.No.0280<span lang="TH">) </span>Comp Code 12345 <span lang="TH">&nbsp;หรือ</span></span></strong><span lang="TH" style="font-size: 14pt; font-family: 'Angsana New', serif;">&nbsp; </span></p>
+                <p class="MsoNoSpacing" style="margin-left: .5in; text-indent: .5in;"><span style="font-size: 14pt; font-family: 'Angsana New', serif;">2. <span lang="TH">บมจ.ธนาคารกรุงไทย&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>(</strong></span><strong>Ac No.8126042095<span lang="TH">)&nbsp; </span>Comp Code 6412</strong></span></p>
+                <p class="MsoNoSpacing" style="margin-left: .5in; text-indent: .5in;"><span lang="TH" style="font-size: 14pt; font-family: 'Angsana New', serif;">3. บมจ.ธนาคารไทยพาณิชย์&nbsp; </span><span lang="TH" style="font-size: 14pt; font-family: 'Angsana New', serif;">&nbsp;<strong>ชวนพัฒนา พร็อพเพอร์ตี้ เลขที่บัญชี 5723031819</strong></span></p>
+                <p style="text-align: justify;"><span style="font-size: 18.6667px;">ในกรณีที่ผู้จะซื้อชำระเงินตามสัญญานี้ให้แก่ผู้จะขายด้วยเช็คหรือตั๋วเงินอื่นจะต้องลงวันที่ถึงกำหนดชำระเงินตามเช็คหรือตั๋วเงินนั้นไม่เกินวันครบกำหนดชำระเงินในแต่ละงวดที่กำหนดไว้ในสัญญาฉบับนี้ &nbsp;&nbsp;และจะถือว่าการชำระหนี้จะสมบูรณ์ก็ต่อเมื่อผู้จะขายได้รับเงินตามเช็คหรือตั๋วเงินนั้นเรียบร้อยแล้ว</span></p>
+                <p style="text-align: justify;"><strong><span lang="TH" style="font-size: 15pt; font-family: 'Angsana New', serif;">ข้อ </span></strong><strong><span style="font-size: 15pt; font-family: 'Angsana New', serif;">6. <span lang="TH">สาธารณูปโภคและบริการสาธารณะ</span></span></strong></p>
+                <p style="text-align: justify;"><span style="font-size: 14pt; font-family: 'Angsana New', serif;">6.1&nbsp;<span lang="TH">ผู้จะขายต้องจัดให้มีสาธารณูปโภคและบริการสาธารณะในโครงการจัดสรรที่ดินตามที่ได้ขออนุญาตจากคณะกรรมการจัดสรรที่ดินและตามที่ผู้จะขายได้โฆษณาไว้ เอกสารผนวก 2 และผนวก 6 ทั้งนี้ การจัดให้มีสาธารณูปโภคและบริการสาธารณะอาจเปลี่ยนแปลงได้ตามข้อกำหนดเกี่ยวกับการจัดสรรที่ดินที่เกี่ยวข้อง</span></span></p>
+                <p style="text-align: justify;"><span style="font-size: 14pt; font-family: 'Angsana New', serif;">6.2 <span lang="TH">ในกรณีผู้จะขายเป็นผู้ดำเนินการจัดให้มีการติดตั้งมาตรวัดปริมาตรและปริมาณการใช้สาธารณูปโภคสำหรับที่ดินพร้อมสิ่งปลูกสร้างที่จะซื้อจะขายตามสัญญานี้ ผู้จะขายต้องโอนสิทธิมาตรวัดปริมาตรและปริมาณการใช้สาธารณูปโภคให้เป็นชื่อของผู้จะซื้อภายใน 60 (หกสิบ) วัน นับแต่วันจดทะเบียนโอนกรรมสิทธิ์ที่ดินพร้อมสิ่งปลูกสร้าง ทั้งนี้ ค่าธรรมเนียมและค่าใช้จ่ายในการติดตั้งและโอนสิทธิมาตรวัดดังกล่าวผู้จะขายจะเป็นผู้ชำระไปก่อน และเรียกเก็บจากผู้จะซื้อเมื่อโอนสิทธิมาตรวัดแล้ว</span></span></p>
+                <p><span style="font-family: 'Angsana New', serif; font-size: 14pt; text-indent: 1in;">อนึ่ง หากผู้จะขายได้ทำการติดตั้งมาตรวัดปริมาตรและปริมาณการใช้สาธารณูปโภคสำหรับที่ดินพร้อมสิ่งปลูกสร้างที่จะซื้อจะขายตามสัญญานี้ให้แก่ผู้จะซื้อก่อนการจดทะเบียนโอนกรรมสิทธิ์ที่ดินพร้อมสิ่งปลูกสร้าง</span><span style="font-family: 'Angsana New', serif; font-size: 14pt; text-indent: 1in;">&nbsp; </span><span style="font-family: 'Angsana New', serif; font-size: 14pt; text-indent: 1in;">&nbsp;</span><span style="font-family: 'Angsana New', serif; font-size: 14pt; text-indent: 1in;">ผู้จะซื้อตกลงจ่ายค่าธรรมเนียมและค่าใช้จ่ายในการติดตั้งและโอนสิทธิมาตรวัดดังกล่าวให้แก่ผู้จะขาย ในวันจดทะเบียนรับโอนกรรมสิทธิ์ที่ดินพร้อมสิ่งปลูกสร้าง</span></p>
+                <p id="a">&nbsp;</p>
+                <p id="a">&nbsp;</p>
+                <p id="a">&nbsp;</p>
+            </div>
+        </div>
+        <table style="width: 680px; text-align: center;">
+            <tbody>
+                <tr style="height: 1px;">
+                    <td style="height: 1px;">
+                        <p class="MsoNormal" align="center"><span lang="TH" style="font-size: 14pt; font-family: 'Angsana New', serif;">ลงชื่อ............................................</span><span style="font-size: 14pt; font-family: 'Angsana New', serif;">......<span lang="TH">ผู้จะขาย</span></span></p>
+                    </td>
+                    <td style="height: 1px;">
+                        <p class="MsoNormal" align="center"><span lang="TH" style="font-size: 14pt; font-family: 'Angsana New', serif;">ลงชื่อ............................................</span><span style="font-size: 14pt; font-family: 'Angsana New', serif;">...........<span lang="TH">ผู้จะซื้อ</span></span></p>
+                    </td>
+                </tr>
+                <tr style="height: 14px;">
+                    <td style="height: 14px;"><span lang="TH" style="font-size: 14pt; font-family: 'Angsana New', serif;">( บริษัท&nbsp; ชวนพัฒนา พร็อพเพอร์ตี้ จำกัด )</span></td>
+                    <td style="height: 14px;"><span style="font-family: 'Angsana New'; font-size: 14pt;"><span style="text-indent: 50px;">&nbsp;({{quotation.CustomerName}}&nbsp;</span>)</span></td>
+                </tr>
+            </tbody>
+        </table>
+        <br />
+        <div class="a4foot" style="text-align: center;">-3-</div>
+    </div>
+    <div class="a4page">
+        <!--<div class="a4body">-->
+        <div style="height: 245mm;">
+            <div class="textinbody">
+                <p>&nbsp;</p>
+                <p style="text-align: justify;"><span style="font-size: 18.6667px;">6.3 <span lang="TH">ผู้จะซื้อยินยอมที่จะออกค่าใช้จ่ายในการใช้บริการและค่าบำรุงรักษาบริการสาธารณะตามอัตราที่คณะกรรมการจัดสรรที่ดินจังหวัดกระบี่ให้ความเห็นชอบ โดยตกลงชำระให้แก่ผู้จะขายในวันจดทะเบียนรับโอนกรรมสิทธิ์ที่ดินพร้อมสิ่งปลูกสร้าง</span></span></p>
+                <p style="text-align: justify;"><strong><span lang="TH" style="font-size: 15pt; font-family: 'Angsana New', serif;">ข้อ </span></strong><strong><span style="font-size: 15pt; font-family: 'Angsana New', serif;">7. <span lang="TH">การก่อสร้างอาคาร</span></span></strong></p>
+                <p style="text-align: justify;"><span style="font-size: 18.6667px;">7.1 ผู้จะขายรับรองว่าได้รับอนุญาตก่อสร้างอาคารแล้ว ตามใบอนุญาตก่อสร้างอาคารเลขที่<u>&nbsp; &nbsp; &nbsp; &nbsp;</u></span><strong><u><span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-fareast-font-family: Calibri;">165/2559</span></u></strong><u><span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-fareast-font-family: Calibri;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></u><span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-fareast-font-family: Calibri;">&nbsp;ลงวัน</span>ที่ <u><strong>27&nbsp; ตุลาคม&nbsp; 2559</strong>&nbsp; </u>(เอกสารผนวก<span style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-fareast-font-family: Calibri;"> 2.<span lang="TH">)</span></span></p>
+                <p style="text-align: justify;"><span style="font-size: 18.6667px;">7.2 ผู้จะขายต้องก่อสร้างอาคารตามที่กำหนดไว้ในข้อ </span>2 <span lang="TH">โดยจัดหาวัสดุที่มีคุณภาพดีตามที่กำหนดใน</span><span lang="TH" style="font-size: 14pt; font-family: 'Angsana New', serif;">แบบแปลนการ</span>ก่อสร้าง และรายการวัสดุประกอบแบบแปลนการก่อสร้าง เอกสารผนวก<span style="font-size: 14pt; font-family: 'Angsana New', serif;"> 4 <span lang="TH">หากไม่สามารถหาวัสดุตามที่กำหนดไว้จากท้องตลาด ผู้จะขายต้องจัดหาวัสดุที่มีคุณภาพเทียบเท่าหรือดีกว่ามาทำการก่อสร้าง</span>&nbsp; <span lang="TH">ผู้จะขายจะต้องจัดหาผู้ควบคุมงานที่มีความรู้ความสามารถเพื่อควบคุมงานก่อสร้างให้เป็นไปตามแบบแปลนการก่อสร้างตามสัญญานี้</span></span></p>
+                <p style="text-align: justify;"><span style="font-size: 18.6667px;">7.3 <span lang="TH">เมื่อการก่อสร้างอาคารแล้วเสร็จ พร้อมที่จะโอนกรรมสิทธิ์ ผู้จะขายต้องขนย้ายเครื่องมือเครื่องใช้ วัสดุอุปกรณ์เหลือใช้ และสิ่งรกรุงรังออกไปให้พ้นบริเวณที่ก่อสร้างพร้อมทั้งกลบเกลี่ยพื้นดินและทำความสะอาดบริเวณดังกล่าวให้เรียบร้อยอยู่ในสภาพที่ผู้จะซื้อสามารถเข้าอยู่ได้ทันที</span></span></p>
+                <p style="text-align: justify;"><span style="font-size: 18.6667px;">7.4 <span lang="TH">ผู้จะขายยินยอมให้ผู้จะซื้อหรือตัวแทนของผู้จะซื้อเข้าตรวจตราภายในบริเวณที่ดินและอาคารที่ก่อสร้างได้ตลอดเวลาทำการ โดยแจ้งให้ผู้จะขายทราบล่วงหน้าเป็นหนังสือ และต้องไม่ขัดขวางหรือรบกวนการก่อสร้าง</span>&nbsp;<span lang="TH">อันจะส่งผลให้การก่อสร้างต้องล่าช้า หรือหยุดชะงักลง</span></span></p>
+                <p style="text-align: justify;"><span style="font-size: 18.6667px;">7.5&nbsp; ในระหว่างการก่อสร้างผู้จะซื้อจะให้บุคคลอื่นเข้ามาทำงานเพิ่มเติมต่อจากแบบก่อสร้าง</span>และ/หรือรายการจากที่มีอยู่ในสัญญานี้ไม่ได้&nbsp;</p>
+                <p style="text-align: justify;"><strong><span lang="TH" style="font-size: 15pt; font-family: 'Angsana New', serif;">ข้อ </span></strong><strong><span style="font-size: 15pt; font-family: 'Angsana New', serif;">8. <span lang="TH">การโอนสิทธิ</span></span></strong></p>
+                <p style="text-align: justify;"><span style="font-size: 14pt; font-family: 'Angsana New', serif;">8.1 <span lang="TH">ก่อนการจดทะเบียนโอนกรรมสิทธิ์ที่ดินพร้อมสิ่งปลูกสร้างตามข้อ 9. ของสัญญานี้ หากผู้จะซื้อมีความประสงค์จะโอนสิทธิและหน้าที่ตามสัญญานี้ให้แก่บุคคลอื่น ผู้จะซื้อต้องแจ้งความประสงค์ต่อผู้จะขายเป็นลายลักษณ์อักษรล่วงหน้าก่อนถึงกำหนดการโอนกรรมสิทธิ์ไม่น้อยกว่า 60 (หกสิบ) วัน โดยใช้แบบฟอร์มและปฏิบัติตามวิธีการที่ผู้จะขายกำหนด และภายใต้เงื่อนไขว่า</span></span></p>
+                <p class="MsoNoSpacing" style="margin-left: .5in; text-indent: .5in;"><span lang="TH" style="font-size: 14pt; font-family: 'Angsana New', serif;">8.1.1 <span lang="TH">ผู้จะซื้อต้องไม่ติดค้างชำระค่างวด และเงินจำนวนใดๆ ตามสัญญานี้</span></span></p>
+                <p class="MsoNoSpacing" style="margin-left: .5in; text-indent: .5in;"><span lang="TH" style="font-size: 14pt; font-family: 'Angsana New', serif;">8.1.2 ผู้จะซื้อต้องชำระค่าธรรมเนียมการโอนสิทธิดังกล่าวให้แก่ผู้จะขายเป็นเงินจำนวน&nbsp;<strong style="font-size: 14pt;"><u><span style="font-size: 14pt; font-family: 'Angsana New', serif;">50,000</span></u></strong></span><span style="font-size: 14pt; font-family: 'Angsana New', serif;">&nbsp;&nbsp; <span lang="TH">บาท (<strong><u>ห้าหมื่นบาทถ้วน</u></strong>) ต่อการโอนสิทธิในแต่ละคราว (<strong><u>เว้นแต่</u></strong> การโอนสิทธิและหน้าที่ให้แก่ (1) คู่สมรส หรือ (2) บิดา มารดา หรือ (3) บุตร โดยชอบด้วยกฎหมาย หรือ (4) บุคคลที่ผู้จะซื้อได้แสดงความจำนงว่าจะโอนสิทธิให้แก่ผู้จะขายทราบเป็นการล่วงหน้าก่อนการตกลงทำสัญญาจะซื้อจะขาย</span></span>หากผู้จะขายไม่มีหนังสือเป็นลายลักษณ์อักษรให้ผู้จะซื้อทราบ ให้ถือว่าผู้จะขายได้สละสิทธิ์ในการที่จะขอขยายระยะเวลาทำงานก่อสร้างออกไปโดยไม่มีเงื่อนไขใด ๆ ทั้งสิ้น</p>
+                <p>&nbsp;</p>
+            </div>
+        </div>
+        <div class="a4foot" style="text-align: center;">
+            <table style="width: 680px;">
+                <tbody>
+                    <tr style="height: 1px;">
+                        <td style="height: 1px;">
+                            <p class="MsoNormal" align="center"><span lang="TH" style="font-size: 14pt; font-family: 'Angsana New', serif;">ลงชื่อ............................................</span><span style="font-size: 14pt; font-family: 'Angsana New', serif;">......<span lang="TH">ผู้จะขาย</span></span></p>
+                        </td>
+                        <td style="height: 1px;">
+                            <p class="MsoNormal" align="center"><span lang="TH" style="font-size: 14pt; font-family: 'Angsana New', serif;">ลงชื่อ............................................</span><span style="font-size: 14pt; font-family: 'Angsana New', serif;">...........<span lang="TH">ผู้จะซื้อ</span></span></p>
+                        </td>
+                    </tr>
+                    <tr style="height: 14px;">
+                        <td style="height: 14px;"><span lang="TH" style="font-size: 14pt; font-family: 'Angsana New', serif;">( บริษัท&nbsp; ชวนพัฒนา พร็อพเพอร์ตี้ จำกัด )</span></td>
+                        <td style="height: 14px;"><span style="font-family: 'Angsana New'; font-size: 14pt;">(<span style="text-indent: 50px;">&nbsp;{{quotation.CustomerName}}&nbsp;</span>)</span></td>
+                    </tr>
+                </tbody>
+            </table>
+            -4-
+        </div>
+    </div>
+    <div class="a4page">
+        <!--<div class="a4body">-->
+        <div style="height: 240mm;">
+            <div class="textinbody" style="padding-top: 3%;">
+                <p class="MsoNoSpacing" style="margin-left: .5in; text-indent: .5in;"><span lang="TH" style="font-size: 14pt; font-family: 'Angsana New', serif;">8.1.3 ผู้จะซื้อจะต้องดำเนินการให้ผู้รับโอนรับโอนไปซึ่งสิทธิ หน้าที่ และความรับผิดชอบตาม</span><span style="font-size: 18.6667px;">สัญญานี้ทุกประการ และผู้จะซื้อต้องสามารถแสดงเอกสารหลักฐานให้เป็นที่พอใจของผู้จะขายว่าผู้รับโอนมีคุณสมบัติ และความสามารถในการปฏิบัติตามสัญญานี้</span></p>
+                <p id="a" style="text-align: justify;"><span style="font-size: 18.6667px;">8.2 หากการโอนสิทธิใดๆ จะก่อให้เกิดการละเมิดข้อกำหนดข้างต้น ผู้จะขายมีสิทธิปฏิเสธไม่ให้มีการโอนสิทธิดังกล่าวได้ แต่อย่างไรก็ตามไม่เป็นการตัดสิทธิของผู้จะขายในการพิจารณาคุณสมบัติของผู้รับโอนสิทธิว่าเหมาะสมที่จะเข้าเป็นคู่สัญญากับผู้จะขายหรือไม่ หากผู้จะขายพิจารณาแล้วเห็นว่าผู้ที่ประสงค์จะรับโอนสิทธิของผู้จะซื้อไม่เหมาะสมที่จะเข้าเป็นคู่สัญญาแทนผู้จะซื้อ ผู้จะขายมีสิทธิปฏิเสธคำขอโอนสิทธิของผู้จะซื้อได้ตามแต่ผู้จะขายเห็นสมควร</span></p>
+                <p id="a"><strong><span style="font-size: 18.6667px;">ข้อ 9. การจดทะเบียนโอนกรรมสิทธิ์</span></strong></p>
+                <p><span style="font-size: 14pt; font-family: 'Angsana New', serif;">9.1 ในการจดทะเบียนโอนกรรมสิทธิ์ที่ดินพร้อมสิ่งปลูกสร้างให้ผู้จะซื้อ ผู้จะขายต้องโอนกรรมสิทธิ์ที่ดินพร้อมสิ่งปลูกสร้าง โดยปราศจากบุริมสิทธิในมูลซื้อขายอสังหาริมทรัพย์และภาระการจำนองในที่ดินพร้อมสิ่งปลูกสร้างนั้น</span></p>
+                <p><span style="font-size: 14pt; font-family: 'Angsana New', serif;">9.2 ถ้าผู้จะขายไม่ปฏิบัติตามข้อ 9.1 ผู้จะซื้อมีสิทธิชำระหนี้บุริมสิทธิในมูลซื้อขายอสังหาริมทรัพย์ หรือหนี้จำนองต่อผู้ทรงบุริมสิทธิ หรือผู้รับจำนองได้ และให้ถือว่าเป็นการชำระราคาที่ดินพร้อมสิ่งปลูกสร้างแก่ผู้จะขายส่วนหนึ่งด้วย</span></p>
+                <p><span style="font-size: 14pt; font-family: 'Angsana New', serif;">9.3 เมื่อผู้จะซื้อได้ชำระราคาที่ดินพร้อมสิ่งปลูกสร้างตามข้อ 3 ครบถ้วนแล้ว ผู้จะซื้อสามารถนำหลักฐานเป็นหนังสือที่แสดงว่าได้ชำระราคาดังกล่าวพร้อมด้วยหนังสือแสดงสิทธิในที่ดินไปขอจดทะเบียนโอนกรรมสิทธิ์ที่ดินพร้อมสิ่งปลูกสร้างต่อพนักงานเจ้าหน้าที่ได้</span></p>
+                <p id="a"><span style="font-size: 18.6667px;">ในกรณีที่ผู้จะซื้อไม่สามารถนำหนังสือแสดงสิทธิในที่ดินมาแสดงต่อพนักงานเจ้าหน้าที่ได้เพราะผู้จะขายหรือบุคคลอื่นยึดถือหรือครอบครองไว้ ผู้จะซื้อมีสิทธิร้องขอให้พนักงานเจ้าหน้าที่เรียกหนังสือแสดงสิทธิในที่ดินจากผู้จะขายหรือบุคคลที่ยึดถือหรือครอบครองไว้เพื่อมาดำเนินการจดทะเบียนโอนกรรมสิทธิ์ที่ดินพร้อมสิ่งปลูกสร้างได้</span></p>
+                <p id="a"><strong><span style="font-size: 18.6667px;">ข้อ 10. ค่าใช้จ่ายในการจดทะเบียนโอนกรรมสิทธิ์</span></strong></p>
+                <p id="a"><span style="font-size: 18.6667px;">10.1 ค่าธรรมเนียมและค่าใช้จ่ายในการดำเนินการแบ่งแยกโฉนดที่ดิน&nbsp; รวมทั้งค่าภาษีอากรในการจดทะเบียนโอนกรรมสิทธิ์ที่ดินพร้อมสิ่งปลูกสร้างผู้จะขายเป็นผู้ออกทั้งสิ้น</span></p>
+                <p id="a"><span style="font-size: 18.6667px;">10.2 ค่าธรรมเนียมและค่าใช้จ่ายในการจดทะเบียนโอนกรรมสิทธิ์ที่ดินพร้อมสิ่งปลูกสร้าง&nbsp; &nbsp;ผู้จะซื้อและผู้จะขายเป็นผู้ออกเท่ากันทั้งสองฝ่าย</span></p>
+                <p id="a"><span style="font-size: 18.6667px;">10.3 กรณีผู้จะซื้อขอสินเชื่อและจดจำนองกับสถาบันการเงิน บรรดาค่าธรรมเนียมในการจดจำนองและค่าใช้จ่ายกับสถาบันการเงินผู้จะซื้อเป็นผู้ชำระเอง</span></p>
+                <p><strong><span lang="TH" style="font-size: 15pt; font-family: 'Angsana New', serif;">ข้อ 11. </span></strong><span lang="TH" style="font-size: 14pt; font-family: 'Angsana New', serif;">&nbsp;โดยที่ผู้จะขายและผู้จะซื้อต่างมีเจตนารมณ์ที่จะให้ที่ดินพร้อมสิ่งปลูกสร้างในบริเวณ แห่งนี้</span>เป็นถิ่นที่อยู่อาศัยชั้น<span style="letter-spacing: -.1pt;">ดีมีความสวยงามและเป็นระเบียบเรียบร้อย&nbsp; อีกทั้งเพื่อประโยชน์สุขของผู้จะซื้อและผู้อาศัยทั้งหลาย&nbsp; คู่สัญญา</span><span style="letter-spacing: .2pt;">ทั้งสองฝ่ายตกลงให้ข้อความต่อไปนี้เป็นสาระสำคัญของสัญญานี้ด้วย&nbsp; ซึ่งถ้า</span><span style="letter-spacing: -.1pt;">คู่สัญญาฝ่ายหนึ่งฝ่ายใดประพฤติ</span>ผิดสัญญาข้อหนึ่งข้อใด&nbsp; คู่สัญญาอีกฝ่ายหนึ่งมีสิทธิบอกเลิกสัญญาได้ทันที</p>
+                <p>&nbsp;</p>
+            </div>
+        </div>
+        <div class="a4foot" style="padding-top: 3mm;">
+            <table style="width: 680px;">
+                <tbody>
+                    <tr style="height: 1px;">
+                        <td style="height: 1px; text-align: center;">
+                            <p class="MsoNormal" align="center"><span lang="TH" style="font-size: 14pt; font-family: 'Angsana New', serif;">ลงชื่อ............................................</span><span style="font-size: 14pt; font-family: 'Angsana New', serif;">......<span lang="TH">ผู้จะขาย</span></span></p>
+                        </td>
+                        <td style="height: 1px; text-align: center;">
+                            <p class="MsoNormal" align="center"><span lang="TH" style="font-size: 14pt; font-family: 'Angsana New', serif;">ลงชื่อ............................................</span><span style="font-size: 14pt; font-family: 'Angsana New', serif;">...........<span lang="TH">ผู้จะซื้อ</span></span></p>
+                        </td>
+                    </tr>
+                    <tr style="height: 1px;">
+                        <td style="text-align: center;"><span lang="TH" style="font-size: 14pt; font-family: 'Angsana New', serif;">( บริษัท&nbsp; ชวนพัฒนา พร็อพเพอร์ตี้ จำกัด )</span></td>
+                        <td style="text-align: center;"><span style="font-family: 'Angsana New'; font-size: 14pt;">(<span style="text-indent: 50px;">&nbsp;{{quotation.CustomerName}}&nbsp;</span>)</span></td>
+                    </tr>
+                </tbody>
+            </table>
+            <br /> <span style="padding-left: 50%;">-5-</span>
+        </div>
+    </div>
+    <div class="a4page">
+        <!--<div class="a4body">-->
+        <div style="height: 220mm;">
+            <div class="textinbody" style="padding-top: 3%;">
+                <p style="text-align: justify;"><span style="font-size: 18.6667px;">11.1&nbsp; ผู้จะซื้อสัญญาว่าจะไม่นำที่ดินพร้อมสิ่งปลูกสร้างที่ซื้อไปเป็นอู่ซ่อมรถยนต์อุปกรณ์เครื่องจักรกล<span style="font-family: 'Angsana New', serif; font-size: 14pt;">ทุกชนิด</span><span style="font-family: 'Angsana New', serif; font-size: 14pt;">&nbsp; </span><span style="font-family: 'Angsana New', serif; font-size: 14pt;">หรือประกอบการค้าของเก่า หรือประกอบการค้าอื่นใดที่ขัดต่อความสงบเรียบร้อยและศีลธรรมอันดีของประชาชนตลอดจนขัดต่อกฎหมาย</span></span></p>
+                <p style="text-align: justify;"><span style="font-size: 18.6667px;">11.2&nbsp;&nbsp; ผู้จะซื้อสัญญาว่าจะไม่ทำการติดตั้งป้ายหรือแผงโฆษณาหรือข้อความอื่นใด ในทางการโฆษณากับตัวอาคาร&nbsp; หรือบริเวณที่อยู่อาศัย&nbsp; บริเวณถนน&nbsp; ทางเดิน หรือสาธารณะ อันเป็นการขัดต่อเจตนารมณ์ของที่พัฒนาแห่งนี้&nbsp;&nbsp; เว้นแต่เป็นตัวอาคารพาณิชย์สามารถติดตั้งป้ายหรือแผงโฆษณาได้</span></p>
+                <p style="text-align: justify;"><span style="font-size: 18.6667px;">11.3&nbsp;&nbsp; ผู้จะซื้อรับรองว่าจะไม่ใช้ถนน&nbsp; ทางเดิน&nbsp; หรือที่สาธารณะในการแข่งขันรถยนต์&nbsp; รถจักรยานยนต์&nbsp; จักรยาน&nbsp; หรือพาหนะอื่นใดอันก่อให้เกิด อันตรายแก่ชีวิต&nbsp; ร่างกาย&nbsp; อนามัย&nbsp; เสรีภาพ&nbsp; ทรัพย์สิน&nbsp; หรือสิทธิอย่างหนึ่งอย่างใดของบุคคลอื่น</span></p>
+                <p style="text-align: justify;"><span style="font-size: 18.6667px;">11.4&nbsp;&nbsp; เพื่ออำนวยและคุ้มครองประโยชน์แก่ผู้จะซื้อเป็นส่วนรวม&nbsp; ผู้จะซื้อต้องไม่ใช้หรือยินยอมให้บริเวณของผู้จะซื้อหรือผู้ใช้ที่ดิน&nbsp; สิ่งปลูกสร้าง&nbsp; หรือส่วนหนึ่งส่วนใดของที่ดินที่จะซื้อขายเป็นทางผ่านเข้าไปในหรือนอกเขตที่ดินที่จะซื้อขาย หรือเป็นทางผ่านไปใช้ทาง&nbsp; ซอย&nbsp; ถนน ในบริเวณหรือนอกบริเวณที่ดิน&nbsp;&nbsp; ซึ่งผู้จะขายพัฒนาอยู่&nbsp; รวมทั้งต้องไม่ให้หรือยินยอมให้บริวารของผู้จะซื้อ หรือยินยอมให้ผู้อื่นใช้เพื่อการติดตั้งวางสาย&nbsp; และ/หรือฝังท่อสำหรับการไฟฟ้า น้ำประปา&nbsp; โทรศัพท์ ทางระบายน้ำ สิ่งปลูกสร้างตลอดจนสาธารณูปโภคอื่นใดบนพื้นดิน&nbsp; หรือใต้ดินด้วย&nbsp; ทั้งนี้ เว้นแต่จะได้รับความยินยอมจากผู้จะขายเป็นลายลักษณ์อักษรก่อน</span></p>
+                <p style="text-align: justify;"><span lang="TH" style="font-size: 14pt; font-family: 'Angsana New', serif;">11.5&nbsp;&nbsp; <span style="letter-spacing: .1pt;">ในกรณีผู้จะซื้อแก้ไข ต่อเติม ดัดแปลงใด ๆ ในตัวอาคารหรือสิ่งปลูกสร้าง</span>&nbsp;&nbsp; ผู้จะซื้อจะต้องให้ชายคาหรือส่วนที่อยู่นอกสุดของอาคารมีระยะห่างจากแนวเขตที่ดินที่ติดต่อกับถนน ทางเดินสาธารณะ&nbsp; ทะเลสาบ หรือคลองสาธารณะไม่น้อยกว่า 2 เมตร </span></p>
+                <p style="text-align: justify;"><span lang="TH" style="font-size: 14pt; font-family: 'Angsana New', serif;">11.6&nbsp;&nbsp; รั้วด้านหลังจะต้องมีความสูงไม่เกิน 2.50 เมตร จากระดับทางเท้า ยกเว้นรั้วด้านข้างและด้านหน้าที่ติดกับถนนให้มีความสูงได้ไม่เกิน&nbsp; 2.00&nbsp; เมตร จากระดับทางเท้า และให้ใช้รั้วโปร่งทั้งหมด หรือปลูกต้นไม้&nbsp; หรือแบบที่ผู้จะขายเป็นผู้กำหนดให้</span></p>
+                <p style="text-align: justify;"><span lang="TH" style="font-size: 14pt; font-family: 'Angsana New', serif;">11.7&nbsp;&nbsp; ผู้จะขายหรือตัวแทนของผู้จะขายมีอำนาจในการห้ามมิให้ยานพาหนะของผู้จะซื้อบริวารหรือลูกจ้างของผู้จะซื้อ&nbsp; หรือบุคคลอื่นใดฝ่าฝืนระเบียบข้อบังคับดังกล่าวข้างต้นของผู้จะขายผ่านเข้าออกบริเวณที่อยู่อาศัย&nbsp; จนกว่าจะได้ปฏิบัติให้ถูกข้อบังคับและระเบียบของผู้จะขาย</span></p>
+                <p style="text-align: justify;"><strong><span lang="TH" style="font-size: 15pt; font-family: 'Angsana New', serif;">ข้อ </span></strong><strong><span style="font-size: 15pt; font-family: 'Angsana New', serif;">12. <span lang="TH">เบี้ยปรับและดอกเบี้ยผิดนัด</span></span></strong></p>
+                <p><span style="font-family: 'Angsana New', serif; font-size: 14pt;">12.1 </span><span lang="TH" style="font-family: 'Angsana New', serif; font-size: 14pt;">หากผู้จะขายไม่โอนกรรมสิทธิ์ที่ดินพร้อมสิ่งปลูกสร้างภายในกำหนดเวลาในข้อ 4. &nbsp;&nbsp;ของสัญญานี้ โดยมีสาเหตุอันเนื่องมาจากความผิดของผู้จะขาย&nbsp; และผู้จะซื้อไม่ใช้สิทธิบอกเลิกสัญญาตามข้อ </span><span style="font-family: 'Angsana New', serif; font-size: 14pt;">15.1 </span><span lang="TH" style="font-family: 'Angsana New', serif; font-size: 14pt;">&nbsp;&nbsp;&nbsp;ผู้จะขายยอมให้ผู้จะซื้อดำเนินการ ดังนี้</span></p>
+                <p class="MsoNoSpacing"><span style="font-size: 14pt; font-family: 'Angsana New', serif;"><span lang="TH" style="margin-left: 1.0in; text-indent: 1.0in;">12.1.1 ปรับผู้จะขายเป็นรายวัน ในอัตราร้อยละ <u>0.01</u>&nbsp; ของราคาที่ดินพร้อมสิ่งปลูกสร้าง &nbsp;&nbsp;&nbsp;คิดเป็นเงินวันละ</span><u> <strong>&nbsp;&nbsp;&nbsp;284</strong>&nbsp;&nbsp;&nbsp; </u>บาท (<strong><u>สองร้อยแปดสิบสี่บาทถ้วน</u></strong>) นับแต่วันที่จะต้องโอนกรรมสิทธิ์ตามข้อ 4 <span lang="TH">&nbsp;&nbsp;จนถึงวันที่พนักงานเจ้าหน้าที่โอนกรรมสิทธิ์ที่ดินพร้อมสิ่งปลูกสร้าง</span>&nbsp;<span lang="TH">แต่รวมกันแล้วต้อง<u>ไม่เกินร้อยละสิบ</u>ของราคาที่ดินพร้อมสิ่งปลูกสร้าง<br /></span><u></u></span></p>
+                <p class="MsoNoSpacing">&nbsp;</p>
+                <p class="MsoNoSpacing" style="margin-left: .5in; text-indent: 1.0in;">&nbsp;</p>
+                <p class="MsoNoSpacing" style="margin-left: .5in; text-indent: 1.0in;">&nbsp;</p>
+                <p class="MsoNoSpacing" style="margin-left: .5in; text-indent: 1.0in;">&nbsp;</p>
+            </div>
+        </div>
+        <div class="a4foot" style="text-align: center; padding-top: 14%;">
+            <table style="width: 680px;">
+                <tbody>
+                    <tr style="height: 1px;">
+                        <td style="height: 1px; text-align: center;">
+                            <p class="MsoNormal" align="center"><span lang="TH" style="font-size: 14pt; font-family: 'Angsana New', serif;">ลงชื่อ............................................</span><span style="font-size: 14pt; font-family: 'Angsana New', serif;">......<span lang="TH">ผู้จะขาย</span></span></p>
+                        </td>
+                        <td style="height: 1px; text-align: center;">
+                            <p class="MsoNormal" align="center"><span lang="TH" style="font-size: 14pt; font-family: 'Angsana New', serif;">ลงชื่อ............................................</span><span style="font-size: 14pt; font-family: 'Angsana New', serif;">...........<span lang="TH">ผู้จะซื้อ</span></span></p>
+                        </td>
+                    </tr>
+                    <tr style="height: 14px;">
+                        <td style="height: 14px; text-align: center;"><span lang="TH" style="font-size: 14pt; font-family: 'Angsana New', serif;">( บริษัท&nbsp; ชวนพัฒนา พร็อพเพอร์ตี้ จำกัด )</span></td>
+                        <td style="height: 14px; text-align: center;"><span style="font-family: 'Angsana New'; font-size: 14pt;">(<span style="text-indent: 50px;">&nbsp;{{quotation.CustomerName}}&nbsp;</span>)</span></td>
+                    </tr>
+                </tbody>
+            </table>
+            <br /> -6-
+        </div>
+    </div>
+    <div class="a4page">
+        <!--<div class="a4body">-->
+        <div style="height: 240mm;">
+            <div class="textinbody" style="padding-top: 3%;">
+                <p><span style="font-size: 14pt; font-family: 'Angsana New', serif;"><span lang="TH" style="margin-left: 1.0in; text-indent: 1.0in;">12.1.2 เรียกค่าเสียหายอันเกิดขึ้นจากการที่ผู้จะขายโอนกรรมสิทธิ์ที่ดินพร้อมสิ่งปลูกสร้างล่าช้าในระหว่างที่มี</span>การปรับนั้น ถ้าผู้จะซื้อเห็นว่าผู้จะขายไม่อาจปฏิบัติตามสัญญาต่อไปได้&nbsp; <span lang="TH">ผู้จะซื้อมีสิทธิบอกเลิกสัญญาและใช้สิทธิตามข้อ</span> 16.1อย่างไรก็ตามก่อนการบอกเลิกสัญญา&nbsp; &nbsp;ผู้จะซื้อจะต้องมีหนังสือแจ้งให้ผู้จะขายทราบเพื่อให้แก้ไขข้อผิดพลาดบกพร่องจากการผิดสัญญานั้น ๆ&nbsp; หากผู้จะขายไม่แก้ไขภายใน 90 (เก้าสิบ) วัน&nbsp; หลังจากได้รับหนังสือแจ้งจากผู้จะซื้อแล้ว&nbsp; ผู้จะซื้อมีสิทธิบอกเลิกสัญญาได้ทันที</span></p>
+                <p><span style="font-size: 14pt; font-family: 'Angsana New', serif;">12.2 <span lang="TH">หากผู้จะซื้อผิดนัดการชำระเงินตามที่กำหนดในข้อ </span>4. <span lang="TH">ผู้จะซื้อยินยอมให้&nbsp; &nbsp;&nbsp;&nbsp;ผู้จะขายเรียกดอกเบี้ย</span></span></p>
+                <p class="MsoNoSpacing"><span lang="TH" style="font-size: 14pt; font-family: 'Angsana New', serif;">ผิดนัดในอัตราร้อยละ </span><u><span style="font-size: 14pt; font-family: 'Angsana New', serif;">15&nbsp; </span></u><span lang="TH" style="font-size: 14pt; font-family: 'Angsana New', serif;">ต่อปี ของจำนวนเงินที่ค้างชำระนั้น</span><span style="font-size: 14pt; font-family: 'Angsana New', serif;">&nbsp;<span lang="TH">แต่รวมกันแล้วต้อง&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <u>ไม่เกินร้อยละสิบ</u>&nbsp;&nbsp; ของราคาที่ดินพร้อมสิ่งปลูกสร้าง และไม่เป็นการตัดสิทธิที่ผู้จะขายจะถือว่าผู้จะซื้อเป็นฝ่ายผิดสัญญา</span></span></p>
+                <p class="MsoNoSpacing"><strong><span lang="TH" style="font-size: 15pt; font-family: 'Angsana New', serif;">ข้อ </span></strong><strong><span style="font-size: 15pt; font-family: 'Angsana New', serif;">13. <span lang="TH">ความรับผิดในความชำรุดบกพร่อง</span></span></strong></p>
+                <p class="MsoNoSpacing"><span style="font-size: 14pt; font-family: 'Angsana New', serif;">13.1 <span lang="TH">เมื่อมีการโอนกรรมสิทธิ์ที่ดินพร้อมสิ่งปลูกสร้างให้ผู้จะซื้อแล้ว ผู้จะขายต้องรับผิดในความเสียหายหรือความชำรุดบกพร่องอย่างใดอย่างหนึ่งของอาคาร อันเป็นเหตุให้เสื่อมราคาหรือเสื่อมความเหมาะสมแก่ประโยชน์ที่ผู้จะซื้อพึงได้รับ ดังนี้</span></span></p>
+                <p class="MsoNoSpacing"><span style="font-size: 14pt; font-family: 'Angsana New', serif;"><span lang="TH" style="margin-left: 1.0in; text-indent: 1.0in;">13.1.1 กรณีที่เป็นโครงสร้างของอาคารอันได้แก่ เสาเข็ม ฐานราก เสา คาน พื้น โครงหลังคา และผนังที่รับน้ำหนัก</span> เป็นต้น <u>ภายในระยะเวลา </u><u>5 <span lang="TH">ปี</span></u><span lang="TH"> นับแต่วันโอนกรรมสิทธิ์</span></span></p>
+                <p class="MsoNoSpacing"><span style="font-size: 14pt; font-family: 'Angsana New', serif;"><span lang="TH" style="margin-left: 1.0in; text-indent: 1.0in;">13.1.2 กรณีที่เป็นส่วนควบหรืออุปกรณ์อันเป็นส่วนประกอบที่สำคัญของอาคารนอกจาก </span>13.1.1 <u><span lang="TH">ภายในระยะ</span>เวลา 1 <span lang="TH">ปี</span></u><span lang="TH"> นับแต่วันโอนกรรมสิทธิ์</span></span></p>
+                <p class="MsoNoSpacing" style="margin-left: 1.0in; text-indent: .5in;"><span style="font-size: 14pt; font-family: 'Angsana New', serif;">13.1.3 <span lang="TH">รั้ว และกำแพง <u>ภายในระยะเวลา </u></span><u>1 <span lang="TH">ปี</span></u><span lang="TH"> นับแต่วันโอนกรรมสิทธิ์</span></span></p>
+                <p><span style="font-family: 'Angsana New', serif; font-size: 14pt; text-indent: 1in;">13.2 </span><span lang="TH" style="font-family: 'Angsana New', serif; font-size: 14pt; text-indent: 1in;">ผู้จะขายต้องเริ่มดำเนินการแก้ไขความเสียหาย หรือความชำรุดบกพร่องที่เกิดขึ้น ภายใน 30 (สามสิบ) วัน นับแต่วันที่ผู้จะซื้อได้แจ้งให้ทราบเป็นหนังสือถึงความเสียหาย หรือความชำรุดบกพร่องนั้น และต้องดำเนินการให้แล้วเสร็จภายในเวลาอันสมควร หากผู้จะขายเพิกเฉยไม่เริ่มดำเนินการแก้ไขภายในกำหนดเวลาดังกล่าว หรือดำเนินการแก้ไขโดยชักช้า หรือกรณีมีเหตุจำเป็นเร่งด่วน ซึ่งหากเนิ่นช้าไปอาจเกิดความเสียหายอย่างร้ายแรง ผู้จะซื้อมีสิทธิแก้ไขเอง หรือให้บุคคลภายนอกทำการแก้ไข หรือบรรเทาความเสียหาย หรือความชำรุดบกพร่องไปพลางก่อนได้ ทั้งนี้&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;ผู้จะขายต้องรับผิดในความเสียหาย หรือความชำรุดบกพร่อง และค่าใช้จ่ายที่ผู้จะซื้อได้ชำระไป</span></p>
+                <p><strong><span style="font-size: 18.6667px;">ข้อ 14.&nbsp; การขยายระยะเวลาการปฏิบัติตามสัญญา</span></strong></p>
+                <p><span style="font-size: 18.6667px;">ในกรณีที่เกิดเหตุสุดวิสัยใด ๆ ที่ไม่อาจหลีกเลี่ยงได้และเป็นเหตุให้การก่อสร้างต้องหยุดชะงักลงโดยมิใช่ความผิดของผู้จะขาย หรือผู้รับจ้างก่อสร้าง หรือตัวแทนของผู้จะขาย หรือมีพฤติการณ์ที่ผู้จะขายไม่ต้องรับผิดชอบ ให้ขยายระยะเวลาแล้วเสร็จตามสัญญาออกไปเท่ากับเวลาที่เสียไปเพราะเหตุดังกล่าว โดยผู้จะขายต้องแจ้งเหตุดังกล่าวพร้อมหลักฐานเป็นหนังสือให้ผู้จะซื้อทราบเพื่อขยายระยะเวลาการก่อสร้างตามสัญญาออกไปภายใน 30 (สามสิบ) วัน นับแต่วันที่เหตุนั้นได้สิ้นสุดลง</span></p>
+                <p><span style="font-size: 18.6667px;">หากผู้จะขายไม่ปฏิบัติให้เป็นไปตามความในวรรคหนึ่งให้ถือว่าผู้จะขายได้สละสิทธิ ในการที่จะขอขยายระยะเวลาทำงานก่อสร้างออกไปโดยไม่มีเงื่อนไขใด ๆ ทั้งสิ้น</span></p>
+                <p>&nbsp;</p>
+                <p>&nbsp;</p>
+            </div>
+        </div>
+        <div class="a4foot" style="padding-top: 13mm;">
+            <table style="text-align: center; width: 100%;">
+                <tbody>
+                    <tr>
+                        <td><span style="font-family: 'Angsana New'; font-size: 14pt;">ลงชื่อ.......................................................ผู้จะซื้อ</span></td>
+                        <td><span style="font-family: 'Angsana New'; font-size: 14pt;">ลงชื่อ.......................................................ผู้จะขาย</span></td>
+                    </tr>
+                    <tr>
+                        <td><span style="font-family: 'Angsana New'; font-size: 14pt;">({{quotation.CustomerName}})</span></td>
+                        <td><span style="font-family: 'Angsana New'; font-size: 14pt;">(<span style="text-indent: 50px;">&nbsp;นางสาวกิตติมา พิศาลคุณากิจ&nbsp;</span>)</span></td>
+                    </tr>
+                </tbody>
+            </table>
+            <p style="float: left; padding-left: 50%; padding-top: 3%;">-7-</p>
+        </div>
+    </div>
+    <div class="a4page">
+        <!-- <div class="a4head">&nbsp;</div> --> <!-- <div class="a4head">&nbsp;</div> --> <!--<div class="a4body">-->
+        <div style="height: 245mm;">
+            <div class="textinbody" style="padding-top: 3%;">
+                <p style="text-align: justify;"><span style="font-size: 18.6667px;">อนึ่ง ผู้จะซื้อสัญญาว่าจะไม่เรียกร้องค่าเสียหายอย่างใดๆ ในกรณีที่ผู้จะขายไม่สามารถดำเนินโครงการต่อไปเพราะ</span>เหตุสุดวิสัย ภาวะสงคราม&nbsp; โรคระบาด&nbsp; วิกฤติภาวะเศรษฐกิจตกต่ำหรือด้วยเหตุอื่นที่ส่งผลกระทบต่อผู้จะขาย&nbsp; หรือต้องห้ามตามกฎหมายเป็นต้น&nbsp; โดยผู้จะขายตกลงทำการคืนเงินทั้งหมดที่ได้รับมาให้แก่&nbsp; &nbsp; ผู้จะซื้อ โดยไม่มีดอกเบี้ยภายในเวลา 30(สามสิบ) วัน นับจากวันแจ้งให้ผู้จะซื้อทราบ</p>
+                <p style="text-align: justify;"><strong><span lang="TH" style="font-size: 15pt; font-family: 'Angsana New', serif;">ข้อ </span></strong><strong><span style="font-size: 15pt; font-family: 'Angsana New', serif;">15. <span lang="TH">การบอกเลิกสัญญา</span></span></strong></p>
+                <p style="text-align: justify;"><span style="font-size: 14pt; font-family: 'Angsana New', serif;">15.1 <span lang="TH">กรณีที่ผู้จะขายผิดสัญญาข้อหนึ่งข้อใด ผู้จะซื้อมีสิทธิบอกเลิกสัญญาและใช้สิทธิตามข้อ</span> 16.1</span></p>
+                <p style="text-align: justify;"><span style="font-size: 14pt; font-family: 'Angsana New', serif;">15.2 <span lang="TH">กรณีแบ่งการชำระค่าที่ดินพร้อมสิ่งปลูกสร้างไม่เกินสามงวดและผู้จะซื้อผิดนัดไม่ชำระงวดใดงวดหนึ่ง หรือกรณีแบ่งการชำระค่าที่ดินพร้อมสิ่งปลูกสร้างเกินสามงวดและผู้จะซื้อผิดนัดไม่ชำระตั้งแต่สามงวดติดต่อกันโดยไม่มีเหตุอันสมควรว่าผู้จะขายผิดเงื่อนไขในสัญญา เมื่อผู้จะขายได้บอกกล่าวทวงถามเป็นหนังสือโดยให้เวลาไม่น้อยกว่า 30 (สามสิบ) วันแล้ว ผู้จะซื้อยังไม่ชำระ ผู้จะขายมีสิทธิบอกเลิกสัญญาและใช้สิทธิตามข้อ </span>16.2</span></p>
+                <p style="text-align: justify;"><span lang="TH" style="font-size: 14pt; font-family: 'Angsana New', serif;">อนึ่ง ในกรณีที่ผู้จะขายได้ผ่อนเวลาต่างๆ ตามสัญญานี้ให้แก่ผู้จะซื้อหาทำให้สิทธิของผู้จะขายที่มีอยู่ตามสัญญาฉบับนี้ต้องเสียไปแต่อย่างใดไม่</span></p>
+                <p style="text-align: justify;"><strong><span lang="TH" style="font-size: 15pt; font-family: 'Angsana New', serif;">ข้อ </span></strong><strong><span style="font-size: 15pt; font-family: 'Angsana New', serif;">16. <span lang="TH">สิทธิภายหลังการบอกเลิกสัญญา</span></span></strong></p>
+                <p style="text-align: justify;"><span style="font-size: 14pt; font-family: 'Angsana New', serif;">16.1 <span lang="TH">เมื่อผู้จะซื้อบอกเลิกสัญญาแล้ว ผู้จะขายยินยอมให้ผู้จะซื้อเรียกเงินที่ผู้จะซื้อได้ชำระไปแล้วทั้งหมดคืนจากผู้จะขายพร้อมดอกเบี้ยในอัตราที่กำหนดไว้ในข้อ</span> 12.2 <span lang="TH">นับแต่วันที่ผู้จะซื้อได้ชำระเงินไปรวมทั้งเรียกค่าเสียหายอื่นอันพึงมี</span></span></p>
+                <p style="text-align: justify;"><span style="font-family: 'Angsana New', serif; font-size: 14pt; text-indent: 1in;">16.2 </span><span lang="TH" style="font-family: 'Angsana New', serif; font-size: 14pt; text-indent: 1in;">เมื่อผู้จะขายบอกเลิกสัญญาแล้ว ผู้จะซื้อยินยอมให้ผู้จะขายหักเงินที่ผู้จะซื้อชำระไว้แล้วเป็นค่าเสียหายตามความเป็นจริง ทั้งนี้ค่าเสียหายดังกล่าวต้องมีจำนวนไม่เกินเงินที่ผู้จะซื้อชำระไว้แล้วทั้งหมด ถ้ามีเงินเหลือ &nbsp;&nbsp;ให้ผู้จะขายคืนเงินให้แก่ผู้จะซื้อภายใน 30 (สามสิบ) วันนับแต่วันบอกเลิกสัญญา</span></p>
+                <p style="text-align: justify;"><strong><span lang="TH" style="font-size: 15pt; font-family: 'Angsana New', serif;">ข้อ </span></strong><strong><span style="font-size: 15pt; font-family: 'Angsana New', serif;">17. <span lang="TH">คำบอกกล่าว</span></span></strong></p>
+                <p style="text-align: justify;"><span lang="TH" style="font-size: 14pt; font-family: 'Angsana New', serif;">การบอกกล่าวใด ๆ ตามสัญญานี้ต้องทำเป็นหนังสือและแจ้งไปยังคู่สัญญาอีกฝ่ายหนึ่งตามที่อยู่ข้างต้น หรือที่อยู่อื่นตามที่คู่สัญญาฝ่ายใดฝ่ายหนึ่งจะได้แจ้งเป็นหนังสือให้อีกฝ่ายหนึ่งทราบ หากเป็นการแจ้งทางไปรษณีย์ให้ส่งโดยไปรษณีย์ลงทะเบียนตอบรับและให้ถือว่าคู่สัญญาฝ่ายที่รับแจ้งได้รับแจ้งตั้งแต่วันที่ได้รับหนังสือดังกล่าว&nbsp;</span><span lang="TH" style="font-size: 14pt; font-family: 'Angsana New', serif;">เมื่อคู่สัญญาฝ่ายใดย้ายที่อยู่ต้องแจ้งให้อีกฝ่ายหนึ่งทราบเป็นหนังสือ</span></p>
+                <p class="MsoNoSpacing" style="margin-left: .5in; text-indent: .5in;">&nbsp;</p>
+                <p class="MsoNoSpacing"><span style="font-size: 14pt; font-family: 'Angsana New', serif;">&nbsp;</span></p>
+                <p>&nbsp;</p>
+                <p>&nbsp;</p>
+                <p>&nbsp;</p>
+                <p>&nbsp;</p>
+                <p>&nbsp;</p>
+                <p>&nbsp;</p>
+                <p>&nbsp;</p>
+            </div>
+        </div>
+        <table style="text-align: center; width: 100%; padding-top: 2%;">
+            <tbody>
+                <tr>
+                    <td><span style="font-family: 'Angsana New'; font-size: 14pt;">ลงชื่อ.......................................................ผู้จะซื้อ</span></td>
+                    <td><span style="font-family: 'Angsana New'; font-size: 14pt;">ลงชื่อ.......................................................ผู้จะขาย</span></td>
+                </tr>
+                <tr>
+                    <td><span style="font-family: 'Angsana New'; font-size: 14pt;">({{quotation.CustomerName}})</span></td>
+                    <td><span style="font-family: 'Angsana New'; font-size: 14pt;">(<span style="text-indent: 50px;">&nbsp;นางสาวกิตติมา พิศาลคุณากิจ&nbsp;</span>)</span></td>
+                </tr>
+            </tbody>
+        </table>
+        <p style="float: left; padding-left: 50%;">-8-</p>
+    </div>
+    <div class="a4page">
+        <div class="a4head">&nbsp;</div>
+        <!--<div class="a4body">-->
+        <div style="height: 235mm;">
+            <div class="textinbody">
+                <p style="text-align: justify;"><strong><span style="font-size: 18.6667px;">ข้อ 18. <span lang="TH">เอกสารแนบท้ายสัญญา</span></span></strong></p>
+                <p style="text-align: justify;"><span lang="TH" style="font-size: 14pt; font-family: 'Angsana New', serif;">คู่สัญญาตกลงให้ถือว่าเอกสารต่าง ๆ แนบท้ายสัญญาซึ่งคู่สัญญาได้ลงนามกำกับไว้ทุกๆ หน้าดังต่อไปนี้ เป็นส่วนหนึ่งของสัญญาด้วย คือ</span></p>
+                <p style="text-align: justify;">18.1 <u><span lang="TH">ผนวก</span> 1</u> <span lang="TH">สำเนาหนังสือรับรองการจดทะเบียนนิติบุคคล และสำเนาหนังสือมอบอำนาจให้กระทำการแทนผู้จะขาย จำนวน<u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </u>แผ่น</span></p>
+                <p style="text-align: justify;">18.2 <u><span lang="TH">ผนวก </span>2</u> <span lang="TH">สำเนาแผนผังและที่ตั้งโครงการที่ยื่นขออนุญาตจัดสรรที่ดิน (สังเขป) </span>,<span lang="TH">สำเนาใบอนุญาตจัดสรร และสำเนาโฉนดที่ดิน&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; จำนวน<u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </u>แผ่น</span></p>
+                <p style="text-align: justify;"><span style="font-size: 14pt; font-family: 'Angsana New', serif;">18.3 <u><span lang="TH">ผนวก </span>3</u> <span lang="TH">ตารางการชำระเงิน จำนวน<u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </u>แผ่น</span></span></p>
+                <p style="text-align: justify;"><span style="font-size: 14pt; font-family: 'Angsana New', serif;">18.4 <u><span lang="TH">ผนวก </span>4</u> <span lang="TH">สำเนา แบบแปลนการก่อสร้างและรายการวัสดุประกอบแบบแปลน &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;การก่อสร้าง และสำเนาใบอนุญาตก่อสร้าง&nbsp;&nbsp; จำนวน<u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;4 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u>แผ่น</span></span></p>
+                <p style="text-align: justify;"><span style="font-size: 14pt; font-family: 'Angsana New', serif;">18.5 <u><span lang="TH">ผนวก </span>5</u> <span lang="TH">เอกสารการรับประกัน &nbsp;จำนวน<u>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u>แผ่น</span></span></p>
+                <p style="text-align: justify;"><span style="font-size: 14pt; font-family: 'Angsana New', serif;">18.6 <u><span lang="TH">ผนวก </span>6</u> <span lang="TH">เอกสารการโฆษณาเกี่ยวกับสาธารณูปโภคและบริการสาธารณะภายในโครงการ จำนวน<u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u>แผ่น</span></span></p>
+                <p style="text-align: justify;"><span lang="TH" style="font-size: 14pt; font-family: 'Angsana New', serif;">ในกรณีที่ข้อความในเอกสารแนบท้ายสัญญาขัดหรือแย้งกับข้อความในสัญญานี้ให้ใช้ข้อความในสัญญานี้บังคับ&nbsp;</span><span style="font-family: 'Angsana New', serif; font-size: 14pt; text-indent: 1in;">สัญญานี้ทำขึ้นเป็นสองฉบับมีข้อความถูกต้องตรงกัน คู่สัญญาได้อ่านและเข้าใจข้อความในสัญญาโดยตลอดดีแล้ว จึงลงลายมือชื่อพร้อมทั้งประทับตรา (ถ้ามี) ไว้เป็นสำคัญต่อหน้าพยาน</span><span style="font-family: 'Angsana New', serif; font-size: 14pt; text-indent: 1in;">&nbsp; </span><span style="font-family: 'Angsana New', serif; font-size: 14pt; text-indent: 1in;">&nbsp;</span><span style="font-family: 'Angsana New', serif; font-size: 14pt; text-indent: 1in;">และเก็บไว้ฝ่ายละหนึ่งฉบับ</span></p>
+                <p><br /><br /></p>
+            </div>
+            <div style="padding-top: 1mm;">
+                <table style="text-align: center; width: 680px;">
+                    <tbody>
+                        <tr>
+                            <td style="width: 330.813px;"><span style="font-family: 'Angsana New'; font-size: 14pt;">ลงชื่อ.......................................................ผู้จะซื้อ</span></td>
+                            <td style="width: 337.187px;"><span style="font-family: 'Angsana New'; font-size: 14pt;">ลงชื่อ.......................................................ผู้จะขาย</span></td>
+                        </tr>
+                        <tr>
+                            <td style="width: 330.813px;"><span style="font-family: 'Angsana New'; font-size: 14pt;">({{quotation.CustomerName}})</span></td>
+                            <td style="width: 337.187px;"><span style="font-family: 'Angsana New'; font-size: 14pt;">(<span style="text-indent: 50px;">&nbsp;นางสาวกิตติมา พิศาลคุณากิจ&nbsp;</span>)</span></td>
+                        </tr>
+                        <tr>
+                            <td style="width: 330.813px;">&nbsp;</td>
+                            <td style="width: 337.187px;">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td style="width: 330.813px;">&nbsp;ลงชื่อ...................................................................พยาน</td>
+                            <td style="width: 337.187px;">&nbsp;ลงชื่อ................................................................พยาน</td>
+                        </tr>
+                        <tr>
+                            <td style="width: 330.813px;">&nbsp;</td>
+                            <td style="width: 337.187px;">&nbsp;</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br /><br />
+            </div>
+        </div>
+        <p style="float: left; margin-top: 15%;"><strong style="font-size: 14pt;"><u><span lang="TH" style="font-size: 14pt; font-family: 'Angsana New', serif;">หมายเหตุ</span></u></strong><span lang="TH" style="font-size: 14pt; font-family: 'Angsana New', serif;">&nbsp; ข้อความใดไม่ใช้ให้ขีดฆ่าออกแล้ว คู่สัญญาลงลายมือชื่อกำกับไว้ทุกแห่ง</span></p>
+    </div>
+    <div class="a4page">
+        <!--<div class="a4body">-->
+        <div style="height: 220mm;">
+            <br />
+            <p class="MsoNoSpacing">
+                <span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">บันทึกเลขที่ <u>&nbsp;</u></span>
+                <!-- [if supportFields]><u
+                style='text-underline:dotted'><span lang=TH style='font-size:14.0pt;font-family:
+                "Angsana New",serif;mso-ascii-theme-font:major-bidi;mso-hansi-theme-font:major-bidi;
+                mso-bidi-theme-font:major-bidi'><span style='mso-element:field-begin'></span><span
+                style='mso-spacerun:yes'> </span></span></u><u style='text-underline:dotted'><span
+                style='font-size:14.0pt;font-family:"Angsana New",serif;mso-ascii-theme-font:
+                major-bidi;mso-hansi-theme-font:major-bidi;mso-bidi-theme-font:major-bidi'>MERGEFIELD
+                <span lang=TH>เลขที่ <span style='mso-element:field-separator'></span></span></span></u><![endif]-->
+                <u><span style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi; mso-no-proof: yes;">KAN-f2/A220/2560</span></u>
+                <!-- [if supportFields]><u
+                style='text-underline:dotted'><span lang=TH style='font-size:14.0pt;font-family:
+                "Angsana New",serif;mso-ascii-theme-font:major-bidi;mso-hansi-theme-font:major-bidi;
+                mso-bidi-theme-font:major-bidi'><span style='mso-element:field-end'></span></span></u><![endif]-->
+                <u><span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">&nbsp;&nbsp;</span></u>
+            </p>
+            <p class="MsoNoSpacing"><strong><span style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">&nbsp;</span></strong></p>
+            <p class="MsoNoSpacing" style="text-align: center;" align="center"><strong><span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">บันทึกข้อตกลงแนบท้าย<br /></span></strong><strong><span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">สัญญาจะซื้อจะขายที่ดินจัดสรร (มีสิ่งปลูกสร้าง)<br /></span></strong><strong><span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">&nbsp;โครงการ&nbsp;{{quotation.ProjectName}}<u></u></span></strong></p>
+            <p class="MsoNoSpacing" style="text-indent: 0.5in;"><span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">บันทึกข้อตกลงนี้ทำที่&nbsp;&nbsp; <strong><u>บริษัท&nbsp; ชวนพัฒนา&nbsp; พร็อพเพอร์ตี้&nbsp; จำกัด</u></strong>&nbsp;&nbsp; วันที่ {{quotation.ContractDueDate| bdate}}</span><strong><span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">ระหว่าง&nbsp;</span></strong><span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">บริษัท&nbsp; ชวนพัฒนา&nbsp; พร็อพเพอร์ตี้&nbsp; จำกัด &nbsp;&nbsp;&nbsp;สำนักงานตั้งอยู่เลขที่&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 495/41&nbsp;&nbsp;&nbsp; ถนนอุตรกิจ&nbsp;&nbsp; ตำบลกระบี่ใหญ่&nbsp;&nbsp; อำเภอเมืองกระบี่&nbsp;&nbsp;</span>จังหวัดกระบี่&nbsp;&nbsp;&nbsp;&nbsp; โดยนายธนวัช&nbsp;&nbsp; ภูเก้าล้วน&nbsp;&nbsp;&nbsp; ผู้รับมอบอำนาจของบริษัท&nbsp; ตามหนังสือมอบอำนาจ&nbsp;&nbsp; ฉบับลงวันที่&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp; มกราคม&nbsp;&nbsp; 2560&nbsp; &nbsp; <span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">ซึ่งต่อไปในบันทึกนี้จะเรียกว่า&nbsp; </span><span style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">&ldquo;<span lang="TH">ผู้จะขาย</span>&rdquo;<span lang="TH">&nbsp;&nbsp;&nbsp; ฝ่ายหนึ่ง&nbsp; กับ&nbsp;</span></span></p>
+            <p class="MsoNoSpacing" style="text-indent: .5in;"><span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">{{quotation.CustomerName}} อายุ&nbsp;{{quotation.CustomerAge}} ปี สัญชาติ <u>&nbsp;<strong>ไทย&nbsp;</strong></u><strong>&nbsp;</strong>ที่อยู่เลขที่ {{quotation.CustomerAddress}}&nbsp;</span><span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">โทรศัพท์ {{quotation.CustomerPhone}}&nbsp;</span><span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">ซึ่งต่อไปในบันทึกนี้จะเรียกว่า &nbsp;</span><span style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">&ldquo;<span lang="TH">ผู้จะซื้อ</span>&rdquo;&nbsp; <span lang="TH">อีกฝ่ายหนึ่ง</span></span></p>
+            <p class="MsoNoSpacing" style="text-indent: .5in;"><span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">โดยที่ผู้จะขายและผู้จะซื้อตกลงเข้าทำสัญญาจะซื้อจะขายที่ดินจัดสรร (มีสิ่งปลูกสร้าง) โครงการ {{quotation.ProjectName}}&nbsp;</span><span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">จำนวน<u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>1&nbsp; </strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u>&nbsp;แปลง&nbsp;&nbsp; ที่ดินแปลงเลขที่ {{quotation.REUnitCode}}&nbsp;</span><span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">&nbsp;มีจำนวนเนื้อที่ประมาณ {{quotation.UnitLandPrice|number : 0}} ตารางวา&nbsp;&nbsp; และสิ่งปลูกสร้างที่จะทำการก่อสร้างลงในที่ดินดังกล่าวเป็นอาคารแบบ&nbsp;<u>&nbsp; <strong>ทาวน์โฮม 2 ชั้น&nbsp; แบบ</strong></u></span><strong><u><span style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;"> A</span></u></strong><u><span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></u><span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">จำนวน<u>&nbsp;&nbsp;&nbsp;&nbsp; <strong>1</strong>&nbsp;&nbsp;&nbsp;&nbsp; </u>หลัง&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; รวมเป็นเงินค่าที่ดินพร้อมสิ่งปลูกสร้างทั้งสิ้น {{quotation.NetPrice}}&nbsp;</span><span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">บาท&nbsp; {{quotation.NetPrice}}&nbsp; &nbsp; ซึ่งต่อไปในบันทึกนี้จะเรียกว่า&nbsp; </span><span style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">&ldquo;<span lang="TH">ทรัพย์สินที่จะซื้อจะขาย</span>&rdquo;<span lang="TH">&nbsp; ปรากฏรายละเอียดตามสัญญาจะซื้อจะขายที่ดินจัดสรร(มีสิ่งปลูกสร้าง) โครงการ&nbsp; {{quotation.ProjectName}}&nbsp;</span></span><span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">สัญญาเลขที่ <u>&nbsp;&nbsp;&nbsp;<strong>&nbsp;</strong></u></span><strong><u><span style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi; mso-no-proof: yes;">KAN-f2/A220/2560</span></u></strong><strong><u><span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">&nbsp; </span></u></strong><u><span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">&nbsp;<strong>&nbsp;</strong>&nbsp;&nbsp;&nbsp;&nbsp;</span></u><span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">ฉบับลงวันที่ {{quotation.ContractDueDate| bdate}}&nbsp; &nbsp;ระหว่างผู้จะขายและผู้จะซื้อพร้อมบันทึกข้อตกลงแนบท้ายสัญญาจะซื้อจะขาย&nbsp; (ถ้ามี)&nbsp; ซึ่งต่อไปในบันทึกนี้จะรวมเรียกว่า&nbsp; </span><span style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">&ldquo;<span lang="TH">สัญญาจะซื้อจะขาย</span>&rdquo;<span lang="TH">&nbsp;&nbsp; และ</span></span>โดยที่ผู้จะขายได้จัดให้มีการสมนาคุณพิเศษให้แก่ผู้จะซื้อที่ได้ทำหนังสือจองสิทธิและได้เข้าทำสัญญาจะซื้อจะขายของ<span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">โครงการ {{quotation.ProjectName}}</span><span style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">&nbsp;&nbsp;<span lang="TH">ไว้กับผู้จะขาย&nbsp; ภายในช่วงระยะเวลาที่ผู้จะขายกำหนด&nbsp; ผู้จะขายจึงตกลงให้สิทธิพิเศษ&nbsp; และ/หรือ ของสมนาคุณแก่ผู้จะซื้อ</span></span></p>
+            <p class="MsoNoSpacing"><span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ทั้งสองฝ่ายจึงตกลงกันทำบันทึกฉบับนี้ขึ้น&nbsp; ดังมีข้อความต่อไปนี้</span></p>
+            <p class="MsoNoSpacing"><span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">ข้อ&nbsp; 1. ผู้จะขายตกลงให้สิทธิพิเศษ&nbsp; และ/หรือ&nbsp; ของสมนาคุณพิเศษในการส่งเสริมการขายให้แก่ผู้จะซื้อตามรายการที่ปรากฏ ในรายการส่งเสริมการขาย {{quotation.REUnitCode}}&nbsp;</span><span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">รวมจำนวน<u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>1</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </u>ฉบับ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong><u>ดังปรากฏตามรายละเอียดตามเอกสารแนบท้ายบันทึกนี้&nbsp;</u></strong></span><span lang="TH" style="font-size: 14pt; text-align: justify; font-family: 'Angsana New', serif;">และถือเป็นส่วนหนึ่งของบันทึกฉบับนี้ด้วย&nbsp;&nbsp; ซึ่งต่อไปในบันทึกนี้จะเรียกว่า&nbsp; </span><span style="font-size: 14pt; text-align: justify; font-family: 'Angsana New', serif;">&ldquo;<span lang="TH">เอกสารแนบท้ายบันทึก</span>&rdquo;</span>&nbsp;<strong>บันทึกแนบท้าย</strong></p>
+            <p style="text-align: left;">&nbsp;</p>
+            <div class="textinbody">&nbsp;</div>
+            <p class="textinbody">&nbsp;</p>
+            <div class="textinbody">&nbsp;</div>
+        </div>
+        <div class="a4foot" style="text-align: center; padding-top: 22%;">
+            <p style="float: left; text-align: right;"><br /><span lang="TH" style="font-size: 12.0pt; font-family: 'Angsana New',serif; mso-ascii-font-family: 'Times New Roman'; mso-fareast-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'; mso-ansi-language: EN-US; mso-fareast-language: EN-US; mso-bidi-language: TH;">บันทึกข้อตกลงแนบท้ายสัญญาจะซื้อจะขายที่ดินจัดสรรพร้อมสิ่งปลูกสร้าง&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span><span style="font-family: 'Angsana New', serif; font-size: 14pt;">หน้า1/2</span></p>
+        </div>
+    </div>
+    <div class="a4page">
+        <div style="padding-top: 5mm; height: 215mm;">
+            <!--<div style="height: 250mm;">-->
+            <div class="textinbody">
+                <p class="MsoNoSpacing"><span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">ทั้งนี้ &nbsp;ผู้จะซื้อรับทราบและเข้าใจดีว่า&nbsp; ผู้จะซื้อจะต้องปฏิบัติตามข้อกำหนดและเงื่อนไขต่าง ๆ&nbsp; ที่ปรากฏในเอกสารแนบท้ายบันทึกจนครบถ้วนทุกประการ&nbsp; จึงจะได้รับสิทธิพิเศษ&nbsp; และ/หรือ&nbsp;&nbsp; ของสมนาคุณที่ผู้จะขายตกลงให้แก่ผู้จะซื้อเท่านั้น</span>&nbsp;</p>
+                <p class="MsoNoSpacing" style="text-indent: 0.5in;"><span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">ข้อ&nbsp; 2.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ผู้จะซื้อจะต้องดำเนินการรับโอนกรรมสิทธิ์และชำระราคาทรัพย์สินที่จะซื้อจะขายให้ครบถ้วนภายในกำหนดระยะเวลาที่คู่สัญญาได้ตกลงกันไว้ตามสัญญาจะซื้อจะขาย&nbsp; และปฏิบัติตามเงื่อนไขข้อกำหนดที่ระบุในสัญญาจะซื้อจะขายโดยครบถ้วนถูกต้อง</span></p>
+                <p class="MsoNoSpacing" style="text-indent: 0.5in;"><span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">ในกรณีที่ผู้จะซื้อไม่ดำเนินการรับโอนกรรมสิทธิ์&nbsp; และชำระราคาทรัพย์สินที่จะซื้อจะขายให้ครบถ้วนภายในกำหนดระยะเวลาที่คู่สัญญาได้ตกลงกันไว้ตามสัญญาจะซื้อจะขาย&nbsp;&nbsp; และ/หรือ&nbsp; ไม่ปฏิบัติตามบันทึกฉบับนี้&nbsp; และ/หรือ&nbsp; เอกสารแนบท้ายบันทึก&nbsp; ตามแต่กรณี&nbsp; หรือปฏิบัติ ผิดเงื่อนไขข้อกำหนดที่ระบุในสัญญาจะซื้อจะขาย&nbsp;&nbsp; หรือบันทึกฉบับนี้หรือเอกสารแนบท้ายบันทึกข้อใดข้อหนึ่ง&nbsp; ให้ถือว่า&nbsp;ผู้จะซื้อผิดนัดผิดสัญญาจะซื้อจะขาย&nbsp; และบันทึกฉบับนี้&nbsp; โดยผู้จะขายมีสิทธิยกเลิกการใช้สิทธิพิเศษ&nbsp; และ/หรือของสมนาคุณตามที่ระบุในข้อ&nbsp; 1. ทั้งหมด&nbsp; และใช้สิทธิที่มีอยู่ตามสัญญาจะซื้อจะขายและตามบันทึกฉบับนี้&nbsp; รวมทั้งตามกฎหมายอันเนื่องมาจากการผิดสัญญาของผู้จะซื้อได้</span>&nbsp;</p>
+                <p class="MsoNoSpacing" style="text-indent: 0.5in;"><span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">ข้อ&nbsp; 3.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ผู้จะซื้อรับทราบและเข้าใจดีว่าของสมนาคุณ&nbsp; และ/หรือ&nbsp; สิทธิพิเศษที่ผู้จะซื้อได้รับตามรายการส่งเสริมการขายที่ปรากฏในข้อ 1.&nbsp;&nbsp; ของบันทึกนี้&nbsp; ไม่สามารถแลกเปลี่ยนเป็นเงินสด&nbsp; รวมทั้งไม่สามารถแลกเปลี่ยนกับรายการส่งเสริมการขายและส่วนลดประเภทอื่น ๆ&nbsp; ของผู้จะขายได้&nbsp; <strong><u>ยกเว้นเฉพาะรายการส่งเสริมการขายที่มีการกำหนดเงื่อนไขไว้ในเอกสารแนบท้ายบันทึกให้สามารถเปลี่ยนเป็นเงินสดได้เท่านั้น </u></strong></span><u></u></p>
+                <p class="MsoNoSpacing" style="text-indent: 0.5in;"><span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">ในกรณีที่ผู้จะขาย&nbsp; ไม่สามารถจัดหาของสมนาคุณตามรายการที่กำหนด&nbsp; ไม่ว่าจะด้วยเหตุสินค้าตามรายการที่กำหนดขาดตลาด&nbsp; หรือจะด้วยเหตุประการใดก็ตาม&nbsp; ผู้จะขายสามารถจัดหาของสมนาคุณตามรายการที่มีคุณภาพเทียบเท่าหรือจะเปลี่ยนเป็นเงินสดแทน</span>ก็ได้&nbsp;&nbsp; ตามแต่ที่ผู้จะขายจะเลือก</p>
+                <p class="MsoNoSpacing" style="text-indent: 0.5in;"><span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">ข้อ&nbsp; 4.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; บันทึกฉบับนี้&nbsp; และเอกสารแนบท้ายบันทึกนี้และเงื่อนไขทั้งหมดที่&nbsp; ผู้จะซื้อและผู้จะขายได้ตกลงกันในเรื่องของสิทธิพิเศษ&nbsp; และ/หรือ&nbsp; ของสมนาคุณที่ผู้จะซื้อมีสิทธิได้รับในการเข้าทำสัญญาจะซื้อจะขาย&nbsp; และถือเป็นส่วนหนึ่งของสัญญาจะซื้อจะขายด้วย&nbsp; หากปรากฏว่ามีข้อใดในบันทึกนี้&nbsp; และเอกสารแนบท้ายบันทึกหรือขัดแย้งกับข้อความตามสัญญาจะซื้อจะขาย&nbsp; คู่สัญญาตกลงให้ใช้ข้อความตามที่ระบุในบันทึกและเอกสารแนบท้ายบันทึกนี้แทน</span></p>
+                <p class="MsoNoSpacing">
+                    <span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;"><span style="font-size: 14pt; text-indent: 0.5in;">บันทึกนี้ทำขึ้นเป็นสองฉบับมีข้อความถูกต้องตรงกัน&nbsp;</span><span style="font-size: 14pt; text-indent: 0.5in;">คู่สัญญาได้อ่านข้อความโดยละเอียดตลอดแล้วเห็นว่าตรงตามเจตนารมณ์</span><span style="font-size: 14pt; text-indent: 0.5in;">ทุกประการจึงได้ลงลายมือชื่อพร้อมประทับตรา</span><span style="font-size: 14pt; text-indent: 0.5in;">&nbsp; </span><span style="font-size: 14pt; text-indent: 0.5in;">(ถ้ามี)</span><span style="font-size: 14pt; text-indent: 0.5in;">&nbsp;&nbsp; </span><span style="font-size: 14pt; text-indent: 0.5in;">ไว้เป็นสำคัญต่อหน้าพยานและต่างฝ่ายต่างยึดถือไว้ฝ่ายละหนึ่งฉบับ</span>ในขณะที่ทำสัญญา ที่ดินตามวรรคหนึ่ง เป็นโฉนดที่ดินเลขที่&nbsp; </span>
+                    <!-- [if supportFields]><span lang=TH
+                    style='font-size:14.0pt;font-family:"Angsana New",serif;mso-ascii-theme-font:
+                    major-bidi;mso-hansi-theme-font:major-bidi;mso-bidi-theme-font:major-bidi'><span
+                    style='mso-element:field-begin'></span><span style='mso-spacerun:yes'> </span></span><span
+                    style='font-size:14.0pt;font-family:"Angsana New",serif;mso-ascii-theme-font:
+                    major-bidi;mso-hansi-theme-font:major-bidi;mso-bidi-theme-font:major-bidi'>MERGEFIELD
+                    <span lang=TH>โฉนดเลขที่ </span></span><![endif]-->
+                    <!-- [if supportFields]><span
+                    lang=TH style='font-size:14.0pt;font-family:"Angsana New",serif;mso-ascii-theme-font:
+                    major-bidi;mso-hansi-theme-font:major-bidi;mso-bidi-theme-font:major-bidi'><span
+                    style='mso-element:field-end'></span></span><![endif]-->
+                    <span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">&nbsp;&nbsp;<strong><u>&nbsp;64909</u></strong>&nbsp; &nbsp;หน้าสำรวจ<u>&nbsp;&nbsp;&nbsp;&nbsp; </u></span>
+                    <!-- [if supportFields]><u
+                    style='text-underline:dotted'><span lang=TH style='font-size:14.0pt;font-family:
+                    "Angsana New",serif;mso-ascii-theme-font:major-bidi;mso-hansi-theme-font:major-bidi;
+                    mso-bidi-theme-font:major-bidi'><span style='mso-element:field-begin'></span><span
+                    style='mso-spacerun:yes'> </span></span></u><u style='text-underline:dotted'><span
+                    style='font-size:14.0pt;font-family:"Angsana New",serif;mso-ascii-theme-font:
+                    major-bidi;mso-hansi-theme-font:major-bidi;mso-bidi-theme-font:major-bidi'>MERGEFIELD
+                    <span lang=TH>หน้าสำรวจ </span></span></u><![endif]-->
+                    <!-- [if supportFields]><u
+                    style='text-underline:dotted'><span lang=TH style='font-size:14.0pt;font-family:
+                    "Angsana New",serif;mso-ascii-theme-font:major-bidi;mso-hansi-theme-font:major-bidi;
+                    mso-bidi-theme-font:major-bidi'><span style='mso-element:field-end'></span></span></u><![endif]-->
+                    <u><span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;"><strong>11104</strong>&nbsp;&nbsp; </span></u><span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">เลขที่ดิน<strong><u>&nbsp;&nbsp;&nbsp;&nbsp; 889</u></strong></span>
+                    <!-- [if supportFields]><b><u
+                    style='text-underline:dotted'><span lang=TH style='font-size:14.0pt;font-family:
+                    "Angsana New",serif;mso-ascii-theme-font:major-bidi;mso-hansi-theme-font:major-bidi;
+                    mso-bidi-theme-font:major-bidi'><span style='mso-element:field-begin'></span> </span></u></b><b><u
+                    style='text-underline:dotted'><span style='font-size:14.0pt;font-family:"Angsana New",serif;
+                    mso-ascii-theme-font:major-bidi;mso-hansi-theme-font:major-bidi;mso-bidi-theme-font:
+                    major-bidi'>MERGEFIELD <span lang=TH>เลขที่ดิน </span></span></u></b><![endif]-->
+                    <!-- [if supportFields]><b><u
+                    style='text-underline:dotted'><span lang=TH style='font-size:14.0pt;font-family:
+                    "Angsana New",serif;mso-ascii-theme-font:major-bidi;mso-hansi-theme-font:major-bidi;
+                    mso-bidi-theme-font:major-bidi'><span style='mso-element:field-end'></span></span></u></b><![endif]-->
+                    <strong><u><span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></u></strong><span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">ตำบล<strong><u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ปากน้ำ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </u></strong>อำเภอ/เขต<strong><u>&nbsp;&nbsp; &nbsp;&nbsp;เมืองกระบี่&nbsp;&nbsp; &nbsp;</u></strong>จังหวัดกระบี่&nbsp; เป็นกรรมสิทธิ์ของผู้จะขาย&nbsp;&nbsp;&nbsp; ได้จดจำนองไว้กับ<u>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u></span><strong><u><span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">บมจ.ธนาคารกรุงไทย&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></u></strong><span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">โดยที่ดินแปลงดังกล่าวเป็นประกันหนี้จำนอง/หนี้บุริมสิทธิจำนวนเงิน<u>&nbsp;&nbsp;&nbsp;&nbsp; <strong>1</strong></u></span><strong><u><span style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">,400,000</span></u></strong><u><span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></u><span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">บาท(<strong><u>หนึ่งล้านสี่แสนบาทถ้วน</u></strong>)</span>
+                </p>
+                <p class="MsoNoSpacing">&nbsp;</p>
+                <p class="MsoNoSpacing">&nbsp;</p>
+                <p class="MsoNoSpacing">&nbsp;</p>
+                <p class="MsoNoSpacing">&nbsp;</p>
+            </div>
+        </div>
+        <div class="a4foot" style="text-align: center;">
+            <table style="text-align: center; width: 100%;">
+                <tbody>
+                    <tr>
+                        <td><span style="font-family: 'Angsana New'; font-size: 14pt;">ลงชื่อ.......................................................ผู้จะซื้อ</span></td>
+                        <td><span style="font-family: 'Angsana New'; font-size: 14pt;">ลงชื่อ.......................................................ผู้จะขาย</span></td>
+                    </tr>
+                    <tr>
+                        <td><span style="font-family: 'Angsana New'; font-size: 14pt;">({{quotation.CustomerName}})</span></td>
+                        <td><span style="font-family: 'Angsana New'; font-size: 14pt;">(<span style="text-indent: 50px;">&nbsp;นางสาวกิตติมา พิศาลคุณากิจ&nbsp;</span>)</span></td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>ลงชื่อ.................................................พยาน</td>
+                        <td>ลงชื่อ.................................................พยาน</td>
+                    </tr>
+                    <tr>
+                        <td>(<span style="font-family: 'Angsana New'; font-size: 18.6667px; text-indent: 50px;">&nbsp;...............................................................&nbsp;</span><span style="font-family: 'Angsana New'; font-size: 18.6667px;">)</span></td>
+                        <td>(<span style="font-family: 'Angsana New'; font-size: 18.6667px; text-indent: 50px;">&nbsp;...............................................................&nbsp;</span><span style="font-family: 'Angsana New'; font-size: 18.6667px;">)</span></td>
+                    </tr>
+                </tbody>
+            </table>
+            <br /><br />-2-
+        </div>
+    </div>
+    <div class="a4page">
+        <div class="a4body" style="padding-top: 5mm;">
+            <!--<div style="height: 250mm;">-->
+            <div class="textinbody">
+                <p class="MsoNoSpacing" style="text-align: center;" align="center"><strong><span lang="TH" style="font-size: 14.0pt; mso-ansi-font-size: 11.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">บันทึกค่าใช้บริการและบำรุงรักษาบริการสาธารณะ</span></strong></p>
+                <p class="MsoNoSpacing" style="text-align: center;" align="center"><strong><span lang="TH" style="font-size: 14.0pt; mso-ansi-font-size: 11.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">&nbsp; โครงการ&nbsp;{{quotation.ProjectName}}<u></u></span></strong><u></u></p>
+                <p class="MsoNoSpacing" style="text-align: right;" align="right"><strong><u><span style="font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">&nbsp;</span></u></strong></p>
+                <p class="MsoNoSpacing"><span lang="TH" style="font-size: 14.0pt; mso-ansi-font-size: 11.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">วันที่&nbsp;{{quotation.ContractDueDate| bdate}}<u></u></span></p>
+                <p class="MsoNoSpacing"><span lang="TH" style="font-size: 14.0pt; mso-ansi-font-size: 11.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">ข้อ 1. ผู้จะซื้อตกลงชำระค่าใช้บริการและบำรุงรักษาบริการสาธารณะ&nbsp;&nbsp; อันประกอบด้วย&nbsp;&nbsp; ค่าว่าจ้างบุคคล&nbsp; และ/หรือ&nbsp; นิติบุคคลให้บริหารพื้นที่ส่วนกลางภายในโครงการ&nbsp;&nbsp; ค่ารักษาความปลอดภัย&nbsp; ค่าดูแลความสะอาด&nbsp;&nbsp; ค่าใช้จ่ายสโมสร&nbsp; ค่าไฟฟ้าส่องสว่าง&nbsp;&nbsp; ค่าดูแลสภาพแวดล้อมภายในโครงการ&nbsp; รวมถึงสิ่งอำนวยความสะดวกอื่น ๆ&nbsp; บริเวณพื้นที่ส่วนกลางที่ผู้จะขายจัดให้มี&nbsp;&nbsp; เพื่ออำนวยความสะดวกแก่</span></p>
+                <p class="MsoNoSpacing"><span lang="TH" style="font-size: 14.0pt; mso-ansi-font-size: 11.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">ผู้จะซื้อ&nbsp; โดย&nbsp; ณ&nbsp; วันที่ทำบันทึกฉบับนี้&nbsp; ผู้จะขายกำหนดเรียกเก็บค่าใช้บริการและบำรุงรักษาบริการสาธารณะ&nbsp; <strong><u>ในอัตราเหมาจ่ายตารางวาละ&nbsp; &nbsp;30&nbsp;&nbsp;&nbsp; บาท&nbsp;&nbsp; (สามสิบบาทถ้วน)&nbsp;&nbsp;&nbsp; ต่อเดือน&nbsp; เริ่มคำนวณนับตั้งแต่วันโอนกรรมสิทธิ์&nbsp; จนถึงวันที่&nbsp;&nbsp;&nbsp;&nbsp; 31&nbsp;&nbsp; ธันวาคม&nbsp; 2563&nbsp;&nbsp; </u></strong><u>(</u></span><u><span style="font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">&ldquo;</span></u><u><span lang="TH" style="font-size: 14.0pt; mso-ansi-font-size: 11.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">รอบการชำระค่าใช้จ่ายครั้งแรก</span></u><u><span style="font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">&rdquo;</span></u><u><span lang="TH" style="font-size: 14.0pt; mso-ansi-font-size: 11.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">) โดยในครั้งแรกให้ผู้จะซื้อชำระล่วงหน้าแก่ผู้จะขายในวันโอนกรรมสิทธิ์ที่ดินพร้อมสิ่งปลูกสร้าง&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;</span></u><span lang="TH" style="font-size: 14.0pt; mso-ansi-font-size: 11.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">อย่างไรก็ตาม&nbsp; ภายใต้หลักเกณฑ์ตามที่กฎหมายกำหนด&nbsp;&nbsp; หากในอนาคตมีการเปลี่ยนแปลงอัตราค่าบริการและบำรุงรักษาบริการสาธารณะเป็นจำนวนเท่าใดก็ตาม&nbsp; ผู้จะซื้อตกลงผูกพันที่จะชำระค่าใช้บริการและบำรุงรักษาบริการสาธารณะให้เป็นไปตามอัตราที่เปลี่ยนแปลงดังกล่าวทุกประการ</span><u></u></p>
+                <p class="MsoNoSpacing"><span lang="TH" style="font-size: 14.0pt; mso-ansi-font-size: 11.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">ในกรณีที่ได้มีการจัดตั้งนิติบุคคลหมู่บ้านจัดสรร&nbsp; ตามกฎหมายจัดสรรที่ดิน&nbsp; หรือ&nbsp; นิติบุคคลตามกฎหมายอื่น ๆ&nbsp; แล้ว (</span><span style="font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">&ldquo;</span><span lang="TH" style="font-size: 14.0pt; mso-ansi-font-size: 11.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">ผู้แทนผู้จะซื้อ</span><span style="font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">&rdquo;</span><span lang="TH" style="font-size: 14.0pt; mso-ansi-font-size: 11.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">)&nbsp;&nbsp;&nbsp; คู่สัญญาตกลงให้ภาระหน้าที่ในการบริหารจัดการ&nbsp; และดูแลบำรุงรักษาบริการสาธารณะดังกล่าวโอนไปเป็นของผู้แทนผู้จะซื้อทันที&nbsp;&nbsp; และ&nbsp; ให้ถือว่าหน้าที่ของผู้จะขายในเรื่องดังกล่าวเป็นอันสิ้นสุดลงในวันดังกล่าวด้วยเช่นกัน&nbsp;&nbsp; ทั้งนี้&nbsp; ผู้จะขายได้ส่งมอบค่าใช้บริการและบำรุงรักษาบริการสาธารณะที่ผู้จะขายได้เรียกเก็บไว้ล่วงหน้าตามจำนวนของระยะเวลาส่วนที่เหลือนับตั้งแต่วันที่ได้มีการจัดตั้งผู้แทนผู้จะซื้อ&nbsp; ให้แก่ผู้แทนผู้จะซื้อเพื่อเป็นค่าใช้จ่ายในการบริหารจัดการ&nbsp;&nbsp; และดูแลบำรุงรักษาบริการสาธารณะต่อไป</span></p>
+                <p class="MsoNoSpacing"><span lang="TH" style="font-size: 14.0pt; mso-ansi-font-size: 11.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">ในกรณีครบรอบการชำระค่าใช้จ่ายครั้งแรกแล้ว&nbsp;&nbsp; แต่ยังไม่มีการจัดตั้งผู้แทนผู้จะซื้อ&nbsp; ผู้จะขายมีสิทธิเรียกเก็บค่าใช้บริการและบำรุงรักษาบริการสาธารณะในคราวถัดไปได้&nbsp;&nbsp; จนกว่าจะได้จัดตั้งผู้แทนผู้จะซื้อแล้วเสร็จ&nbsp; โดยจะเรียกเก็บล่วงหน้าตามอัตรา&nbsp; และกำหนดระยะเวลาที่ผู้จะขายพิจารณาเห็นสมควร&nbsp;&nbsp; แต่ทั้งนี้ต้องไม่น้อยกว่าคราวละ&nbsp; 12&nbsp; เดือน</span></p>
+                <p class="MsoNoSpacing" style="text-indent: 0.5in;"><span lang="TH" style="font-size: 14.0pt; mso-ansi-font-size: 11.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">ข้อ 2. ผู้จะซื้อตกลงผูกพันและปฏิบัติตามระเบียบพักอาศัยของหมู่บ้านตามที่ผู้บริหารหมู่บ้าน&nbsp; และ/หรือ&nbsp; ผู้แทนผู้จะซื้อได้กำหนดไว้โดยเคร่งครัดทุกประการ</span></p>
+                <p class="MsoNoSpacing" style="text-indent: 0.5in;"><span lang="TH" style="font-size: 14.0pt; mso-ansi-font-size: 11.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">&nbsp;บันทึกนี้ทำขึ้นเป็นสองฉบับมีข้อความถูกต้องตรงกัน&nbsp; คู่สัญญาได้อ่านข้อความโดยละเอียดตลอดแล้วเห็นว่าตรงตามเจตนารมณ์ทุกประการจึงได้ลงลายมือชื่อพร้อมประทับตรา&nbsp; (ถ้ามี)&nbsp;&nbsp; ไว้เป็นสำคัญต่อหน้าพยานและต่างฝ่ายต่างยึดถือไว้ฝ่ายละหนึ่งฉบับ</span></p>
+            </div>
+        </div>
+        <div class="a4foot" style="text-align: center; padding-top: 9%;">
+            <table style="text-align: center; width: 100%;">
+                <tbody>
+                    <tr>
+                        <td><span style="font-family: 'Angsana New'; font-size: 14pt;">ลงชื่อ.......................................................ผู้จะซื้อ</span></td>
+                        <td><span style="font-family: 'Angsana New'; font-size: 14pt;">ลงชื่อ.......................................................ผู้จะขาย</span></td>
+                    </tr>
+                    <tr>
+                        <td><span style="font-family: 'Angsana New'; font-size: 14pt;">({{quotation.CustomerName}})</span></td>
+                        <td><span style="font-family: 'Angsana New'; font-size: 14pt;">(<span style="text-indent: 50px;">&nbsp;นางสาวกิตติมา พิศาลคุณากิจ&nbsp;</span>)</span></td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                </tbody>
+            </table>
+            <br /><br />
+        </div>
+    </div>
+    <div class="a4page">
+        <div>
+            <!--<div style="height: 245mm;">-->
+            <p style="text-align: left;">
+                <span lang="TH" style="font-size: 12.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-fareast-font-family: 'Times New Roman'; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi; mso-ansi-language: EN-US; mso-fareast-language: EN-US; mso-bidi-language: TH;">บันทึกเลขที่<u>&nbsp; </u></span>
+            
+            </p>
+            <p style="text-align: center;"><span style="font-size: 18.6667px;"><strong>สัญญาจะซื้อจะขายที่ดินจัดสรร (มีสิ่งปลูกสร้าง)<br /></strong></span><span style="font-size: 18.6667px;"><strong>(โครงการ&nbsp; เค-อเวนิว)</strong></span></p>
+            <p style="text-align: center;">&nbsp;</p>
+            <p class="MsoNormal" style="text-align: center;" align="center"><strong><span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">บันทึกข้อตกลงแนบท้าย</span></strong></p>
+            <p class="MsoNormal" style="text-align: center;" align="center"><strong><span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">สัญญาจะซื้อจะขายที่ดินจัดสรร(มีสิ่งปลูกสร้าง)</span></strong></p>
+            <p class="MsoNormal" style="margin-left: 1.5in; text-indent: .5in;"><strong><span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; โครงการ<u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; เค-อเวนิว&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; </u></span></strong></p>
+            <p class="MsoNormal" style="margin-left: 1.5in; text-indent: .5in;"><span style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">&nbsp;</span></p>
+            <p class="MsoNoSpacing" style="text-indent: 0.5in;"><span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-fareast-font-family: 'Times New Roman'; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">บันทึกข้อตกลงนี้ทำที่&nbsp;&nbsp; <strong><u>บริษัท&nbsp; ชวนพัฒนา&nbsp; พร็อพเพอร์ตี้&nbsp; จำกัด</u></strong></span><span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">&nbsp;&nbsp; วันที่<u>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<strong>27&nbsp; </strong>&nbsp;&nbsp;</u>เดือน<strong><u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; กรกฎาคม&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </u></strong>พ.ศ.<u>&nbsp;&nbsp; <strong>&nbsp;2560 </strong>&nbsp;&nbsp;</u></span>โดยและระหว่าง</p>
+            <p class="MsoNormal"><span lang="TH" style="font-size: 14.0pt; mso-ansi-font-size: 12.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; บริษัท&nbsp; ชวนพัฒนา&nbsp; พร็อพเพอร์ตี้&nbsp; จำกัด&nbsp;&nbsp;&nbsp; สำนักงานตั้งอยู่เลขที่&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 495/41&nbsp;&nbsp;&nbsp;&nbsp; ถนนอุตรกิจ&nbsp;&nbsp; ตำบลกระบี่ใหญ่&nbsp;&nbsp; อำเภอเมืองกระบี่&nbsp;&nbsp;</span>จังหวัดกระบี่&nbsp;&nbsp;&nbsp;&nbsp; โดยนายธนวัช&nbsp;&nbsp; ภูเก้าล้วน&nbsp;&nbsp;&nbsp;&nbsp; ผู้รับมอบอำนาจของบริษัท&nbsp; ตามหนังสือมอบอำนาจ&nbsp;&nbsp; ฉบับลงวันที่&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp; มกราคม&nbsp; 2560<span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">ซึ่งต่อไปในบันทึกนี้จะเรียกว่า&nbsp; </span><span style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">&ldquo;<span lang="TH">ผู้จะขาย</span>&rdquo;<span lang="TH">&nbsp;&nbsp;&nbsp; ฝ่ายหนึ่ง&nbsp; กับ&nbsp;</span></span></p>
+            <p class="MsoNoSpacing" style="text-indent: .5in;"><span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">{{quotation.CustomerName}} อายุ&nbsp;{{quotation.CustomerAge}} ปี&nbsp;&nbsp;&nbsp;&nbsp; สัญชาติ <u>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<strong>ไทย</strong>&nbsp;&nbsp;&nbsp; </u>ที่อยู่เลขที่&nbsp;{{quotation.CustomerAddress}}<u> </u></span>โทรศัพท์ {{quotation.CustomerPhone}}&nbsp;<span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">ซึ่งต่อไปในบันทึกนี้จะเรียกว่า&nbsp; </span><span style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">&ldquo;<span lang="TH">ผู้จะซื้อ</span>&rdquo;&nbsp; <span lang="TH">อีกฝ่ายหนึ่ง</span></span></p>
+            <p class="MsoNoSpacing">
+           <span style="mso-ignore: vglayout; position: absolute; z-index: 251659264; left: 0px; margin-left: 642px; margin-top: 0px; width: 2px; height: 20px;"><img src="file:///C:/Users/COM-0181/AppData/Local/Temp/msohtmlclip1/01/clip_image001.png" alt="" width="2" height="20" /></span><!--[endif]--><span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">โดยที่ผู้จะขายและผู้จะซื้อตกลงเข้าทำสัญญาจะซื้อจะขายที่ดินจัดสรร(มีสิ่งปลูกสร้าง)&nbsp;&nbsp; โครงการ {{quotation.ProjectName}}&nbsp;</span><span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">จำนวน<u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>1</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </u>&nbsp;แปลง&nbsp;&nbsp; ที่ดินแปลงเลขที่ {{quotation.REUnitCode}}&nbsp;</span><span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">และสิ่งปลูกสร้างที่จะทำการก่อสร้างลงในที่ดินดังกล่าว</span><span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">เป็นอาคารแบบ<strong><u>&nbsp;&nbsp;&nbsp; ทาวน์โฮม&nbsp; 2&nbsp; ชั้น&nbsp; แบบ</u></strong></span><strong><u><span style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;"> A<span lang="TH">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></u></strong><span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">จำนวน<strong><u>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </u></strong>หลัง&nbsp;&nbsp; รวมเป็นค่าที่ดินพร้อมสิ่งปลูกสร้างทั้งสิ้น {{quotation.NetPrice}}&nbsp;</span><span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">บาท&nbsp;</span><span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">({{quotation.NetPrice}}</span><span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">)&nbsp; ซึ่งต่อไปในบันทึกนี้จะเรียกว่า&nbsp; </span><span style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">&ldquo;<span lang="TH">ทรัพย์สินที่จะซื้อจะขาย</span>&rdquo;<strong> &nbsp;&nbsp;</strong><span lang="TH">ปรากฏรายละเอียดตามสัญญาจะซื้อจะขายที่ดินจัดสรร(มีสิ่งปลูกสร้าง)โครงการ{{quotation.UnitLandPrice|number : 0}} สัญญาเลขที่<strong><u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </u></strong></span></span><strong><u><span style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi; mso-no-proof: yes;">KAN-f<span lang="TH">2/</span>A<span lang="TH">220/2560</span></span></u></strong><strong><u><span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; </span></u></strong><strong><span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">&nbsp;&nbsp;</span></strong><span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">ฉบับลงวันที่ {{quotation.ContractDueDate| bdate}}&nbsp; ระหว่างผู้จะขายและผู้จะซื้อพร้อมบันทึกข้อตกลงแนบท้ายสัญญาจะซื้อจะขาย&nbsp; (ถ้ามี)&nbsp; ซึ่งต่อไปในบันทึกนี้จะรวมเรียกว่า&nbsp; </span><span style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">&ldquo;<span lang="TH">สัญญาจะซื้อจะขาย</span>&rdquo;<span lang="TH">&nbsp;&nbsp; และ</span></span>
+            </p>
+            <p class="MsoNoSpacing">โดยที่ผู้จะซื้อและผู้จะขายประสงค์จะแก้ไขเพิ่มเติมข้อตกลงตามระบุในสัญญาจะซื้อจะขาย&nbsp; ดังนั้นเพื่อให้เป็นไปตามความประสงค์ดังกล่าว คู่สัญญาทั้งสองฝ่ายตกลงกันทำบันทึกแนบท้ายสัญญาจะซื้อจะขาย&nbsp; ดังมีข้อความต่อไปนี้</p>
+            <p class="MsoNoSpacing"><span style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">&nbsp;</span></p>
+        </div>
+        <div class="a4foot" style="text-align: center;">
+            <table style="text-align: center; width: 100%;">
+                <tbody>
+                    <tr style="height: 19px;">
+                        <td style="height: 19px;">
+                            <p class="MsoNormal" align="center"><span lang="TH" style="font-size: 14pt; font-family: 'Angsana New', serif;">ลงชื่อ............................................</span><span style="font-size: 14pt; font-family: 'Angsana New', serif;">......<span lang="TH">ผู้จะขาย</span></span></p>
+                        </td>
+                        <td style="height: 19px;">
+                            <p class="MsoNormal" align="center"><span lang="TH" style="font-size: 14pt; font-family: 'Angsana New', serif;">ลงชื่อ............................................</span><span style="font-size: 14pt; font-family: 'Angsana New', serif;">...........<span lang="TH">ผู้จะซื้อ</span></span></p>
+                        </td>
+                    </tr>
+                    <tr style="height: 14.4445px;">
+                        <td style="height: 14.4445px;"><span lang="TH" style="font-size: 14pt; font-family: 'Angsana New', serif;">( บริษัท&nbsp; ชวนพัฒนา พร็อพเพอร์ตี้ จำกัด )</span></td>
+                        <td style="height: 14.4445px;"><span style="font-family: 'Angsana New'; font-size: 14pt;">(<span style="text-indent: 50px;">&nbsp;{{quotation.CustomerName}} </span>)</span></td>
+                    </tr>
+                </tbody>
+            </table>
+            <br /><br /><br /><br /><br /> -1-
+        </div>
+    </div>
+    <div class="a4page">
+        <div class="a4body">
+            <br />
+            <p class="MsoNoSpacing"><span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">ทั้งนี้&nbsp; คู่สัญญาทั้งสองฝ่ายตกลงกันว่า&nbsp;&nbsp; </span><strong><span style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">&ldquo;<span lang="TH">การก่อสร้างสิ่งปลูกสร้างแล้วเสร็จตามวรรคก่อน</span>&rdquo;<span lang="TH">&nbsp; </span></span></strong><span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">หมายถึง&nbsp;&nbsp; <u>การที่ผู้จะขายได้ทำการก่อสร้างทรัพย์สินที่จะซื้อจะขายให้แล้วเสร็จตามรูปแบบมาตรฐานที่กำหนดไว้ในสัญญาจะซื้อจะขาย&nbsp; รวมถึงได้ติดตั้งอุปกรณ์&nbsp; และสุขภัณฑ์&nbsp; ตลอดจนระบบไฟฟ้า&nbsp; ประปา&nbsp;&nbsp; ซึ่งต้องสามารถใช้งานได้ทั้งหมดไว้เรียบร้อยแล้ว&nbsp;&nbsp; </u><strong>แต่ไม่รวมถึง</strong>&nbsp;&nbsp; ความชำรุดบกพร่อง&nbsp; ซึ่งตามปกติของงานก่อสร้างพึงต้องมีหรือเกิดขึ้นโดยทั่วไป&nbsp; และลักษณะของความชำรุดบกพร่องดังกล่าวไม่เป็นสาระสำคัญอันจะส่งผลกระทบต่อการครอบครอง&nbsp; และใช้ประโยชน์ในทรัพย์สินที่จะซื้อจะขายได้&nbsp; <strong>(</strong></span><strong><span style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">&ldquo;<span lang="TH">รายการชำรุดบกพร่องที่ไม่เป็นสาระสำคัญต่อการอยู่อาศัย</span>&rdquo;<span lang="TH">)</span></span></strong></p>
+            <p class="MsoNoSpacing"><strong><span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">ข้อ 2. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; การก่อสร้างสิ่งปลูกสร้างแล้วเสร็จก่อนกำหนดนัดโอนกรรมสิทธิ์</span></strong></p>
+            <p class="MsoNoSpacing"><span style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span lang="TH">ในกรณีที่ผู้จะขายได้ก่อสร้างสิ่งปลูกสร้างซึ่งเป็นส่วนหนึ่งของทรัพย์สินที่จะซื้อจะขายแล้วเสร็จก่อนที่ผู้จะซื้อจะผ่อนชำระเงินตาม&nbsp; ข้อ&nbsp; 4.&nbsp; &nbsp;ของสัญญาจะซื้อจะขายนี้ครบถ้วน&nbsp;&nbsp; ผู้จะซื้อและผู้จะขายตกลงให้ร่นกำหนดเวลาในการโอนกรรมสิทธิ์ทรัพย์สินที่จะซื้อจะขายจากวันที่ระบุใน&nbsp; ข้อ&nbsp; 4 .&nbsp;&nbsp; ให้เร็วขึ้น&nbsp;&nbsp; โดยเมื่อการก่อสร้างสิ่งปลูกสร้างแล้วเสร็จผู้จะขายจะได้มีหนังสือแจ้งให้ผู้จะซื้อทราบเป็นการล่วงหน้าก่อนการโอนกรรมสิทธิ์&nbsp;&nbsp; ไม่น้อยกว่า&nbsp; 30&nbsp; (สามสิบ)&nbsp;&nbsp; วัน&nbsp;&nbsp; และคู่สัญญาทั้งสองฝ่ายตกลงจะไปดำเนินการจดทะเบียนโอนกรรมสิทธิ์ทรัพย์สินที่จะซื้อจะขายต่อเจ้าพนักงานที่ดินตามกฎหมาย&nbsp;&nbsp; พร้อมทั้งปฏิบัติการชำระหนี้ตามสัญญาจะซื้อจะขายให้เสร็จสิ้นครบถ้วนสมบูรณ์ในวันโอนกรรมสิทธิ์ที่ผู้จะขายได้แจ้งให้ทราบดังกล่าวนี้ด้วย&nbsp;&nbsp; ทั้งนี้ผู้จะซื้อและผู้จะขายตกลงให้จำนวนเงินที่ต้องผ่อนชำระตามข้อ&nbsp; 4.&nbsp;&nbsp; ทุกงวดที่ยังไม่ถึงกำหนดชำระ&nbsp; และเงินที่ต้องชำระในวันโอนกรรมสิทธิ์เดิมเป็นอันถึงกำหนดชำระทั้งหมดทันทีในวันนัดจดทะเบียนโอนกรรมสิทธิ์ทรัพย์สินที่จะซื้อจะขายตามที่ผู้จะขายได้แจ้งเปลี่ยนแปลงดังกล่าว&nbsp; โดยผู้จะซื้อตกลงไปดำเนินการรับโอนกรรมสิทธิ์พร้อมชำระราคาทรัพย์สินที่จะซื้อจะขายส่วนที่เหลือทั้งหมด&nbsp;&nbsp; ตลอดจนค่าใช้จ่ายอื่น ๆ&nbsp; ที่เกี่ยวข้องในการโอนกรรมสิทธิ์ให้ครบถ้วนแก่ผู้จะขายในวันดังกล่าวด้วย</span></span></p>
+            <p class="MsoNoSpacing"><span style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span lang="TH">ในกรณีที่มีการขยายระยะเวลาการก่อสร้างเนื่องจากเหตุตามข้อ&nbsp; 14.&nbsp; ของสัญญาจะซื้อจะขายจนเป็นเหตุให้การก่อสร้างสิ่งปลูกสร้างแล้วเสร็จล่าช้ากว่ากำหนดเวลาการโอนกรรมสิทธิ์ตามข้อ&nbsp; 4.&nbsp;&nbsp; ของสัญญาจะซื้อจะขาย&nbsp; ผู้จะซื้อและผู้จะขายตกลงให้เลื่อนกำหนดเวลาในการโอนกรรมสิทธิ์ทรัพย์สินที่จะซื้อจะขายออกไปจากวันที่ระบุในข้อ&nbsp; 4.&nbsp; เท่ากับระยะเวลาที่เสียไปเพราะเหตุดังกล่าว&nbsp;&nbsp; โดยเมื่อการก่อสร้างสิ่งปลูกสร้างแล้วเสร็จ&nbsp; ผู้จะขายจะได้มีหนังสือแจ้งให้ผู้จะซื้อทราบเป็นการล่วงหน้าก่อนการโอนกรรมสิทธิ์&nbsp; ไม่น้อยกว่า&nbsp; 30&nbsp; (สามสิบ)&nbsp; วัน&nbsp; แล้วคู่สัญญาทั้งสองฝ่ายตกลงจะไปดำเนินการจดทะเบียนโอนกรรมสิทธิ์ทรัพย์สินที่จะซื้อจะขายต่อเจ้าพนักงานที่ดินตามกฎหมาย&nbsp; และปฏิบัติการชำระหนี้ตามสัญญาจะซื้อจะขายให้เสร็จสิ้นครบถ้วนสมบูรณ์ในวันโอนกรรมสิทธิ์ที่ผู้จะขายได้แจ้งดังกล่าวด้วย</span></span></p>
+            <p class="textinbody"><span style="font-size: 14pt;"><span lang="TH" style="text-indent: 1in; font-size: 14pt; font-family: 'Angsana New', serif;"><span style="font-size: 14pt;">ในกรณีที่มีการก่อสร้างสิ่งปลูกสร้างแล้วเสร็จล่าช้ากว่ากำหนดเวลาการโอนกรรมสิทธิ์ตามข้อ</span><span style="font-size: 14pt;">&nbsp; </span><span style="font-size: 14pt;">4.</span><span style="font-size: 14pt;">&nbsp; </span><span style="font-size: 14pt;">ของสัญญาจะซื้อจะขายอันเนื่องมาจากความผิดพลาดของผู้จะขาย</span><span style="font-size: 14pt;">&nbsp;&nbsp; </span><span style="font-size: 14pt;">แต่ผู้จะซื้อไม่ใช้สิทธิบอกเลิกสัญญาตามข้อ</span><span style="font-size: 14pt;">&nbsp; </span><span style="font-size: 14pt;">15.1</span><span style="font-size: 14pt;">&nbsp; </span><span style="font-size: 14pt;">ของสัญญาจะซื้อจะขาย</span><span style="font-size: 14pt;">&nbsp; </span><span style="font-size: 14pt;">และ/หรือ</span><span style="font-size: 14pt;">&nbsp; </span><span style="font-size: 14pt;">ผู้จะซื้อได้แจ้งความประสงค์ที่จะใช้สิทธิปรับตามข้อ</span><span style="font-size: 14pt;">&nbsp; </span><span style="font-size: 14pt;">12.1.1</span><span style="font-size: 14pt;">&nbsp; </span><span style="font-size: 14pt;">ของสัญญาจะซื้อจะขายตามแต่กรณี</span><span style="font-size: 14pt;">&nbsp;&nbsp; </span><span style="font-size: 14pt;">ให้ถือว่าผู้จะซื้อประสงค์จะผูกพันตามสัญญาจะซื้อจะขายดังกล่าวต่อไป</span><span style="font-size: 14pt;">&nbsp; </span><span style="font-size: 14pt;">และผู้จะซื้อตกลงให้ผู้จะขายเลื่อนกำหนดเวลาในการโอนกรรมสิทธิ์ทรัพย์สินที่จะซื้อจะขายออกไปจากวันที่ระบุในข้อ</span><span style="font-size: 14pt;">&nbsp; </span><span style="font-size: 14pt;">4.</span><span style="font-size: 14pt;">&nbsp;&nbsp; </span><span style="font-size: 14pt;">ของสัญญาจะซื้อจะขาย</span><span style="font-size: 14pt;">&nbsp; </span><span style="font-size: 14pt;">จนกว่าผู้จะขายดำเนินการก่อสร้างสิ่งปลูกสร้างแล้วเสร็จ</span><span style="font-size: 14pt;">&nbsp; </span><span style="font-size: 14pt;">โดยเมื่อการก่อสร้างสิ่งปลูกสร้างแล้วเสร็จ</span><span style="font-size: 14pt;">&nbsp; </span><span style="font-size: 14pt;">ผู้จะขายจะได้มีหนังสือแจ้งให้ผู้จะซื้อทราบเป็นการล่วงหน้าก่อนการโอนกรรมสิทธิ์</span><span style="font-size: 14pt;">&nbsp; </span><span style="font-size: 14pt;">ไม่น้อยกว่า</span><span style="font-size: 14pt;">&nbsp; </span><span style="font-size: 14pt;">30 (สามสิบ)</span><span style="font-size: 14pt;">&nbsp; </span><span style="font-size: 14pt;">วัน</span><span style="font-size: 14pt;">&nbsp;&nbsp; </span><span style="font-size: 14pt;">แล้วคู่สัญญาทั้งสองฝ่ายตกลงจะไปดำเนินการจดทะเบียนโอนกรรมสิทธิ์ทรัพย์สินที่จะซื้อจะขายต่อเจ้าพนักงานที่ดินตามกฎหมาย</span><span style="font-size: 14pt;">&nbsp;&nbsp; </span><span style="font-size: 14pt;">และปฏิบัติการชำระหนี้ตามสัญญาจะซื้อจะขายให้เสร็จสิ้นครบถ้วนสมบูรณ์ในวันโอนกรรมสิทธิ์ที่ผู้จะขายได้แจ้งดังกล่าวด้วย</span><span style="font-size: 14pt;">&nbsp;&nbsp; </span><span style="font-size: 14pt;">แต่ทั้งนี้</span><span style="font-size: 14pt;">&nbsp; </span><span style="font-size: 14pt;">ไม่ตัดสิทธิผู้จะซื้อที่จะใช้สิทธิเรียกร้องค่าปรับตามข้อ</span><span style="font-size: 14pt;">&nbsp; </span><span style="font-size: 14pt;">12.1.1</span><span style="font-size: 14pt;">&nbsp; </span><span style="font-size: 14pt;">อันเนื่องจากการล่าช้าดังกล่าวจากผู้จะขาย</span></span></span><br /><br /></p>
+        </div>
+    </div>
+    <div class="a4page">
+        <div style="height: 220mm;">
+            <!--<div style="height: 245mm;">--> <br />
+            <p class="MsoNoSpacing"><strong><span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">ข้อ 3. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; กรณีมีรายการชำรุดบกพร่อง</span></strong></p>
+            <p class="MsoNoSpacing"><span style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span lang="TH">ในกรณีมีรายการชำรุดบกพร่องที่ไม่เป็นสาระสำคัญตามข้อ&nbsp; 1&nbsp; ของบันทึกนี้เกิดขึ้น&nbsp;&nbsp; ผู้จะขายตกลงจะดำเนินการแก้ไขซ่อมแซมความชำรุดบกพร่องดังกล่าวให้แก่ผู้จะซื้อ&nbsp;&nbsp; ภายหลังจากที่ผู้จะซื้อได้รับโอนกรรมสิทธิ์ทรัพย์สินที่จะซื้อจะขายไปจากผู้จะขายตามกำหนดเวลาที่ระบุไว้ในสัญญาจะซื้อจะขายเรียบร้อยแล้วเท่านั้น&nbsp;&nbsp; ทั้งนี้ผู้จะขายจะเริ่มต้นดำเนินการแก้ไขซ่อมแซมภายใน&nbsp; 7&nbsp; (เจ็ด)&nbsp; วัน&nbsp;&nbsp; นับแต่วันโอนกรรมสิทธิ์&nbsp; เป็นต้นไป&nbsp; และ&nbsp; จะดำเนินการให้เป็นไปภายใต้ขอบเขตเงื่อนไขของการรับประกันที่ระบุในสัญญาจะซื้อจะขายทุกประการ</span></span></p>
+            <p class="MsoNoSpacing"><strong><span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">ข้อ 4. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; การใช้สาธารณูปโภค&nbsp; และบริการสาธารณะ</span></strong></p>
+            <p class="MsoNoSpacing"><span style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span lang="TH">ผู้จะซื้อได้รับทราบแล้วว่า&nbsp; ณ&nbsp; วันที่ครบกำหนดการโอนกรรมสิทธิ์ที่ดินพร้อมสิ่งปลูกสร้างตามที่ระบุไว้ในสัญญาจะซื้อจะขาย&nbsp; </span></span><span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">การก่อสร้างโครงการทั้งหมดยังไม่แล้วเสร็จ&nbsp; ดังนั้น&nbsp; ผู้จะขายจึงยังคงต้องจำเป็นต้องใช้ถนนและสาธารณูปโภคอื่น ๆ&nbsp; ของโครงการในการก่อสร้าง&nbsp; ขนส่งวัสดุอุปกรณ์&nbsp;&nbsp; และใช้เป็นทางสัญจรในการพัฒนาโครงการอยู่ต่อไปจนกว่าโครงการจะพัฒนาแล้วเสร็จสมบูรณ์&nbsp;&nbsp; ทั้งนี้&nbsp; ผู้จะซื้อตกลงและให้ความยินยอมแก่ผู้จะขาย&nbsp; ในการดำเนินการดังกล่าว&nbsp;&nbsp; รวมถึงจะไม่ยกเหตุดังกล่าวขึ้นกล่าวอ้างเพื่อบอกเลิกสัญญา&nbsp; หรือปฏิเสธไม่รับโอนกรรมสิทธิ์ที่ดินพร้อมสิ่งปลูกสร้างดังกล่าวแต่ประการใด&nbsp;&nbsp; รวมถึงจะไม่ใช้สิทธิโต้แย้งหรือเรียกร้องค่าเสียหายใด ๆ&nbsp; กับผู้จะขายทุกประการ</span></p>
+            <p style="text-align: justify;"><span style="font-size: 18.6667px;"><strong>ข้อ 5. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; การบังคับใช้สัญญา</strong></span></p>
+            <p class="MsoNoSpacing"><span style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;"><span lang="TH">นอกจากในบันทึกนี้จะระบุไว้เป็นประการอื่น&nbsp; คู่สัญญาทั้งสองฝ่ายตกลงให้ถือปฏิบัติตามข้อตกลงและเงื่อนไขตามที่ระบุในสัญญาจะซื้อจะขายทุกประการ&nbsp; และให้ถือบันทึกนี้ถือเป็นส่วนหนึ่งของสัญญาจะซื้อจะขายด้วย&nbsp; ในกรณีที่มีข้อความขัดหรือแย้งกับข้อความตามสัญญาจะซื้อจะขายดังกล่าว&nbsp; คู่สัญญาตกลงให้ใช้บังคับตามบันทึกนี้แทน</span></span></p>
+            <p class="textinbody">&nbsp;</p>
+            <p class="MsoNoSpacing"><span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; บันทึกนี้ทำขึ้นเป็นสองฉบับมีข้อความถูกต้องตรงกัน&nbsp; คู่สัญญาต่างได้อ่านและเข้าใจข้อความโดยตลอดแล้ว&nbsp; จึงได้ลงลายมือชื่อไว้ต่อหน้าพยานเป็นสำคัญ&nbsp;&nbsp; และต่างเก็บรักษาไว้ฝ่ายละหนึ่งฉบับ</span>&nbsp;</p>
+            <div class="textinbody">&nbsp;</div>
+        </div>
+        <div class="a4foot" style="text-align: center;">
+            <table style="text-align: center; width: 100%;">
+                <tbody>
+                    <tr style="height: 19.3403px;">
+                        <td style="height: 19.3403px;">
+                            <p class="MsoNormal" align="center"><span lang="TH" style="font-size: 14pt; font-family: 'Angsana New', serif;">ลงชื่อ............................................</span><span style="font-size: 14pt; font-family: 'Angsana New', serif;">......<span lang="TH">ผู้จะขาย</span></span></p>
+                        </td>
+                        <td style="height: 19.3403px;">
+                            <p class="MsoNormal" align="center"><span lang="TH" style="font-size: 14pt; font-family: 'Angsana New', serif;">ลงชื่อ............................................</span><span style="font-size: 14pt; font-family: 'Angsana New', serif;">...........<span lang="TH">ผู้จะซื้อ</span></span></p>
+                        </td>
+                    </tr>
+                    <tr style="height: 14px;">
+                        <td style="height: 14px;"><span lang="TH" style="font-size: 14pt; font-family: 'Angsana New', serif;">( บริษัท&nbsp; ชวนพัฒนา พร็อพเพอร์ตี้ จำกัด )</span></td>
+                        <td style="height: 14px;"><span style="font-family: 'Angsana New'; font-size: 14pt;">(<span style="text-indent: 50px;">&nbsp;{{quotation.CustomerName}} </span>)</span></td>
+                    </tr>
+                </tbody>
+            </table>
+            <br />-1-
+        </div>
+    </div>
+    <div class="a4page">
+        <div class="a4body">
+            <!--<div style="height: 245mm;">-->
+            <p class="MsoNoSpacing">&nbsp;</p>
+            <p class="MsoNoSpacing"><strong><u><span style="font-size: 14.0pt; font-family: 'Angsana New',serif;">รายการส่งเสริมการขาย</span></u></strong></p>
+            <p class="MsoNoSpacing" style="text-align: center;" align="center"><strong><u><span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif;">รายการส่งเสริมการขาย</span></u></strong><u></u></p>
+            <p class="MsoNoSpacing"><span style="font-size: 14.0pt; font-family: 'Angsana New',serif;">&nbsp;</span></p>
+            <p class="MsoNoSpacing"><span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ผู้จะขายตกลงมอบสิทธิพิเศษ&nbsp; ตามรายการและภายใต้เงื่อนไข&nbsp; ดังนี้</span></p>
+            <table style="height: 106px; border-collapse: collapse; text-align: start; text-indent: 0px; width: 690px;" border="1" width="676">
+                <tbody data-ng-repeat="CampaignInfoTable in promotionstable">
+                    <tr>
+                        <td style="width: 114.931px;" align="center">ลำดับ</td>
+                        <td style="width: 163.819px;" align="center">รายการ</td>
+                        <td style="width: 380.486px;" align="center">มูลค่า</td>
+                    </tr>
+                    <tr data-ng-repeat="Promotion in CampaignInfoTable.PromotionItems">
+                        <td style="width: 114.931px;" align="center">{{ $index+1 }}</td>
+                        <td style="width: 163.819px;">{{ Promotion.Name }}</td>
+                        <td style="width: 380.486px;" align="right">{{ Promotion.Cost | number}}</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 283.819px;" colspan="2" align="center">รวม</td>
+                        <td style="width: 380.486px;" align="right">{{CampaignInfoTable.CampaignInfoTotal | number}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p class="MsoNoSpacing" style="text-align: center;"><span style="font-size: 14.0pt; font-family: 'Angsana New',serif;">&nbsp;<span lang="TH">โดยผู้จะขายตกลงมอบสิทธิพิเศษดังกล่าวข้างต้น&nbsp; ให้แก่ผู้จะซื้อ&nbsp; ณ &nbsp;วันโอนกรรมสิทธิ์เป็นที่เรียบร้อยแล้ว</span></span></p>
+            <p class="MsoNoSpacing"><span style="font-size: 14.0pt; font-family: 'Angsana New',serif;">&nbsp;</span></p>
+            <p class="MsoNoSpacing"><span style="font-size: 14.0pt; font-family: 'Angsana New',serif;">&nbsp;</span></p>
+            <div style="padding-top: 45%;">
+                <p class="MsoNoSpacing" style="margin-left: .5in; text-indent: .5in;"><span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif;">ลงชื่อ.................................................ผู้จะขาย</span><span style="font-size: 14.0pt; font-family: 'Angsana New',serif;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span lang="TH">ลงชื่อ.................................................ผู้จะซื้อ</span></span></p>
+                <p class="MsoNoSpacing"><span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;(<u>บริษัท&nbsp; ชวนพัฒนา&nbsp; พร็อพเพอร์ตี้&nbsp; จำกัด</u>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;({{quotation.CustomerName}})</span><u></u></p>
+                <p class="MsoNoSpacing"><span style="font-size: 14.0pt; font-family: 'Angsana New',serif;">&nbsp;</span></p>
+                <p class="MsoNoSpacing" style="margin-left: .5in; text-indent: .5in;"><span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif;">ลงชื่อ.................................................พยาน</span><span style="font-size: 14.0pt; font-family: 'Angsana New',serif;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span lang="TH">ลงชื่อ.................................................พยาน</span></span></p>
+                <p class="textinbody"><span lang="TH" style="font-size: 14.0pt; font-family: 'Angsana New',serif; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;"><span lang="TH" style="font-size: 14pt;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;(นางสาวลัดดาวัลย์&nbsp; พลรบ)</span><span style="font-size: 14pt;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<span lang="TH" style="margin-left: 9%;">( <u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u>)</span></span></span></p>
+            </div>
+            <p class="textinbody">&nbsp;</p>
+            <div class="textinbody">&nbsp;</div>
+        </div>
+        <div class="a4foot" style="text-align: center;">&nbsp;</div>
+    </div>
+    <div class="a4page">
+        <div class="a4body">
+            <!--<div style="height: 245mm;">-->
+            <p class="MsoNormal" style="text-align: center;" align="center">&nbsp;</p>
+            <p class="MsoNormal" style="text-align: center;" align="center"><strong><span lang="TH" style="font-size: 16.0pt; font-family: 'Angsana New',serif;">ผนวก 3</span></strong></p>
+            <p class="MsoNormal" style="text-align: center;" align="center"><strong><span lang="TH" style="font-size: 16.0pt; font-family: 'Angsana New',serif;">แนบท้ายสัญญาจะซื้อจะขายที่ดินจัดสรร(มีสิ่งปลูกสร้าง)</span></strong></p>
+            <p class="MsoNormal" style="text-align: center;" align="center">
+                <!-- [if gte vml 1]><v:shapetype
+                 id="_x0000_t32" coordsize="21600,21600" o:spt="32" o:oned="t" path="m,l21600,21600e"
+                 filled="f">
+                 <v:path arrowok="t" fillok="f" o:connecttype="none"/>
+                 <o:lock v:ext="edit" shapetype="t"/>
+                </v:shapetype><v:shape id="_x0000_s1026" type="#_x0000_t32" style='position:absolute;
+                 left:0;text-align:left;margin-left:252.7pt;margin-top:2.4pt;width:0;height:13.05pt;
+                 z-index:251657728' o:connectortype="straight"/><![endif]-->
+                <!-- [if !vml]--><span style="mso-ignore: vglayout; position: absolute; z-index: 251657728; left: 0px; margin-left: 336px; margin-top: 3px; width: 2px; height: 19px;"><img src="file:///C:/Users/COM-0181/AppData/Local/Temp/msohtmlclip1/01/clip_image001.gif" alt="" width="2" height="19" /></span><!--[endif]--><strong><span lang="TH" style="font-size: 16.0pt; font-family: 'Angsana New',serif;">โครงการ&nbsp;&nbsp; <u>เค-อเวนิว ถ.มหาราช&nbsp; เทศบาลเมืองกระบี่</u></span></strong><u></u>
+            </p>
+            <p class="MsoNormal" style="text-align: center;" align="center"><strong><span lang="TH" style="font-size: 16.0pt; font-family: 'Angsana New',serif;">ระหว่าง&nbsp; บริษัท&nbsp; ชวนพัฒนา&nbsp; พร็อพเพอร์ตี้&nbsp; จำกัด&nbsp; (</span></strong><strong><span style="font-size: 16.0pt; font-family: 'Angsana New',serif;">&ldquo;<span lang="TH">ผู้จะขาย</span>&rdquo;<span lang="TH">) กับ</span></span></strong></p>
+            <p class="MsoNormal" style="text-align: center;" align="center"><strong><span lang="TH" style="font-size: 16.0pt; font-family: 'Angsana New',serif;">{{quotation.CustomerName}} (</span></strong><strong><span style="font-size: 16.0pt; font-family: 'Angsana New',serif;">&ldquo;<span lang="TH">ผู้จะซื้อ</span>&rdquo;<span lang="TH">)</span></span></strong></p>
+            <p class="MsoNormal" style="text-align: center;" align="center"><strong><span lang="TH" style="font-size: 16.0pt; font-family: 'Angsana New',serif;">รายละเอียดการชำระราคาที่ดินพร้อมสิ่งปลูกสร้าง</span></strong></p>
+            <p class="MsoNormal" style="text-align: center;" align="center"><strong><span lang="TH" style="font-size: 16.0pt; font-family: 'Angsana New',serif;">แปลงเลขที่</span></strong><span lang="TH" style="font-size: 14pt; font-family: 'Angsana New', serif; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-caps: small-caps;"> {{quotation.REUnitCode}}</span></p>
+            <p class="MsoNormal"><span lang="TH" style="font-size: 16.0pt; font-family: 'Angsana New',serif;">ชำระเงินดาวน์เป็นจำนวนเงิน {{quotation.TotalDown|number : 0}}</span><span lang="TH" style="font-size: 16.0pt; font-family: 'Angsana New',serif;">&nbsp; &nbsp; บาท&nbsp; ({{quotation.TotalDown|number : 0}})&nbsp;&nbsp;</span><span lang="TH" style="font-size: 16.0pt; font-family: 'Angsana New',serif;">โดยตกลงผ่อนชำระ&nbsp;&nbsp; จำนวน&nbsp;&nbsp; {{quotation.DownPaymentPeriod | number:0}} งวด&nbsp;&nbsp; รายละเอียดจำนวนเงินที่ต้องชำระในแต่ละงวด&nbsp; และกำหนดวันที่ชำระปรากฏตามตารางการชำระเงิน&nbsp; ดังต่อไปนี้</span></p>
+            <table style="border-collapse: collapse; text-align: center; text-indent: 0px; width: 690px;" border="1">
+                <tbody>
+                    <tr>
+                        <td>ลำดับ</td>
+                        <td>รายการ</td>
+                        <td>กำหนดชำระ</td>
+                        <td>จำนวนเงิน</td>
+                    </tr>
+                    <tr data-ng-repeat="quotationLine in quotationLines | orderBy:'DueDate'">
+                        <td>{{$index+1}}</td>
+                        <td>{{quotationLine.Description}}</td>
+                        <td>{{quotationLine.DueDate | date:'dd/MM/yyyy'}}</td>
+                        <td align="right">{{quotationLine.Amount | number:0}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p class="MsoNormal"><span lang="TH" style="font-size: 16.0pt; font-family: 'Angsana New',serif;">&nbsp;</span></p>
+        </div>
+    </div>
+</body>
+</html>

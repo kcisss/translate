@@ -1,0 +1,120 @@
+﻿@{
+    Layout = "~/Views/Shared/_AllNewMasterLayout.cshtml";
+    ViewBag.NgApp = "IssueApp";
+}
+@section IncludeScripts{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-filter/0.5.11/angular-filter.min.js"></script>
+    <script src="~/Scripts/moment-with-locales.js"></script>
+    <script src="~/Scripts/ng-file-upload.js"></script>
+    <script src="~/Content/src/modules/Service/Issue/Scripts/app.js"></script>
+    <script src="~/Content/src/modules/Service/Issue/Scripts/ctrl.js"></script>
+    <script src="~/Content/src/modules/Service/Issue/Scripts/serv.js"></script>
+}
+@section IncludeCSS {
+    <link href="~/Scripts/Expand-Collapse.css" rel="stylesheet" />
+    <link href="~/Content/src/modules/Service/Issue/Styles/style.css" rel="stylesheet" />
+}
+
+<style>
+    .selectdemoSelectHeader {
+        /* Please note: All these selectors are only applied to children of elements with the 'selectdemoSelectHeader' class */
+    }
+
+        .selectdemoSelectHeader .demo-header-searchbox {
+            border: none;
+            outline: none;
+            height: 100%;
+            width: 100%;
+            padding: 0;
+        }
+
+        .selectdemoSelectHeader .demo-select-header {
+            box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.1), 0 0 0 0 rgba(0, 0, 0, 0.14), 0 0 0 0 rgba(0, 0, 0, 0.12);
+            padding-left: 10.667px;
+            height: 48px;
+            cursor: pointer;
+            position: relative;
+            display: flex;
+            align-items: center;
+            width: auto;
+        }
+
+        .selectdemoSelectHeader md-content._md {
+            max-height: 240px;
+        }
+
+    button, select, html, textarea, input {
+        font-family: 'sukhumvit-medium', Fallback, sans-serif;
+    }
+
+    .slideDown {
+        max-height: 300px;
+    }
+</style>
+<!-- sideNav -->
+<div layout="row" flex layout-fill ng-cloak ng-controller="MainCtrl">
+    <md-sidenav class="md-sidenav-left"
+                md-component-id="left"
+                md-is-locked-open="$mdMedia('gt-md')"
+                md-whiteframe="4"
+                style="width:280px;"
+                ng-hide="hideSideNav()">
+        <md-content style="height:100%" ng-controller="LeftCtrl" layout="column" layout-align="start ceneter" class="style-3">
+            <div>
+                <div class="slideDown" ng-hide="displayType == 'reunit'">
+                    <md-subheader><span translate="proceed"></span></md-subheader>
+                    <div style="padding:16px 0px;">
+                        <div layout="row" layout-align="center center" style="margin:0px 8px;outline:none;" ng-click="searchSubmit()">
+                            <md-button flex="50" class="md-raised md-primary"><span translate="plan2"></span></md-button>
+                            <md-button flex="50" md-theme="green" class="md-raised md-primary"><span translate="succeed"></span></md-button>
+                        </div>
+
+                    </div>
+                </div>
+
+                <md-subheader><span translate="project"></span>></md-subheader>
+                <div style="padding:0px 16px;">
+                    <md-select aria-label="selectProject" ng-model="thisProject.Id" placeholder="โครงการ">
+                        <md-option ng-repeat="project in projects" value="{{project.Id}}">{{project.Name}}</md-option>
+                    </md-select>
+                </div>
+                <div class="slideDown" ng-hide="displayType != 'reunit'">
+                    <md-subheader><span translate="caretaker"></span></md-subheader>
+                    <div style="padding:0px 16px;">
+                        <md-select aria-label="selectProject"
+                                   ng-model="thisWorker.Id"
+                                   placeholder="ผู้ดูแล"
+                                   data-md-container-class="selectdemoSelectHeader">
+                            <md-select-header class="demo-select-header">
+                                <input ng-model="searchWorker"
+                                       type="search"
+                                       placeholder="ค้นหาผู้ดูแล"
+                                       class="demo-header-searchbox md-text"
+                                       ng-keydown="onSearchChange($event)">
+                            </md-select-header>
+                            <md-option value="-99"><span translate="eCaretaker"></span></md-option>
+                            <md-option ng-repeat="worker in workers | filter:searchWorker" value="{{worker.Id}}">{{worker.Name}}</md-option>
+                        </md-select>
+                    </div>
+                </div>
+
+            </div>
+            <div layout="row" layout-align="end center" style="margin:0px 8px;outline:none;" ng-click="searchSubmit()">
+                <md-button class="md-raised md-primary"><span translate="seach"></span></md-button>
+            </div>
+            @*<md-subheader>มุมมอง</md-subheader>
+            <div style="padding:16px 16px 24px 16px;" layout="row" layout-align="space-around center">
+                <md-button style="max-width:40px" class="md-icon-button" ng-class="{'md-primary':displayType == 'reunit'}" flex="50" ng-click="changeView('reunit')">
+                    <md-icon md-svg-icon="action:view_list" aria-label="mode_edit"></md-icon>
+                </md-button>
+                <md-button style="max-width:40px" class="md-icon-button" ng-class="{'md-primary':displayType == 'wbs'}" flex="50" ng-click="changeView('wbs')">
+                    <md-icon md-svg-icon="image:grid_on" aria-label="mode_edit"></md-icon>
+                </md-button>
+                <md-button style="max-width:40px" class="md-icon-button" ng-class="{'md-primary':displayType == 'issue'}" flex="50" ng-click="changeView('issue')">
+                    <md-icon md-svg-icon="action:info" aria-label="mode_edit"></md-icon>
+                </md-button>
+            </div>*@
+        </md-content>
+    </md-sidenav>
+    <div ng-view layout="column" flex layout-fill ng-cloak></div>
+</div>

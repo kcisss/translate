@@ -1,0 +1,105 @@
+﻿<md-dialog aria-label="coborrowers">
+    <div layout="column" style="background-color: rgb(213, 70, 95);color: #fff;">
+        <md-toolbar class="md-accent">
+            <div class="md-toolbar-tools">
+                <h2 translate="listBorrower"></h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon md-svg-src="navigation:close" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+    </div>
+
+    <div class="md-padding">
+        <table style="width:100%">
+            <tr>
+                <th width="5%" translate="numberNo"></th>
+                <th translate="coborrower"></th>
+                <th width="25%" translate="status"></th>
+                <th width="10%" translate="beProprietor"></th>
+                <th width="5%"></th>
+            </tr>
+            <tr ng-repeat="c in CoBorrowers">
+                <th>
+                    <span>{{$index + 1}}</span>
+                </th>
+                <td>
+                    <md-input-container style="width: 100%; margin:0px;height:32px;">
+                        <input ng-model="c.Name" id="{{c.Id}}">
+                    </md-input-container>
+                </td>
+                <td align="center">
+                    <md-input-container style="width:70%">
+                        <md-select ng-model="c.MaritalStatus">
+                            <md-option ng-repeat="item in maritalStatus" ng-value="item.status">{{item.name}}</md-option>
+                        </md-select>
+                    </md-input-container>
+                </td>
+                <td align="center">
+                    <md-checkbox ng-model="c.isOwner" aria-label="Checkbox 1"></md-checkbox>
+                </td>
+                <td>
+                    <md-button ng-click="removeCoBorrowers(c.Id)"class="md-icon-button" aria-label="More">
+                        <md-icon md-svg-icon="action:delete"></md-icon>
+                    </md-button>
+                </td>
+            </tr>
+            <tr ng-show="CoBorrowers.length < 5">
+                <td colspan="5">
+                    <div layout="row" layout-align="start center">
+                        <md-button ng-click="addCoBorrowers()" class="md-icon-button" aria-label="More" style="margin-left:10px">
+                            <md-icon md-svg-icon="content:add_circle"></md-icon>
+                        </md-button>
+                        <span class="bold" translate="addCoBorrower"></span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <!--<div style="padding:10px;">
+        <div ng-show="CoBorrowers.length == 0" layout="row">
+            <span style="cursor:pointer; margin-top:20px;" ng-click="addCoBorrowers()">
+                <span>เพิ่มรายชื่อกรรมสิทธิ์</span>
+                <i class="material-icons" style="color:forestgreen;">add</i>
+                <md-tooltip>เพิ่มรายชื่อกรรมสิทธิ์</md-tooltip>
+            </span>
+        </div>
+        <div ng-repeat="c in CoBorrowers" ng-model="c" layout="row">
+            <md-input-container style="width: 550px;">
+                <label>ชื่อกรรมสิทธิ์ที่ {{$index+1}}</label>
+                <input ng-model="c.CoBorrowerName" id="{{c.CoBorrowerId}}">
+            </md-input-container>
+            <div>
+                <md-input-container style="margin-right: 10px;">
+                    <label>สถานภาพ</label>
+                    <md-select ng-model="c.CoBorrowerMaritalStatus">
+                        <md-option ng-repeat="item in maritalStatus" ng-value="item.status">{{item.name}}</md-option>
+                    </md-select>
+                </md-input-container>
+            </div>
+            <div layout="row" layout-align="center center">
+                <md-radio-group ng-model="c.CoBorrowerIsOwner" layout="row" layout-align="center center">
+                    <md-radio-button value="1" class="md-primary">เป็นผู้ถือกรรมสิทธิ์</md-radio-button>
+                    <md-radio-button value="0" class="md-primary">ไม่เป็นผู้ถือกรรมสิทธิ์</md-radio-button>
+                </md-radio-group>
+            </div>
+            <span style="cursor:pointer; margin-top:20px;" ng-click="addCoBorrowers()"><i class="material-icons" style="color:forestgreen">add</i><md-tooltip>เพิ่มรายชื่อกรรมสิทธิ์</md-tooltip></span>
+            <span style="cursor:pointer; margin-top:20px;" ng-click="removeCoBorrowers(c.CoBorrowerId)"><i class="material-icons" style="color:red">highlight_off</i><md-tooltip>ลบรายชื่อกรรมสิทธิ์</md-tooltip></span>
+        </div>
+    </div>-->
+    <md-dialog-actions layout="row">
+        <md-button ng-click="cancel()">
+            <span translate="canceled"></span>
+        </md-button>
+        <md-button ng-click="submit()" class="md-primary">
+            <span translate="agreed"></span>
+        </md-button>
+    </md-dialog-actions>
+</md-dialog>
+<style>
+    span, i, div {
+        outline: none;
+    }
+</style>

@@ -1,0 +1,70 @@
+﻿@{
+    ViewBag.Title = "รายงานกิจกรรมและผลตอบรับ";
+    ViewBag.NgApp = "PivotAnalysisApp";
+
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+}
+@section IncludeCSS {
+    @Styles.Render(
+       "~/bundles/css/daterangepicker",
+       "~/bundles/Style/PivotTable"
+    )
+    <link rel="stylesheet" href="/Styles/css/POSStyle.css" />
+    <link href="~/Content/src/modules/Common/PivotAnalysis/PivotAnlysisStyle.css" rel="stylesheet" />
+    <style>
+         body {
+         }
+
+         .ui-grid-header-cell-wrapper {
+             height: 30px;
+         }
+    </style>
+}
+@section IncludeScripts{
+    @Scripts.Render(
+        "~/bundles/daterangepicker",
+        "~/bundles/Script/PivotTable",
+        "~/bundles/Common/PivotAnalysis/ActivityAndResponseReport",
+        "~/bundles/master-project",
+        "~/bundles/master-worker",
+        "~/bundles/config"
+    )
+}
+<div ng-controller="ActivityAndResponseReportMainCtrl" window-resize>
+    <md-content resize-layout="30" style="overflow-x: hidden">
+        <md-subheader class="md-primary line-buttom">
+            <div  layout-align="start">
+                <a href="/Common/PivotAnalysis/ActivityAndResponseReport/List" style="font-size: 18px; margin-top: 5px;">
+                    <i class="fa fa-user"></i> <span translate="activityReportFeedback"></span>
+                </a>
+                <div class="pull-right" style="position:relative;z-index:88;height:30px;" >
+                    <div class="input-group  daterangepicker">
+                        <input ng-model="filterObj.date" ng-change="filterFunc()" class="span12 md-input" type="text" date-range-picker placeholder="Select date" />
+                    </div>
+                    <select ng-model="filterObj.Project" ng-change="filterFunc()" ng-options="project.Name for project in projects track by project.Id"></select>
+                    <select ng-model="filterObj.Worker" ng-change="filterFunc()" ng-options="worker.Name for worker in workers track by worker.Id"></select>
+                </div>
+            </div>
+        </md-subheader>
+        <md-card ng-show="coreResult.length == 0">
+            <md-card-content>
+                <p translate="noInformationInFilter">
+                </p>
+            </md-card-content>
+        </md-card>
+        <span ng-hide="coreResult" translate="pleaseWait"></span>
+        <div ng-show="coreResult.length > 0" ui-grid="gridOptions" ui-grid-exporter ui-grid-resize-columns style="width:{{windowWidth}}px; height:{{windowHeight-116}}px;"></div>
+    </md-content>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-body">
+                    <i class="big-icon fa pull-left fa-spinner text-pink fa-pulse" style="margin-top: 2px;"></i>
+                    <p style="margin-top: 3px; padding-left: 53px;">{{loadMsg}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,118 @@
+﻿<!-- UnitList.html -->
+<div ng-controller="UnitListCtrl" class="bg-white">
+    <style type="text/css">
+        body {
+            overflow: hidden;
+        }
+    </style>
+    <!-- UnitList
+                    <span>{{msg}}</span>
+    <span>{{param|json}}</span>-->
+    <div></div>
+    <md-content class="no-scroll" >
+        <md-subheader>
+            <div>
+                <a href="/Service/ProjectList/" class="text-pink mrm" style="position: relative; z-index: 90; font-size:25px; top:auto; cursor: pointer">โครงการ</a>
+                <a bs-dropdown="DropdownProjectList" style="position:relative;z-index:90; top:auto; top:auto; cursor:pointer " class="mrm">{{project.Name}}<i class="fa fa-sort-desc"></i> </a>
+            </div>
+            <div class="mll">
+                <label translate="caretaker"></label>
+                <select ng-model="param.workerId" ng-options="worker.id as worker.name for worker in WorkerList" class="important-input" style="position: relative;z-index: 88;width:200px;" ng-change="ChangeWorker()"></select>
+            </div>
+            <a class="logo bg-pink pal show-on-stick" href="/Service/ProjectList/">
+                <img alt="Ploy" src="/Styles/images/ployicon.png">
+            </a>
+            <div style="position:absolute;top:20px;right:20px;">
+                <a href="/service/project/#!/{{param.projectId}}" class="active bg-grayE switch-view" data-placement="bottom">
+                    <md-tooltip>
+                        <span translate="unitView"></span>
+                    </md-tooltip>
+                    <i class="fa fa-list"></i>
+                </a>
+                <a href="/service/project/#!/{{param.projectId}}/wbs" class="text-gray5 bg-grayE switch-view" data-placement="bottom">
+                    <md-tooltip>
+                        <span translate="viewWbs"></span>
+                    </md-tooltip>
+                    <i class="fa fa-table"></i>
+                </a>
+                <a href="/service/project/#!/{{param.projectId}}/issue" class="text-gray5 bg-grayE switch-view" data-placement="bottom">
+                    <md-tooltip>
+                        <span translate="issueView"></span>
+                    </md-tooltip>
+                    <i class="fa fa-exclamation-circle"></i>
+                </a>
+            </div>
+        </md-subheader>
+        <div id="main-content">
+            <div class="thead">
+                <table class="table table-hover line-top table-indent mb0" style="background: #fff;">
+                    <thead>
+                        <tr style="font-size : 22px;" class="bg-grayE">
+                            <th style="width:50%;" class="line-right" translate="untiDetails"></th>
+                            <th style="width:20%;" class="line-right" translate="issue"></th>
+                            <th style="width:15%;" class="line-right" translate="customer"></th>
+                            <th style="width:15%;" class="line-right" translate="caretaker"></th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            <div class="tbody scroll-content" set-height="150">
+                <table class="table table-hover line-top table-indent " style="background: #fff;">
+                    <tbody>
+                        <tr ng-repeat="unit in unitList">
+                            <td style="width:50%;" class="text-lg">
+                                <a href="#!/{{param.projectId}}/unit/{{unit.Id}}" cla class="prm">
+                                    <span translate="unit"></span> : {{unit.Code}}
+                                </a>
+                                <span class="text-paleGreen mrm prm"><span translate="chart"></span> : {{unit.Name}}</span>
+                                <span ng-hide="unit.LastModifiedTimestamp == null" class="text-sm"> {{unit.LastModifiedTimestamp | dayToThai}}</span>
+                                <div class="stage-tag">
+                                    <span ng-repeat="stage in unit.IssueFormList" class="tag tag-capsule tag-pink pull-left mrm">{{stage.StageName}}</span>
+                                </div>
+                            </td>
+                            <td style="width:20%;text-align: center">
+                                <div class="pull-left mrxl plm">
+                                    <span class="text-pink block text-xxxlg lh1">
+                                        {{unit.overDueIssue}}
+                                    </span>
+                                    <a href="#!/{{param.projectId}}/unit/{{unit.Id}}?work=overdue">
+                                        <span class="text-gray9 liftm text-md block" translate="overdue"> </span>
+                                    </a>
+                                </div>
+                                <div class="pull-left">
+                                    <span class="text-paleOrange block text-xxxlg lh1">
+                                        {{unit.openIssue}}
+                                    </span>
+                                    <a href="#!/{{param.projectId}}/unit/{{unit.Id}}?work=backlog">
+                                        <span class="text-gray9 liftm text-md block" translate="backlog"></span>
+                                    </a>
+                                </div>
+                            </td>
+                            <td style="width:15%;">
+                                <div ng-show="!unit.CustomerName">
+                                    <div class="text-muted"><span translate="unitBlank"></span></div>
+                                </div>
+                                <div ng-show="unit.CustomerName">
+                                    <div class="text-paleGreen">                
+                                         <a href="/POS/Customer#!/Detail/{{unit.Customer}}">
+                                        <i class="fa fa-user icon text-blue"></i> {{unit.CustomerName}}</a>
+                                    </div>
+                                    <div>
+                                        <a href="tel:{{unit.CustomerContact}}"><i class="fa fa-phone icon text-green mts"></i> {{unit.CustomerContact}}</a>
+                                    </div>
+                                </div>
+                            </td> 
+                            <td style="width:15%;">
+                                <div ng-show="unit.Name">
+                                    <div>
+                                        {{unit.WorkerName}}
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </md-content>
+</div>

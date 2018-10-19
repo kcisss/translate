@@ -1,0 +1,23 @@
+﻿<div class="modal"  tabindex="-1" role="dialog" >
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-toggle="modal" data-target="#modalCancel" ng-click="$hide()"><span translate="canceled"></span></button>
+                <h2 class="modal-title text-center text-basecolor" translate="enterActual"></h2>
+            </div>
+            <div class="modal-body fixmodalbody pl0 pr0 pt0 clearfix">
+                <div class="bg-grayE clearfix pam">
+        
+                </div>                      
+                <div class="gallery row paxl mam text-center">
+                    <label class="show-hide ng-hide" aria-hidden="true" translate="deadLine"></label>
+
+                    <input class="md-input" type="text" ng-model="InputDate" autoclose="true" placeholder="ใส่วันเสร็จจริง" bs-datepicker autoclose data-date-format="dd/MM/yyyy"  />
+                </div>                      
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success pull-right" ng-click="SaveDate(InputDate)"><span translate="save"></span></button>
+            </div>
+        </div>
+    </div>
+</div>

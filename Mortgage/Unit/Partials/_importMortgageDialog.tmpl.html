@@ -1,0 +1,143 @@
+﻿<md-dialog aria-label="importCustomerInformation" flex="60">
+	<form ng-cloak>
+		<md-toolbar>
+			<div class="md-toolbar-tools">
+				<h2 translate="importData"></h2>
+				<span flex></span>
+				<md-button class="md-icon-button" ng-click="cancel()">
+					<md-icon md-svg-src="navigation:close" aria-label="Close dialog"></md-icon>
+				</md-button>
+			</div>
+		</md-toolbar>
+
+		<md-dialog-content>
+			<div class="md-dialog-content" ng-show="summary === null">
+				<span translate="noInformExcel"></span>
+			</div>
+            <div class="md-dialog-content" ng-show="summary !== null">
+                <div style="font-size: 16px; padding-bottom: 16px; font-weight:bold;" layout="row" layout-align="center center">
+                    <i class="material-icons" style="color: #52a356;font-size: 20px;margin-right: 13px;"><span translate="checkCircle"></span></i>
+                    <div>
+                        <span style="color: #52a356; padding-right: 4px" translate="correctInform"> </span>
+                        <span style="padding-right: 4px">{{allData.length - errRow.length}}</span>
+                        <span translate="row"></span>
+                    </div>
+                </div>
+                <md-divider></md-divider>
+                <div style="padding: 16px 16px 16px 48px;" flex="100" layout="row" layout-align="start center" ng-show="errors.length > 0">
+                    <div style="font-size: 16px; font-weight:bold;" layout="row" layout-align="center center">
+                        <i class="material-icons colorCancel" style="font-size: 20px; margin-right: 13px;"><span translate="canceled"></span></i>
+                        <div>
+                            <span class="colorCancel" style="padding-right: 4px" translate="errorFound"> </span>
+                            <span style="padding-right: 4px">{{errors.length}}</span>
+                            <span style="padding-right: 16px" translate="order"></span>
+                            <span class="colorGrayRow"> ( {{errRow.length}} <span translate="row"></span> )</span>
+                        </div>
+                        <span style="position:relative;" flex="5" style="font-size: 16px; padding-bottom: 16px; padding-left: 16px;">
+                            <md-button class="md-icon-button hideButton iconAdd" aria-label="add" ng-show="hideData" ng-click="hideData = false;">
+                                <i style="margin-top:-5px;" class="material-icons"><span translate="keyboardArrowDown"></span></i>
+                                <md-tooltip><span translate="hideItems"></span></md-tooltip>
+                            </md-button>
+                            <md-button class="md-icon-button hideButton" aria-label="add" ng-hide="hideData" ng-click="hideData = true;">
+                                <i style="margin-top:-5px" class="material-icons">chevron_right</i>
+                                <md-tooltip><span translate="showItems"></span></md-tooltip>
+                            </md-button>
+                        </span>
+                    </div>
+                </div>
+                <div ng-show="hideData" style="padding: 10px 20px 10px 48px; font-size: 16px;"  >
+                    <div class="">
+                        <div ng-repeat="error in countField" style="padding-left: 10%" layout="row">
+                            <i class="material-icons colorCancel" style="font-size: 20px; margin-right: 13px;"><span translate="canceled"></span></i>
+                            <div layout="row" >
+                                <span style="padding-right: 4px" translate="info"> </span>
+                                <span class="colorCancel" style="padding-right: 4px" >{{error.field[0].field}}</span>
+                                <span style="padding-right: 4px" translate="invalidRow"></span>
+                                <div ng-repeat="field in error.field" >
+                                    <span style="padding-right: -4px" id="style-4">{{field.row}}</span>
+                                    <span style="padding-left: -4px" ng-if="!$last">,</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div ng-show="errors.length === 0 && newProject.length === 0  && newUnit.length === 0" style="margin-top: 60px; font-size: 26px;" layout="row" layout-align="center center">
+                    <i class="material-icons" style="color: green;font-size: 38px;margin-right: 13px;"><span translate="checkCircle"></span></i>
+                    <div>
+                        <span translate="allDataCorrect"></span>
+                    </div>
+                </div>
+                <div ng-show="errors.length === 0 && (newProject.length > 0  || newUnit.length > 0)" style="margin-top: 60px; font-size: 26px;" layout="row" layout-align="center center">
+                    <i class="material-icons" style="color:#FFD54F;font-size: 38px;margin-right: 13px;"><span translate="warning"></span></i>
+                    <div>
+                        <span translate="detectNoData"></span>
+                    </div>
+                </div>
+                <div style="margin-top:35px;">
+                    <span translate="count"></span> {{allData.length}} <span translate="order"></span>
+                </div>
+                <div class="tableScroll">
+                    <table class="dataTable2">
+                        <thead>
+                            <tr>
+                                <th ng-repeat="header in tableHeader track by $index " ng-style="{'min-width':header.width}" ng-class="{'paddingTable': $index==0}" class="">
+                                    <span>{{header.Name}}</span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="d in allData track by $index">
+                                <td style="padding-left:24px;text-align:center;position:relative; min-width: 40px">
+                                    <i class="material-icons" style="position:absolute;left:8px;top:12px;" ng-style="{'color': getColor($index+2)}">{{checkIcon($index+2) ? 'cancel' : checkWarning(d) ? 'warning' : 'check_circle'}}</i>
+                                    {{$index+2}}
+                                </td>
+                                <td ng-repeat="header in tableHeader track by $index " ng-style="{'min-width':header.width}" ng-hide="$index == 0" ng-class="{'ErrorField': getErrorField({row: d['rowNumber'], field: header.Name })}">
+                                    <span>{{d[header.Name]}}</span>
+                                    <md-tooltip ng-if="getErrorField({row: d['rowNumber'], field: header.Name })" md-direction="bottom">{{ getField({row: d['rowNumber'], field: header.Name }) }}</md-tooltip>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </md-dialog-content>
+
+		<md-dialog-actions layout="row" style="padding:32px 60px 40px 40px;text-align:center;position:relative">
+			<span flex></span>
+			<md-button ng-click="cancel()">
+				<span translate="canceled"></span>
+			</md-button>
+			<md-button ng-click="submit()" class="md-raised" style="background-color: #52a356; color:antiquewhite">
+				<span translate="import"></span>
+			</md-button>
+		</md-dialog-actions>
+	</form>
+</md-dialog>
+
+
+<script>
+    $(document).ready(function () {
+        $('tbody').scroll(function (e) { //detect a scroll event on the tbody
+            $('thead').css("left", -$("tbody").scrollLeft()); //fix the thead relative to the body scrolling
+            $('thead th:nth-child(1)').css("left", $("tbody").scrollLeft()); //fix the first cell of the header
+            $('tbody td:nth-child(1)').css("left", $("tbody").scrollLeft()); //fix the first column of tdbody
+        });
+    });
+</script>
+
+
+<style>
+    .line-style {
+        border: 0;
+        height: 0;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    }
+    .colorCancel {
+        color: #e01e1e;
+    }
+    .colorGrayRow {
+        color: #b3b3b3;
+    }
+</style>

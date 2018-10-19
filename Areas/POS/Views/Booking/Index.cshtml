@@ -1,0 +1,36 @@
+﻿@{
+    ViewBag.Title = "POS Booking";
+    ViewBag.NgApp = "BookingApp";
+    ViewBag.BodyClass = "maindoc";
+    ViewBag.PageIcon = "icon-home-house-streamline";
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+}
+
+@section IncludeScripts{
+    @Scripts.Render(
+        "~/bundles/master-project",
+        "~/bundles/master-unitplan",
+        "~/bundles/master-media",
+        "~/bundles/master-plan",
+        "~/bundles/master-unit",
+        "~/bundles/master-worker",
+        "~/bundles/master-customer",
+        "~/bundles/master-campaign",
+        "~/bundles/master-quotation",
+        "~/bundles/master-receipt",
+        "~/bundles/master-bankacc",
+        "~/bundles/pos-action",
+        "~/bundles/POS/BookingApp"
+      , "~/bundles/ngQRCode")
+}
+
+@section IncludeCSS {
+    <link rel="stylesheet" href="/Styles/css/POSStyle.css" />
+    <style>
+        body {
+            overflow: hidden;
+        }
+    </style>
+}
+
+<div ng-view class="use-print-service"></div>

@@ -1,0 +1,83 @@
+﻿@{
+    ViewBag.title = "Ploy - ตั้งค่า";
+    ViewBag.NgApp = "SettingDashboardApp";
+    Layout = "~/Views/Shared/_AllNewMasterLayout.cshtml";
+}
+@section IncludeScripts {
+    @*Addition Lib*@
+    @*<script src="~/Scripts/jquery-3.0.0.js"></script>*@
+    <script src="~/Scripts/tinymce/js/tinymce/jquery.tinymce.min.js"></script>
+    <script src="~/Scripts/tinymce/js/tinymce/tinymce.min.js"></script>
+    <script src="~/Scripts/tinymce/ui-tinymce.min.js"></script>
+    <script src="~/Scripts/angular-cookies.js"></script>
+    <script src="~/Scripts/ng-file-upload.js"></script>
+    <script src="~/Scripts/fixed-table-header.js"></script>
+    <script src="~/Scripts/bower_components/ng-img-crop/compile/unminified/ng-img-crop.js"></script>
+    <script src="~/Scripts/mask.min.js"></script>
+    <script src="~/Scripts/angular-filter.js"></script>
+    
+    @*Setting Module App*@
+
+    <script src="~/Content/src/modules/Listmanager/Setting/Scripts/app.js"></script>
+    <script src="~/Content/src/modules/Listmanager/Setting/Scripts/serv.js"></script>
+    <script src="~/Content/src/modules/Listmanager/Setting/Scripts/serv2.js"></script>
+    <script src="~/Content/src/modules/Listmanager/Setting/Scripts/bankaccountCtrl.js"></script>
+    <script src="~/Content/src/modules/Listmanager/Setting/Scripts/billPaymentCtrl.js"></script>
+    <script src="~/Content/src/modules/Listmanager/Setting/Scripts/companyCtrl.js"></script>
+    <script src="~/Content/src/modules/Listmanager/Setting/Scripts/followquestionCtrl.js"></script>
+    <script src="~/Content/src/modules/Listmanager/Setting/Scripts/formcontractCtrl.js"></script>
+    <script src="~/Content/src/modules/Listmanager/Setting/Scripts/formcontractformCtrl.js"></script>
+    <script src="~/Content/src/modules/Listmanager/Setting/Scripts/mortgagecalculatorCtrl.js"></script>
+    <script src="~/Content/src/modules/Listmanager/Setting/Scripts/profileCtrl.js"></script>
+    <script src="~/Content/src/modules/Listmanager/Setting/Scripts/questionnaireCtrl.js"></script>
+    <script src="~/Content/src/modules/Listmanager/Setting/Scripts/userCtrl.js"></script>
+    <script src="~/Content/src/modules/Listmanager/Setting/Scripts/userformCtrl.js"></script>
+    <script src="~/Content/src/modules/Listmanager/Setting/Scripts/wbsCtrl.js"></script>
+    <script src="~/Content/src/modules/Listmanager/Setting/Scripts/workflowCtrl.js"></script>
+    <script src="~/Content/src/modules/Listmanager/Setting/Scripts/formulapayment.js"></script>
+    <script src="~/Content/src/modules/Listmanager/Setting/Scripts/editQuestionnaire.js"></script>
+    <script src="~/Content/src/modules/Listmanager/Setting/Scripts/TemplateController.js"></script>
+    <script src="~/Content/src/modules/Listmanager/Setting/Scripts/ListCompanyCtrl.js"></script>
+    <script src="~/Content/src/modules/Listmanager/Setting/Scripts/SubCompanyCtrl.js"></script>
+
+
+    @*General Data*@
+    <script src="~/Content/src/ploy/BankList.js"></script>
+}
+@section IncludeCSS {
+    <link href="~/Scripts/bower_components/ng-img-crop/compile/unminified/ng-img-crop.css" rel="stylesheet" />
+    <link href="~/Content/src/modules/Listmanager/Setting/Styles/style.css" rel="stylesheet" />
+    <link href="~/Content/src/modules/Listmanager/Project/styles/style.css" rel="stylesheet" />
+
+}
+<div layout="row" flex>
+    <md-sidenav class="md-sidenav-left"
+                md-component-id="left"
+                md-is-locked-open="$mdMedia('gt-md')"
+                md-disable-backdrop
+                md-whiteframe="4"
+                style="width:265px;">
+        <md-content ng-controller="LeftCtrl" id="style-3" style="font-size:14px;">
+            <md-list-item ng-href="{{leftMenu.url}}" ng-repeat="leftMenu in leftMenus" ng-class="{ active_list: isActive(leftMenu.url) }" class="list-no-margin">
+                <md-icon md-svg-icon="{{leftMenu.icon}}"></md-icon>
+                <p translate> {{ leftMenu.name }} </p>
+                @*<div class="bullet_active" ng-show="isActive(leftMenu.url)"></div>*@
+            </md-list-item>
+        </md-content>
+        <md-button class="md-icon-button" aria-label="show sidebar" hide-gt-md style="position: absolute;
+    bottom: 0px;
+    right: 0px;"
+                   ng-controller="LeftCtrl" ng-click="toggleLeft()">
+            <md-icon md-svg-icon="navigation:chevron_left"></md-icon>
+        </md-button>
+    </md-sidenav>
+    <md-content flex layout="column" class="bg">
+        <div ng-view flex layout="column"></div>
+    </md-content>
+    <md-button class="md-icon-button md-primary md-raised" aria-label="show sidebar" hide-gt-md style="position: absolute;
+    bottom: 10px;
+    left: 4px;"
+               ng-controller="LeftCtrl" ng-click="toggleLeft()">
+        <md-icon md-svg-icon="navigation:chevron_right"></md-icon>
+    </md-button>
+</div>

@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewBag.title = "Ploy - Mortgage";
+    ViewBag.NgApp = "MgReportApp";
+    Layout = "~/Views/Shared/_MortgageMasterLayout.cshtml";
+}
+
+@section IncludeScripts {
+    <script src="~/Scripts/angular-count-to.min.js"></script>
+    <script src="~/Scripts/fixed-table-header.min.js"></script>
+    <script src="~/Scripts/highcharts.js"></script>
+    <script src="~/Scripts/xlsx/xlsx.core.min.js"></script>
+    <script src="~/Scripts/xlsx/Blob.js"></script>
+    <script src="~/Scripts/xlsx/FileSaver.js"></script>
+
+    @*Setting Module App*@
+    <script src="~/Content/src/modules/Mortgage/Report/Share/Scripts/mgReportApp.js"></script>
+    <script src="~/Content/src/modules/Mortgage/Report/Share/Scripts/mgReportServ.js"></script>
+
+    <script src="~/Content/src/modules/Mortgage/Report/Script/LoanStatusReportCtrl.js"></script>
+    <script src="~/Content/src/modules/Mortgage/Report/Script/AllLoanReportCtrl.js"></script>
+    <script src="~/Content/src/modules/Mortgage/Report/Script/ApproveReportCtrl.js"></script>
+}
+
+@section IncludeCSS {
+    <link href="~/Content/src/modules/Mortgage/Report/Share/Styles/MortgageReport.css" rel="stylesheet" />
+}
+<md-content flex layout="row" class="bg" ng-controller="LeftCtrl">
+    <md-sidenav class="md-sidenav-left sidenavReport"
+                md-component-id="left"
+                md-is-locked-open="$mdMedia('gt-md')"
+                md-disable-backdrop
+                md-whiteframe="4">
+        <md-content id="style-3">
+
+            <md-list-item ng-href="{{leftMenu.url}}"
+                          ng-repeat="leftMenu in leftMenus"
+                          ng-class="{ activeList: isActive(leftMenu.url) }"
+                          class="list-no-margin">
+                <div layout="row" layout-align="start center">
+                    <md-icon class="sideNavIcon" md-svg-icon="{{leftMenu.icon}}"></md-icon>
+                    <p> {{ leftMenu.name }} </p>
+                    <div ng-show="isActive(leftMenu.url)"></div>
+                </div>
+            </md-list-item>
+        </md-content>
+        <md-button class="md-icon-button hideSidenavBut" aria-label="show sidebar" hide-gt-md ng-click="toggleLeft()">
+            <md-icon md-svg-icon="navigation:chevron_left"></md-icon>
+        </md-button>
+    </md-sidenav>
+    <md-content flex layout="column" class="bg">
+        <div ng-view flex layout="column"></div>
+    </md-content>
+</md-content>

@@ -1,0 +1,38 @@
+﻿@{
+    ViewBag.Title = "Ploy mobile";
+    ViewBag.NgApp = "globalMApp";
+    Layout = "~/Views/Shared/_MobileMasterLayout.cshtml";
+}
+
+@section IncludeScripts{
+
+    @*Script*@
+    <script src="~/Content/src/mobile/modules/Ploy/modules/sidenav/script/sideNavCtrl.js"></script>
+    <script src="~/Content/src/mobile/modules/Ploy/scripts/customer.js"></script>
+    <script src="~/Content/src/mobile/modules/Ploy/scripts/dashboard.js"></script>
+    <script src="~/Content/src/mobile/modules/Ploy/scripts/listcash.js"></script>
+    <script src="~/Content/src/mobile/modules/Ploy/scripts/notification.js"></script>
+    <script src="~/Content/src/mobile/modules/Ploy/scripts/prospect.js"></script>
+    <script src="~/Content/src/mobile/modules/Ploy/scripts/reportcustomer.js"></script>
+    <script src="~/Content/src/mobile/modules/Ploy/scripts/reportcustomerDetail.js"></script>
+    <script src="~/Content/src/mobile/modules/Ploy/scripts/reportfinancial.js"></script>
+    <script src="~/Content/src/mobile/modules/Ploy/scripts/reportmedia.js"></script>
+    <script src="~/Content/src/mobile/modules/Ploy/scripts/reportprospect.js"></script>
+    <script src="~/Content/src/mobile/modules/Ploy/scripts/reportprospectDetail.js"></script>
+    <script src="~/Content/src/mobile/modules/Ploy/scripts/reportsales.js"></script>
+    <script src="~/Content/src/mobile/modules/Ploy/scripts/setting.js"></script>
+
+    <!-- share Prospect and Customer -->
+    <script src="~/Content/src/mobile/modules/Ploy/scripts/shareProspectandCustomer.js"></script>
+
+    @*Lib*@
+    <script src="~/Scripts/angular-count-to.min.js"></script>
+    <script src="~/Scripts/roundProgress.js"></script>
+    <script src="~/Scripts/Chart.js"></script>
+    <script src="~/Scripts/angular-chart.js"></script>
+    <script src="~/Scripts/highcharts.js"></script>
+    <script src="~/Scripts/highcharts-ng.js"></script>
+    <script src="~/Scripts/angular-local-storage.min.js"></script>
+}
+
+<div ng-view layout="column"></div>

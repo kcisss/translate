@@ -1,0 +1,45 @@
+﻿@{
+    ViewBag.Title = "Ploy - POS";
+    ViewBag.NgApp = "StartApp";
+    Layout = "~/Views/Shared/_AllNewMasterLayout.cshtml";
+}
+
+@section IncludeScripts{
+    @*Addition Module Libs*@
+
+    <script src="~/Scripts/angular-local-storage.js"></script>
+    <script src="~/Scripts/angular-count-to.min.js"></script>
+    <script src="~/Scripts/highcharts.js"></script>
+
+    @*Global Filter Include*@
+    <script src="~/Content/src/share/modules/globalApp/globalFilter/globalFilterEnum.js"></script>
+    <script src="~/Content/src/share/modules/globalApp/globalFilter/globalFilterService.js"></script>
+    <script src="~/Content/src/share/modules/globalApp/globalFilter/globalFilterClientService.js"></script>
+    <script src="~/Content/src/share/modules/globalApp/globalFilter/globalFilterController.js"></script>
+
+    @*Module Scripts*@
+    <script src="~/Content/src/modules/POS/Start/scripts/app.js"></script>
+    <script src="~/Content/src/modules/POS/Start/scripts/StartRoute.js"></script>
+    <script src="~/Content/src/modules/POS/Start/scripts/serv.js"></script>
+
+    <script src="~/Content/src/modules/POS/Start/scripts/StartCtrl.js"></script>
+    <script src="~/Content/src/modules/POS/Start/scripts/SaleReportCtrl.js"></script>
+    <script src="~/Content/src/modules/POS/Start/scripts/WalkCallCtrl.js"></script>
+    <script src="~/Content/src/modules/POS/Start/scripts/GraphProspect.js"></script>
+
+    @*<script src="~/Content/src/modules/POS/Start/scripts/ActivitiesCtrl.js"></script>
+        <script src="~/Content/src/modules/POS/Start/scripts/GraphSaleSummaryCtrl.js"></script>
+        <script src="~/Content/src/modules/POS/Start/scripts/SaleSummaryCtrl.js"></script>*@
+
+}
+
+@section IncludeCSS {
+    @*Addition Module Libs*@
+    @*<link href="~/Scripts/nv.d3.css" rel="stylesheet" />*@
+    <link href="~/Content/src/modules/POS/Start/styles/loading.css" rel="stylesheet" />
+    <link href="~/Content/src/modules/POS/Start/styles/style.css" rel="stylesheet" />
+
+    @*Module Style*@
+    @*<link href="~/Content/src/modules/POS/Start/styles/style.css" rel="stylesheet" />*@
+}
+<div ng-view flex layout="row"></div>

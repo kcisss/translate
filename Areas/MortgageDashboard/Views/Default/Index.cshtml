@@ -1,0 +1,75 @@
+﻿@{
+    ViewBag.title = "Ploy - Mortgage Dashboard";
+    ViewBag.NgApp = "MortgageDashboardApp";
+    Layout = "~/Views/Shared/_AllNewMasterLayout.cshtml";
+}
+@section IncludeScripts {
+    @*Additional Liblary*@
+
+    @*Module Script*@
+    <script src="~/Content/src/modules/Listmanager/MortgageDashboard/Scripts/app.js"></script>
+    <script src="~/Content/src/modules/Listmanager/MortgageDashboard/Scripts/ctrl.js"></script>
+    <script src="~/Content/src/modules/Listmanager/MortgageDashboard/Scripts/serv.js"></script>
+
+    @*Genaral Data*@
+}
+@section IncludeCSS {
+    @*Additional Liblary*@
+
+    @*Module Style*@
+<link href="~/Content/src/modules/Listmanager/MortgageDashboard/Styles/style.css" rel="stylesheet" />
+}
+<div layout="row" flex>
+    <md-sidenav class="md-sidenav-left"
+                md-component-id="left"
+                md-is-locked-open="$mdMedia('gt-md')"
+                md-disable-backdrop
+                md-whiteframe="4"
+                style="width:265px;"
+                ng-hide="currPath == '/list' || currPath == '/form'">
+        <md-content ng-controller="LeftCtrl" id="style-3" style="font-size:14px;">
+            <md-subheader class="md-primary" style="color: #757575;"><span translate="mainPart"></span></md-subheader>
+            <md-list-item ng-href="{{leftMenu.url}}" ng-repeat="leftMenu in leftMenus1" ng-class="{ active_list: isActive(leftMenu.url) }" class="list-no-margin">
+                <md-icon md-svg-icon="{{leftMenu.icon}}"></md-icon>
+                <p> {{ leftMenu.name }} </p>
+                <div ng-show="isActive(leftMenu.url)"></div>
+            </md-list-item>
+            @*<md-divider></md-divider>
+            <md-subheader class="md-primary" style="color: #757575;">ส่วนเพิ่มเติม</md-subheader>
+            <md-list-item ng-href="{{leftMenu.url}}" ng-repeat="leftMenu in leftMenus2" ng-class="{ active_list: isActive(leftMenu.url) }" class="list-no-margin">
+                <md-icon md-svg-icon="{{leftMenu.icon}}"></md-icon>
+                <p> {{ leftMenu.name }} </p>
+                <div ng-show="isActive(leftMenu.url)"></div>
+            </md-list-item>
+            <md-divider></md-divider>
+            <md-subheader class="md-primary" style="color: #757575;">การตั้งค่า</md-subheader>
+            <md-list-item ng-href="{{leftMenu.url}}" ng-repeat="leftMenu in leftMenus3" ng-class="{ active_list: isActive(leftMenu.url) }" class="list-no-margin">
+                <md-icon md-svg-icon="{{leftMenu.icon}}"></md-icon>
+                <p> {{ leftMenu.name }} </p>
+                <div ng-show="isActive(leftMenu.url)"></div>
+            </md-list-item>
+            <md-divider></md-divider>
+            <md-subheader class="md-primary" style="color: #757575;">รายการทั่วไป</md-subheader>
+            <md-list-item ng-href="{{leftMenu.url}}" ng-repeat="leftMenu in leftMenus4" ng-class="{ active_list: isActive(leftMenu.url) }" class="list-no-margin">
+                <md-icon md-svg-icon="{{leftMenu.icon}}"></md-icon>
+                <p> {{ leftMenu.name }} </p>
+                <div ng-show="isActive(leftMenu.url)"></div>
+            </md-list-item>*@
+        </md-content>
+        <md-button class="md-icon-button"
+                   aria-label="show sidebar"
+                   hide-gt-md
+                   style="position: absolute;bottom: 0px;right: 0px;"
+                   ng-controller="LeftCtrl" ng-click="toggleLeft()">
+            <md-icon md-svg-icon="navigation:chevron_left"></md-icon>
+        </md-button>
+    </md-sidenav>
+    <md-content flex layout="column" class="bg">
+        <div ng-view flex layout="column"></div>
+    </md-content>
+    <md-button class="md-icon-button md-primary md-raised" aria-label="show sidebar" hide-gt-md
+               style="position: absolute;bottom: 10px;left: 4px;"
+               ng-controller="LeftCtrl" ng-click="toggleLeft()">
+        <md-icon md-svg-icon="navigation:chevron_right"></md-icon>
+    </md-button>
+</div>

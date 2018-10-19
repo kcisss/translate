@@ -1,0 +1,459 @@
+﻿@inherits System.Web.Mvc.WebViewPage
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        .a4page {
+            position: relative;
+            width: 210mm;
+            height: 293mm;
+            box-sizing: border-box;
+            padding: 1mm 15mm 1mm 15mm;
+            box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+            margin: 10px auto;
+            line-height: 25px;
+            font-family: 'AngsanaUPC';
+            font-size: 14pt;
+            text-align: justify;
+            font-weight: regular;
+        }
+
+        .a4page2 {
+            position: relative;
+            width: 210mm;
+            height: 297mm;
+            box-sizing: border-box;
+            padding: 1mm 10mm 1mm 5mm;
+            box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+            line-height: 25px;
+            font-family: 'AngsanaUPC';
+            font-size: 14pt;
+            text-align: justify;
+            font-weight: regular;
+        }
+
+
+
+
+        .a4head {
+            /*border-bottom: 1px solid black !important;*/
+            text-align: center;
+            /*font-size: 18pt;*/
+            /*text-decoration: underline;*/
+            /*line-height: 25px;*/
+        }
+
+        .a4body {
+            height: 250mm;
+        }
+
+        .a4foot {
+            /*margin-top: 10mm;*/
+        }
+
+        .textinbody {
+            /*text-indent: 50px;*/
+        }
+    </style>
+</head>
+<body>
+    <div class="a4page">
+        <div class="a4body">
+            <p style="text-align: center;"><strong>หนังสือจอง</strong><br /><strong>บ้านพิศาล-โครงการเลียบวงแหวน-พระราม 2</strong></p>
+            <p style="text-align: right;">ทำที่ บริษัท พิศาลเพลซ&nbsp;จำกัด</p>
+            <p style="text-align: right;">วันที่ {{docDate | bdate}}</p>
+            <div class="textinbody">
+                <p style="text-indent: 40px;">ข้าพเจ้า <span style="text-decoration: underline;"><strong>{{quotation.CustomerName}}</strong></span> อายุ <strong><span style="text-decoration: underline;">{{quotation.CustomerAge}}</span></strong> ปี อาชีพ&nbsp;<strong><span style="text-decoration: underline;">{{customField.career}}</span></strong> เชื้อชาติ <strong><span style="text-decoration: underline;">{{customField.race}}</span></strong> สัญชาติ <strong><span style="text-decoration: underline;">{{customField.nationality}}</span></strong> ศาสนา&nbsp;<strong><span style="text-decoration: underline;">{{customField.religion}}</span></strong></p>
+                <p style="text-indent: 40px;">ที่อยู่ตามทะเบียนบ้าน&nbsp;&nbsp;<span style="text-decoration: underline;"><strong>{{quotation.CustomerAddress}}</strong></span></p>
+                <p style="text-indent: 40px;">ที่อยู่ที่ติดต่อได้ <strong><span style="text-decoration: underline;">{{quotation.CustomerDeliveryAddress}}</span></strong> โทรศัพท์ที่บ้าน <strong><span style="text-decoration: underline;">{{quotation.CustomerHometel}}</span></strong> โทรศัพท์ที่ทำงาน <strong><span style="text-decoration: underline;">{{quotation.CustomerOfficetel}}</span></strong> &nbsp;มือถือ <strong><span style="text-decoration: underline;">{{quotation.CustomerPhone}}</span></strong></p>
+                <p style="text-indent: 40px;">ขอทำหนังสือจองบ้านแบบ <span style="text-decoration: underline;">{{quotation.UnitPlanName}}</span> เลขที่ <span style="text-decoration: underline;">{{quotation.REUnitCode}}</span> เนื้อที่ <span style="text-decoration: underline;">{{quotation.UnitLandPrice|number:2}}</span> ตร.ว. จำนวน&nbsp;<span style="text-decoration: underline;">1</span> หลัง เป็นเงินทั้งสิ้น <span style="text-decoration: underline;">{{quotation.SellingPrice|number:0}}</span> บาท <span style="text-decoration: underline;">({{quotation.SellingPrice|bahttext}})</span> และข้าพเจ้าได้ชำระเงินให้แก่ผู้รับจองเป็นเงิน <span style="text-decoration: underline;">{{quotation.QuotationBookAmount|number:0}}</span> บาท <span style="text-decoration: underline;">({{quotation.QuotationBookAmount|bahttext}})</span> ไว้เรียบร้อยแล้ว ข้าพเจ้าจะมาทำสัญญาจะซื้อจะขายอีกภายในวันที่ <span style="text-decoration: underline;">{{quotation.ContractDueDate|bdate:'dd/MM/yyyy'}}</span> ในเวลาทำงานปกติ โดยจะมาชำระเงินให้อีกเป็นเงิน <span style="text-decoration: underline;">{{quotation.QuotationContractAmount|number:0}}</span> บาท <span style="text-decoration: underline;">({{quotation.QuotationContractAmount|bahttext}} )</span></p>
+                <p style="text-indent: 40px;">หากข้าพเจ้าไม่มาทำสัญญาภายในวันที่ดังกล่าวข้างต้น ให้ถือว่าข้าพเจ้าสละสิทธิ์การจองและยอมให้ผู้ขายริบเงินจองที่ข้าพเจ้าผู้ซื้อ ได้ชำระแล้วโดยทันที</p>
+                <p><strong>สรุป&nbsp;</strong></p>
+                <table style="border-collapse: collapse; width: 100%;" border="1">
+                    <tbody>
+                        <tr>
+                            <td style="text-align: center; width: 17.9522%;"><span style="font-family: 'Angsana New'; font-size: 14pt;"><strong>ลำดับ</strong></span></td>
+                            <td style="text-align: center; width: 25.2881%;"><span style="font-family: 'Angsana New'; font-size: 14pt;"><strong>รายการ/Description</strong></span></td>
+                            <td style="text-align: center; width: 28.352%;"><span style="font-family: 'Angsana New'; font-size: 14pt;"><strong>กำหนดชำระ</strong><strong>/Due Date</strong></span></td>
+                            <td style="text-align: center; width: 36.3128%;"><span style="font-family: 'Angsana New'; font-size: 14pt;"><strong>จำนวนเงิน</strong><strong>&nbsp;/&nbsp;Amount (ฺBaht)</strong></span></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center; width: 17.9522%;"><span style="font-family: 'Angsana New';"><span style="font-size: 18.6667px;">{{ $index+1 }}<br /></span></span></td>
+                            <td style="text-align: center; width: 25.2881%;"><span style="font-family: 'Angsana New'; font-size: 14pt;">เงินจอง</span></td>
+                            <td style="text-align: center; width: 28.352%;"><span style="font-family: 'Angsana New'; font-size: 14pt;">{{quotation.BookDate| bdate}}</span></td>
+                            <td style="text-align: center; width: 36.3128%;"><span style="font-family: 'Angsana New'; font-size: 14pt;">{{quotation.QuotationBookAmount| number:0}}</span></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center; width: 17.9522%;">{{ $index+2 }}</td>
+                            <td style="text-align: center; width: 25.2881%;"><span style="font-family: 'Angsana New'; font-size: 14pt;">เงินทำสัญญา</span></td>
+                            <td style="text-align: center; width: 28.352%;"><span style="font-family: 'Angsana New'; font-size: 14pt;">{{quotation.ContractDueDate| bdate}}</span></td>
+                            <td style="text-align: center; width: 36.3128%;"><span style="font-family: 'Angsana New'; font-size: 14pt;">{{quotation.QuotationContractAmount| number:0}}</span></td>
+                        </tr>
+                        <tr data-ng-repeat="quotationLine in quotationLines | orderBy:'DueDate'">
+                            <td style="text-align: center; width: 17.9522%;">{{ $index+3 }}</td>
+                            <td style="text-align: center; width: 25.2881%;"><span style="font-family: 'Angsana New'; font-size: 14pt;">{{quotationLine.Description}} </span></td>
+                            <td style="text-align: center; width: 28.352%;"><span style="font-family: 'Angsana New'; font-size: 14pt;">{{quotationLine.DueDate | bdate}}</span></td>
+                            <td style="text-align: center; width: 36.3128%;" align="right"><span style="font-family: 'Angsana New'; font-size: 14pt;">{{quotationLine.Amount | number:0}}</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br />
+                <table style="text-align: center; width: 704px;">
+                    <tbody>
+                        <tr>
+                            <td style="width: 346.538px; text-align: center;">ลงชื่อ&nbsp;____________________&nbsp;ผู้จอง</td>
+                            <td style="width: 347.462px; text-align: center;">ลงชื่อ ____________________ ผู้รับจอง</td>
+                        </tr>
+                        <tr>
+                            <td style="width: 346.538px; text-align: center;">({{quotation.CustomerName}})</td>
+                            <td style="width: 347.462px; text-align: center;">({{quotation.WorkerName}})</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <br />
+            <div style="margin-left: 70px;">&nbsp;</div>
+        </div>
+        <div class="a4foot" style="padding-top: 10mm;">
+            <p style="float: left;">วันที่เริ่มใช้ 29/06/2561</p>
+            <p style="float: right;">(P.1/3) FM-MKS-16 Rev.10</p>
+        </div>
+    </div>
+    <div class="a4page">
+        <!--<div class="a4body">-->
+        <div style="height: 230mm;">
+            <p style="text-align: justify;"><span style="font-size: 18.6667px;"><strong>เงื่อนไข&nbsp;</strong>1.&nbsp; ราคานี้รวมมิเตอร์ไฟฟ้า 15 แอมแปร์ , มิเตอร์ประปา&nbsp; &nbsp;(ไม่รวมค่าประกันการใช้ไฟฟ้าและประปา)<br /></span><span style="font-size: 18.6667px; padding-left: 42px;">2. ค่าธรรมเนียมในการโอนกรรมสิทธิ์บ้านและที่ดิน ผู้ขายและผู้ซื้อออกฝ่ายละครึ่ง&nbsp; (ไม่รวมค่าธรรมเนียมจดจำนอง)<br /></span><span style="font-size: 18.6667px; padding-left: 42px;">3. ที่ดินพัฒนาแล้ว ราคาเพิ่ม หรือลด ราคาตารางวาละ&nbsp; 60,000.- บาท&nbsp; ( ตามทำเลที่ตั้ง )<br /></span><span style="font-size: 18.6667px; padding-left: 42px;">4. ลูกค้าต้องชำระค่าบริการสาธารณะส่วนกลางในอัตรา ตารางวาละ 25 บาท/เดือน โดยจะต้องชำระล่วงหน้า 3 ปี ในวันโอนกรรมิสทธิ์<br /></span><span style="font-size: 18.6667px; padding-left: 42px;">5. ในกรณีเปลี่ยนสัญญาเป็นชื่อบุคคลอื่น คิดค่าเปลี่ยนชื่อในสัญญาครั้งละ 20,000 บาท ( - สองหมื่นบาทถ้วน- )&nbsp;&nbsp;<br /></span><span style="font-size: 18.6667px; padding-left: 42px;">6. ราคาขายบ้านพร้อมที่ดิน และอัตราการผ่อนชำระอาจเปลี่ยนแปลงได้โดยไม่ต้องแจ้งให้ทราบล่วงหน้า<br /></span><span style="font-size: 18.6667px; padding-left: 42px;">7. บ้านห้องมุมและ&nbsp;บ้านทำเลดี คิดราคาพิเศษ***<br /></span><span style="font-size: 18.6667px; padding-left: 42px;">8. อัตราดอกเบี้ยตามสถานบันการเงินที่ขอกู้ ซึ่งอาจเพิ่มขึ้นหรือลดลงจากอัตรามาตรฐานที่ระบุไว้ เพื่อการประมาณการเท่านั้น<br /></span><span style="font-size: 18.6667px; padding-left: 42px;">9. กรณีที่ชำระค่างวดเงินดาวน์เป็นเช็คต่างจังหวัด&nbsp; ต้องชำระค่าธรรมเนียมเรียกเก็บเช็คต่างจังหวัดเพิ่ม 0.2% ของยอดเงินที่ปรากฏในเช็ค<br /></span><span style="font-size: 18.6667px; padding-left: 42px;">10. ที่จอดรถขนาด.........................(โดยประมาณ) ดังนั้นทางโครงการจึงจัดให้เป็นที่จอดรถเฉพาะรถที่มีความยาวไม่เกิน ....... ม. เท่านั้น (มีเอกสารเเนบใบจอง)<br />&nbsp;</span><span style="font-size: 18.6667px; padding-left: 42px;">11.คืนเงินจองทุกกรณี&nbsp; ยกเว้น&nbsp;<br /></span><span style="font-size: 18.6667px; padding-left: 42px;">&nbsp; &nbsp; &nbsp; &nbsp; 1. ติดเครดิตบูโร&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;2. ลูกค้ากู้ธนาคารผ่านแต่ไม่โอนกรรมสิทธิ์&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 3. ลูกค้ายกเลิกการจอง<br /></span><span style="font-size: 18.6667px; padding-left: 42px;">12. ขอสงวนสิทธิ์ในการเปลี่ยนแปลงแบบบ้าน และรายการวัสดุให้เป็นไปตามบริษัทฯ กำหนดเท่านั้น<br /></span><span style="font-size: 18.6667px; padding-left: 42px;">13. กรณีลูกค้าต้องการโอนกรรมสิทธิ์ก่อนรับบ้าน บริษัทฯ จะออกหนังสือรับรองสิทธิ์ให้ เพื่อใช้สำหรับเก็บงานหลังโอนกรรมสิทธิ์***<br /></span><span style="font-size: 18.6667px; padding-left: 42px;">14. โปรโมชั่น&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.....................................&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.<br /></span><span style="font-size: 18.6667px; padding-left: 42px;">15. อื่นๆ..ผู้จะซื้อต้องชำระเงินดาวน์ตามจำนวนที่ระบุ + หมายเลขห้อง (ส่วนต่างที่ชำระจะนำไปหักในงวดโอนกรรมสิทธิ์)</span></p>
+            <p><span style="font-size: 18.6667px;">หมายเหตุ : เงื่อนไขเป็นไปตามบริษัทฯ กำหนด ซึ่งสามารถเปลี่ยนแปลงได้โดยไม่ต้องแจ้งให้ทราบล่วงหน้า</span>รายละเอียดเพิ่มเติม<br />1. ชื่อสถานที่ทำงานของผู้ซื้อ <strong>{{customField.buyeroffice}}</strong> โทร {{quotation.CustomerOfficetel}}<br />กรณีฉุกเฉินติดต่อคุณ&nbsp;{{customField.emercontactname}} ที่อยู่ {{customField.emercontactaddress}} โทร {{customField.emercontactnumber}}<span style="font-size: 18.6667px;"><strong>เอกสารแนบท้ายหนังสือจอง&nbsp;</strong> ประกอบด้วย<br /></span><span style="font-size: 18.6667px;"><input type="checkbox" /> เอกสารแนบท้ายหนังสือจอง / สัญญาจะซื้อจะขาย&nbsp; &nbsp; &nbsp;<input type="checkbox" /> บันทึกข้อตกลง การใช้พื้นที่ส่วนกลางและต่อเติม<br /></span><span style="font-size: 18.6667px;"><input type="checkbox" /> หนังสือขอความร่วมมือในการจ้างคนงานทำงาน &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;<input type="checkbox" /> เอกสารแนบใบจอง&nbsp; (เกี่ยวกับโปรโมชั่น)<br /></span><span style="font-size: 18.6667px;"><input type="checkbox" /> สำเนาบัตรประชาชน ผู้จะซื้อ&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="checkbox" /> อื่นๆ .........................................................................</span></p>
+            <p><strong><span style="text-decoration: underline;">หลักฐานที่ต้องเตรียมในวันทำสัญญา</span>&nbsp;&nbsp;</strong>ใบจอง / สำเนาบัตรประชาชน / สำเนาทะเบียนบ้าน ผู้จะซื้อสามารถโอนเงิน/เช็ค ผ่านบัญชีธนาคาร โดยโอนยอดเงินที่ต้องจ่ายรวมกับจำนวนของเลขห้อง เช่น ซื้อห้องหมายเลข 19 <br /><span style="padding-left: 250px;">ยอดเงินที่ต้องจ่ายตามสัญญา 10,000.- บาท</span><br /> <span style="padding-left: 250px;">ยอดเงินที่ต้องโอน 10,019.- บาท</span></p>
+            <span class="textinbody">เพื่อความสะดวกในการตรวจเช็คยอดเงินที่จ่ายเพิ่มนี้จะหักกันในยอดโอนกรรมสิทธิ์ และผู้ซื้อจะต้องส่งแฟ็กซ์ใบนำเข้าให้ ฝ่ายบัญชี ที่เบอร์โทร. (02) 416-8431 , (02) 895-7555-6</span> <br /><span style="padding-left: 250px;">โอนเงินเข้าชื่อบัญชี : บริษัท พิศาลเพลซ จำกัด</span> <br /><span style="padding-left: 250px;">เลขที่บัญชี : 009-3-57328-5</span> <br /><span style="padding-left: 250px;">ชนิดบัญชี : ออมทรัพย์</span> <br /><span style="padding-left: 250px;">ธนาคาร / สาขา : กสิกรไทย สาขา บิ๊กซีพระราม 2</span>
+        </div>
+        <div class="a4foot" style="padding-top: 30mm;">
+            <p style="float: left;">วันที่เริ่มใช้&nbsp;29/06/2561</p>
+            <p style="float: right;">(P.2/3) FM-MKS-16 Rev.10</p>
+        </div>
+    </div>
+    <div class="a4page">
+        <div class="a4body">
+            <div align="center"><br /><img style="width: 95%;" src="https://ploy.blob.core.windows.net/4ec28cd8896c49f0a2feeda8ee3ec631/Logo/fe4f0e8d-aaa9-45dd-9e0e-7b0e8fcbf04e/741e92f6-905e-490e-9ef2-bbe2c11e5d13" alt="" /></div>
+            <div style="text-align: left;" align="center"><br /><img style="width: 100%;" src="blob:https://banpisan.ploy.plus/0dd104c1-f7b7-4772-91f9-bfac8567cbfa" alt="" />เอกสารที่ต้องเตรียมให้บริษัทฯ ก่อนยื่นกู้ธนาคาร มีดังนี้</div>
+            <table style="width: 100%;">
+                <tbody>
+                    <tr>
+                        <td><span style="font-family: 'Angsana New'; font-size: 14pt;">1. บัตรประชาชน</span></td>
+                        <td><span style="font-family: 'Angsana New'; font-size: 14pt;">กรณีกู้ธนาคาร</span></td>
+                        <td><span style="font-family: 'Angsana New'; font-size: 14pt;">ถ่ายสำเนา 6 ชุด</span></td>
+                        <td><span style="font-family: 'Angsana New'; font-size: 14pt;">กรณีโอนสด</span></td>
+                        <td><span style="font-family: 'Angsana New'; font-size: 14pt;">ถ่ายสำเนา 5 ชุด</span></td>
+                    </tr>
+                    <tr>
+                        <td><span style="font-family: 'Angsana New'; font-size: 14pt;">2. บัตรประชาชน (คู่สมรส)</span></td>
+                        <td><span style="font-family: 'Angsana New'; font-size: 14pt;">กรณีกู้ธนาคาร</span></td>
+                        <td><span style="font-family: 'Angsana New'; font-size: 14pt;">ถ่ายสำเนา 2 ชุด</span></td>
+                        <td><span style="font-family: 'Angsana New'; font-size: 14pt;">กรณีโอนสด</span></td>
+                        <td><span style="font-family: 'Angsana New'; font-size: 14pt;">ถ่ายสำเนา 2 ชุด</span></td>
+                    </tr>
+                    <tr>
+                        <td><span style="font-family: 'Angsana New'; font-size: 14pt;">3. สำเนาทะเบียนบ้าน (ทุกหน้า)</span></td>
+                        <td><span style="font-family: 'Angsana New'; font-size: 14pt;">กรณีกู้ธนาคาร</span></td>
+                        <td><span style="font-family: 'Angsana New'; font-size: 14pt;">ถ่ายสำเนา 2 ชุด</span></td>
+                        <td><span style="font-family: 'Angsana New'; font-size: 14pt;">กรณีโอนสด</span></td>
+                        <td><span style="font-family: 'Angsana New'; font-size: 14pt;">ถ่ายสำเนา 1 ชุด</span></td>
+                    </tr>
+                    <tr>
+                        <td><span style="font-family: 'Angsana New'; font-size: 14pt;">สำเนาทะเบียนบ้าน (เฉพาะชื่อตัวเอง)</span></td>
+                        <td><span style="font-family: 'Angsana New'; font-size: 14pt;">กรณีกู้ธนาคาร</span></td>
+                        <td><span style="font-family: 'Angsana New'; font-size: 14pt;">ถ่ายสำเนา 4 ชุด</span></td>
+                        <td><span style="font-family: 'Angsana New'; font-size: 14pt;">กรณีโอนสด</span></td>
+                        <td><span style="font-family: 'Angsana New'; font-size: 14pt;">ถ่ายสำเนา 4 ชุด</span></td>
+                    </tr>
+                    <tr>
+                        <td><span style="font-family: 'Angsana New'; font-size: 14pt;">สำเนาทะเบียนบ้าน (คู่สมรส)</span></td>
+                        <td><span style="font-family: 'Angsana New'; font-size: 14pt;">กรณีกู้ธนาคาร</span></td>
+                        <td><span style="font-family: 'Angsana New'; font-size: 14pt;">ถ่ายสำเนา 2 ชุด</span></td>
+                        <td><span style="font-family: 'Angsana New'; font-size: 14pt;">กรณีโอนสด</span></td>
+                        <td><span style="font-family: 'Angsana New'; font-size: 14pt;">ถ่ายสำเนา 2 ชุด</span></td>
+                    </tr>
+                </tbody>
+            </table>
+            <p style="line-height: 0px;">(กรณีคู่สมรสอยู่ในทะเบียนบ้านเดียวกันสามารถใช้ชุดเดียวกันได้)</p>
+            <p><span style="padding-left: 7px;">4. ทะเบียนสมรส ถ่ายสำเนา 2 ชุด</span><br /><span style="padding-left: 7px;">5. หนังสือยินยอมจากคู่สมรส ( แบบฟอร์มรับที่สำนักงานขาย 1 ชุด )</span><br /><span style="padding-left: 7px;">6. ใบเปลี่ยนชื่อ-สกุล ( ถ้าไม่ตรงกับบัตรประชาชน หรือทะเบียนบ้าน 2 ชุด )</span><br /><span style="padding-left: 7px;">7. ใบรับรองเงินเดือนฉบับจริง + สลิปเงินเดือนย้อนหลัง 3 เดือน ( กรณีกู้ธนาคาร )</span><br /><span style="padding-left: 7px;">8. บัญชีเงินฝากธนาคารทุกประเภท ย้อนหลัง 6 เดือน ( ทุกเล่มที่มี )</span><br /><span style="padding-left: 7px;">9. เอกสารอื่นๆ ที่จะสามารถแสดงรายได้ และฐานะการเงินของผู้กู้ เช่น ทะเบียนรถ , สำเนาโฉนด , ทะเบียนการค้าทะเบียนพาณิชย์ , หนังสือรับรอง (บริษัท) เป็นต้น</span><br /><span style="padding-left: 7px;">10. สัญญาจะซื้อจะขายที่ทำไว้กับบริษัทฯ พร้อมในเสร็จค่างวดทุกใบ ถ่ายสำเนา 1 ชุด</span></p>
+            <p style="border: inset; border-color: black;" align="center">ค่าใช้จ่ายในการโอนกรรมสิทธิ์ ทางบริษัทฯ จะแจ้งยอดเงินให้ทราบเป็นรายห้องต่อไป</p>
+            <p align="center">&nbsp;</p>
+        </div>
+        <div class="a4foot" style="padding-top: 17mm;">
+            <p style="float: left;">วันที่เริ่มใช้ 18/03/2550</p>
+            <p style="float: right;">(P.3/3) FM-MKS-17 Rev.03</p>
+        </div>
+    </div>
+    <div class="a4page">
+        <div class="a4body">
+            <div align="center">&nbsp;</div>
+            <p style="text-align: center;"><strong>เอกสารแนบใบจอง&nbsp; &nbsp;เฉพาะวันที่&nbsp; {{customField.datebooking}}</strong><br /><strong>&nbsp;(โครงการบ้านพิศาล เลียบวงแหวน - พระราม&nbsp; 2)</strong></p>
+            <table style="font-size: 18.6667px; height: 59px; width: 677px;">
+                <tbody>
+                    <tr style="height: 50px;">
+                        <td style="width: 54px; height: 50px;"><span style="font-family: 'Angsana New'; font-size: 14pt;">&nbsp;</span></td>
+                        <td style="width: 341.781px; height: 50px;"><span style="font-family: 'Angsana New'; font-size: 14pt;">วันที่ {{quotation.BookDate| bdate}}</span></td>
+                        <td style="width: 225.219px; height: 50px;"><span style="font-family: 'Angsana New'; font-size: 14pt;">&nbsp; เลขที่ห้อง&nbsp;{{quotation.REUnitCode}}</span></td>
+                        <td style="width: 30px; height: 50px;"><span style="font-family: 'Angsana New'; font-size: 14pt;">&nbsp;</span></td>
+                    </tr>
+                </tbody>
+            </table>
+            <table style="border-collapse: collapse; height: 127px; width: 678px;" border="1">
+                <tbody data-ng-repeat="CampaignInfoTable in promotionstable">
+                    <tr>
+                        <td style="width: 42px;" align="center"><strong><span style="font-family: 'Angsana New'; font-size: 14pt;">ลำดับ</span></strong></td>
+                        <td style="width: 360.781px;" align="center"><strong><span style="font-family: 'Angsana New'; font-size: 14pt;">รายการ</span></strong></td>
+                        <td style="width: 259.219px;" align="center"><strong><span style="font-family: 'Angsana New'; font-size: 14pt;">มูลค่า</span></strong></td>
+                    </tr>
+                    <tr data-ng-repeat="Promotion in CampaignInfoTable.PromotionItems">
+                        <td style="width: 42px;" align="center"><span style="font-family: 'Angsana New'; font-size: 14pt;">{{ $index+1 }}</span></td>
+                        <td style="width: 360.781px;"><span style="font-family: 'Angsana New'; font-size: 14pt;">{{ Promotion.Name }}</span></td>
+                        <td style="width: 259.219px;" align="right"><span style="font-family: 'Angsana New'; font-size: 14pt;">{{ Promotion.Cost | number}}</span></td>
+                    </tr>
+                    <tr>
+                        <td style="width: 402.781px;" colspan="2" align="center"><span style="font-family: 'Angsana New'; font-size: 14pt;">รวม</span></td>
+                        <td style="width: 259.219px;" align="right"><span style="font-family: 'Angsana New'; font-size: 14pt;">{{CampaignInfoTable.CampaignInfoTotal | number}}</span></td>
+                    </tr>
+                </tbody>
+            </table>
+            <ol>
+                <li>จองภายใน 3 วันนับจากวันที่เข้าชมโครงการ</li>
+                <li>นำเอกสารมาทำเรื่องกู้ในวันที่จอง</li>
+                <li>หากธนาคารอนุมัติก่อนลูกค้ารับบ้านตามขั้นตอนเพื่อโอนกรรมสิทธิ์ ลูกค้าจะต้องโอนกรรมสิทธิ์ให้กับบริษัทฯ ก่อนโดยทางบริษัทฯ จะออกหนังสือรับรองสิทธิ์ให้ลูกค้า เพื่อใช้สำหรับเก็บงานหลังโอนกรรมสิทธิ์</li>
+                <li>บริษัท ขอสงวนสิทธิ์ในการไม่คืนเงินจองในกรณี ลูกค้ากู้ธนาคารไม่ผ่าน เนื่องจากติดเครดิตบูโร และ/หรือ</li>
+                <li>กรณีลูกค้ากู้ธนาคารผ่าน แต่ไม่โอนกรรมสิทธิ์ รวมถึง กรณีลูกค้ายกเลิกการจอง</li>
+                <li>ทางบริษัทฯ ขอสงวนสิทธิ์ในการคืนเงินจองเฉพาะกรณี ลูกค้ากู้ไม่ผ่าน และไม่ติดเครดิตบูโรเท่านั้น</li>
+            </ol>
+            <table style="height: 61px; width: 707px;">
+                <tbody>
+                    <tr>
+                        <td style="width: 284.938px;"><span style="font-family: 'Angsana New'; font-size: 14pt;">ลงชื่อ{{quotation.WorkerName}} ผู้จะซื้อ</span></td>
+                        <td style="width: 408.063px;"><span style="font-family: 'Angsana New'; font-size: 14pt;">วันที่ {{quotation.BookDate| date:'dd/MM/yyyy'}}</span></td>
+                    </tr>
+                    <tr>
+                        <td style="width: 284.938px;"><span style="font-family: 'Angsana New'; font-size: 14pt;">ลงชื่อ{{quotation.WorkerName}} ผู้รับจอง&nbsp;&nbsp;</span></td>
+                        <td style="width: 408.063px;"><span style="font-family: 'Angsana New'; font-size: 14pt;">วันที่ {{quotation.BookDate| date:'dd/MM/yyyy'}}</span></td>
+                    </tr>
+                </tbody>
+            </table>
+            <p><br />หมายเหตุ&nbsp; &nbsp; สำหรับห้อง&nbsp; ..........................</p>
+            <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;ที่จอดรถขนาด&nbsp; กว้าง&nbsp; 5.00 X&nbsp; ยาว 7.00 ม. (โดยประมาณ)&nbsp; ดังนั้นทางโครงการจึงจัดให้เป็นที่จอดรถเฉพาะรถเก๋ง&nbsp;ที่มีความยาวไม่เกิน 6.50 ม.เท่านั้น&nbsp; (ไม่เหมาะสำหรับจอดรถกะบะ , รถอื่นๆ ที่มีความยาวเกิน 6.50 ม. )</p>
+        </div>
+    </div>
+    <div class="a4page2">
+        <!--<div class="a4body">-->
+        <div style="&quot;height: 200mm;">
+            <p style="text-align: center;"><strong>เอกสารประกอบการจอง โครงการบ้านพิศาลเลียบวงแหวน-พระราม 2</strong><br /><strong>บันทึกข้อตกลง การใช้พื้นที่ส่วนกลาง และ ต่อเติม ห้อง {{quotation.REUnitCode}}</strong></p>
+            <ol>
+                <li>ห้าม นำกระถางต้นไม้ หรือ ปลูกต้นไม้ บนทางเท้า หรือ รางวี หรือ ถนน บริเวณหน้าบ้านที่อยู่นอกรั้วบ้าน หรือ ในบริเวณ&nbsp; ช่องกลับรถ หรือ พื้นที่บริเวณสวนสาธารณะ</li>
+                <li>ห้าม นำโต๊ะ หรือ เก้าอื้ หรือ ถังขยะ หรือ วัสดุอุปกรณ์ส่วนตัวของลูกบ้าน มาวาง บนทางเท้า หรือ รางวี หรือ ถนนบริเวณหน้า บ้านที่อยู่นอกรั้วบ้าน หรือ ในบริเวณช่องกลับรถ หรือ พื้นที่บริเวณสวนสาธารณะ</li>
+                <li>ห้าม&nbsp; ตากผ้า&nbsp; บนทางเท้า หรือ รางวี&nbsp; &nbsp;หรือ ถนนบริเวณหน้าบ้านที่อยูนอกรั้วบ้านหรือ ในบริเวณช่องกลับรถ</li>
+                <li>ห้าม สร้างสิ่งปลูกสร้างทุกชนิดทั้งที่ถาวรและไม่ถาวร บนทางเท้า หรือ รางวี หรือ ถนน บริเวณหน้าบ้านที่อยู่นอกรั้ว บ้าน หรือ&nbsp; &nbsp;ในบริเวณช่องกลับรถ หรือ พื้นที่บริเวณสวนสาธารณะ</li>
+                <li>ห้าม&nbsp; ทุบรั้วด้านข้างที่เป็นห้องมุมติดช่องกลับรถ เพื่อทำประตูเปิด เข้า-ออก</li>
+                <li>ห้าม&nbsp; ทำกันสาด หรือ ติดแอร์ หรือ หน้าต่างเปิด เข้า-ออก ด้านข้างทั้งหมด&nbsp; (อนุโลม ให้ทำเป็นบานเกร็ดหรือระแนงหรือกำแพงทึบเท่านั้นในเขตที่ดินของตนเองโดยไม่ยึดกับรั้วด้านข้างของบ้าน)</li>
+                <li>ห้าม&nbsp; ทำกันสาด&nbsp; ด้านหน้าบ้านล้ำออกมานอกรั้วบ้าน</li>
+                <li>ห้าม&nbsp; ต่อเติมเกินขอบเขตรั้วบ้าน ทั้งด้านหน้า หรือ ด้านหลัง&nbsp; หรือ&nbsp; ด้านข้าง ทั้งแนวราบ และ แนวอากาศ (อนุโลมให้รางน้ำและผนังเบาให้อยู่ชิดเขตที่ดิน (กึ่งกลางผนังรั้ว) ได้&nbsp; แต่ห้ามวางและยึดติดกับผนังรั้ว)</li>
+                <li>ห้าม&nbsp; ต่อเติมโดยใช้โครงสร้างเดิมของโครงการ ไม่ว่า จะเป็นโครงสร้างตัวบ้าน หรือ โครงสร้างรั้ว</li>
+                <li>ห้าม&nbsp; เปลี่ยนสี ภายนอกตัวบ้าน (ยกเว้นประตูรั้วเหล็ก)</li>
+                <li>ห้าม&nbsp; &nbsp;จอดรถ&nbsp; ในพื้นที่กลับรถ หรือ ช่องว่างระหว่างอาคาร หรือ พื้นที่บริเวณสวนสาธารณะ</li>
+                <li>ห้าม จอดรถซ้อนคันบนถนนตามแนวยาวของถนน / แต่ถ้ามีการจอดรถให้ถือเป็นการจอดรถชั่วคราวเท่านั้น&nbsp; โดยให้จอดรถได้หนึ่งคันตามแนวยาวของถนน&nbsp; แต่ต้องจอดชิดประตูรั้วหน้าบ้าน หรือ จอดรถซ้อนคันโดยจอดตามขวางของถนนหน้าบ้านและท้ายรถต้องติดประตูรั้วหน้าบ้าน&nbsp; และห้ามล้ำแนวบ้านของลูกบ้านท่านอื่น&nbsp; ตัวรถจะเลยผิวจราจรได้ไม่เกิน&nbsp; 1&nbsp; เมตร</li>
+                <li>ห้าม นำน้ำที่ไม่สะอาดที่เกิดจากการใช้มาลงบ่อพักหรือท่อระบายน้ำโดยตรง บริเวณหน้าบ้านนอกรั้วบ้านโดยไม่ผ่านท่อระบายออกถังบำบัดน้ำเสียภายในบ้าน</li>
+                <li>ห้าม&nbsp; ทำธุรกิจเกี่ยวกับ&nbsp; เย็บผ้าที่ใช้จักรเกิน 3&nbsp; ตัว&nbsp; , อู่ซ่อมรถ , เครื่องจักรหนักในการทำงาน , ขนส่ง&nbsp; &nbsp;ร้านอาหาร ประเภทที่มีดนตรีหรือคาราโอเกะเสียงดัง หรือ เปิดร้านที่มีรถเข้าออกตลอดเวลา เป็นต้น หรือ ร้านอาหารตามสั่ง&nbsp; ที่มี กลิ่น&nbsp; ควัน&nbsp; น้ำมัน&nbsp; ขยะ รบกวนเพื่อนบ้าน&nbsp; ถ้าต้องทำจริงๆ ให้ทำปล่อง,&nbsp; แผงกั้น , ตัวดูด ,&nbsp; ที่เก็บขยะ ให้เรียบร้อยโดยไม่รบกวนและสร้างความรำคาญให้กับเพื่อนบ้าน</li>
+                <li>ห้าม นำวัสดุและอุปกรณ์ในการทำอาหาร มาทำ หรือ วางบนทางเท้า หรือ รางวี หรือ ถนน บริเวณหน้าบ้านที่อยู่นอกรั้วบ้าน หรือ ในบริเวณช่องกลับรถ หรือ พื้นที่บริเวณสวนสาธารณะ</li>
+                <li>ห้าม นำป้ายโฆษณามาวางบนทางเท้า หรือ รางวี หรือ ถนน บริเวณหน้าบ้านที่อยู่นอกรั้วบ้าน หรือ บริเวณช่องกลับรถ&nbsp; หรือติดตามเสาไฟในโครงการ หรือ รั้วในโครงการ หรือ พื้นที่บริเวณสวนสาธารณะ</li>
+                <li>ห้าม&nbsp; เลี้ยงสัตว์เลี้ยงที่ทำความรำคาญให้กับเพื่อนบ้าน&nbsp; เช่น สุนัข หรือ แมว เป็นต้น แต่ถ้าเลี้ยงให้ดูแลไม่ให้ เกิดปัญหา&nbsp; กับส่วนรวมและเพื่อนบ้าน ถ้ามีการร้องเรียน ลูกค้าต้องรับผิดชอบดำเนินการแก้ไขปัญหานั้นๆเอง</li>
+            </ol>
+            <p style="text-align: center;">*****&nbsp; เมื่อท่านโอนกรรมสิทธิ์บ้านเรียบร้อยแล้ว สิทธิ์ที่ท่านใช้ได้ภายในขอบเขตบ้านของท่านเท่านั้น&nbsp; แต่ถ้าท่านใช้สิทธิ์ละเมิด จากบันทึกข้อตกลงฉบับนี้ ทางโครงการสามารถดำเนินคดีท่านได้&nbsp; ( ว่าด้วยคดีแพ่ง) *****</p>
+            <table style="width: 100%; text-align: center;">
+                <tbody>
+                    <tr>
+                        <td>ลงชื่อ...................................................... ผู้จอง</td>
+                        <td>ลงชื่อ...................................................... ผู้รับจอง</td>
+                    </tr>
+                    <tr>
+                        <td>({{quotation.CustomerName}})</td>
+                        <td>({{quotation.WorkerName}})</td>
+                    </tr>
+                    <tr>
+                        <td>ลงชื่อ...................................................... พยาน</td>
+                        <td>ลงชื่อ...................................................... พยาน</td>
+                    </tr>
+                    <tr>
+                        <td>({{customField.witness1}})</td>
+                        <td>({{customField.witness2}})</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p style="float: left;">วันที่เริ่มใช้ 02/10/2560</p>
+            <p style="float: right;">FM-MKS-103 Rev.03</p>
+        </div>
+        <div class="a4foot">&nbsp;</div>
+    </div>
+    <div class="a4page">
+        <div class="a4body" style="padding-top: 10mm;">
+            <p style="text-align: center;">เอกสารแนบท้ายหนังสือจอง/สัญญาจะซื้อจะขาย โครงการ&nbsp;<span style="text-decoration: underline;"><strong>พิศาลเลียบวงแหวน-พระราม 2</strong></span></p>
+            <p>เลขที่ห้อง <span style="text-decoration: underline;"><strong>{{quotation.REUnitCode}}</strong></span></p>
+            <p style="text-align: right;">ทำที่&nbsp;บริษัท พิศาลเพลซ จำกัด<br /><span style="text-decoration-line: underline; font-size: 14pt; text-align: justify;">{{quotation.BookDate| bdate}}</span></p>
+            <p style="text-align: left;"><span style="text-decoration-line: underline; font-size: 14pt; text-align: justify;">เงื่อนไขการคืนผ่อนชำระค่าบ้านตามสัญญาจะซื้อจะขาย</span></p>
+            <p>1.&nbsp;กรณีกู้ธนาคารไม่ผ่านคืนเงินจอง (ผู้จะซื้อจะต้องให้ข้อมูลเกี่ยวกับรายได้และข้อมูลเครดิตกับพนักงานตามความเป็นจริง)&nbsp;</p>
+            <div style="margin-left: 50px;">
+                <p>1.1 รายได้ต่อเดือน</p>
+                <div class="textinbody">
+                    <p>1.1.1 ผู้กู้หลัก (ชื่อ) <span style="text-decoration: underline;">{{quotation.CustomerName}}</span></p>
+                    <p style="font-weight: normal;">รายได้ต่อเดือน&nbsp; <strong><span style="text-decoration: underline;">{{customField.IncomeMainBorrower}}</span></strong>&nbsp;บาท ที่มาของรายได้</p>
+                    <table style="float: right; margin-top: -50px; font-weight: normal;">
+                        <tbody>
+                            <tr>
+                                <td><span style="font-family: 'Angsana New'; font-size: 12pt;"><input type="checkbox" /> พนักงานประจำ</span></td>
+                                <td><span style="font-family: 'Angsana New'; font-size: 12pt;"><input type="checkbox" /> อาชีพอิสระ</span></td>
+                            </tr>
+                            <tr>
+                                <td><span style="font-family: 'Angsana New'; font-size: 12pt;"><input type="checkbox" /> ค้าขายเสียภาษี</span></td>
+                                <td><span style="font-family: 'Angsana New'; font-size: 12pt;"><input type="checkbox" /> ค้าขายไม่เสียภาษี</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br />
+                    <p style="font-weight: normal;">ชื่อที่ทำงาน&nbsp; <span style="text-decoration: underline;">{{quotation.CustomerOffice}}</span></p>
+                    <p>1.1.1 ผู้กู้ร่วม (ชื่อ) <span style="text-decoration: underline;">{{quotation.CustomerBorrower_Name_1}}</span></p>
+                    <p style="font-weight: normal;">รายได้ต่อเดือน&nbsp; <strong><span style="text-decoration: underline;">{{customField.IncomeSubBorrower}}</span></strong>&nbsp;บาท ที่มาของรายได้</p>
+                    <table style="float: right; margin-top: -50px; font-weight: normal;">
+                        <tbody>
+                            <tr>
+                                <td><span style="font-size: 12pt; font-family: 'Angsana New';"><input type="checkbox" /> พนักงานประจำ</span></td>
+                                <td><span style="font-size: 12pt; font-family: 'Angsana New';"><input type="checkbox" /> อาชีพอิสระ</span></td>
+                            </tr>
+                            <tr>
+                                <td><span style="font-size: 12pt; font-family: 'Angsana New';"><input type="checkbox" /> ค้าขายเสียภาษี</span></td>
+                                <td><span style="font-size: 12pt; font-family: 'Angsana New';"><input type="checkbox" /> ค้าขายไม่เสียภาษี</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br />
+                    <p style="font-weight: normal;">ชื่อที่ทำงาน&nbsp;<strong><span style="text-decoration: underline;">{{customField.WorkplaceNameSubBorrower}}</span></strong></p>
+                </div>
+                <p>1.2 ภาระหนี้ต่อเดือน</p>
+                <div class="textinbody">
+                    <p style="font-weight: normal;">1.2.1 ผู้กู้หลัก ภาระหนี้ต่อเดือน&nbsp; <strong><span style="text-decoration: underline;">{{customField.DebtMainBorrower}}</span></strong>&nbsp;บาท ประกอบด้วย</p>
+                    <table style="font-weight: normal;">
+                        <tbody>
+                            <tr>
+                                <td><span style="font-family: 'Angsana New'; font-size: 12pt;"><input type="checkbox" /> ผ่อนรถ</span></td>
+                                <td><span style="font-family: 'Angsana New'; font-size: 12pt;"><input type="checkbox" /> ผ่อนบ้าน</span></td>
+                                <td><span style="font-family: 'Angsana New'; font-size: 12pt;"><input type="checkbox" /> ผ่อนบัตรเครดิต</span></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3"><span style="font-family: 'Angsana New'; font-size: 12pt;"><input type="checkbox" /> อื่นๆ&nbsp;<strong><span style="text-decoration: underline;">{{customField.OtherDebtMainBorrower}}</span></strong></span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p style="font-weight: normal;">1.2.2 ผู้กู้ร่วม ภาระหนี้ต่อเดือน&nbsp; <strong><span style="text-decoration: underline;">{{customField.BuroSubBorrower}}</span></strong>&nbsp;บาท ประกอบด้วย</p>
+                    <table style="font-weight: normal;">
+                        <tbody>
+                            <tr>
+                                <td><span style="font-family: 'Angsana New'; font-size: 12pt;"><input type="checkbox" /> ผ่อนรถ</span></td>
+                                <td><span style="font-family: 'Angsana New'; font-size: 12pt;"><input type="checkbox" /> ผ่อนบ้าน</span></td>
+                                <td><span style="font-family: 'Angsana New'; font-size: 12pt;"><input type="checkbox" /> ผ่อนบัตรเครดิต</span></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3"><span style="font-family: 'Angsana New'; font-size: 12pt;"><input type="checkbox" /> อื่นๆ&nbsp;<strong><span style="text-decoration: underline;">{{customField.OtherDebtSubBorrower}}</span></strong></span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="a4foot" style="padding-top: 10mm;">
+            <p style="float: left;">วันที่เริ่มใช้ 02/10/2560</p>
+            <p style="float: right;">( P.1/2 ) FM - MKS - 99 Rev.04</p>
+        </div>
+    </div>
+    <div class="a4page">
+        <div class="a4body" style="font-weight: normal; padding-top: 5mm;">
+            <div style="margin-left: 50px;">
+                <p style="font-weight: bold;">1.3 ประวัติเครดิตบูโร</p>
+                <div class="textinbody">
+                    <p style="font-weight: normal;">1.3.1 ผู้กู้หลัก <input type="checkbox" /> มี&nbsp;&nbsp;<strong><span style="text-decoration: underline;">{{customField.BuroMainBorrower}}</span></strong>&nbsp;<input type="checkbox" /> ไม่มี</p>
+                    <p style="font-weight: normal;">1.3.2 ผู้กู้ร่วม <input type="checkbox" /> มี&nbsp;&nbsp;<strong><span style="text-decoration: underline;">{{customField.BuroSubBorrower}}</span></strong>&nbsp;<input type="checkbox" /> ไม่มี</p>
+                </div>
+            </div>
+            <p>2.&nbsp;กรณีกู้ธนาคารไม่ผ่านทางโครงการจะทำเรื่องคืนเงินที่ชำระมาแล้วทั้งหมด แต่ต้องมีผลแจ้งมาจากทางธนาคารเป็นลายลักษณ์อักษร ว่าท่านกู้ธนาคารไม่ผ่านด้วยสาเหตุใด <span style="text-decoration: underline;">โดยข้อมูลที่ท่านให้กับธนาคารจะต้องเป็นไปตามข้อ 1. ทั้งหมดแต่ถ้าไม่จริงตามข้อ 1. ทั้งหมด จนทำให้ท่านกู้ธนาคารไม่ผ่าน ทางโครงการจะไม่คืนเงินจองและเงินทำสัญญาให้ จะคืนเฉพาะเงินดาวน์ เท่านั้น โดยไม่มีดอกเบี้ย</span></p>
+            <p>3. ผู้จะซื้อจะต้องนำเอกสารประกอบการกู้ธนาคารมายื่นภายใน 7 วัน (นับจากวันจอง) ภายในวันที่ <strong><span style="text-decoration: underline;">{{quotation.ContractDueDate| bdate}}</span></strong> หากผู้จะซื้อไม่ได้นำเอกสารประกอบการกู้ธนาคารมาภายในวันที่ดังกล่าวข้างต้น <span style="text-decoration: underline;">ให้ถือว่าผู้จะซื้อสละสิทธิ์การจองและยินยอม ให้ผู้จะขายริบเงินจองที่ผู้จะซื้อได้ชำระแล้วโดยทันที</span></p>
+            <p>4. ผู้จะซื้อ จะต้องปฎิบัติตามคำแนะนำของพนักงานบริษัทฯ หรือ พนักงานของธนาคาร เกี่ยวกับการนำรายรับและรายจ่ายฝากธนาคาร และ ขอให้จัดเตรียมเอกสารต่าง ๆ ที่เป็นประโยชน์ในการยื่นกู้และอนุมัติได้ง่ายขึ้น หากผู้จะซื้อไม่ดำเนินการดังกล่าว อันเป็นผลทำให้ กู้ธนาคารไม่ผ่าน บริษัทฯ ถือว่าผู้จะซื้อไม่ให้ความร่วมมือ ทางบริษัทฯ จะคืนให้เฉพาะเงินดาวน์โดยไม่มีดอกเบี้ย <span style="text-decoration: underline;"> ( ยกเว้นเงินจองและสัญญาไม่คืนให้ )</span></p>
+            <p>5. ในกรณีที่ผู้จะซื้อแจ้ง โอนสด ณ วันจอง ภายหลังขอเปลี่ยนยื่นกู้ธนาคาร หากธนาคารไม่อนุมัติ ทางบริษัทฯ จะคืนให้ เฉพาะเงินดาวน์ โดยไม่มีดอกเบี้ย (ยกเว้นเงินจองและสัญญาไม่คืนให้)</p>
+            <p>6. ในกรณีผู้จะซื้อขอยกเลิกสัญญาด้วยตัวลูกค้าเอง บริษัทฯ จะคืนให้เฉพาะเงินดาวน์โดยไม่มีดอกเบี้ย <span style="text-decoration: underline;">(ยกเว้นเงินจองและ สัญญาไม่คืนให้)</span></p>
+            <p>7. ในกรณีผู้จะซื้อประสงค์กู้ธนาคารอื่นเองโดยไม่ผ่านทางบริษัทฯ หากธนาคารที่ยื่นไม่อนุมัติ ทางบริษัทฯ จะคืนให้ เฉพาะเงินดาวน์ โดยไม่มีดอกเบี้ย (ยกเว้นเงินจองและสัญญาไม่คืนให้)</p>
+            <p class="textinbody">ผู้จะซื้อและผู้จะขายทั้งสองฝ่ายได้อ่านเงื่อนไขข้างต้น และเข้าใจตรงกันแล้ว ได้ลงลายมือชื่อไว้เป็นสำคัญทั้งสองฝ่าย</p>
+            <br />
+            <table style="text-align: center; width: 100%; line-height: 50px;">
+                <tbody>
+                    <tr>
+                        <td><span style="font-family: 'Angsana New'; font-size: 14pt;">ลงชื่อ&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;... ผู้จะซื้อ</span></td>
+                        <td><span style="font-family: 'Angsana New'; font-size: 14pt;">ลงชื่อ&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.ผู้จะขาย</span></td>
+                    </tr>
+                    <tr>
+                        <td><span style="font-family: 'Angsana New'; font-size: 14pt;">({{quotation.CustomerName}})</span></td>
+                        <td><span style="font-family: 'Angsana New'; font-size: 14pt;">({{quotation.WorkerName}})</span></td>
+                    </tr>
+                    <tr>
+                        <td><span style="font-family: 'Angsana New'; font-size: 14pt;">ลงชื่อ&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;... พยาน</span></td>
+                        <td><span style="font-family: 'Angsana New'; font-size: 14pt;">ลงชื่อ&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;... พยาน</span></td>
+                    </tr>
+                    <tr>
+                        <td><span style="font-family: 'Angsana New'; font-size: 14pt;">({{customField.Witness1}})</span></td>
+                        <td><span style="font-family: 'Angsana New'; font-size: 14pt;">( {{customField.Witness2}})</span></td>
+                    </tr>
+                </tbody>
+            </table>
+            <br /> ต้นฉบับ สำหรับสำนักงานขายโครงการ<br />สำเนา สำหรับลูกค้า
+        </div>
+        <div class="a4foot" style="padding-top: 17mm;">
+            <p style="float: left;">วันที่เริ่มใช้ 02/10/2560</p>
+            <p style="float: right;">( P.2/2 ) FM - MKS - 99 Rev.04</p>
+        </div>
+    </div>
+    <div class="a4page">
+        <div class="a4body" style="padding-top: 10mm;">
+            <h1 style="color: blue;">บริษัท พิศาลเพลซ&nbsp;จำกัด</h1>
+            <hr style="color: blue;" size="2" width="100%" />
+            <h3 style="color: blue;">133 ถ.พระรามที่ 2 แขวงแสมดำ เขตบางขุนเทียน กรุงเทพมหานคร 10150</h3>
+            <p>ที่ พพ. 006/2561</p>
+            <p style="margin-left: 300px;">29 มิถุนายน 2561</p>
+            <p>เรื่อง ขอความร่วมมือในการว่าจ้างคนงานทำงาน<br /> เรียน ท่านเจ้าของบ้านเลขที่ <strong><span style="text-decoration: underline;">{{quotation.REUnitCode}}</span></strong>&nbsp;โครงการ&nbsp;&nbsp;<strong><span style="text-decoration: underline;">พิศาลเลียบวงแหวน-พระราม 2</span></strong></p>
+            <div class="textinbody">
+                <p style="text-indent: 40px;">เนื่องจาก บริษัท พิศาลเพลซ จำกัด ได้มีการปรับระบบและระเบียบการทำงานของคนงานบริษัทฯ เพื่อให้เกิดประสิทธิภาพ และประสิทธิผลสูงสุดในการทำงาน รวมถึงการให้บริการแก่ลูกค้า</p>
+                <p style="text-indent: 40px;">ดังนั้นเพื่อให้การทำงานของคนงานบริษัทฯ สอดคล้องกับระบบและระเบียบดังกล่าว ทางโครงการจึงใคร่ขอความร่วมมือจากท่านเจ้าของบ้านทุกท่าน หากประสงค์จะว่าจ้างคนงานของบริษัทฯ และหรือ โครงการ เพื่อทำงานต่าง ๆ ให้กับท่าน ทั้งในเวลาทำงานหรือนอกเวลาทำงานก็ตาม ขอให้ท่านแจ้งความประสงค์ของท่าน รวมถึงรายละเอียดของงานที่ต้องการว่าจ้างคนงานบริษัทฯ และหรือ โครงการ โดยตรงกับเจ้าหน้าที่ ณ สำนักงานขายโครงการ</p>
+                <p style="text-indent: 40px;">เมื่อทางโครงการได้รับทราบรายละเอียดงานที่ท่านต้องการว่าจ้างแล้ว จะจัดส่งเจ้าหน้าที่เพื่อเข้าดูงาน และประเมินราคาในการว่าจ้างต่อไป ซึ่งหากท่านตกลงราคาตามที่เสนอแล้ว ทางโครงการจะจัด วัน - เวลา และคนงาน เพื่อเข้าดำเนินการตามรายละเอียดงานที่ตกลงกันดังกล่าว และเมื่อการดำเนินการตามรายละเอียดงานที่ว่าจ้างเสร็จเรียบร้อยแล้ว ขอให้ท่านชำระเงินตามราคาที่ตกลงกันกับเจ้าหน้าที่โครงการโดยตรง เพื่อทางเจ้าหน้าที่โครงการจะได้ออกใบเสร็จรับเงินให้ไว้เป็นหลักฐานในการชำระเงินต่อไป</p>
+                <p style="text-indent: 40px;">ทั้งนี้ในการปรับระบบและระเบียบการทำงานของคนงานบริษัทฯ ตามที่กล่าวข้างต้น ได้หมายรวมถึงการไม่อนุญาตให้คนงานบริษัทฯ และหรือ โครงการ รับการว่าจ้าง รวมถึงการรับเงินพิเศษ จากลูกค้า และหรือ เจ้าของบ้าน โดยตรง ซึ่งมีความผิดทางวินัยของบริษัทฯ โทษสูงสุด คือ &ldquo; ให้ออกจากงาน &rdquo;</p>
+                <p style="text-indent: 40px;">จึงเรียนมาเพื่อทราบ และขอบคุณล่วงหน้ามา ณ โอกาสนี้ ทางโครงการหวังเป็นอย่างยิ่งว่าจะได้รับความร่วมมือจากท่านด้วยดี</p>
+                <div style="float:left;padding-left:15mm;background-color:#fce4e4"><br /><img style="width: 100%;" src="blob:http://localhost:18824/c1dda4ca-f5d4-4811-baae-4dc13cb871bd" alt="" /></div>
+                <p align="right" style="color: #8b8c97;padding-top:10mm;padding-right:30mm;">ขอแสดงความนับถือ</p>
+                <p align="right" style="color: #8b8c97;padding-right:23mm;">(นางสาวกิตติมา พิศาลคุณากิจ)</p>
+                <p align="right" style="color: #8b8c97;padding-right:37mm;">กรรมการ</p>
+            
+                <div style="text-align: center; margin-left: 350px;">&nbsp;</div>
+            </div>
+            <div style="color: #8b8c97;">
+                <table style="height: 61px; width: 707px;">
+                    <tbody>
+                        <tr>
+                            <td style="width: 693px;" colspan="2"><span style="font-family: 'Angsana New'; font-size: 14pt;">เจ้าหน้าที่ประสานงานโครงการ</span></td>
+                        </tr>
+                        <tr>
+                            <td style="width: 284.938px;"><span style="font-family: 'Angsana New'; font-size: 14pt;">บ้านพิศาล&nbsp;เลียบวงเเหวน-พระราม 2&nbsp;&nbsp;</span></td>
+                            <td style="width: 408.063px;"><span style="font-family: 'Angsana New'; font-size: 14pt;">: โทร.&nbsp;090-9763200</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

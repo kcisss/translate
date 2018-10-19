@@ -1,0 +1,494 @@
+﻿.workerNameAvatar {
+    background-color: rgb(255, 67, 101);
+    text-align: center;
+    line-height: 40px;
+    font-size: 20px;
+    color: #FFFFFF;
+}
+
+.Highlight {
+    background-color: yellow;
+}
+
+md-input-container.md-block {
+    display: flex;
+}
+
+.overflowEllipsis {
+    cursor: pointer;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    outline: none;
+}
+
+.cropArea {
+    background: #E4E4E4;
+    /*overflow: hidden;*/
+    width: 500px;
+    height: 350px;
+}
+
+.table1 {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+}
+
+    .table1 th:hover {
+        cursor: pointer;
+    }
+
+    .table1 tbody > tr {
+        transition: background-color .25s ease;
+    }
+
+.table1 tbody > tr:hover {
+    background-color: #f2f2f2;
+}
+
+        .table1 tbody > tr > td > a {
+            color: #FFC107;
+            text-decoration: none;
+        }
+
+    .table1 table, th, td {
+        height: 43px;
+        outline: none;
+        border-bottom: 1px solid #f2f2f2;
+        padding-left: 8px;
+    }
+
+.onMenu {
+    background-color: #BDBDBD;
+    transition: background-color 0.5s ease;
+}
+
+@font-face {
+    font-family: 'sukhumvitset-text-webfont';
+    src: url('/Styles/fonts/sukhumvitset-text-webfont/sukhumvitset-text-webfont.woff') format('woff');
+}
+
+input {
+    font-family: 'sukhumvitset-text-webfont', Fallback, sans-serif;
+    /*font-size: 12px;*/
+}
+
+.CustomizeMdContent {
+    margin: 0px;
+}
+
+.showSucgress {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+}
+
+.shiftImage {
+    width: 100px;
+    height: 100px;
+    background-image: url(data:~/Content/src/modules/Mortgage/Share/Pic/mouse.png;base64,iVBORwA<MoreBase64SringHere>);
+}
+
+.animate {
+    width: 100px;
+    height: 100px;
+    animation: mymove 3s forwards;
+    position: absolute;
+    z-index: 9999;
+    right: 50%;
+}
+
+@keyframes mymove {
+    0% {
+        top: -200px;
+    }
+
+    100% {
+        top: -100px;
+    }
+}
+
+@keyframes scrollUp {
+    0% {
+        top: 24px;
+    }
+
+    50% {
+        top: -24px;
+    }
+
+    100% {
+        top: 24px;
+    }
+}
+
+@keyframes scrollDown {
+    0% {
+        top: 200px;
+    }
+
+    50% {
+        top: 250px;
+    }
+
+    100% {
+        top: 200px;
+    }
+}
+
+.searchIcon {
+    position: absolute;
+    left: -28px;
+    top: 7px;
+    color: #BDBDBD;
+}
+
+#style-3::-webkit-scrollbar-track {
+    display: none;
+}
+
+#style-3::-webkit-scrollbar {
+    display: none;
+}
+
+#style-3::-webkit-scrollbar-thumb {
+    display: none;
+}
+
+
+#con2::-webkit-scrollbar-track {
+    display: none;
+}
+
+#con2::-webkit-scrollbar {
+    display: none;
+}
+
+#con2::-webkit-scrollbar-thumb {
+    display: none;
+}
+
+.customSelect {
+    margin: 0px;
+    width: 100%;
+    height: 26px;
+    margin: 0px;
+}
+
+.bankField {
+    line-height: 50px;
+    height: 50px;
+}
+
+
+.secondStatus {
+    margin-top: 3px;
+}
+
+.header-cell {
+    min-height: 52px;
+    padding-left: 16px;
+    border-right: 1px solid #BDBDBD;
+    position: relative;
+}
+
+.cell {
+    padding-top: 8px;
+    min-height: 100px;
+    padding-left: 16px;
+    border-right: 1px solid #BDBDBD;
+    padding-bottom: 8px;
+    position: relative;
+}
+
+.cell-date {
+    padding-top: 8px;
+    min-height: 52px;
+    padding-left: 8px;
+    padding-right: 8px;
+    text-align: center;
+    border-right: 1px solid #BDBDBD;
+    padding-bottom: 8px;
+}
+
+.container-outer-all {
+    overflow: auto;
+    font-size: 14px;
+    height: 250px;
+}
+
+.container-outer {
+    overflow: auto;
+    height: 100%;
+}
+
+.customNavItem {
+    min-width: 200px;
+    height: 80px !important;
+    border-right: 1px solid #BDBDBD;
+}
+
+md-nav-bar.md-default-theme md-nav-ink-bar, md-nav-bar md-nav-ink-bar {
+    display: none;
+}
+
+md-nav-bar.md-default-theme .md-nav-bar, md-nav-bar .md-nav-bar {
+    background-color: #EEEEEE;
+}
+
+.md-nav-bar {
+    height: 79px;
+}
+
+.md-button._md-nav-button {
+    width: 100%;
+    height: 100%;
+    font-size: 16px;
+}
+
+.submenu {
+    padding: 0px;
+    margin: 0px;
+    min-width: 220px;
+    min-height: 46px;
+    line-height: 46px;
+    font-size: 14px;
+    border-bottom: 5px solid #FFF;
+}
+
+    .submenu:hover {
+        border-bottom: 5px solid #EEEEEE;
+    }
+
+.underLineMenu {
+    min-width: 198px;
+    min-height: 6px;
+    background-color: rgb(255, 67, 101);
+    position: absolute;
+    bottom: 0;
+    left: 1px;
+}
+
+.numbercircle {
+    margin-left: 8px;
+    height: 32px;
+    line-height: 20px;
+    width: 32px;
+    padding: 4px;
+    border: 2px solid #BDBDBD;
+    color: #FFF;
+    background: #BDBDBD;
+    border-radius: 50%;
+}
+
+.borderBotNav {
+    border-bottom: 1px solid #BDBDBD;
+}
+
+.buttonInRecentHead {
+    margin: 0px;
+    font-size: 13px;
+}
+
+.activeSubmenu {
+    color: #FF4365;
+    border-bottom: 5px solid;
+}
+
+    .activeSubmenu:hover {
+        border-bottom: 5px solid #FF4365;
+    }
+
+.CustomChip {
+    min-width: 184px;
+    border: 1px solid #BDBDBD;
+    padding: 2px 4px;
+    border-radius: 8px;
+    margin-right: 8px;
+    height: 28px;
+    line-height: 24px;
+    user-select: none;
+    display: inline-table;
+    border-collapse: separate;
+}
+
+.co-name {
+    max-width: 148px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.InputInChip {
+    border: 0px;
+    border-bottom: 1px solid #BDBDBD;
+    margin-right: 4px;
+    margin-left: 4px;
+    background-color: rgb(250,250,250);
+    width: 150px;
+    outline: none;
+}
+
+.disableClick {
+    pointer-events: none;
+    opacity: 0.5;
+    background: rgb(250,250,250);
+}
+
+#style-4 {
+    overflow: auto;
+    overflow-y: hidden;
+    width: auto;
+    position: relative;
+}
+
+    #style-4::-webkit-scrollbar-track {
+        width: 16px;
+        height: 7px;
+    }
+
+    #style-4::-webkit-scrollbar {
+        width: 8px;
+        height: 7px;
+    }
+
+    #style-4::-webkit-scrollbar-thumb {
+        border-radius: 12px;
+        border: 0px solid rgba(255,255,255,0);
+        background-clip: content-box;
+        background-color: rgb(177, 177, 177);
+    }
+
+._md-select-value > span:not(._md-select-icon) {
+    line-height: 24px;
+}
+
+.headerSelect {
+    min-width: 200px;
+    margin: 0px;
+    height: 30px;
+}
+
+.infoButton {
+    border-radius: 16px;
+    position: absolute;
+    right: 0px;
+    top: 7px;
+    margin: 0px
+}
+
+.pinbuton {
+    width: 0;
+    height: 0;
+    border-top: 37px solid transparent;
+    border-bottom: 37px solid transparent;
+    border-left: 37px solid #FFCA28;
+    transform: rotate(-45deg);
+    position: absolute;
+    right: -12px;
+    top: -34px;
+}
+
+.pinIcon {
+    position: absolute;
+    z-index: 999;
+    right: -2px;
+    top: -4px;
+}
+
+.UnpinIcon {
+    transform: rotate(90deg);
+}
+
+.ApproveRemark {
+    color: #4CAF50;
+}
+
+.RejectRemark {
+    color: #F44336;
+}
+
+
+.md-icon-button + .md-datepicker-input-container {
+    width: 120px;
+}
+
+.ErrorField {
+    background-color: #FFBDBD;
+}
+
+    .tableScroll {
+        width: 100%;
+        height: 270px;
+        overflow-x: scroll;
+    }
+    .tableScroll::-webkit-scrollbar-track {
+        width: 16px;
+        height: 7px;
+    }
+
+    .tableScroll::-webkit-scrollbar {
+        width: 8px;
+        height: 7px;
+    }
+
+    .tableScroll::-webkit-scrollbar-thumb {
+        border-radius: 12px;
+        border: 0px solid rgba(255,255,255,0);
+        background-clip: content-box;
+        background-color: rgb(177, 177, 177);
+    }
+    table.dataTable2 {
+        width: 100%;
+        position: relative;
+        border-collapse: collapse;
+        font-size: 12px;
+        user-select: none;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+    }
+    /*thead*/
+    table.dataTable2 > thead {
+        position: relative;
+        display: inline; /*seperates the header from the body allowing it to be positioned*/
+        width: 100%;
+        overflow: visible;
+    }
+
+    table.dataTable2 > thead th {
+        min-width: 120px;
+        text-align: left;
+        /*border: 1px solid #BDBDBD;*/
+    }
+
+
+        /*tbody*/
+    table.dataTable2 > tbody {
+        display: block; /*seperates the tbody from the header*/
+        width: 100%;
+        max-height: 220px;
+        overflow: auto;
+    }
+
+    table.dataTable2 > tbody td {
+        min-width: 120px;
+        /*vertical-align: top;*/
+        /*padding-left: 24px;*/
+        text-align: left;
+        position: relative;
+        /*border: 1px solid #BDBDBD;*/
+        height: 40px;
+    }
+
+    .paddingTable {
+        padding-left: 32px;
+    }
+    .textHeader {
+       color: #5f5f5f;
+    }

@@ -1,0 +1,147 @@
+﻿@{
+    ViewBag.Title = "POS - Report";
+    ViewBag.NgApp = "ReportApp";
+    Layout = "~/Views/Shared/_AllNewMasterLayout.cshtml";
+}
+@section IncludeScripts{
+    <script src="~/Scripts/jquery-3.0.0.min.js"></script>
+    <script src="~/Scripts/jquery-ui.js"></script>
+    <script src="~/Scripts/pivottable/pivot.min.js"></script>
+    <script src="~/Scripts/d3.js"></script>
+    <script src="~/Scripts/nv.d3.js"></script>
+    <script src="~/Scripts/angular-nvd3.js"></script>
+    <script src="~/Scripts/angular-count-to.min.js"></script>
+    <script src="~/Scripts/fixed-table-header.min.js"></script>
+    <script src="~/Scripts/angu-fixed-header-table.js"></script>
+    <script src="~/Scripts/ngPrint/ngPrint.js"></script>
+    <script src="~/Scripts/moment-with-locales.js"></script>
+    <script src="~/Scripts/angular-filter.js"></script>
+    <script src="~/Scripts/xlsx/xlsx.core.min.js"></script>
+    <script src="~/Scripts/xlsx/Blob.js"></script>
+    <script src="~/Scripts/xlsx/FileSaver.js"></script>
+    @*<script src="https://rawgithub.com/eligrey/FileSaver.js/master/FileSaver.js" type="text/javascript"></script>*@
+    <script src="~/Scripts/Chart.js"></script>
+    <script src="~/Scripts/angular-chart.js"></script>
+    <script src="~/Scripts/highcharts.js"></script>
+
+    <script src="https://unpkg.com/ag-grid/dist/ag-grid.min.noStyle.js"></script>
+
+    @*Global Filter Include*@
+    <script src="~/Content/src/share/modules/globalApp/globalFilter/globalFilterEnum.js"></script>
+    <script src="~/Content/src/share/modules/globalApp/globalFilter/globalFilterService.js"></script>
+    <script src="~/Content/src/share/modules/globalApp/globalFilter/globalFilterClientService.js"></script>
+    <script src="~/Content/src/share/modules/globalApp/globalFilter/globalFilterController.js"></script>
+
+    @*ag Grid*@
+    <script src="~/Content/src/share/modules/globalApp/agGrid/agGridController.js"></script>
+
+    @*ag Grid for regular Report*@
+    <script src="~/Content/src/share/modules/globalApp/agGridReport/agGridReportService.js"></script>
+    <script src="~/Content/src/share/modules/globalApp/agGridReport/agGridReportCtrl.js"></script>
+
+    @*Module App*@
+    <script src="~/Content/src/modules/POS/Report/Scripts/ReportApp.js"></script>
+    <script src="~/Content/src/modules/POS/Report/Scripts/ReportServ.js"></script>
+    <script src="~/Content/src/modules/POS/Report/Scripts/ReportCtrl.js"></script>
+    <script src="~/Content/src/modules/POS/Report/Scripts/selectFildDialogCtrl.js"></script>
+    <script src="~/Content/src/modules/POS/Report/Scripts/QuestionnaireReportCtrl.js"></script>
+    <script src="~/Content/src/modules/POS/Report/Scripts/SalePerformanceReportServ.js"></script>
+    <script src="~/Content/src/modules/POS/Report/Scripts/CancelUnitCtrl.js"></script>
+    <script src="~/Content/src/modules/POS/Report/Scripts/wcbCtrl.js"></script>
+    <script src="~/Content/src/modules/POS/Report/Scripts/SellCancelTransferReport.js"></script>
+    <script src="~/Content/src/modules/POS/Report/Scripts/ReceiptReportCtrl.js"></script>
+    <script src="~/Content/src/modules/POS/Report/Scripts/CustomerPaymentDetail.js"></script>
+    <script src="~/Content/src/modules/POS/Report/Scripts/ActualCash.js"></script>
+    <script src="~/Content/src/modules/POS/Report/Scripts/AccountCtrl.js"></script>
+    <script src="~/Content/src/modules/POS/Report/Scripts/UnitTransfer.js"></script>
+    <script src="~/Content/src/modules/POS/Report/Scripts/SalePerformanceReportCtrl.js"></script>
+    <script src="~/Content/src/modules/POS/Report/Scripts/UnitReport.js"></script>
+    <script src="~/Content/src/modules/POS/Report/Scripts/mediaReportCtrl.js"></script>
+    <script src="~/Content/src/modules/POS/Report/Scripts/tableOrGraphCtrl.js"></script>
+    <script src="~/Content/src/modules/POS/Report/Scripts/ActivityReportCtrl.js"></script>
+    <script src="~/Content/src/modules/POS/Report/Scripts/StatusUnitReportCtrl.js"></script>
+    <script src="~/Content/src/modules/POS/Report/Scripts/RepairReportCtrl.js"></script>
+    <script src="~/Content/src/modules/POS/Report/Scripts/PresaleVsTargetCtrl.js"></script>
+    <script src="~/Content/src/modules/POS/Report/Scripts/TransferVsTargetCtrl.js"></script>
+    <script src="~/Content/src/modules/POS/Report/Scripts/ChangingReportCtrl.js"></script>
+}
+@section IncludeCSS {
+    <link href="~/Scripts/pivottable/pivot.min.css" rel="stylesheet" />
+    <link href="~/Scripts/nv.d3.css" rel="stylesheet" />
+    <link href="~/Content/src/modules/POS/Report/Styles/ReportStyle.css" rel="stylesheet" />
+    <link href="~/Scripts/Expand-Collapse.css" rel="stylesheet" />
+    <link href="~/Content/src/share/modules/globalApp/styles/leftsidenav.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://unpkg.com/ag-grid/dist/styles/ag-grid.css">
+    <link rel="stylesheet" href="https://unpkg.com/ag-grid/dist/styles/ag-theme-balham.css">
+}
+<div layout="row" flex ng-controller="LeftCtrl" class="customiz-side-nav">
+    <md-sidenav class="md-sidenav-left panel-sidenav"
+                md-component-id="left"
+                md-is-locked-open="$mdMedia('gt-lg')"
+                md-disable-backdrop
+                md-whiteframe="4"
+                >
+        <md-content class="content-sidenav">
+
+            <md-subheader class="md-primary sidenav-header"><span translate="exective"></span></md-subheader>
+            <md-list-item ng-href="{{leftMenu.url}}" ng-repeat="leftMenu in leftMenusForExective" ng-class="{ active_list: isActive(leftMenu.url) }" class="list-no-margin">
+                <i class="material-icons">{{leftMenu.icon}}</i>
+                <p> {{ leftMenu.name }} </p>
+                <div ng-show="isActive(leftMenu.url)"></div>
+            </md-list-item>
+            <md-divider></md-divider>
+
+            <md-subheader class="md-primary sidenav-header"><span translate="sales"></span></md-subheader>
+            <md-list-item ng-href="{{leftMenu.url}}" ng-repeat="leftMenu in leftMenusForSale" ng-class="{ active_list: isActive(leftMenu.url) }" class="list-no-margin">
+                <i class="material-icons">{{leftMenu.icon}}</i>
+                <p> {{ leftMenu.name }} </p>
+                <div ng-show="isActive(leftMenu.url)"></div>
+            </md-list-item>
+            <md-divider></md-divider>
+
+            <md-subheader class="md-primary sidenav-header"><span translate="targetActual"></span></md-subheader>
+            <md-list-item ng-href="{{leftMenu.url}}" ng-repeat="leftMenu in leftMenusVsTarget" ng-class="{ active_list: isActive(leftMenu.url) }" class="list-no-margin">
+                <i style="padding-left:10px; margin-right:10px; color:#757575;" class="material-icons">{{leftMenu.icon}}</i>
+                <p style="padding-top:10px;"> {{ leftMenu.name }} </p>
+                <div ng-show="isActive(leftMenu.url)"></div>
+            </md-list-item>
+            <md-divider></md-divider>
+
+            <md-subheader class="md-primary sidenav-header"><span translate="marketing"></span></md-subheader>
+            <md-list-item ng-href="{{leftMenu.url}}" ng-repeat="leftMenu in leftMenusForMarketing" ng-class="{ active_list: isActive(leftMenu.url) }" class="list-no-margin">
+                <i class="material-icons">{{leftMenu.icon}}</i>
+                <p> {{ leftMenu.name }} </p>
+                <div ng-show="isActive(leftMenu.url)"></div>
+            </md-list-item>
+            <md-divider></md-divider>
+
+            <md-subheader class="md-primary sidenav-header"><span translate="accounting"></span></md-subheader>
+            <md-list-item ng-href="{{leftMenu.url}}" ng-repeat="leftMenu in leftMenusForAccounting" ng-class="{ active_list: isActive(leftMenu.url) }" class="list-no-margin">
+                <i class="material-icons">{{leftMenu.icon}}</i>
+                <p> {{ leftMenu.name }} </p>
+                <div ng-show="isActive(leftMenu.url)"></div>
+            </md-list-item>
+            <md-divider></md-divider>
+
+            <md-subheader class="md-primary sidenav-header"><span translate="other"></span></md-subheader>
+            <md-list-item ng-href="{{leftMenu.url}}" ng-repeat="leftMenu in leftMenusForAnother" ng-class="{ active_list: isActive(leftMenu.url) }" class="list-no-margin">
+                <i class="material-icons">{{leftMenu.icon}}</i>
+                <p> {{ leftMenu.name }} </p>
+                <div ng-show="isActive(leftMenu.url)"></div>
+            </md-list-item>
+        </md-content>
+    </md-sidenav>
+    <md-content flex layout="column" class="bg">
+        <section id="section-to-print">
+            <global-filter options="myObject" sheet-action="getDataSheetAction(returnAction)" change-filter="changeGlobalFilter(returnFilter)"></global-filter>
+            <div id="content-view" ng-view flex layout="column"></div>
+        </section>
+    </md-content>
+    <md-button class="md-icon-button md-primary md-raised show-sidenav-button" aria-label="show sidebar" hide-gt-lg ng-click="toggleLeft()">
+        <md-icon md-svg-icon="navigation:menu" style="margin-top:0px;"></md-icon>
+    </md-button>
+    <md-button class="md-icon-button md-primary md-raised hide-sidenav-button" aria-label="show sidebar" ng-show="checkifOpen()" ng-click="toggleLeft()">
+        <md-icon md-svg-icon="navigation:chevron_left"></md-icon>
+    </md-button>
+</div>

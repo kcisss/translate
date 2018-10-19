@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.Title = "รายงานติดตามการขาย";
+    ViewBag.NgApp = "PivotAnalysisApp";
+
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+}
+@section IncludeCSS {
+    @Styles.Render(
+       "~/bundles/css/daterangepicker",
+       "~/bundles/Style/PivotTable"
+    )
+    <link rel="stylesheet" href="/Styles/css/POSStyle.css" />
+    <link href="~/Content/src/modules/Common/PivotAnalysis/PivotAnlysisStyle.css" rel="stylesheet" />
+    <style>
+        body {
+        }
+
+        .ui-grid-header-cell-wrapper {
+            height: 30px;
+        }
+    </style>
+}
+@section IncludeScripts{
+    @Scripts.Render(
+        "~/bundles/daterangepicker",
+        "~/bundles/Script/PivotTable",
+        "~/bundles/Common/PivotAnalysis/SaleTracking",
+        "~/bundles/master-project",
+        "~/bundles/master-worker",
+        "~/bundles/config"
+    )
+}
+<div ng-controller="SaleTrackingMainCtrl" window-resize>
+    
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-body">
+                    <i class="big-icon fa pull-left fa-spinner text-pink fa-pulse" style="margin-top: 2px;"></i>
+                    <p style="margin-top: 3px; padding-left: 53px;">{{loadMsg}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

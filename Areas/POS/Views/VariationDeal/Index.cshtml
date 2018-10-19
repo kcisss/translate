@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "POS VariationDeal";
+    ViewBag.NgApp = "VariationDealApp";
+    Layout = "~/Views/Shared/_AllNewMasterLayout.cshtml";
+}
+
+@section IncludeScripts{
+    <script src="~/Scripts/ngPrint/ngPrint.js"></script>
+
+    <script src="~/Content/src/modules/POS/VariationDeal/VariationDealApp.js"></script>
+    <script src="~/Content/src/modules/POS/VariationDeal/VariationDealCtrl.js"></script>
+    <script src="~/Content/src/modules/POS/VariationDeal/VariationDealServ.js"></script>
+}
+
+@section IncludeCSS {
+    <link href="~/Styles/css/CustomerList.css" rel="stylesheet" />
+    <link href="~/Scripts/Expand-Collapse.css" rel="stylesheet" />
+<link href="~/Content/src/modules/POS/Report/Styles/ReportStyle.css" rel="stylesheet" />
+ 
+    <style>
+        button, select, html, textarea, input {
+            font-family: 'sukhumvit-medium', Fallback, sans-serif;
+        }
+    </style>
+}
+
+<div ng-view></div>

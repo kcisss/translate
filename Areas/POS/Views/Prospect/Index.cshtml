@@ -1,0 +1,69 @@
+﻿@{
+    ViewBag.Title = "POS - Prospect";
+    ViewBag.NgApp = "ProspectApp";
+    Layout = "~/Views/Shared/_AllNewMasterLayout.cshtml";
+}
+
+@section IncludeScripts{
+    <script src="~/Scripts/angular-count-to.min.js"></script>
+    <script src="~/Scripts/angular-filter.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+    <script src="~/Scripts/pdf.js"></script>
+    <script src="~/Scripts/angular-pdf-viewer.min.js"></script>
+    <script src="~/Scripts/tinymce/js/tinymce/jquery.tinymce.min.js"></script>
+    <script src="~/Scripts/tinymce/js/tinymce/tinymce.min.js"></script>
+    <script src="~/Scripts/tinymce/ui-tinymce.min.js"></script>
+    <script src="~/Scripts/ngPrint/ngPrint.js"></script>
+    <script src="~/Scripts/froala/angular-froala.js"></script>
+    <script src="~/Scripts/xlsx/xlsx.core.min.js"></script>
+    <script src="~/Scripts/xlsx/Blob.js"></script>
+    <script src="~/Scripts/xlsx/FileSaver.js"></script>
+
+    @*Global Filter Include*@
+    <script src="~/Content/src/share/modules/globalApp/globalFilter/globalFilterEnum.js"></script>
+    <script src="~/Content/src/share/modules/globalApp/globalFilter/globalFilterService.js"></script>
+    <script src="~/Content/src/share/modules/globalApp/globalFilter/globalFilterClientService.js"></script>
+    <script src="~/Content/src/share/modules/globalApp/globalFilter/globalFilterController.js"></script>
+
+    @*POS Global App*@
+    <script src="~/Content/src/modules/POS/Share/scripts/app.js"></script>
+    <script src="~/Content/src/modules/POS/Share/scripts/PCDetailCtrl.js"></script>
+    <script src="~/Content/src/modules/POS/Share/scripts/DialogController.js"></script>
+    <script src="~/Content/src/modules/POS/Share/scripts/PaymentListController.js"></script>
+    <script src="~/Content/src/modules/POS/Share/scripts/doingQuestionnaireCtrl.js"></script>
+    <script src="~/Content/src/modules/POS/Share/scripts/CancelController.js"></script>
+    <script src="~/Content/src/modules/POS/Share/scripts/ChangingController.js"></script>
+    <script src="~/Content/src/modules/POS/Share/scripts/AttachController.js"></script>
+    <script src="~/Content/src/modules/POS/Share/scripts/printController.js"></script>
+    <script src="~/Content/src/modules/POS/Share/scripts/ContractCtrl.js"></script>
+    <script src="~/Content/src/modules/POS/Share/scripts/serv.js"></script>
+    <script src="~/Content/src/modules/POS/Share/scripts/serv2.js"></script>
+    <script src="~/Content/src/ploy/BankList.js"></script>
+    <script src="~/Content/src/modules/POS/Share/scripts/addActivityController.js"></script>
+    <script src="~/Content/src/modules/POS/Share/scripts/addNoteController.js"></script>
+    <script src="~/Content/src/modules/POS/Share/scripts/customerEditFormController.js"></script>
+    <script src="~/Content/src/modules/POS/Share/scripts/documentDialogController.js"></script>
+    <script src="~/Content/src/modules/POS/Share/scripts/GridBottomSheetCtrl.js"></script>
+    <script src="~/Content/src/modules/POS/Share/scripts/ChangeUnitDialogCtrl.js"></script>
+    <script src="~/Content/src/modules/POS/Share/scripts/leadFormDialogController.js"></script>
+    <script src="~/Content/src/modules/POS/Share/scripts/PlanDialogCustomerDetailCtrl.js"></script>
+    <script src="~/Content/src/modules/POS/Share/scripts/AddQuotationLineController.js"></script>
+    <script src="~/Content/src/modules/POS/Share/scripts/SelectPlanDialogCtrl.js"></script>
+
+    @*Customer Module App*@
+    <script src="~/Content/src/modules/POS/Prospect/scripts/ProspectApp.js"></script>
+    <script src="~/Content/src/modules/POS/Prospect/scripts/ProspectServ.js"></script>
+    <script src="~/Content/src/modules/POS/Prospect/scripts/ProspectRoute.js"></script>
+    <script src="~/Content/src/modules/POS/Prospect/scripts/ProspectCtrl.js"></script>
+}
+
+@section IncludeCSS {
+    <link href="~/Styles/css/CustomerList.css" rel="stylesheet" />
+    <link href="~/Scripts/froala/font-awesome.css" rel="stylesheet" />
+    <link href="~/Scripts/froala/froala_editor.css" rel="stylesheet" />
+    <link href="~/Scripts/froala/froala_style.css" rel="stylesheet" />
+    <link href="~/Scripts/froala/file.css" rel="stylesheet" />
+    <link href="~/Content/src/modules/POS/Unit/Styles/StyleSheet.css" rel="stylesheet" />
+    <link href="~/Content/src/modules/POS/Unit/Styles/Act.css" rel="stylesheet" />
+}
+<div ng-view flex layout="column"></div>

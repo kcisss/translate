@@ -1,0 +1,96 @@
+﻿<div ng-controller="issueFormCtrl" >
+<style type="text/css">
+    body {
+        overflow: hidden;
+    }
+</style>
+    <!-- <span>{{msg}}</span>
+    <span>{{param|json}}</span>-->
+    <md-toolbar class="md-theme-pink" scroll-shrink="" style="transform: translate3d(0px, 0px, 0px);">
+
+    <div class="md-toolbar-tools">
+        <h3>
+        <span><img alt="Ploy" src="/Styles/images/ployicon.png"></span>
+        </h3>
+    </div>
+    </md-toolbar>
+    <md-content content-padding set-height="1" class="scroll-content-ver">
+    <md-subheader>
+    <!--{{project.Name}}-->
+    <div >
+        {{project.Name}}
+
+    </div>
+
+
+    <div >
+        <div class="pull-left mrm"><label><span translate="stageName"></span> :</label>
+
+        <span  ng-bind="IssueForm.StageName"></span>
+
+    </div>
+    <div class="pull-left mrm"><label><span translate="unitCode"></span> :</label>
+    <a href="#!/{{param.projectId}}/unit/{{param.unitId}}">
+    <span ng-bind="IssueForm.REUnitCode"></span>
+    </a>
+</div>
+<div class="pull-left mrm"><label><span translate="unitName"></span> :</label> <span ng-bind="IssueForm.REUnitName"></span></div>
+<!-- <label>date :</label><input type="text" ng-model="obj.date" name="date" bs-datepicker data-date-format="dd/MM/yyyy" type="text" />
+<label>date :</label><input type="text" ng-model="obj.date2" name="date" bs-datepicker data-date-format="dd/MM/yyyy" type="text" />-->
+</div>
+<div class="pull-right liftxl">
+<a class="btn btn-info mtl" href="#!/{{param.projectId}}/unit/{{param.unitId}}"> <i class="fa fa-arrow-left mrm"></i>  <span translate="backUnit"></span></a>
+</div>
+</md-subheader>
+
+<div>
+    <table class="table table-hover" style="background: #fff;">
+        <thead>
+            <tr style="font-size : 22px;" class="bg-grayE">
+                <th class="pll" translate="code"></th>
+                <th translate="Name"></th>
+                <th translate="description"></th>
+                <th translate="addEditProb"></th>
+                <th></th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat-start="line in issueFormLineList  " style="background: #c8c8a9;">
+                <td class="pll">{{line.parent.WbsCode}}</td>
+                <td>{{line.parent.WbsName}}</td>
+                <td>{{line.parent.Description}}</td>
+                <td></td>
+                <td></td>
+            </tr>
+
+            <tr ng-repeat-start="child in line.children" style="background:#efefef;">
+                <td class="pll">{{child.WbsCode}}</td>
+                <td>{{child.WbsName}}</td>
+                <td>{{child.Description}}</td>
+                <td><span ng-click="AddChild(line.parent,child,$index)"><span class="fa fa-plus-circle"></span></span></td>
+                <td></td>
+            </tr>
+            <tr ng-repeat-end ng-repeat ="issue in child.IssueList" class="pll" >
+                <td class="pll"> <i class="fa" ng-class="{
+                            'fa-signal':issue.Type == 0,
+                            'fa-warning' : issue.Type == 1,
+                            'fa-thumbs-o-up' : issue.Type == 2,
+                            'fa-question-circle' : issue.Type == 3,
+                            'fa-times-circle' : issue.Type == 4
+                            }"></i> {{issue.WbsCode}}</td>
+                <td>{{issue.Subject}}</td>
+                <td>{{issue.Note}}</td>
+                <td><span ng-click="EditIssue(issue,child,$index)"><span class="fa fa-edit"></span></span></td>
+                <td><span ng-click="DeleteIssue(issue,child,$index)"><span class="fa fa-trash"></span></span></td>
+            </tr>
+        <tr ng-repeat-end></tr>
+
+    </tbody>
+</table>
+</div>
+
+</md-content>
+
+
+</div>

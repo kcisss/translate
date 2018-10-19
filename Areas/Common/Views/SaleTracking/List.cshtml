@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "รายงานติดตามการขาย";
+    ViewBag.NgApp = "PivotAnalysisApp";
+
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+}
+
+@section IncludeCSS {
+    @Styles.Render(
+        "~/bundles/style/ui-grid"
+    )
+    <link rel="stylesheet" href="/Styles/css/POSStyle.css" />
+    <style>
+        body {
+        }
+    </style>
+}
+@section IncludeScripts{
+    @Scripts.Render(
+        "~/bundles/Common/PivotAnalysis/SaleTracking",
+        "~/bundles/master-worker",
+        "~/bundles/master-project" 
+    )
+}
+<div ng-controller="SaleTrackingListCtrl">
+  
+</div>

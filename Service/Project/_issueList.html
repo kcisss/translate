@@ -1,0 +1,105 @@
+﻿<!-- File name : issueList.html -->
+<div ng-controller="issueListCtrl">
+    <style type="text/css">
+        body {
+            overflow: hidden;
+        }
+    </style>
+    <md-content set-height="1" class="no-scroll">
+    <md-subheader>
+    <!-- {{project.Name}}-->
+    <div>
+        <a href="/Service/ProjectList/" class="text-pink mrm" style="position: relative; z-index: 90; font-size:25px; top:auto; cursor: pointer">โครงการ</a>
+        <a bs-dropdown="DropdownProjectList" style="position:relative;z-index:90;top:auto; cursor:pointer" class="mrm">{{project.Name}} <i class="fa fa-sort-desc"></i></a>
+
+    </div>
+    <a class="logo bg-pink pal show-on-stick" href="/Service/ProjectList/">
+    <img alt="Ploy" src="/Styles/images/ployicon.png">
+    </a>
+    <div class="pull-right">
+        <a href="/service/project/#!/{{param.projectId}}" class="text-gray5 bg-grayE switch-view" data-placement="bottom">
+        <md-tooltip>
+        <span translate="unitView"></span>
+        </md-tooltip>
+        <i class="fa fa-list"></i>
+        </a>
+        <a href="/service/project/#!/{{param.projectId}}/wbs"  class="text-gray5 bg-grayE switch-view " = data-placement="bottom">
+        <md-tooltip>
+        <span translate="viewWbs"></span>
+        </md-tooltip>
+        <i class="fa fa-table"></i>
+        </a>
+        <a href="/service/project/#!/{{param.projectId}}/issue"  class="active bg-grayE switch-view"=data-placement="bottom">
+        <md-tooltip>
+        <span translate="issueView"></span>
+        </md-tooltip>
+        <i class="fa fa-exclamation-circle"></i>
+        </a>
+    </div>
+    <div class="pull-right mrl" style="height:30px;margin-top:-8px;">
+        <a class="btn btn-bgcolor  switch-view" style="padding:5px 20px" ng-click="plan()"><span translate="plan2"></span></a>
+        <a  class="btn btn-success  switch-view" style="padding:5px 20px" ng-click="finish()"><span translate="succeed"></span></a>
+    </div>
+    </md-subheader>
+    <div id="main-content">
+     <style type="text/css">
+               table {
+                 table-layout: fixed;
+               }
+                
+    </style>
+        <div class="scroll-content-hor" set-height="100">
+            <table>
+                <tr>
+                    <td>
+                        <table class="table mb0 table-indent line-top" style="background: #fff;">
+                            <tr style="font-size : 22px;" class="bg-grayE">
+                                <th style="width:25%;"  class="line-right"><a href=""  ng-click="predicate = 'Subject'; reverse=!reverse"><span translate="issue"></span></a></th>
+                                <th style="width:15%;" class="line-right"><a href=""  ng-click="predicate = 'WbsName'; reverse=!reverse">WBS</a></th>
+                                <th class="line-right"><a href=""  ng-click="predicate = 'REUnitCode'; reverse=!reverse"><span translate="unit"></span></a></th>
+                                <th class="line-right"><a href=""  ng-click="predicate = 'Note'; reverse=!reverse"><span translate="description"></span></a></th>
+                                <th class="line-right"><a href=""  ng-click="predicate = 'AssignToContractor'; reverse=!reverse"><span translate="assignTo"></span></a></th>
+                                <th class="line-right"><a href=""  ng-click="predicate = 'DueDate'; reverse=!reverse"><span translate="deadLine"></span></a></th>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div set-height="160" class="scroll-content-ver">
+                            <table class="table table-indent line-top" style="background: #fff;">
+                                <tr ng-repeat="s in IssueList |orderBy:predicate:reverse" >
+
+                                    <td style="width:25%;" class="text-lg">
+                                        
+                                        <input id="checkSlave" type="checkbox"  ng-model="s.IsDone" ng-click="pressFinish(s)"> {{s.Subject}}
+
+                                    </td>
+                                    <td style="width:15%;">
+                                        {{s.WbsName}}
+                                    </td>
+                                    <td >
+                                        {{s.REUnitCode}}
+                                    </td>
+                                    <td >
+                                        {{s.Note}}
+                                    </td>
+                                    <td >
+                                        {{s.AssignToContractor}}
+                                    </td>
+                                    <td >
+                                        <input class="md-input" ng-model="s.DueDate" name="date" bs-datepicker autoclose="true" data-date-format="dd/MM/yyyy" type="text" ng-change="SaveDate(s)">
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+
+
+    </div>
+    </md-content>
+</div>

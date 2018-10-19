@@ -1,0 +1,1321 @@
+﻿<div style="position:absolute;right:16px;top:70px;" layout="row" layout-align="center start">
+    <md-button class="md-fab md-primary" aria-label="Eat cake" ng-click="saveAndUpdateIssue('save')">
+        <md-icon md-svg-src="content:add"></md-icon>
+    </md-button>
+</div>
+<div style="position:absolute;right:16px;top:138px;" layout="row" layout-align="center start">
+    <md-button class="md-fab md-accent" aria-label="Eat cake" ng-click="export()">
+        <md-icon md-svg-src="file:file_download"></md-icon>
+    </md-button>
+</div>
+
+<section layout="row" flex>
+    <md-sidenav class="md-sidenav-left"
+                md-component-id="left"
+                md-is-locked-open="$mdMedia('gt-md')"
+                md-whiteframe="4">
+        <md-content class="style-3">
+            <div>
+                <div class="md-padding" style="background-color:#fafafa;font-size:14px;color:rgba(0,0,0,0.54);">
+                    <span translate="caretaker"></span>
+                </div>
+                <div style="padding:0px 16px 0px 16px;">
+                    <md-select ng-model="search.worker" aria-label="worker">
+                        <md-option ng-value="null"><span translate="eCaretaker"></span></md-option>
+                        <md-option ng-repeat="worker in workers" ng-value="worker.Id">
+                            {{worker.Name}}
+                        </md-option>
+                    </md-select>
+                </div>
+            </div>
+            <div>
+                <div class="md-padding" style="background-color:#fafafa;font-size:14px;color:rgba(0,0,0,0.54);">
+                    <span>WorkFlow</span>
+                </div>
+                <div style="padding:0px 16px 0px 16px;">
+                    <md-select ng-model="search.workFlow" aria-label="workFlow">
+                        <md-option ng-value="null">ทุก WorkFlow</md-option>
+                        <md-option ng-repeat="workFlow in workFlows.WorkStages" ng-value="workFlow.Id">
+                            {{workFlow.Name}}
+                        </md-option>
+                    </md-select>
+                </div>
+            </div>
+            <div>
+                <div class="md-padding" style="background-color:#fafafa;font-size:14px;color:rgba(0,0,0,0.54);">
+                    <span>WBS</span>
+                </div>
+                <div style="padding:0px 16px 0px 16px;">
+                    <md-select ng-model="search.WBS" aria-label="workFlow" ng-change="selectWBS()">
+                        <md-option ng-value="null">ทุก WBS</md-option>
+                        <md-option ng-repeat="WBSitem in WBS" ng-value="WBSitem.Id">
+                            {{WBSitem.Name}}
+                        </md-option>
+                    </md-select>
+                </div>
+                <div style="padding:0px 16px 0px 16px;">
+                    <md-select ng-model="search.WBSchildren" aria-label="workFlow" ng-disabled="WBSitem">
+                        <md-option ng-value="null">ทุก WBS Children</md-option>
+                        <md-option ng-repeat="children in WBSChildren" ng-value="children.Id">
+                            {{children.Name}}
+                        </md-option>
+                    </md-select>
+                </div>
+            </div>
+            <div layout="row" layout-align="space-between center" style="padding:0px 16px 0px 16px;">
+                <md-button class="md-raised md-primary" ng-click="back()"><span translate="back"></span></md-button>
+                <md-button class="md-raised md-primary" ng-click="filter()"><span translate="search"></span></md-button>
+            </div>
+        </md-content>
+    </md-sidenav>
+
+    <md-content flex layout="row" class="style-3">
+        <div flex="100" layout-padding layout="column" layout-align="start center">
+            <md-nav-bar md-theme="blue" md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
+                <md-nav-item md-nav-click="goto('1')" name="1"><span translate="backlog"></span></md-nav-item>
+                <md-nav-item md-nav-click="goto('2')" name="2"><span translate="overdue"></span></md-nav-item>
+                <md-nav-item md-nav-click="goto('3')" name="3"><span translate="succeed"></span></md-nav-item>
+                <md-nav-item md-nav-click="goto('4')" name="4"><span translate="all"></span></md-nav-item>
+                <!-- these require actual routing with ui-router or ng-route, so they won't work in the demo
+                <md-nav-item md-nav-sref="app.page4" name="page4">Page Four</md-nav-item>
+                <md-nav-item md-nav-href="#page5" name="page5">Page Five</md-nav-item>
+                -->
+            </md-nav-bar>
+            <div class="ext-content" style="width:100%;">
+                <div ng-if="currentNavItem=='1'">
+                    <md-content class="md-padding">
+                        <div ng-repeat="issue in issueBacklog">
+                            <div layout="row" layout-align="center center" style="padding:16px;">
+                                <md-card style="width:80%;">
+
+                                    <md-card-header>
+                                        <div ng-show="issue.Type=='1'" layout="row" layout-align="center center" style="padding-right:16px;"><md-icon md-svg-src="editor:border_color" aria-label="icon"><md-tooltip>ความคืบหน้า</md-tooltip></md-icon></div>
+                                        <div ng-show="issue.Type=='2'" layout="row" layout-align="center center" style="padding-right:16px;"><md-icon md-svg-src="action:thumb_up" aria-label="icon"><md-tooltip>ดีเยี่ยม</md-tooltip></md-icon></div>
+                                        <div ng-show="issue.Type=='3'" layout="row" layout-align="center center" style="padding-right:16px;"><md-icon md-svg-src="navigation:close" aria-label="icon"><md-tooltip>จุดบกพร่อง</md-tooltip></md-icon></div>
+                                        <div ng-show="issue.Type=='4'" layout="row" layout-align="center center" style="padding-right:16px;"><md-icon md-svg-src="alert:error" aria-label="icon"><md-tooltip>ต้องการแก้ไข</md-tooltip></md-icon></div>
+                                        <div ng-show="issue.Type=='5'" layout="row" layout-align="center center" style="padding-right:16px;"><md-icon md-svg-src="action:input" aria-label="icon"><md-tooltip>ขอข้อมูล</md-tooltip></md-icon></div>
+                                        <md-card-header-text layout="row" layout-align="space-between center">
+                                            <div layout="column">
+                                                <div><span class="md-title">{{issue.Name}}</span></div>
+                                                <div>{{issue.WorkFlowName}}/{{issue.WbsMain}}/{{issue.WbsName}}</div>
+                                                <div class="md-subhead"><span translate="madeBy"></span> {{issue.ContractorName}}</div>
+                                            </div>
+                                            <div layout="column" style="font-size:14px;">
+                                                <div style="position:relative;">
+                                                    <md-button ng-show="commentWID==issue.WorkerId" class="md-icon-button" style="position:absolute;top:-28px;right:32px;" ng-click="saveAndUpdateIssue('edit',issue)">
+                                                        <md-icon md-svg-src="editor:mode_edit" aria-label="icon">
+                                                            <md-tooltip><span translate="solvingProblems"></span></md-tooltip>
+                                                    </md-button>
+                                                    <md-button ng-show="commentWID==issue.WorkerId" class="md-icon-button" style="position:absolute;top:-28px;right:0px;" ng-click="showConfirmDelete($event,$index,issue.Id)">
+                                                        <md-icon md-svg-src="action:delete" aria-label="icon">
+                                                            <md-tooltip><span translate="removeProblems"></span></md-tooltip>
+                                                    </md-button>
+                                                </div>
+                                                <div layout="column" layout-align="center end" style="position:relative;top:10px;">
+                                                    <div ng-hide="issue.Type=='1' || issue.Type=='2'">{{checkDueDate(issue.Duedate)}} <span style="color:red;">{{dateFromNow(issue.Duedate)}} <md-tooltip>{{dateFormat(issue.Duedate)}}</md-tooltip></span></div>
+                                                    <div style="position:relative;right:16px;">
+                                                        <md-checkbox md-theme="blue" ng-model="successVal" aria-label="Checkbox 2" class="md-primary md-align-top-left" flex ng-click="success(issue)">
+                                                            <span translate="succeed"></span>
+                                                        </md-checkbox>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </md-card-header-text>
+                                    </md-card-header>
+
+                                    <md-divider></md-divider>
+                                    <div class="imgbox">
+                                        <img ng-show="issue.Image==''" ng-src="{{noImg}}" class="md-card-image imgshow" ng-click="showImage($event,issue.Image)">
+                                        <img ng-show="issue.Image!=''" ng-src="{{issue.Image}}" class="md-card-image imgshow" ng-click="showImage($event,issue.Image)">
+                                    </div>
+                                    <md-divider></md-divider>
+                                    <md-card-content layout="column" style="padding:0px;">
+                                        <div layout="row" layout-align="space-between center" style="padding:16px;font-size:14px;">
+                                            <div>
+                                                <md-icon md-svg-src="communication:chat" aria-label="Close dialog"></md-icon>
+                                                <span ng-show="commentList[issue.Id]==null">0</span>
+                                                <span ng-hide="commentList[issue.Id]==null">{{commentList[issue.Id].length}}</span>
+                                            </div>
+                                            <div>
+                                                <span><span translate="addedBy"></span> {{issue.CreateName}} <md-icon md-svg-src="device:access_time" aria-label="Close dialog"></md-icon> <span style="color:#757575">{{dateFromNow(issue.CreateTimeStamp)}}<md-tooltip>{{dateFormat(issue.CreateTimeStamp)}}</md-tooltip></span></span>
+                                            </div>
+                                        </div>
+                                        <div style="background-color:#eeeeee;padding:0px 16px 16px 16px;">
+                                            <div ng-repeat="(key,value) in commentList">
+                                                <div ng-show="key==issue.Id" ng-repeat="comment in value" style="padding:16px 0px 16px 0px;">
+                                                    <div layout="column" style="font-size:14px;">
+                                                        <div layout="row" class="parentOpa">
+                                                            <div flex="10">
+                                                                <img ng-src="{{comment.WorkerImage}}" class="avatar" style="position:absolute;" />
+                                                            </div>
+                                                            <div flex="85">
+                                                                <div style="color:#536DFE;">{{comment.CreateBy}}</div>
+                                                                <div ng-show="comment.check==true" layout="row">
+                                                                    <div flex="90">
+                                                                        <form ng-submit="updateComment(comment.CommentId,comment.Text,$index,issue.Id)">
+                                                                            <md-input-container md-no-float class="md-block" style="margin:0px;">
+                                                                                <input type="text" ng-model="comment.Text" aria-label="text">
+                                                                            </md-input-container>
+                                                                            <div ng-show="comment.Image!=''" style="position:relative;padding:8px 0px 0px 8px;">
+                                                                                <img ng-src="{{comment.Image}}" style="height:150px;cursor:pointer;outline:none;" ng-click="showImage($event,comment.Image)" />
+                                                                                <md-button class="md-icon-button" style="position:absolute;margin-left:-8px;margin-top:-8px;" ng-click="comment.Image=''">
+                                                                                    <md-icon md-svg-src="navigation:close" aria-label="icon">
+                                                                                        <md-tooltip><span translate="deletePhoto"></span></md-tooltip>
+                                                                                    </md-icon>
+                                                                                </md-button>
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
+                                                                    <div ng-show="comment.Image==''" flex="10" layout="row" layout-align="end start">
+                                                                        <div style="position:relative;">
+                                                                            <md-button ngf-select
+                                                                                       ngf-accept="'image/*'"
+                                                                                       ngf-pattern="'image/*'"
+                                                                                       ngf-change="setFirstImg(commentFirstImg[$index],$index)"
+                                                                                       ng-model="commentFirstImg[$index]"
+                                                                                       class="md-icon-button">
+                                                                                <md-icon md-svg-src="image:photo_camera" aria-label="icon">
+                                                                                    <md-tooltip><span translate="uploadPhoto"></span></md-tooltip>
+                                                                            </md-button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div ng-show="comment.check==false">
+                                                                    <span color="#212121;" style="word-break: break-all;">{{comment.Text}}</span>
+                                                                    <div ng-show="comment.Image!=''" style="padding:8px 0px 0px 8px;"><img ng-src="{{comment.Image}}" style="height:150px;cursor:pointer;outline:none;" ng-click="showImage($event,comment.Image)" /></div>
+                                                                </div>
+                                                                <div ng-show="commentFirstImg[$index]!=null" class="box-image" style="padding:16px;">
+                                                                    <img ngf-thumbnail="commentFirstImg[$index] || '/Content/src/modules/Shared/img/noimg.png'" ng-click="showImage($event,commentFirstImg[$index])" class="contain" />
+                                                                </div>
+                                                            </div>
+                                                            <div flex="5" layout="row" layout-align="center start">
+                                                                <md-menu md-position-mode="target-right target" style="position:absolute;">
+                                                                    <md-button ng-click="$mdOpenMenu($event)" ng-show="commentWID==comment.WorkerId" class="md-icon-button opa" aria-label="Open sample menu">
+                                                                        <md-icon md-svg-src="editor:mode_edit" aria-label="icon"></md-icon>
+                                                                    </md-button>
+                                                                    <md-menu-content>
+                                                                        <md-menu-item>
+                                                                            <md-button ng-click="comment.check=!comment.check">
+                                                                                <span translate="modify"></span>...
+                                                                            </md-button>
+                                                                        </md-menu-item>
+                                                                        <md-menu-item>
+                                                                            <md-button ng-click="deleteComment($event,issue.Id,comment.CommentId,$index)">
+                                                                                <span translate="delete"></span>...
+                                                                            </md-button>
+                                                                        </md-menu-item>
+                                                                    </md-menu-content>
+                                                                </md-menu>
+                                                            </div>
+                                                        </div>
+                                                        <div layout="row" style="font-size:13px;">
+                                                            <div flex="10"></div>
+                                                            <div layout="row" flex="90">
+                                                                <div class="hover" ng-click="showReply=true"><span translate="reply"></span></spab></div>
+                                                                <div>&nbsp; &nbsp;·&nbsp; &nbsp;</div>
+                                                                <div style="color:#757575;">{{dateFromNow(comment.dateTime)}} <md-tooltip>{{dateFormat(comment.dateTime)}}</md-tooltip></div>
+                                                                <div ng-show="comment.Count>1" layout="row">
+                                                                    <div>&nbsp; &nbsp;·&nbsp; &nbsp;</div>
+                                                                    <div class="hover" ng-click="showEdited($event,comment.CommentId)"><span translate="revised"></span><md-tooltip><span translate="editHistory"></span></md-tooltip></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div ng-repeat="children in comment.Children" layout="row">
+                                                            <div flex="10" style="border-right:2px solid #BDBDBD;"></div>
+                                                            <div flex="90" style="padding-left:8px;">
+                                                                <div layout="column" style="font-size:14px;">
+                                                                    <div layout="row" class="parentOpa">
+                                                                        <div flex="10">
+                                                                            <img ng-src="{{children.WorkerImage}}" class="avatar" style="position:absolute;" />
+                                                                        </div>
+                                                                        <div flex="85">
+                                                                            <div style="color:#536DFE;">{{children.CreateBy}}</div>
+                                                                            <div ng-show="children.check==true" layout="row">
+                                                                                <div flex="90">
+                                                                                    <form ng-submit="updateSubComment(children.CommentId,children.Text,$parent.$index,$index,issue.Id,comment.CommentLinesId)">
+                                                                                        <md-input-container md-no-float class="md-block" style="margin:0px;">
+                                                                                            <input type="text" ng-model="children.Text" aria-label="text">
+                                                                                        </md-input-container>
+                                                                                        <div ng-show="children.Image!=''" style="position:relative;padding:8px 0px 0px 8px;">
+                                                                                            <img ng-src="{{children.Image}}" style="height:150px;cursor:pointer;outline:none;" ng-click="showImage($event,children.Image)" />
+                                                                                            <md-button class="md-icon-button" style="position:absolute;margin-left:-8px;margin-top:-8px;" ng-click="children.Image=''">
+                                                                                                <md-icon md-svg-src="navigation:close" aria-label="icon">
+                                                                                                    <md-tooltip><span translate="deletePhoto"></span></md-tooltip>
+                                                                                                </md-icon>
+                                                                                            </md-button>
+                                                                                        </div>
+                                                                                    </form>
+                                                                                </div>
+                                                                                <div ng-show="children.Image==''" flex="10" layout="row" layout-align="end start">
+                                                                                    <div style="position:relative;">
+                                                                                        <md-button ngf-select
+                                                                                                   ngf-accept="'image/*'"
+                                                                                                   ngf-pattern="'image/*'"
+                                                                                                   ngf-change="setImgReply(commentSubImgReply[$parent.$index][$index],$parent.$index,$index)"
+                                                                                                   ng-model="commentSubImgReply[$parent.$index][$index]"
+                                                                                                   class="md-icon-button">
+                                                                                            <md-icon md-svg-src="image:photo_camera" aria-label="icon">
+                                                                                                <md-tooltip><span translate="uploadPhoto"></span></md-tooltip>
+                                                                                        </md-button>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                            </div>
+                                                                            <div ng-show="children.check==false">
+                                                                                <span color="#212121;" style="word-break: break-all;">{{children.Text}}</span>
+                                                                                <div ng-show="children.Image!=''" style="padding:8px 0px 0px 8px;"><img ng-src="{{children.Image}}" style="height:150px;cursor:pointer;outline:none;" ng-click="showImage($event,children.Image)" /></div>
+                                                                            </div>
+                                                                            <div ng-show="commentSubImgReply[$parent.$index][$index]!=null" class="box-image" style="padding:16px;">
+                                                                                <img ngf-thumbnail="commentSubImgReply[$parent.$index][$index] || '/Content/src/modules/Shared/img/noimg.png'" ng-click="showImage($event,commentSubImgReply[$parent.$index][$index])" class="contain" />
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div flex="5" layout="row" layout-align="center start">
+                                                                            <md-menu md-position-mode="target-right target" style="position:absolute;">
+                                                                                <md-button ng-click="$mdOpenMenu($event)" ng-show="commentWID==children.WorkerId" class="md-icon-button opa" aria-label="Open sample menu">
+                                                                                    <md-icon md-svg-src="editor:mode_edit" aria-label="icon"></md-icon>
+                                                                                </md-button>
+                                                                                <md-menu-content>
+                                                                                    <md-menu-item>
+                                                                                        <md-button ng-click="children.check=!children.check">
+                                                                                            <span translate="modify"></span>...
+                                                                                        </md-button>
+                                                                                    </md-menu-item>
+                                                                                    <md-menu-item>
+                                                                                        <md-button ng-click="deleteSubComment($event,issue.Id,children.CommentId,$parent.$index,$index)">
+                                                                                            <span translate="delete"></span>...
+                                                                                        </md-button>
+                                                                                    </md-menu-item>
+                                                                                </md-menu-content>
+                                                                            </md-menu>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div layout="row" style="font-size:13px;">
+                                                                    <div flex="10"></div>
+                                                                    <div layout="row" flex="90">
+                                                                        <div style="color:#757575;">{{dateFromNow(children.dateTime)}} <md-tooltip>{{dateFormat(children.dateTime)}}</md-tooltip></div>
+                                                                        <div ng-show="children.Count>1" layout="row">
+                                                                            <div>&nbsp; &nbsp;·&nbsp; &nbsp;</div>
+                                                                            <div class="hover" ng-click="showEdited($event,children.CommentId)"><span translate="revised"></span><md-tooltip><span translate="editHistory"></span></md-tooltip></div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div ng-show="showReply==true" layout="row">
+                                                            <div flex="10"></div>
+                                                            <div flex="90" layout="column">
+                                                                <div layout="row" layout-align="center center" style="padding:16px 0px 16px 0px;">
+                                                                    <div flex="90">
+                                                                        <form ng-submit="addSubComment($index,issue.Id,comment.CommentLinesId)">
+                                                                            <md-input-container md-no-float class="md-block" style="margin:0px;">
+                                                                                <input ng-model="subText[$index]" placeholder="แสดงความคิดเห็น" style="font-size:14px;">
+                                                                            </md-input-container>
+                                                                        </form>
+                                                                    </div>
+                                                                    <div flex="10" layout="row" layout-align="end start">
+                                                                        <div style="position:relative;">
+                                                                            <md-button ngf-select
+                                                                                       ngf-accept="'image/*'"
+                                                                                       ngf-pattern="'image/*'"
+                                                                                       ngf-change="setSubImg(commentSubImg[$index],$index)"
+                                                                                       ng-model="commentSubImg[$index]"
+                                                                                       class="md-icon-button">
+                                                                                <md-icon md-svg-src="image:photo_camera" aria-label="icon">
+                                                                                    <md-tooltip><span translate="uploadPhoto"></span></md-tooltip>
+                                                                            </md-button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div ng-show="commentSubImg[$index]!=null" class="box-image" style="padding:16px;">
+                                                                    <img ngf-thumbnail="commentSubImg[$index] || '/Content/src/modules/Shared/img/noimg.png'" ng-click="showImage($event,commentSubImg[$index])" class="contain" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div flex="100" layout="column">
+                                                <div layout="row" layout-align="center center" style="padding:16px 0px 16px 0px;">
+                                                    <div flex="90">
+                                                        <form ng-submit="addComment($index,issue.Id)">
+                                                            <md-input-container md-no-float class="md-block" style="margin:0px;">
+                                                                <input ng-model="text[$index]" placeholder="แสดงความคิดเห็น" style="font-size:14px;">
+                                                            </md-input-container>
+                                                        </form>
+                                                    </div>
+                                                    <div flex="10" layout="row" layout-align="end start">
+                                                        <div style="position:relative;">
+                                                            <md-button ngf-select
+                                                                       ngf-accept="'image/*'"
+                                                                       ngf-pattern="'image/*'"
+                                                                       ngf-change="setImg(commentImg[$index],$index)"
+                                                                       ng-model="commentImg[$index]"
+                                                                       class="md-icon-button">
+                                                                <md-icon md-svg-src="image:photo_camera" aria-label="icon">
+                                                                    <md-tooltip><span translate="uploadPhoto"></span></md-tooltip>
+                                                            </md-button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div ng-show="commentImg[$index]!=null" class="box-image" style="padding:16px;">
+                                                    <img ngf-thumbnail="commentImg[$index] || '/Content/src/modules/Shared/img/noimg.png'" ng-click="showImage($event,commentImg[$index])" class="contain" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </md-card-content>
+                                </md-card>
+                            </div>
+                        </div>
+                    </md-content>
+                </div>
+                <div ng-if="currentNavItem=='2'">
+                    <md-content class="md-padding">
+                        <div ng-repeat="issue in issueOverdue">
+                            <div layout="row" layout-align="center center" style="padding:16px;">
+                                <md-card style="width:80%;">
+
+                                    <md-card-header>
+                                        <div ng-show="issue.Type=='1'" layout="row" layout-align="center center" style="padding-right:16px;"><md-icon md-svg-src="editor:border_color" aria-label="icon"><md-tooltip><span translate="progress"></span></md-tooltip></md-icon></div>
+                                        <div ng-show="issue.Type=='2'" layout="row" layout-align="center center" style="padding-right:16px;"><md-icon md-svg-src="action:thumb_up" aria-label="icon"><md-tooltip><span translate="great"></span></md-tooltip></md-icon></div>
+                                        <div ng-show="issue.Type=='3'" layout="row" layout-align="center center" style="padding-right:16px;"><md-icon md-svg-src="navigation:close" aria-label="icon"><md-tooltip><span translate="bug"></span></md-tooltip></md-icon></div>
+                                        <div ng-show="issue.Type=='4'" layout="row" layout-align="center center" style="padding-right:16px;"><md-icon md-svg-src="alert:error" aria-label="icon"><md-tooltip><span translate="wantEdit"></span></md-tooltip></md-icon></div>
+                                        <div ng-show="issue.Type=='5'" layout="row" layout-align="center center" style="padding-right:16px;"><md-icon md-svg-src="action:input" aria-label="icon"><md-tooltip><span translate="requestInformation"></span></md-tooltip></md-icon></div>
+                                        <md-card-header-text layout="row" layout-align="space-between center">
+                                            <div layout="column">
+                                                <div><span class="md-title">{{issue.Name}}</span></div>
+                                                <div>{{issue.WorkFlowName}}/{{issue.WbsMain}}/{{issue.WbsName}}</div>
+                                                <div class="md-subhead"><span translate="madeBy"></span> {{issue.ContractorName}}</div>
+                                            </div>
+                                            <div layout="column" style="font-size:14px;">
+                                                <div style="position:relative;">
+                                                    <md-button ng-show="commentWID==issue.WorkerId" class="md-icon-button" style="position:absolute;top:-28px;right:32px;" ng-click="saveAndUpdateIssue('edit',issue)">
+                                                        <md-icon md-svg-src="editor:mode_edit" aria-label="icon">
+                                                            <md-tooltip><span translate="solvingProblems"></span></md-tooltip>
+                                                    </md-button>
+                                                    <md-button ng-show="commentWID==issue.WorkerId" class="md-icon-button" style="position:absolute;top:-28px;right:0px;" ng-click="showConfirmDelete($event,$index,issue.Id)">
+                                                        <md-icon md-svg-src="action:delete" aria-label="icon">
+                                                            <md-tooltip><span translate="removeProblems"></span></md-tooltip>
+                                                    </md-button>
+                                                </div>
+                                                <div layout="column" layout-align="center end" style="position:relative;top:10px;">
+                                                    <div ng-hide="issue.Type=='1' || issue.Type=='2'">{{checkDueDate(issue.Duedate)}} <span style="color:red;">{{dateFromNow(issue.Duedate)}} <md-tooltip>{{dateFormat(issue.Duedate)}}</md-tooltip></span></div>
+                                                    <div style="position:relative;right:16px;">
+                                                        <md-checkbox md-theme="blue" ng-model="successVal" aria-label="Checkbox 2" class="md-primary md-align-top-left" flex ng-click="success(issue)">
+                                                            <span translate="succeed"></span>
+                                                        </md-checkbox>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </md-card-header-text>
+                                    </md-card-header>
+
+                                    <md-divider></md-divider>
+                                    <div class="imgbox">
+                                        <img ng-show="issue.Image==''" ng-src="{{noImg}}" class="md-card-image imgshow" ng-click="showImage($event,issue.Image)">
+                                        <img ng-show="issue.Image!=''" ng-src="{{issue.Image}}" class="md-card-image imgshow" ng-click="showImage($event,issue.Image)">
+                                    </div>
+                                    <md-divider></md-divider>
+                                    <md-card-content layout="column" style="padding:0px;">
+                                        <div layout="row" layout-align="space-between center" style="padding:16px;font-size:14px;">
+                                            <div>
+                                                <md-icon md-svg-src="communication:chat" aria-label="Close dialog"></md-icon>
+                                                <span ng-show="commentList[issue.Id]==null">0</span>
+                                                <span ng-hide="commentList[issue.Id]==null">{{commentList[issue.Id].length}}</span>
+                                            </div>
+                                            <div>
+                                                <span><span translate="addedBy"></span> {{issue.CreateName}} <md-icon md-svg-src="device:access_time" aria-label="Close dialog"></md-icon> <span style="color:#757575">{{dateFromNow(issue.CreateTimeStamp)}}<md-tooltip>{{dateFormat(issue.CreateTimeStamp)}}</md-tooltip></span></span>
+                                            </div>
+                                        </div>
+                                        <div style="background-color:#eeeeee;padding:0px 16px 16px 16px;">
+                                            <div ng-repeat="(key,value) in commentList">
+                                                <div ng-show="key==issue.Id" ng-repeat="comment in value" style="padding:16px 0px 16px 0px;">
+                                                    <div layout="column" style="font-size:14px;">
+                                                        <div layout="row" class="parentOpa">
+                                                            <div flex="10">
+                                                                <img ng-src="{{comment.WorkerImage}}" class="avatar" style="position:absolute;" />
+                                                            </div>
+                                                            <div flex="85">
+                                                                <div style="color:#536DFE;">{{comment.CreateBy}}</div>
+                                                                <div ng-show="comment.check==true" layout="row">
+                                                                    <div flex="90">
+                                                                        <form ng-submit="updateComment(comment.CommentId,comment.Text,$index,issue.Id)">
+                                                                            <md-input-container md-no-float class="md-block" style="margin:0px;">
+                                                                                <input type="text" ng-model="comment.Text" aria-label="text">
+                                                                            </md-input-container>
+                                                                            <div ng-show="comment.Image!=''" style="position:relative;padding:8px 0px 0px 8px;">
+                                                                                <img ng-src="{{comment.Image}}" style="height:150px;cursor:pointer;outline:none;" ng-click="showImage($event,comment.Image)" />
+                                                                                <md-button class="md-icon-button" style="position:absolute;margin-left:-8px;margin-top:-8px;" ng-click="comment.Image=''">
+                                                                                    <md-icon md-svg-src="navigation:close" aria-label="icon">
+                                                                                        <md-tooltip><span translate="deletePhoto"></span></md-tooltip>
+                                                                                    </md-icon>
+                                                                                </md-button>
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
+                                                                    <div ng-show="comment.Image==''" flex="10" layout="row" layout-align="end start">
+                                                                        <div style="position:relative;">
+                                                                            <md-button ngf-select
+                                                                                       ngf-accept="'image/*'"
+                                                                                       ngf-pattern="'image/*'"
+                                                                                       ngf-change="setFirstImg(commentFirstImg[$index],$index)"
+                                                                                       ng-model="commentFirstImg[$index]"
+                                                                                       class="md-icon-button">
+                                                                                <md-icon md-svg-src="image:photo_camera" aria-label="icon">
+                                                                                    <md-tooltip><span translate="uploadPhoto"></span></md-tooltip>
+                                                                            </md-button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div ng-show="comment.check==false">
+                                                                    <span color="#212121;" style="word-break: break-all;">{{comment.Text}}</span>
+                                                                    <div ng-show="comment.Image!=''" style="padding:8px 0px 0px 8px;"><img ng-src="{{comment.Image}}" style="height:150px;cursor:pointer;outline:none;" ng-click="showImage($event,comment.Image)" /></div>
+                                                                </div>
+                                                                <div ng-show="commentFirstImg[$index]!=null" class="box-image" style="padding:16px;">
+                                                                    <img ngf-thumbnail="commentFirstImg[$index] || '/Content/src/modules/Shared/img/noimg.png'" ng-click="showImage($event,commentFirstImg[$index])" class="contain" />
+                                                                </div>
+                                                            </div>
+                                                            <div flex="5" layout="row" layout-align="center start">
+                                                                <md-menu md-position-mode="target-right target" style="position:absolute;">
+                                                                    <md-button ng-click="$mdOpenMenu($event)" ng-show="commentWID==comment.WorkerId" class="md-icon-button opa" aria-label="Open sample menu">
+                                                                        <md-icon md-svg-src="editor:mode_edit" aria-label="icon"></md-icon>
+                                                                    </md-button>
+                                                                    <md-menu-content>
+                                                                        <md-menu-item>
+                                                                            <md-button ng-click="comment.check=!comment.check">
+                                                                                <span translate="modify"></span>...
+                                                                            </md-button>
+                                                                        </md-menu-item>
+                                                                        <md-menu-item>
+                                                                            <md-button ng-click="deleteComment($event,issue.Id,comment.CommentId,$index)">
+                                                                                <span translate="delete"></span>...
+                                                                            </md-button>
+                                                                        </md-menu-item>
+                                                                    </md-menu-content>
+                                                                </md-menu>
+                                                            </div>
+                                                        </div>
+                                                        <div layout="row" style="font-size:13px;">
+                                                            <div flex="10"></div>
+                                                            <div layout="row" flex="90">
+                                                                <div class="hover" ng-click="showReply=true"><span translate="reply"></span></div>
+                                                                <div>&nbsp; &nbsp;·&nbsp; &nbsp;</div>
+                                                                <div style="color:#757575;">{{dateFromNow(comment.dateTime)}} <md-tooltip>{{dateFormat(comment.dateTime)}}</md-tooltip></div>
+                                                                <div ng-show="comment.Count>1" layout="row">
+                                                                    <div>&nbsp; &nbsp;·&nbsp; &nbsp;</div>
+                                                                    <div class="hover" ng-click="showEdited($event,comment.CommentId)"><span translate="revised"></span><md-tooltip><span translate="editHistory"></span></md-tooltip></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div ng-repeat="children in comment.Children" layout="row">
+                                                            <div flex="10" style="border-right:2px solid #BDBDBD;"></div>
+                                                            <div flex="90" style="padding-left:8px;">
+                                                                <div layout="column" style="font-size:14px;">
+                                                                    <div layout="row" class="parentOpa">
+                                                                        <div flex="10">
+                                                                            <img ng-src="{{children.WorkerImage}}" class="avatar" style="position:absolute;" />
+                                                                        </div>
+                                                                        <div flex="85">
+                                                                            <div style="color:#536DFE;">{{children.CreateBy}}</div>
+                                                                            <div ng-show="children.check==true" layout="row">
+                                                                                <div flex="90">
+                                                                                    <form ng-submit="updateSubComment(children.CommentId,children.Text,$parent.$index,$index,issue.Id,comment.CommentLinesId)">
+                                                                                        <md-input-container md-no-float class="md-block" style="margin:0px;">
+                                                                                            <input type="text" ng-model="children.Text" aria-label="text">
+                                                                                        </md-input-container>
+                                                                                        <div ng-show="children.Image!=''" style="position:relative;padding:8px 0px 0px 8px;">
+                                                                                            <img ng-src="{{children.Image}}" style="height:150px;cursor:pointer;outline:none;" ng-click="showImage($event,children.Image)" />
+                                                                                            <md-button class="md-icon-button" style="position:absolute;margin-left:-8px;margin-top:-8px;" ng-click="children.Image=''">
+                                                                                                <md-icon md-svg-src="navigation:close" aria-label="icon">
+                                                                                                    <md-tooltip><span translate="deletePhoto"></span></md-tooltip>
+                                                                                                </md-icon>
+                                                                                            </md-button>
+                                                                                        </div>
+                                                                                    </form>
+                                                                                </div>
+                                                                                <div ng-show="children.Image==''" flex="10" layout="row" layout-align="end start">
+                                                                                    <div style="position:relative;">
+                                                                                        <md-button ngf-select
+                                                                                                   ngf-accept="'image/*'"
+                                                                                                   ngf-pattern="'image/*'"
+                                                                                                   ngf-change="setImgReply(commentSubImgReply[$parent.$index][$index],$parent.$index,$index)"
+                                                                                                   ng-model="commentSubImgReply[$parent.$index][$index]"
+                                                                                                   class="md-icon-button">
+                                                                                            <md-icon md-svg-src="image:photo_camera" aria-label="icon">
+                                                                                                <md-tooltip><span translate="uploadPhoto"></span></md-tooltip>
+                                                                                        </md-button>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                            </div>
+                                                                            <div ng-show="children.check==false">
+                                                                                <span color="#212121;" style="word-break: break-all;">{{children.Text}}</span>
+                                                                                <div ng-show="children.Image!=''" style="padding:8px 0px 0px 8px;"><img ng-src="{{children.Image}}" style="height:150px;cursor:pointer;outline:none;" ng-click="showImage($event,children.Image)" /></div>
+                                                                            </div>
+                                                                            <div ng-show="commentSubImgReply[$parent.$index][$index]!=null" class="box-image" style="padding:16px;">
+                                                                                <img ngf-thumbnail="commentSubImgReply[$parent.$index][$index] || '/Content/src/modules/Shared/img/noimg.png'" ng-click="showImage($event,commentSubImgReply[$parent.$index][$index])" class="contain" />
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div flex="5" layout="row" layout-align="center start">
+                                                                            <md-menu md-position-mode="target-right target" style="position:absolute;">
+                                                                                <md-button ng-click="$mdOpenMenu($event)" ng-show="commentWID==children.WorkerId" class="md-icon-button opa" aria-label="Open sample menu">
+                                                                                    <md-icon md-svg-src="editor:mode_edit" aria-label="icon"></md-icon>
+                                                                                </md-button>
+                                                                                <md-menu-content>
+                                                                                    <md-menu-item>
+                                                                                        <md-button ng-click="children.check=!children.check">
+                                                                                            <span translate="modify"></span>...
+                                                                                        </md-button>
+                                                                                    </md-menu-item>
+                                                                                    <md-menu-item>
+                                                                                        <md-button ng-click="deleteSubComment($event,issue.Id,children.CommentId,$parent.$index,$index)">
+                                                                                            <span translate="delete"></span>...
+                                                                                        </md-button>
+                                                                                    </md-menu-item>
+                                                                                </md-menu-content>
+                                                                            </md-menu>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div layout="row" style="font-size:13px;">
+                                                                    <div flex="10"></div>
+                                                                    <div layout="row" flex="90">
+                                                                        <div style="color:#757575;">{{dateFromNow(children.dateTime)}} <md-tooltip>{{dateFormat(children.dateTime)}}</md-tooltip></div>
+                                                                        <div ng-show="children.Count>1" layout="row">
+                                                                            <div>&nbsp; &nbsp;·&nbsp; &nbsp;</div>
+                                                                            <div class="hover" ng-click="showEdited($event,children.CommentId)"><span translate="revised"></span><md-tooltip><span translate="editHistory"></span></md-tooltip></div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div ng-show="showReply==true" layout="row">
+                                                            <div flex="10"></div>
+                                                            <div flex="90" layout="column">
+                                                                <div layout="row" layout-align="center center" style="padding:16px 0px 16px 0px;">
+                                                                    <div flex="90">
+                                                                        <form ng-submit="addSubComment($index,issue.Id,comment.CommentLinesId)">
+                                                                            <md-input-container md-no-float class="md-block" style="margin:0px;">
+                                                                                <input ng-model="subText[$index]" placeholder="แสดงความคิดเห็น" style="font-size:14px;">
+                                                                            </md-input-container>
+                                                                        </form>
+                                                                    </div>
+                                                                    <div flex="10" layout="row" layout-align="end start">
+                                                                        <div style="position:relative;">
+                                                                            <md-button ngf-select
+                                                                                       ngf-accept="'image/*'"
+                                                                                       ngf-pattern="'image/*'"
+                                                                                       ngf-change="setSubImg(commentSubImg[$index],$index)"
+                                                                                       ng-model="commentSubImg[$index]"
+                                                                                       class="md-icon-button">
+                                                                                <md-icon md-svg-src="image:photo_camera" aria-label="icon">
+                                                                                    <md-tooltip><span translate="uploadPhoto"></span></md-tooltip>
+                                                                            </md-button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div ng-show="commentSubImg[$index]!=null" class="box-image" style="padding:16px;">
+                                                                    <img ngf-thumbnail="commentSubImg[$index] || '/Content/src/modules/Shared/img/noimg.png'" ng-click="showImage($event,commentSubImg[$index])" class="contain" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div flex="100" layout="column">
+                                                <div layout="row" layout-align="center center" style="padding:16px 0px 16px 0px;">
+                                                    <div flex="90">
+                                                        <form ng-submit="addComment($index,issue.Id)">
+                                                            <md-input-container md-no-float class="md-block" style="margin:0px;">
+                                                                <input ng-model="text[$index]" placeholder="แสดงความคิดเห็น" style="font-size:14px;">
+                                                            </md-input-container>
+                                                        </form>
+                                                    </div>
+                                                    <div flex="10" layout="row" layout-align="end start">
+                                                        <div style="position:relative;">
+                                                            <md-button ngf-select
+                                                                       ngf-accept="'image/*'"
+                                                                       ngf-pattern="'image/*'"
+                                                                       ngf-change="setImg(commentImg[$index],$index)"
+                                                                       ng-model="commentImg[$index]"
+                                                                       class="md-icon-button">
+                                                                <md-icon md-svg-src="image:photo_camera" aria-label="icon">
+                                                                    <md-tooltip><span translate="uploadPhoto"></span></md-tooltip>
+                                                            </md-button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div ng-show="commentImg[$index]!=null" class="box-image" style="padding:16px;">
+                                                    <img ngf-thumbnail="commentImg[$index] || '/Content/src/modules/Shared/img/noimg.png'" ng-click="showImage($event,commentImg[$index])" class="contain" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </md-card-content>
+                                </md-card>
+                            </div>
+                        </div>
+                    </md-content>
+
+                </div>
+                <div ng-if="currentNavItem=='3'">
+                    <md-content class="md-padding">
+                        <div ng-repeat="issue in issueSuccesse">
+                            <div layout="row" layout-align="center center" style="padding:16px;">
+                                <md-card style="width:80%;">
+
+                                    <md-card-header>
+                                        <div ng-show="issue.Type=='1'" layout="row" layout-align="center center" style="padding-right:16px;"><md-icon md-svg-src="editor:border_color" aria-label="icon"><md-tooltip><span translate="progress"></span></md-tooltip></md-icon></div>
+                                        <div ng-show="issue.Type=='2'" layout="row" layout-align="center center" style="padding-right:16px;"><md-icon md-svg-src="action:thumb_up" aria-label="icon"><md-tooltip><span translate="great"></span></md-tooltip></md-icon></div>
+                                        <div ng-show="issue.Type=='3'" layout="row" layout-align="center center" style="padding-right:16px;"><md-icon md-svg-src="navigation:close" aria-label="icon"><md-tooltip><span translate="bug"></span></md-tooltip></md-icon></div>
+                                        <div ng-show="issue.Type=='4'" layout="row" layout-align="center center" style="padding-right:16px;"><md-icon md-svg-src="alert:error" aria-label="icon"><md-tooltip><span translate="wantEdit"></span></md-tooltip></md-icon></div>
+                                        <div ng-show="issue.Type=='5'" layout="row" layout-align="center center" style="padding-right:16px;"><md-icon md-svg-src="action:input" aria-label="icon"><md-tooltip><span translate="requestInformation"></span></md-tooltip></md-icon></div>
+                                        <md-card-header-text layout="row" layout-align="space-between center">
+                                            <div layout="column">
+                                                <div><span class="md-title">{{issue.Name}}</span></div>
+                                                <div>{{issue.WorkFlowName}}/{{issue.WbsMain}}/{{issue.WbsName}}</div>
+                                                <div class="md-subhead">ทำโดย {{issue.ContractorName}}</div>
+                                            </div>
+                                            <div layout="column" style="font-size:14px;">
+                                                <div style="position:relative;">
+                                                    <md-button ng-show="commentWID==issue.WorkerId" class="md-icon-button" style="position:absolute;top:-28px;right:0px;" ng-click="showConfirmDelete($event,$index,issue.Id)">
+                                                        <md-icon md-svg-src="action:delete" aria-label="icon">
+                                                            <md-tooltip><span translate="removeProblems"></span></md-tooltip>
+                                                    </md-button>
+                                                </div>
+                                                <div layout="column" layout-align="center end" style="position:relative;top:10px;">
+                                                    <div><span translate="finishWhen"></span> <span style="color:green;">{{dateFromNowSuccess(issue.LastModifiedTimeStamp)}} <md-tooltip>{{dateFormatSuccess(issue.LastModifiedTimeStamp)}}</md-tooltip></span></div>
+                                                </div>
+                                            </div>
+                                        </md-card-header-text>
+                                    </md-card-header>
+
+                                    <md-divider></md-divider>
+                                    <div class="imgbox">
+                                        <img ng-show="issue.Image==''" ng-src="{{noImg}}" class="md-card-image imgshow" ng-click="showImage($event,issue.Image)">
+                                        <img ng-show="issue.Image!=''" ng-src="{{issue.Image}}" class="md-card-image imgshow" ng-click="showImage($event,issue.Image)">
+                                    </div>
+                                    <md-divider></md-divider>
+                                    <md-card-content layout="column" style="padding:0px;">
+                                        <div layout="row" layout-align="space-between center" style="padding:16px;font-size:14px;">
+                                            <div>
+                                                <md-icon md-svg-src="communication:chat" aria-label="Close dialog"></md-icon>
+                                                <span ng-show="commentList[issue.Id]==null">0</span>
+                                                <span ng-hide="commentList[issue.Id]==null">{{commentList[issue.Id].length}}</span>
+                                            </div>
+                                            <div>
+                                                <span><span translate="addedBy"></span> {{issue.CreateName}} <md-icon md-svg-src="device:access_time" aria-label="Close dialog"></md-icon> <span style="color:#757575">{{dateFromNow(issue.CreateTimeStamp)}}<md-tooltip>{{dateFormat(issue.CreateTimeStamp)}}</md-tooltip></span></span>
+                                            </div>
+                                        </div>
+                                        <div style="background-color:#eeeeee;padding:0px 16px 16px 16px;">
+                                            <div ng-repeat="(key,value) in commentList">
+                                                <div ng-show="key==issue.Id" ng-repeat="comment in value" style="padding:16px 0px 16px 0px;">
+                                                    <div layout="column" style="font-size:14px;">
+                                                        <div layout="row" class="parentOpa">
+                                                            <div flex="10">
+                                                                <img ng-src="{{comment.WorkerImage}}" class="avatar" style="position:absolute;" />
+                                                            </div>
+                                                            <div flex="85">
+                                                                <div style="color:#536DFE;">{{comment.CreateBy}}</div>
+                                                                <div ng-show="comment.check==true" layout="row">
+                                                                    <div flex="90">
+                                                                        <form ng-submit="updateComment(comment.CommentId,comment.Text,$index,issue.Id)">
+                                                                            <md-input-container md-no-float class="md-block" style="margin:0px;">
+                                                                                <input type="text" ng-model="comment.Text" aria-label="text">
+                                                                            </md-input-container>
+                                                                            <div ng-show="comment.Image!=''" style="position:relative;padding:8px 0px 0px 8px;">
+                                                                                <img ng-src="{{comment.Image}}" style="height:150px;cursor:pointer;outline:none;" ng-click="showImage($event,comment.Image)" />
+                                                                                <md-button class="md-icon-button" style="position:absolute;margin-left:-8px;margin-top:-8px;" ng-click="comment.Image=''">
+                                                                                    <md-icon md-svg-src="navigation:close" aria-label="icon">
+                                                                                        <md-tooltip><span translate="deletePhoto"></span></md-tooltip>
+                                                                                    </md-icon>
+                                                                                </md-button>
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
+                                                                    <div ng-show="comment.Image==''" flex="10" layout="row" layout-align="end start">
+                                                                        <div style="position:relative;">
+                                                                            <md-button ngf-select
+                                                                                       ngf-accept="'image/*'"
+                                                                                       ngf-pattern="'image/*'"
+                                                                                       ngf-change="setFirstImg(commentFirstImg[$index],$index)"
+                                                                                       ng-model="commentFirstImg[$index]"
+                                                                                       class="md-icon-button">
+                                                                                <md-icon md-svg-src="image:photo_camera" aria-label="icon">
+                                                                                    <md-tooltip><span translate="uploadPhoto"></span></md-tooltip>
+                                                                            </md-button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div ng-show="comment.check==false">
+                                                                    <span color="#212121;" style="word-break: break-all;">{{comment.Text}}</span>
+                                                                    <div ng-show="comment.Image!=''" style="padding:8px 0px 0px 8px;"><img ng-src="{{comment.Image}}" style="height:150px;cursor:pointer;outline:none;" ng-click="showImage($event,comment.Image)" /></div>
+                                                                </div>
+                                                                <div ng-show="commentFirstImg[$index]!=null" class="box-image" style="padding:16px;">
+                                                                    <img ngf-thumbnail="commentFirstImg[$index] || '/Content/src/modules/Shared/img/noimg.png'" ng-click="showImage($event,commentFirstImg[$index])" class="contain" />
+                                                                </div>
+                                                            </div>
+                                                            <div flex="5" layout="row" layout-align="center start">
+                                                                <md-menu md-position-mode="target-right target" style="position:absolute;">
+                                                                    <md-button ng-click="$mdOpenMenu($event)" ng-show="commentWID==comment.WorkerId" class="md-icon-button opa" aria-label="Open sample menu">
+                                                                        <md-icon md-svg-src="editor:mode_edit" aria-label="icon"></md-icon>
+                                                                    </md-button>
+                                                                    <md-menu-content>
+                                                                        <md-menu-item>
+                                                                            <md-button ng-click="comment.check=!comment.check">
+                                                                                <span translate="modify"></span>...
+                                                                            </md-button>
+                                                                        </md-menu-item>
+                                                                        <md-menu-item>
+                                                                            <md-button ng-click="deleteComment($event,issue.Id,comment.CommentId,$index)">
+                                                                                <span translate="delete"></span>...
+                                                                            </md-button>
+                                                                        </md-menu-item>
+                                                                    </md-menu-content>
+                                                                </md-menu>
+                                                            </div>
+                                                        </div>
+                                                        <div layout="row" style="font-size:13px;">
+                                                            <div flex="10"></div>
+                                                            <div layout="row" flex="90">
+                                                                <div class="hover" ng-click="showReply=true"><span translate="reply"></span></div>
+                                                                <div>&nbsp; &nbsp;·&nbsp; &nbsp;</div>
+                                                                <div style="color:#757575;">{{dateFromNow(comment.dateTime)}} <md-tooltip>{{dateFormat(comment.dateTime)}}</md-tooltip></div>
+                                                                <div ng-show="comment.Count>1" layout="row">
+                                                                    <div>&nbsp; &nbsp;·&nbsp; &nbsp;</div>
+                                                                    <div class="hover" ng-click="showEdited($event,comment.CommentId)"><span translate="revised"></span><md-tooltip><span translate="editHistory"></span></md-tooltip></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div ng-repeat="children in comment.Children" layout="row">
+                                                            <div flex="10" style="border-right:2px solid #BDBDBD;"></div>
+                                                            <div flex="90" style="padding-left:8px;">
+                                                                <div layout="column" style="font-size:14px;">
+                                                                    <div layout="row" class="parentOpa">
+                                                                        <div flex="10">
+                                                                            <img ng-src="{{children.WorkerImage}}" class="avatar" style="position:absolute;" />
+                                                                        </div>
+                                                                        <div flex="85">
+                                                                            <div style="color:#536DFE;">{{children.CreateBy}}</div>
+                                                                            <div ng-show="children.check==true" layout="row">
+                                                                                <div flex="90">
+                                                                                    <form ng-submit="updateSubComment(children.CommentId,children.Text,$parent.$index,$index,issue.Id,comment.CommentLinesId)">
+                                                                                        <md-input-container md-no-float class="md-block" style="margin:0px;">
+                                                                                            <input type="text" ng-model="children.Text" aria-label="text">
+                                                                                        </md-input-container>
+                                                                                        <div ng-show="children.Image!=''" style="position:relative;padding:8px 0px 0px 8px;">
+                                                                                            <img ng-src="{{children.Image}}" style="height:150px;cursor:pointer;outline:none;" ng-click="showImage($event,children.Image)" />
+                                                                                            <md-button class="md-icon-button" style="position:absolute;margin-left:-8px;margin-top:-8px;" ng-click="children.Image=''">
+                                                                                                <md-icon md-svg-src="navigation:close" aria-label="icon">
+                                                                                                    <md-tooltip><span translate="deletePhoto"></span></md-tooltip>
+                                                                                                </md-icon>
+                                                                                            </md-button>
+                                                                                        </div>
+                                                                                    </form>
+                                                                                </div>
+                                                                                <div ng-show="children.Image==''" flex="10" layout="row" layout-align="end start">
+                                                                                    <div style="position:relative;">
+                                                                                        <md-button ngf-select
+                                                                                                   ngf-accept="'image/*'"
+                                                                                                   ngf-pattern="'image/*'"
+                                                                                                   ngf-change="setImgReply(commentSubImgReply[$parent.$index][$index],$parent.$index,$index)"
+                                                                                                   ng-model="commentSubImgReply[$parent.$index][$index]"
+                                                                                                   class="md-icon-button">
+                                                                                            <md-icon md-svg-src="image:photo_camera" aria-label="icon">
+                                                                                                <md-tooltip><span translate="uploadPhoto"></span></md-tooltip>
+                                                                                        </md-button>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                            </div>
+                                                                            <div ng-show="children.check==false">
+                                                                                <span color="#212121;" style="word-break: break-all;">{{children.Text}}</span>
+                                                                                <div ng-show="children.Image!=''" style="padding:8px 0px 0px 8px;"><img ng-src="{{children.Image}}" style="height:150px;cursor:pointer;outline:none;" ng-click="showImage($event,children.Image)" /></div>
+                                                                            </div>
+                                                                            <div ng-show="commentSubImgReply[$parent.$index][$index]!=null" class="box-image" style="padding:16px;">
+                                                                                <img ngf-thumbnail="commentSubImgReply[$parent.$index][$index] || '/Content/src/modules/Shared/img/noimg.png'" ng-click="showImage($event,commentSubImgReply[$parent.$index][$index])" class="contain" />
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div flex="5" layout="row" layout-align="center start">
+                                                                            <md-menu md-position-mode="target-right target" style="position:absolute;">
+                                                                                <md-button ng-click="$mdOpenMenu($event)" ng-show="commentWID==children.WorkerId" class="md-icon-button opa" aria-label="Open sample menu">
+                                                                                    <md-icon md-svg-src="editor:mode_edit" aria-label="icon"></md-icon>
+                                                                                </md-button>
+                                                                                <md-menu-content>
+                                                                                    <md-menu-item>
+                                                                                        <md-button ng-click="children.check=!children.check">
+                                                                                            <span translate="modify"></span>...
+                                                                                        </md-button>
+                                                                                    </md-menu-item>
+                                                                                    <md-menu-item>
+                                                                                        <md-button ng-click="deleteSubComment($event,issue.Id,children.CommentId,$parent.$index,$index)">
+                                                                                            <span translate="delete"></span>...
+                                                                                        </md-button>
+                                                                                    </md-menu-item>
+                                                                                </md-menu-content>
+                                                                            </md-menu>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div layout="row" style="font-size:13px;">
+                                                                    <div flex="10"></div>
+                                                                    <div layout="row" flex="90">
+                                                                        <div style="color:#757575;">{{dateFromNow(children.dateTime)}} <md-tooltip>{{dateFormat(children.dateTime)}}</md-tooltip></div>
+                                                                        <div ng-show="children.Count>1" layout="row">
+                                                                            <div>&nbsp; &nbsp;·&nbsp; &nbsp;</div>
+                                                                            <div class="hover" ng-click="showEdited($event,children.CommentId)"><span translate="revised"></span><md-tooltip><span translate="editHistory"></span></md-tooltip></div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div ng-show="showReply==true" layout="row">
+                                                            <div flex="10"></div>
+                                                            <div flex="90" layout="column">
+                                                                <div layout="row" layout-align="center center" style="padding:16px 0px 16px 0px;">
+                                                                    <div flex="90">
+                                                                        <form ng-submit="addSubComment($index,issue.Id,comment.CommentLinesId)">
+                                                                            <md-input-container md-no-float class="md-block" style="margin:0px;">
+                                                                                <input ng-model="subText[$index]" placeholder="แสดงความคิดเห็น" style="font-size:14px;">
+                                                                            </md-input-container>
+                                                                        </form>
+                                                                    </div>
+                                                                    <div flex="10" layout="row" layout-align="end start">
+                                                                        <div style="position:relative;">
+                                                                            <md-button ngf-select
+                                                                                       ngf-accept="'image/*'"
+                                                                                       ngf-pattern="'image/*'"
+                                                                                       ngf-change="setSubImg(commentSubImg[$index],$index)"
+                                                                                       ng-model="commentSubImg[$index]"
+                                                                                       class="md-icon-button">
+                                                                                <md-icon md-svg-src="image:photo_camera" aria-label="icon">
+                                                                                    <md-tooltip><span translate="uploadPhoto"></span></md-tooltip>
+                                                                            </md-button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div ng-show="commentSubImg[$index]!=null" class="box-image" style="padding:16px;">
+                                                                    <img ngf-thumbnail="commentSubImg[$index] || '/Content/src/modules/Shared/img/noimg.png'" ng-click="showImage($event,commentSubImg[$index])" class="contain" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div flex="100" layout="column">
+                                                <div layout="row" layout-align="center center" style="padding:16px 0px 16px 0px;">
+                                                    <div flex="90">
+                                                        <form ng-submit="addComment($index,issue.Id)">
+                                                            <md-input-container md-no-float class="md-block" style="margin:0px;">
+                                                                <input ng-model="text[$index]" placeholder="แสดงความคิดเห็น" style="font-size:14px;">
+                                                            </md-input-container>
+                                                        </form>
+                                                    </div>
+                                                    <div flex="10" layout="row" layout-align="end start">
+                                                        <div style="position:relative;">
+                                                            <md-button ngf-select
+                                                                       ngf-accept="'image/*'"
+                                                                       ngf-pattern="'image/*'"
+                                                                       ngf-change="setImg(commentImg[$index],$index)"
+                                                                       ng-model="commentImg[$index]"
+                                                                       class="md-icon-button">
+                                                                <md-icon md-svg-src="image:photo_camera" aria-label="icon">
+                                                                    <md-tooltip><span translate="uploadPhoto"></span></md-tooltip>
+                                                            </md-button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div ng-show="commentImg[$index]!=null" class="box-image" style="padding:16px;">
+                                                    <img ngf-thumbnail="commentImg[$index] || '/Content/src/modules/Shared/img/noimg.png'" ng-click="showImage($event,commentImg[$index])" class="contain" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </md-card-content>
+                                </md-card>
+                            </div>
+                        </div>
+                    </md-content>
+                </div>
+                <div ng-if="currentNavItem=='4'">
+                    <md-content class="md-padding">
+                        <div ng-repeat="issue in issueList">
+                            <div layout="row" layout-align="center center" style="padding:16px;">
+                                <md-card style="width:80%;">
+
+                                    <md-card-header>
+                                        <div ng-show="issue.Type=='1'" layout="row" layout-align="center center" style="padding-right:16px;"><md-icon md-svg-src="editor:border_color" aria-label="icon"><md-tooltip><span translate="progress"></span></md-tooltip></md-icon></div>
+                                        <div ng-show="issue.Type=='2'" layout="row" layout-align="center center" style="padding-right:16px;"><md-icon md-svg-src="action:thumb_up" aria-label="icon"><md-tooltip><span translate="great"></span></md-tooltip></md-icon></div>
+                                        <div ng-show="issue.Type=='3'" layout="row" layout-align="center center" style="padding-right:16px;"><md-icon md-svg-src="navigation:close" aria-label="icon"><md-tooltip><span translate="bug"></span></md-tooltip></md-icon></div>
+                                        <div ng-show="issue.Type=='4'" layout="row" layout-align="center center" style="padding-right:16px;"><md-icon md-svg-src="alert:error" aria-label="icon"><md-tooltip><span translate="wantEdit"></span></md-tooltip></md-icon></div>
+                                        <div ng-show="issue.Type=='5'" layout="row" layout-align="center center" style="padding-right:16px;"><md-icon md-svg-src="action:input" aria-label="icon"><md-tooltip><span translate="requestInformation"></span></md-tooltip></md-icon></div>
+                                        <md-card-header-text layout="row" layout-align="space-between center">
+                                            <div layout="column">
+                                                <div><span class="md-title">{{issue.Name}}</span></div>
+                                                <div>{{issue.WorkFlowName}}/{{issue.WbsMain}}/{{issue.WbsName}}</div>
+                                                <div class="md-subhead"><span translate="madeBy"></span> {{issue.ContractorName}}</div>
+                                            </div>
+                                            <div layout="column" style="font-size:14px;">
+                                                <div style="position:relative;">
+                                                    <md-button ng-show="commentWID==issue.WorkerId&&issue.Status=='0'" class="md-icon-button" style="position:absolute;top:-28px;right:32px;" ng-click="saveAndUpdateIssue('edit',issue)">
+                                                        <md-icon md-svg-src="editor:mode_edit" aria-label="icon">
+                                                            <md-tooltip><span translate="solvingProblems"></span></md-tooltip>
+                                                    </md-button>
+                                                    <md-button ng-show="commentWID==issue.WorkerId" class="md-icon-button" style="position:absolute;top:-28px;right:0px;" ng-click="showConfirmDelete($event,$index,issue.Id)">
+                                                        <md-icon md-svg-src="action:delete" aria-label="icon">
+                                                            <md-tooltip><span translate="removeProblems"></span></md-tooltip>
+                                                    </md-button>
+                                                </div>
+                                                <div ng-show="issue.Status=='0'" layout="column" layout-align="center end" style="position:relative;top:10px;">
+                                                    <div ng-hide="issue.Type=='1' || issue.Type=='2'">{{checkDueDate(issue.Duedate)}} <span style="color:red;">{{dateFromNow(issue.Duedate)}} <md-tooltip>{{dateFormat(issue.Duedate)}}</md-tooltip></span></div>
+                                                    <div style="position:relative;right:16px;">
+                                                        <md-checkbox md-theme="blue" ng-model="successVal" aria-label="Checkbox 2" class="md-primary md-align-top-left" flex ng-click="success(issue)">
+                                                            <span translate="succeed"></span>
+                                                        </md-checkbox>
+                                                    </div>
+                                                </div>
+                                                <div ng-show="issue.Status=='1'" layout="column" layout-align="center end" style="position:relative;top:10px;">
+                                                    <div><span translate="finishWhen"></span> <span style="color:green;">{{dateFromNowSuccess(issue.LastModifiedTimeStamp)}} <md-tooltip>{{dateFormatSuccess(issue.LastModifiedTimeStamp)}}</md-tooltip></span></div>
+                                                </div>
+                                            </div>
+                                        </md-card-header-text>
+                                    </md-card-header>
+
+                                    <md-divider></md-divider>
+                                    <div class="imgbox">
+                                        <img ng-show="issue.Image==''" ng-src="{{noImg}}" class="md-card-image imgshow" ng-click="showImage($event,issue.Image)">
+                                        <img ng-show="issue.Image!=''" ng-src="{{issue.Image}}" class="md-card-image imgshow" ng-click="showImage($event,issue.Image)">
+                                    </div>
+                                    <md-divider></md-divider>
+                                    <md-card-content layout="column" style="padding:0px;">
+                                        <div layout="row" layout-align="space-between center" style="padding:16px;font-size:14px;">
+                                            <div>
+                                                <md-icon md-svg-src="communication:chat" aria-label="Close dialog"></md-icon>
+                                                <span ng-show="commentList[issue.Id]==null">0</span>
+                                                <span ng-hide="commentList[issue.Id]==null">{{commentList[issue.Id].length}}</span>
+                                            </div>
+                                            <div>
+                                                <span><span translate="addedBy"></span> {{issue.CreateName}} <md-icon md-svg-src="device:access_time" aria-label="Close dialog"></md-icon> <span style="color:#757575">{{dateFromNow(issue.CreateTimeStamp)}}<md-tooltip>{{dateFormat(issue.CreateTimeStamp)}}</md-tooltip></span></span>
+                                            </div>
+                                        </div>
+                                        <div style="background-color:#eeeeee;padding:0px 16px 16px 16px;">
+                                            <div ng-repeat="(key,value) in commentList">
+                                                <div ng-show="key==issue.Id" ng-repeat="comment in value" style="padding:16px 0px 16px 0px;">
+                                                    <div layout="column" style="font-size:14px;">
+                                                        <div layout="row" class="parentOpa">
+                                                            <div flex="10">
+                                                                <img ng-src="{{comment.WorkerImage}}" class="avatar" style="position:absolute;" />
+                                                            </div>
+                                                            <div flex="85">
+                                                                <div style="color:#536DFE;">{{comment.CreateBy}}</div>
+                                                                <div ng-show="comment.check==true" layout="row">
+                                                                    <div flex="90">
+                                                                        <form ng-submit="updateComment(comment.CommentId,comment.Text,$index,issue.Id)">
+                                                                            <md-input-container md-no-float class="md-block" style="margin:0px;">
+                                                                                <input type="text" ng-model="comment.Text" aria-label="text">
+                                                                            </md-input-container>
+                                                                            <div ng-show="comment.Image!=''" style="position:relative;padding:8px 0px 0px 8px;">
+                                                                                <img ng-src="{{comment.Image}}" style="height:150px;cursor:pointer;outline:none;" ng-click="showImage($event,comment.Image)" />
+                                                                                <md-button class="md-icon-button" style="position:absolute;margin-left:-8px;margin-top:-8px;" ng-click="comment.Image=''">
+                                                                                    <md-icon md-svg-src="navigation:close" aria-label="icon">
+                                                                                        <md-tooltip><span translate="deletePhoto"></span></md-tooltip>
+                                                                                    </md-icon>
+                                                                                </md-button>
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
+                                                                    <div ng-show="comment.Image==''" flex="10" layout="row" layout-align="end start">
+                                                                        <div style="position:relative;">
+                                                                            <md-button ngf-select
+                                                                                       ngf-accept="'image/*'"
+                                                                                       ngf-pattern="'image/*'"
+                                                                                       ngf-change="setFirstImg(commentFirstImg[$index],$index)"
+                                                                                       ng-model="commentFirstImg[$index]"
+                                                                                       class="md-icon-button">
+                                                                                <md-icon md-svg-src="image:photo_camera" aria-label="icon">
+                                                                                    <md-tooltip><span translate="uploadPhoto"></span></md-tooltip>
+                                                                            </md-button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div ng-show="comment.check==false">
+                                                                    <span color="#212121;" style="word-break: break-all;">{{comment.Text}}</span>
+                                                                    <div ng-show="comment.Image!=''" style="padding:8px 0px 0px 8px;"><img ng-src="{{comment.Image}}" style="height:150px;cursor:pointer;outline:none;" ng-click="showImage($event,comment.Image)" /></div>
+                                                                </div>
+                                                                <div ng-show="commentFirstImg[$index]!=null" class="box-image" style="padding:16px;">
+                                                                    <img ngf-thumbnail="commentFirstImg[$index] || '/Content/src/modules/Shared/img/noimg.png'" ng-click="showImage($event,commentFirstImg[$index])" class="contain" />
+                                                                </div>
+                                                            </div>
+                                                            <div flex="5" layout="row" layout-align="center start">
+                                                                <md-menu md-position-mode="target-right target" style="position:absolute;">
+                                                                    <md-button ng-click="$mdOpenMenu($event)" ng-show="commentWID==comment.WorkerId" class="md-icon-button opa" aria-label="Open sample menu">
+                                                                        <md-icon md-svg-src="editor:mode_edit" aria-label="icon"></md-icon>
+                                                                    </md-button>
+                                                                    <md-menu-content>
+                                                                        <md-menu-item>
+                                                                            <md-button ng-click="comment.check=!comment.check">
+                                                                                <span translate="modify"></span>...
+                                                                            </md-button>
+                                                                        </md-menu-item>
+                                                                        <md-menu-item>
+                                                                            <md-button ng-click="deleteComment($event,issue.Id,comment.CommentId,$index)">
+                                                                                <span translate="delete"></span>...
+                                                                            </md-button>
+                                                                        </md-menu-item>
+                                                                    </md-menu-content>
+                                                                </md-menu>
+                                                            </div>
+                                                        </div>
+                                                        <div layout="row" style="font-size:13px;">
+                                                            <div flex="10"></div>
+                                                            <div layout="row" flex="90">
+                                                                <div class="hover" ng-click="showReply=true"><span translate="reply"></span></div>
+                                                                <div>&nbsp; &nbsp;·&nbsp; &nbsp;</div>
+                                                                <div style="color:#757575;">{{dateFromNow(comment.dateTime)}} <md-tooltip>{{dateFormat(comment.dateTime)}}</md-tooltip></div>
+                                                                <div ng-show="comment.Count>1" layout="row">
+                                                                    <div>&nbsp; &nbsp;·&nbsp; &nbsp;</div>
+                                                                    <div class="hover" ng-click="showEdited($event,comment.CommentId)"><span translate="revised"></span><md-tooltip><span translate="editHistory"></span></md-tooltip></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div ng-repeat="children in comment.Children" layout="row">
+                                                            <div flex="10" style="border-right:2px solid #BDBDBD;"></div>
+                                                            <div flex="90" style="padding-left:8px;">
+                                                                <div layout="column" style="font-size:14px;">
+                                                                    <div layout="row" class="parentOpa">
+                                                                        <div flex="10">
+                                                                            <img ng-src="{{children.WorkerImage}}" class="avatar" style="position:absolute;" />
+                                                                        </div>
+                                                                        <div flex="85">
+                                                                            <div style="color:#536DFE;">{{children.CreateBy}}</div>
+                                                                            <div ng-show="children.check==true" layout="row">
+                                                                                <div flex="90">
+                                                                                    <form ng-submit="updateSubComment(children.CommentId,children.Text,$parent.$index,$index,issue.Id,comment.CommentLinesId)">
+                                                                                        <md-input-container md-no-float class="md-block" style="margin:0px;">
+                                                                                            <input type="text" ng-model="children.Text" aria-label="text">
+                                                                                        </md-input-container>
+                                                                                        <div ng-show="children.Image!=''" style="position:relative;padding:8px 0px 0px 8px;">
+                                                                                            <img ng-src="{{children.Image}}" style="height:150px;cursor:pointer;outline:none;" ng-click="showImage($event,children.Image)" />
+                                                                                            <md-button class="md-icon-button" style="position:absolute;margin-left:-8px;margin-top:-8px;" ng-click="children.Image=''">
+                                                                                                <md-icon md-svg-src="navigation:close" aria-label="icon">
+                                                                                                    <md-tooltip><span translate="deletePhoto"></span></md-tooltip>
+                                                                                                </md-icon>
+                                                                                            </md-button>
+                                                                                        </div>
+                                                                                    </form>
+                                                                                </div>
+                                                                                <div ng-show="children.Image==''" flex="10" layout="row" layout-align="end start">
+                                                                                    <div style="position:relative;">
+                                                                                        <md-button ngf-select
+                                                                                                   ngf-accept="'image/*'"
+                                                                                                   ngf-pattern="'image/*'"
+                                                                                                   ngf-change="setImgReply(commentSubImgReply[$parent.$index][$index],$parent.$index,$index)"
+                                                                                                   ng-model="commentSubImgReply[$parent.$index][$index]"
+                                                                                                   class="md-icon-button">
+                                                                                            <md-icon md-svg-src="image:photo_camera" aria-label="icon">
+                                                                                                <md-tooltip><span translate="uploadPhoto"></span></md-tooltip>
+                                                                                        </md-button>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                            </div>
+                                                                            <div ng-show="children.check==false">
+                                                                                <span color="#212121;" style="word-break: break-all;">{{children.Text}}</span>
+                                                                                <div ng-show="children.Image!=''" style="padding:8px 0px 0px 8px;"><img ng-src="{{children.Image}}" style="height:150px;cursor:pointer;outline:none;" ng-click="showImage($event,children.Image)" /></div>
+                                                                            </div>
+                                                                            <div ng-show="commentSubImgReply[$parent.$index][$index]!=null" class="box-image" style="padding:16px;">
+                                                                                <img ngf-thumbnail="commentSubImgReply[$parent.$index][$index] || '/Content/src/modules/Shared/img/noimg.png'" ng-click="showImage($event,commentSubImgReply[$parent.$index][$index])" class="contain" />
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div flex="5" layout="row" layout-align="center start">
+                                                                            <md-menu md-position-mode="target-right target" style="position:absolute;">
+                                                                                <md-button ng-click="$mdOpenMenu($event)" ng-show="commentWID==children.WorkerId" class="md-icon-button opa" aria-label="Open sample menu">
+                                                                                    <md-icon md-svg-src="editor:mode_edit" aria-label="icon"></md-icon>
+                                                                                </md-button>
+                                                                                <md-menu-content>
+                                                                                    <md-menu-item>
+                                                                                        <md-button ng-click="children.check=!children.check">
+                                                                                            <span translate="modify"></span>...
+                                                                                        </md-button>
+                                                                                    </md-menu-item>
+                                                                                    <md-menu-item>
+                                                                                        <md-button ng-click="deleteSubComment($event,issue.Id,children.CommentId,$parent.$index,$index)">
+                                                                                            <span translate="delete"></span>...
+                                                                                        </md-button>
+                                                                                    </md-menu-item>
+                                                                                </md-menu-content>
+                                                                            </md-menu>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div layout="row" style="font-size:13px;">
+                                                                    <div flex="10"></div>
+                                                                    <div layout="row" flex="90">
+                                                                        <div style="color:#757575;">{{dateFromNow(children.dateTime)}} <md-tooltip>{{dateFormat(children.dateTime)}}</md-tooltip></div>
+                                                                        <div ng-show="children.Count>1" layout="row">
+                                                                            <div>&nbsp; &nbsp;·&nbsp; &nbsp;</div>
+                                                                            <div class="hover" ng-click="showEdited($event,children.CommentId)"><span translate="revised"></span><md-tooltip><span translate="editHistory"></span></md-tooltip></div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div ng-show="showReply==true" layout="row">
+                                                            <div flex="10"></div>
+                                                            <div flex="90" layout="column">
+                                                                <div layout="row" layout-align="center center" style="padding:16px 0px 16px 0px;">
+                                                                    <div flex="90">
+                                                                        <form ng-submit="addSubComment($index,issue.Id,comment.CommentLinesId)">
+                                                                            <md-input-container md-no-float class="md-block" style="margin:0px;">
+                                                                                <input ng-model="subText[$index]" placeholder="แสดงความคิดเห็น" style="font-size:14px;">
+                                                                            </md-input-container>
+                                                                        </form>
+                                                                    </div>
+                                                                    <div flex="10" layout="row" layout-align="end start">
+                                                                        <div style="position:relative;">
+                                                                            <md-button ngf-select
+                                                                                       ngf-accept="'image/*'"
+                                                                                       ngf-pattern="'image/*'"
+                                                                                       ngf-change="setSubImg(commentSubImg[$index],$index)"
+                                                                                       ng-model="commentSubImg[$index]"
+                                                                                       class="md-icon-button">
+                                                                                <md-icon md-svg-src="image:photo_camera" aria-label="icon">
+                                                                                    <md-tooltip><span translate="uploadPhoto"></span></md-tooltip>
+                                                                            </md-button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div ng-show="commentSubImg[$index]!=null" class="box-image" style="padding:16px;">
+                                                                    <img ngf-thumbnail="commentSubImg[$index] || '/Content/src/modules/Shared/img/noimg.png'" ng-click="showImage($event,commentSubImg[$index])" class="contain" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div flex="100" layout="column">
+                                                <div layout="row" layout-align="center center" style="padding:16px 0px 16px 0px;">
+                                                    <div flex="90">
+                                                        <form ng-submit="addComment($index,issue.Id)">
+                                                            <md-input-container md-no-float class="md-block" style="margin:0px;">
+                                                                <input ng-model="text[$index]" placeholder="แสดงความคิดเห็น" style="font-size:14px;">
+                                                            </md-input-container>
+                                                        </form>
+                                                    </div>
+                                                    <div flex="10" layout="row" layout-align="end start">
+                                                        <div style="position:relative;">
+                                                            <md-button ngf-select
+                                                                       ngf-accept="'image/*'"
+                                                                       ngf-pattern="'image/*'"
+                                                                       ngf-change="setImg(commentImg[$index],$index)"
+                                                                       ng-model="commentImg[$index]"
+                                                                       class="md-icon-button">
+                                                                <md-icon md-svg-src="image:photo_camera" aria-label="icon">
+                                                                    <md-tooltip><span translate="uploadPhoto"></span></md-tooltip>
+                                                            </md-button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div ng-show="commentImg[$index]!=null" class="box-image" style="padding:16px;">
+                                                    <img ngf-thumbnail="commentImg[$index] || '/Content/src/modules/Shared/img/noimg.png'" ng-click="showImage($event,commentImg[$index])" class="contain" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </md-card-content>
+                                </md-card>
+                            </div>
+                        </div>
+                    </md-content>
+                </div>
+            </div>
+        </div>
+    </md-content>
+</section>
+
+<style>
+    .parentOpa:hover .opa {
+        opacity: 1;
+        transition: opacity 0.5s ease;
+    }
+
+    .opa {
+        opacity: 0;
+    }
+
+    .hover {
+        color: #757575;
+        cursor: pointer;
+        outline: none;
+    }
+
+        .hover:hover {
+            text-decoration: underline;
+        }
+
+    .md-menu {
+        padding: 0px;
+    }
+
+    .avatar {
+        flex: none;
+        width: 40px;
+        height: 40px;
+        margin-top: 8px;
+        margin-bottom: 8px;
+        margin-right: 16px;
+        border-radius: 50%;
+        box-sizing: content-box;
+    }
+
+    .imgshow {
+        object-fit: contain;
+        width: 100%;
+        height: 100%;
+        background-color: #FFFFFF;
+        cursor: pointer;
+        outline: none;
+    }
+
+    .imgbox {
+        width: 100%;
+        height: 300px;
+        overflow: visible;
+    }
+
+    md-checkbox {
+        margin-bottom: 0px;
+    }
+
+    md-tabs[md-border-bottom] md-tabs-wrapper {
+        border-style: none;
+    }
+
+    md-input-container .md-errors-spacer {
+        min-height: 0px !important;
+    }
+
+    .contain {
+        width: 150px;
+        height: 150px;
+        object-fit: contain;
+        background-color: #FFFFFF;
+        outline: none;
+        cursor: pointer;
+    }
+
+    .box-image {
+        width: 150px;
+        height: 150px;
+        overflow: visible;
+    }
+
+    .md-nav-bar {
+        border-style: none;
+    }
+</style>

@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = "POS Receipt";
+    ViewBag.NgApp = "ReceiptApp";
+    Layout = "~/Views/Shared/_AllNewMasterLayout.cshtml";
+}
+
+@section IncludeScripts{   
+<script src="~/Content/src/modules/POS/Receipt/scripts/ReceiptApp.js"></script>
+<script src="~/Content/src/modules/POS/Receipt/scripts/ReceiptCtrl.js"></script>
+<script src="~/Content/src/modules/POS/Receipt/scripts/ReceiptServ.js"></script>
+}
+
+@section IncludeCSS {
+}
+ 
+<div ng-view></div>

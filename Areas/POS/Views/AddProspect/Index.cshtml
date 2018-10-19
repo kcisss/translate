@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "POS AddProspect";
+    ViewBag.NgApp = "AddProspectApp";
+    Layout = "~/Views/Shared/_AddProspectMasterLayout.cshtml";
+}
+
+@section IncludeScripts{
+
+    <script src="~/Scripts/moment.min.js"></script>
+    <script src="~/Scripts/angular-count-to.min.js"></script>
+
+    <!-- Module's javascript files. -->
+    <script src="~/Content/src/modules/POS/AddProspect/scripts/app.js"></script>
+    <script src="~/Content/src/modules/POS/AddProspect/scripts/ctrl.js"></script>
+    <script src="~/Content/src/modules/POS/AddProspect/scripts/questionnaire.js"></script>
+    <script src="~/Content/src/modules/POS/AddProspect/scripts/serv.js"></script>
+}
+
+@section IncludeCSS {
+    <link href="~/Content/src/modules/POS/AddProspect/styles/StyleSheet.css" rel="stylesheet" />
+}
+
+<div ng-view flex layout="column"></div>

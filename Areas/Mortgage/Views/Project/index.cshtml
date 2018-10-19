@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.title = "Ploy - Mortgage";
+    ViewBag.NgApp = "MgProjectApp";
+    Layout = "~/Views/Shared/_MortgageMasterLayout.cshtml";
+}
+
+@section IncludeScripts {
+    <script src="~/Scripts/xlsx/xlsx.core.min.js"></script>
+    <script src="~/Scripts/xlsx/FileSaver.js"></script>
+    <script src="~/Scripts/xlsx/Blob.js"></script>
+    <script src="~/Scripts/angular-count-to.min.js"></script>
+    <script src="~/Scripts/angular-local-storage.min.js"></script>
+
+    @* <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>*@
+
+    <script src="~/Scripts/jquery_1_12_2.min.js"></script>
+
+    @*Setting Module App*@
+    <script src="~/Content/src/modules/Mortgage/Project/Share/mgProjectApp.js"></script>
+    <script src="~/Content/src/modules/Mortgage/Share/Scripts/RemarkCtrl.js"></script>
+    <script src="~/Content/src/modules/Mortgage/Share/Scripts/showReasonCtrl.js"></script>
+    <script src="~/Content/src/modules/Mortgage/Project/Start/Scripts/AddCustomerLoan.js"></script>
+    <script src="~/Content/src/modules/Mortgage/Share/Scripts/coborrowerDialog.js"></script>
+    <script src="~/Content/src/modules/Mortgage/Project/Start/Scripts/startServ.js"></script>
+    <script src="~/Content/src/modules/Mortgage/Project/Start/Scripts/startCtrl.js"></script>
+    <script src="~/Content/src/modules/Mortgage/Project/Start/Scripts/impSrv.js"></script>
+    <script src="~/Content/src/modules/Mortgage/Project/Start/Scripts/AddUnitCSDialogCtrl.js"></script>
+    @*<script src="~/Content/src/modules/Mortgage/Project/unit/scripts/app.js"></script>*@
+    <script src="~/Content/src/modules/Mortgage/Project/unit/scripts/ctrl.js"></script>
+    <script src="~/Content/src/modules/Mortgage/Project/unit/scripts/serv.js"></script>
+    <script src="~/Content/src/modules/Mortgage/Project/unit/scripts/customerDialogCtrl.js"></script>
+}
+@section IncludeCSS {
+}
+<md-content flex layout="column" class="bg" style="overflow-x:hidden">
+    <div ng-view flex layout="column"></div>
+</md-content>

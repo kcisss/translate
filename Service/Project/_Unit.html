@@ -1,0 +1,167 @@
+﻿<!-- File name : _Unit.html  -->
+<div ng-controller="UnitCtrl">
+    <style>
+         body {
+             height: 100%;
+             overflow: hidden;
+         }
+    </style>
+    <md-content set-height="1" content-padding class="scroll-content-ver">
+        <div ng-include="_DeliveryDate.html">
+        </div>
+        <md-subheader>
+            <div>
+                <a href="/Service/ProjectList/" class="text-pink mrm" style="position: relative; z-index: 90; font-size:25px; top:auto; cursor: pointer"><span translate="project"></span></a>
+                <a bs-dropdown="DropdownProjectList" style="position:relative;z-index:90;top:auto; cursor:pointer" class="mrm">{{project.Name}} <i class="fa fa-sort-desc"></i></a>
+                <a bs-dropdown="DropdownUnitList" dropdown-menu style="position:relative;z-index:90;top:auto; cursor:pointer;max-height:300px">{{unit.Code}} <i class="fa fa-sort-desc"></i></a>
+            </div>
+            <!--{{project.Name}}-{{unit.Code}}-ทุก Stages-->
+            <a class="logo bg-pink pal show-on-stick" href="/Service/ProjectList/">
+                <img alt="Ploy" src="/Styles/images/ployicon.png">
+            </a>
+            <div class="pull-right">
+                <md-button class="md-fab bg-pink" style="font-size: 40px;font-family: Open Sans-serif light;margin-top:0;" ng-click='showGridBottomSheet($event)'>
+                    +
+                    <md-tooltip><span translate="makeIssue"></span></md-tooltip>
+                </md-button>
+                <div id="new-stage-option" class="collapse">
+                    <div ng-repeat="stage in WorkFlow.WorkStages">
+                        <a href="#!/{{param.projectId}}/unit/{{param.unitId}}/IssueForm/{{stage.Id}}">{{stage.Name}}</a>
+                    </div>
+                </div>
+            </div>
+        </md-subheader>
+        <div  id="main-content">
+            <div flex="20" flex-sm="30" class="mtl ptm">
+                <!-- customer info -->
+                <md-card class="md-whitefram-z-4 bg-white">
+                    <div>
+                        <p ng-show="customer.name">
+                            <span translate="customer"></span> : <a href="/POS/Customer#!/Detail/{{customer.id}}">{{customer.name}}</a>
+                            <md-tooltip><span translate="clickViewCust"></span></md-tooltip>
+                            <span><i class="fa fa-phone icon text-green mts"></i>{{customer.phone}}</span>
+                        </p>
+                        <p class="text-red text-bold" ng-show="!customer.name" translate="unitBlank"></p>
+                        <a class="btn btn-info mtl" href="#!/{{param.projectId}}/unit/{{param.unitId}}/IssueForm/1"> <i class="fa fa-plus mrm"></i><span translate="underCons"></span></a>
+                        <br />
+                        <a class="btn btn-info mtl" href="#!/{{param.projectId}}/unit/{{param.unitId}}/IssueForm/2"> <i class="fa fa-plus mrm"></i><span translate="finishedConst"></span></a>
+                        <br />
+                        <a class="btn btn-info mtl" href="#!/{{param.projectId}}/unit/{{param.unitId}}/IssueForm/3"> <i class="fa fa-plus mrm"></i><span translate="checkCell"></span></a>
+                        <br />
+                        <a class="btn btn-info mtl" href="#!/{{param.projectId}}/unit/{{param.unitId}}/IssueForm/4"> <i class="fa fa-plus mrm"></i><span translate="transferCheck"></span></a>
+                        <br />
+                        <a class="btn btn-info mtl" href="#!/{{param.projectId}}/unit/{{param.unitId}}/IssueForm/5"> <i class="fa fa-plus mrm"></i><span translate="afterTrans"></span></a>
+                        <!-- ถ้าไม่มี ลูกค้า -->
+
+                    </div>
+                </md-card>
+            </div>
+            <div flex="80" flex-sm="70" offset="3">
+                <!-- filter -->
+                <div class="row-fluid mts">
+                    <span class="text-paleGreen mll mrl" translate="issue"> </span>
+                    <a class=" prm plm mrm mlm" ng-class="{'text-pink line-bottom line-pink':linkNotDone}" ng-click="GetIssue(1)"><span translate="backlog"></span></a>
+                    <a class=" prm plm mrm mlm" ng-class="{'text-pink line-bottom line-pink':linkOverDueDate}" ng-click="GetIssue(2)"><span translate="overdue"></span></a>
+                    <a class=" prm plm mrm mlm" ng-class="{'text-pink line-bottom line-pink':linkAll}" ng-click="GetIssue(3)"><span translate="all"></span></a>
+                </div>
+                <div ng-repeat="item in Issue">
+                    <md-card class="bg-white issue-card mbl pr0 pl0 pb0">
+                        <div class="issue-head clearfix pbxl ">
+                            <div class="pull-left issue-title">
+                                <h2 class="mts mb0 plm line-left " ng-class="{'line-pink': item.DisplayDueDateover,'line-green': item.DisplayDueDateBefore,'line-yellow': item.DisplayDueDateNull}">
+                                    <span class="text-md pull-left mts mrm">
+                                        <i class="fa" ng-class="
+                            {
+                            'fa-signal':item.Type == 0,
+                            'fa-warning' : item.Type == 1,
+                            'fa-thumbs-o-up' : item.Type == 2,
+                            'fa-question-circle' : item.Type == 3,
+                            'fa-times-circle' : item.Type == 4
+                            }"
+                                           title="">
+                                        </i>
+                                        <!--   <i class="fa fa-warning" ng-class="{}" title="Action Required"></i>
+                                               <i class="fa fa-signal" title="Progress"></i>
+                                               <i class="fa fa-thumbs-o-up" title="Good Job"></i>
+                                               <i class="fa fa-question-circle" title="Request For Information"></i>
+                                           <i class="fa fa-times-circle" title="Defect"></i> -->
+                                    </span>
+                                    {{item.Subject}}
+                                </h2>
+                                <span class="block pll">ทำโดย {{item.AssignToContractor}}</span>
+                            </div>
+                            <div class="pull-right text-right">
+                                <div class="mrs">
+                                    <i class="fa fa-angle-down pointer" bs-dropdown=""></i>
+                                </div>
+                                <span ng-hide="item.DisplayIsDone" class="mrl">{{item.DisplayDueDate | dudayToThai }}</span>
+                                <span ng-show="item.DisplayIsDone" class="mrl">{{item.DisplayDueDateDone}}</span>
+                                <div ng-show="item.DisplayIsDone" class="mrs">
+                                    <span class="pull-left text-right">
+                                        <span>เสร็จเมื่อ {{item.DisplayIsDoneDate | dudayToThai}}</span>
+                                    </span>
+                                </div>
+                                <div ng-hide="item.DisplayIsDone" class="mrl" style="width:60px;">
+                                    <md-checkbox aria-label="ทำเสร็จแล้ว" ng-click="pressFinish(item)" class="ma0 label-left big-checkbox"><span translate="succeed"></span></md-checkbox>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="issue-pic pbxl block">
+                            <!--<div class="addpic" ng-click="uploadPhoto($index)" ng-class="{'has-pic':item.Picture}">
+                                <div class="add-icon" ng-show="!item.Picture"><span class="icon-picture-streamline-1"></span></div>
+                                <div class="add-text">
+                                    <span ng-show="!item.Picture">+ รูป</span>
+                                    <span ng-show="item.Picture" class="lifts block">แก้ไข</span>
+                                </div>
+                                <input type="file" id="uploadPhoto{{$index}}" class="custom-fileinput hide" ng-file-select="onFileSelect($files,item)" accept="image/*" style="outline:none; display:inline-block;" capture="camera" />
+                            </div>
+                            <a href="{{IMGHOST}}/{{item.Picture}}">
+                                <img ng-src="{{IMGHOST}}/{{item.Picture}}" err-src="/Styles/images/no-img-lg.png" class="img-responsive" />
+                            </a>-->
+                            <div class="addpic" ng-class="{'has-pic':item.Picture}" ngf-select ngf-change="selectFileTwo($file,item)" ngf-accept="'image/*'" capture="camera">
+                                <div>
+                                    <div class="add-icon" ng-show="!item.Picture"><span class="icon-picture-streamline-1"></span></div>
+                                    <div class="add-text">
+                                        <span ng-show="!item.Picture">+ <span translate="picture"></span></span>
+                                        <span ng-show="item.Picture" class="lifts block" translate="modify"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <img ng-src="{{compressImgTwo.url}}" err-src="/Styles/images/no-img-lg.png" class="img-responsive" />
+                            <img ng-src="{{IMGHOST}}/{{item.Picture}}" err-src="/Styles/images/no-img-lg.png" class="img-responsive" />
+                        </div>
+                        <div class="mam">{{item.Note}}</div>
+                        <div class="issue-foot mam clearfix">
+                            <div class="pull-left">
+                                <span class="iconline-speech mtm"></span> <span class="liftm">{{item.IssueActivities.length - 1}}</span>
+                            </div>
+                            <div class="pull-right">
+                                <span translate="addedBy"></span>  <a href="#" class="muted prm">{{item.CreateBy}}</a>
+                                <span>
+                                    <span class="iconline-clock text-sm"></span>
+                                    {{item.DisplayCreateDate | dayToThai}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="comments bg-grayE pam">
+                            <div ng-repeat="act in item.IssueActivities" class="pas comment-item">
+                                <div ng-hide="act.IsNew">
+                                    <div class="pull-right">
+                                        <div class="text-sm iconline-pencil" ng-click="EditAct(item,act)">
+                                        </div>
+                                    </div>
+                                    <img class="avatar" ng-src="{{Avatar}}">
+                                    <a href="#">{{act.CreateBy}}</a><span> {{act.DisplayCreateDate |dayToThai}}</span>
+                                    <p>{{act.Note}}</p>
+                                </div>
+                                <div class="comment-tool" ng-show="act.IsNew">
+                                    <md-text-float label="แสดงความคิดเห็น" ng-model="act.Note" on-enter="SaveIssueAct(item,act)"></md-text-float>
+                                </div>
+                            </div>
+                        </div>
+                    </md-card>
+                </div>
+            </div>
+        </div>
+    </md-content>
+</div>

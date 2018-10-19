@@ -1,0 +1,97 @@
+﻿@{
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+    ViewBag.NgApp = "UserProjectApp";
+    ViewBag.Title = "POINT OF SALE";
+}
+@section IncludeCSS {
+    @Styles.Render("~/bundles/css/POSstyle")
+}
+@section IncludeScripts {
+    @Scripts.Render("~/bundles/UserProjectApp")
+}
+
+<div ng-controller="POSCtrl">
+    <md-toolbar class="md-theme-pink-black" scroll-shrink>
+
+        <div class="md-toolbar-tools">
+            <a class="logo" href="/Service/ProjectList/">
+                <img alt="Ploy" src="/Styles/images/ployicon.png">
+            </a>
+            <div class="master-nav">
+                <md-button aria-label="fa-sort-desc" bs-dropdown="dropdown" data-animation="am-flip-y" class=" md-button-raised">
+                    <span translate="service"></span>
+                    <i class="fa fa-sort-desc"></i>
+                </md-button>
+                <!--<button type="button" class="btn btn-lg btn-primary" data-animation="am-flip-x" bs-dropdown="dropdown">
+                    Click to toggle dropdown
+                    <br>
+                    <small>(using an object)</small>
+                </button>-->
+            </div>
+            <ul class="nav navbar-nav navbar-right action">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle text-right" data-toggle="dropdown" data-animation="am-flip-x" style="padding:7px 10px 0; ">
+                        <span style="display:block" class="ng-binding">
+                            <img class="avatar" src="https://fc07.deviantart.net/fs70/i/2012/014/1/4/avatar_icon__d_by_sweetcandyteardrop-d4mdscd.png" alt="">chatchitsanu pothisakha
+                        </span>
+                        <span style="display:block" class="text-sm ng-binding">
+                            Ploy Demo
+                        </span>
+                    </a>
+                    <ul class="dropdown-menu">
+
+                        <li><a href="/listmanager/setting"><span translate="setting"></span></a></li>
+
+                        <li><a href="/logoff"><span translate="logout"></span></a></li>
+                    </ul>
+                </li>
+
+            </ul>
+        </div>
+
+    </md-toolbar>
+    <div class="header-project mbl">
+        <div class="title-project "><span style="font-size: 25px;" class="icon-home-house-streamline"></span> <span translate="selectProject"></span></div>
+    </div>
+        <div class="title-result" ng-show="searchResult.length!=0"><span translate="show"></span> {{all}} <span translate="itemsFrom"></span> {{projectSize}} <span translate="project"></span></div>
+        <!-- <div class="quotation-wrap-search" style="text-align:center; padding:15px;">
+            <input id="quotation-search" type="text" class="qtn-srch" placeholder="ค้นหา..." ng-model="textSearch" on-enter="DashboardSearchBox(textSearch)" />
+            <button class="qtn-btn-search" ng-click="DashboardSearchBox(textSearch)">
+                <span class="iconline-magnifier"></span>
+            </button>
+        </div> -->
+        @*<div iscroll-snap id="project-wrapper">*@
+        <div id="project-scroller">
+            <ul id="project-page">
+                <li ng-repeat="list in page">
+                    <div class="row row-edit">
+                        <md-button aria-label="thumb-pic" class="thumblist-item col-md-4" href="/dashboard/customer/list#!?projId={{project.Id}}" ng-repeat=" project in list">
+                            <div class="inner md-whiteframe-z1 bg-white clearfix">
+                                <div class="thumb-pic">
+                                    <img id="progimg" src="{{IMGHOST}}/{{project.CoverPhoto}}" />
+                                </div>
+                                <div class="panel-footer panel-footer-custom">{{project.Name}}</div>
+                            </div>
+                        </md-button>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 col-sm-4" ng-repeat="list in searchResult">
+                        <div class="panel panel-default panel-custom panel-edit">
+                            <a href="/dashboard/customer/list#!?projId={{list.Id}}">
+                                <div class="panel-body panel-body-custom">
+                                    <img id="progimg" src="{{IMGHOST}}/{{list.CoverPhoto}}" />
+                                </div>
+                                <div class="panel-footer panel-footer-custom">{{list.Name}}</div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div ng-show="NotFound" style="text-align: center;color: #D84E4E;margin: 25px;font-size: 30px;">
+                        <span class="iconline-close"></span> <span translate="noItemFound"></span>...
+                    </div>
+                </li>
+            </ul>
+        </div>
+</div>      
+ 
+@*</div>*@

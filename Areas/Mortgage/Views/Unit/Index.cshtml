@@ -1,0 +1,43 @@
+﻿@{
+    ViewBag.Title = "MORTGAGE - UNIT";
+    ViewBag.NgApp = "MortgageUnitApp";
+    Layout = "~/Views/Shared/_AllNewMasterLayout.cshtml";
+}
+@section IncludeScripts{
+    <script src="~/Scripts/xlsx/xlsx.core.min.js"></script>
+    <script src="~/Scripts/xlsx/FileSaver.js"></script>
+    <script src="~/Scripts/xlsx/Blob.js"></script>
+    <script src="~/Scripts/angular-count-to.min.js"></script>
+    <script src="~/Scripts/angular-local-storage.min.js"></script>
+
+    @*Global Filter Include*@
+    <script src="~/Content/src/share/modules/globalApp/globalFilter/globalFilterEnum.js"></script>
+    <script src="~/Content/src/share/modules/globalApp/globalFilter/globalFilterService.js"></script>
+    <script src="~/Content/src/share/modules/globalApp/globalFilter/globalFilterClientService.js"></script>
+    <script src="~/Content/src/share/modules/globalApp/globalFilter/globalFilterController.js"></script>
+
+    <script src="~/Content/src/share/modules/globalApp/directive/ngEnter.js"></script>
+
+    <script src="~/Content/src/modules/Mortgage/Share/Scripts/addBankAplicationDialogCtrl.js"></script>
+    <script src="~/Content/src/share/modules/globalApp/allNewMortgageServ.js"></script>
+    <script src="~/Content/src/modules/Mortgage/Unit/Shared/MortgageUnitApp.js"></script>
+    <script src="~/Content/src/modules/Mortgage/Share/Scripts/RemarkCtrl.js"></script>
+    <script src="~/Content/src/modules/Mortgage/Unit/Scripts/UnitListServ.js"></script>
+    <script src="~/Content/src/modules/Mortgage/Unit/Scripts/UnitListCtrl.js"></script>
+    <script src="~/Content/src/modules/Mortgage/Unit/Scripts/addCustomerDialogCtrl.js"></script>
+    <script src="~/Content/src/modules/Mortgage/Unit/Scripts/importServ.js"></script>
+    <script src="~/Content/src/modules/Mortgage/Unit/Scripts/mortgageImportCustomerDialogCtrl.js"></script>
+    <script src="~/Content/src/modules/Mortgage/Unit/Scripts/confirmImpDialog.js"></script>
+    <script src="~/Content/src/modules/Mortgage/Share/Scripts/showBankDialog.js"></script>
+    <script src="~/Content/src/modules/Mortgage/Share/Scripts/deleteBankdialog.js"></script>
+    <script src="~/Content/src/modules/Mortgage/Share/Scripts/addUnitDialogCtrl.js"></script>
+    <script src="~/Content/src/modules/Mortgage/Share/Scripts/coborrowerDialog.js"></script>
+    <script src="~/Content/src/modules/Mortgage/Share/Scripts/showReasonCtrl.js"></script>
+    <script src="~/Content/src/modules/Mortgage/Unit/Scripts/confirmExportMortgageCtrl.js"></script>
+}
+@section IncludeCSS {
+    <link href="~/Content/src/modules/Mortgage/Share/Styles/MortgageStyle.css" rel="stylesheet" />
+}
+<md-content flex layout="column" class="bg" style="overflow-x:hidden">
+    <div ng-view flex layout="column"></div>
+</md-content>

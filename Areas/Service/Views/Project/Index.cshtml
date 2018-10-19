@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    ViewBag.NgApp = "ServiceProjectApp";
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+}
+
+@section IncludeScripts{
+    <script src="~/Scripts/moment-timezone.js"></script>
+    
+    @Scripts.Render(
+        "~/bundles/master-app",
+        "~/bundles/master-menu",
+        "~/bundles/master-project",
+        "~/bundles/master-unit",
+        "~/bundles/master-worker",
+        "~/bundles/service-project",
+        "~/bundles/master-issue",
+        "~/bundles/Setting-wbs"
+        )
+
+}
+
+@Styles.Render(
+
+    "~/bundles/css/lmlstyle"
+)
+
+<div ng-controller="MainCtrl">
+
+  
+</div>
+<div ng-view></div>

@@ -1,0 +1,68 @@
+﻿@{
+    ViewBag.Title = "รายงานกิจกรรมและผลตอบรับ";
+    ViewBag.NgApp = "PivotAnalysisApp";
+
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+}
+
+@section IncludeCSS {
+    @Styles.Render(
+        "~/bundles/style/ui-grid"
+    )
+    <link rel="stylesheet" href="/Styles/css/POSStyle.css" />
+    <style>
+         body {
+         }
+    </style>
+}
+@section IncludeScripts{
+    @Scripts.Render(
+        "~/bundles/Common/PivotAnalysis/ActivityAndResponseReport",
+        "~/bundles/master-worker",
+        "~/bundles/master-project"
+    )
+}
+<div ng-controller="ActivityAndResponseReportListCtrl">
+    <md-content resize-layout="30" style="overflow:hidden; height:2000px;">
+        <md-subheader class="md-primary line-buttom">
+            <div  layout-align="start">
+                <a href="/Common/PivotAnalysis/ActivityAndResponseReport/List" style="font-size: 18px; margin-top: 5px;">
+                    <i class="fa fa-money"></i> <span translate="activitiesFeedback"></span>
+                </a>
+                <md-button class='bg-pink mrm mlm' aria-label="Raw data" style='position:relative;z-index:888;top:-5px;height:30px' ng-click="go('/Common/PivotAnalysis/ActivityAndResponseReport/RawData')"><span translate="allDT"></span></md-button>
+                <div class="pull-right" style="position:relative;z-index:88;height:30px;" >
+                    <input flex type="text" class="h30 md-input text-gray3 prxl text-sm" placeholder="ค้นหาจาก ชื่อ,หัวข้อหลัก,แก้ไขโดย..." ng-model="searchText" ng-change="Searching(searchText)" />
+                    <md-button class="h30" style="position:absolute;right:0;" type="submit" ng-click="Searching(searchText)">
+                        <i class="fa fa-search text-gray9 text-sm"></i>
+                    </md-button>
+                </div>
+                <md-button class="md-fab bg-pink md-fab-top-right animated zoomInDown" aria-label="+" style="" ng-click="go('/Common/PivotAnalysis/ActivityAndResponseReport/Form')">
+                    <i class="fa fa-plus"></i>
+                    <md-tooltip><span translate="create"></span></md-tooltip>
+                </md-button>
+            </div>
+        </md-subheader>
+        <div style="background : #fff;" class="overflow-auto" set-height="100">
+            <table class="table table-hover table-striped" style="margin-top:-2px;">
+                <tr style="font-size : 22px; text-align:center;">
+                    <td style="text-align: left" translate="profile.name"></td>
+                    <td style="text-align: left" translate="mainTopic"></td>
+                    <td style="text-align: left" translate="lastModified"></td>
+                    <td style="text-align: left" translate="แก้ไขโดย"></td>
+                    <td style="width: 50px;"></td>
+                    <td style="width: 50px;"></td>
+                </tr>
+                <tr ng-repeat="PivotAnalysis in PivotAnalysises">
+                    <td>
+                        <a ng-href="{{PivotAnalysis.pathToPivot}}" target="_blank">{{PivotAnalysis.Name}}</a>
+                    </td>
+                    <td>{{PivotAnalysis.MainTopic}}</td>
+                    <td>{{PivotAnalysis.LastModifiedTimeStamp}}</td>
+                    <td>{{PivotAnalysis.LastModifiedBy}}</td>
+                    <td style="width: 50px;"><span ng-click="Delete($event,PivotAnalysis.Id)" class="fa fa-trash"></span></td>
+                    <td style="width: 50px;"><span ng-click="Edit($event,PivotAnalysis.Id)" class="fa fa-edit"></span></td>
+                </tr>
+            </table>
+        </div>
+    </md-content>
+</div>

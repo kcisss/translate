@@ -1,0 +1,32 @@
+﻿<md-dialog aria-label="export">
+    <form ng-cloak aria-label="export">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2 translate="selectDownload"></h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <md-radio-group ng-model="choose">
+                    <md-radio-button value="all" class="md-primary"><span translate="all"></span></md-radio-button>
+                    <md-radio-button value="bankAppOnly"><span translate="onlyItems"></span></md-radio-button>
+                    <md-radio-button value="unitBlank"><span translate="onlyNoItems"></span></md-radio-button>
+                </md-radio-group>
+            </div>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row">
+            <md-button ng-click="cancel()">
+                <span translate="canceled"></span>
+            </md-button>
+            <md-button ng-click="submit()" ng-disabled="choose == null" class="md-primary">
+                <span translate="agreed"></span>
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.title = "Ploy - Mortgage";
+    ViewBag.NgApp = "MgBankApp";
+    Layout = "~/Views/Shared/_MortgageMasterLayout.cshtml";
+}
+
+@section IncludeScripts {
+    <script src="~/Scripts/xlsx/xlsx.core.min.js"></script>
+    <script src="~/Scripts/xlsx/FileSaver.js"></script>
+    <script src="~/Scripts/xlsx/Blob.js"></script>
+    <script src="~/Scripts/angular-count-to.min.js"></script>
+    <script src="~/Scripts/angular-local-storage.min.js"></script>
+
+    @*<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>*@
+    <script src="~/Scripts/jquery_1_12_2.min.js"></script>
+
+
+    @*Setting Module App*@
+    <script src="~/Content/src/modules/Mortgage/Bank/Share/mgBankApp.js"></script>
+    <script src="~/Content/src/modules/Mortgage/Share/Scripts/RemarkCtrl.js"></script>
+    <script src="~/Content/src/modules/Mortgage/Share/Scripts/showReasonCtrl.js"></script>
+    <script src="~/Content/src/modules/Mortgage/Bank/Start/Scripts/AddUnitDialogCtrl.js"></script>
+    <script src="~/Content/src/modules/Mortgage/Bank/unit/script/ctrlUnitForBank.js"></script>
+    <script src="~/Content/src/modules/Mortgage/Bank/unit/script/customerForBankDialogCtrl.js"></script>
+    <script src="~/Content/src/modules/Mortgage/Bank/Start/Scripts/impSrv.js"></script>
+    <script src="~/Content/src/modules/Mortgage/Share/Scripts/coborrowerDialog.js"></script>
+    <script src="~/Content/src/modules/Mortgage/Bank/Start/Scripts/startCtrl.js"></script>
+    <script src="~/Content/src/modules/Mortgage/Bank/Start/Scripts/startServ.js"></script>
+}
+
+
+
+@section IncludeCSS {
+}
+<md-content flex layout="column" class="bg" style="overflow-x:hidden">
+    <div ng-view flex layout="column"></div>
+</md-content>

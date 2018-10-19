@@ -1,0 +1,73 @@
+﻿<md-dialog aria-label="importCustomerInformation" flex="40">
+    <form ng-cloak>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2 translate="doUImport"></h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon md-svg-src="navigation:close" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <div style="font-size: 16px; padding-bottom: 16px; font-weight:bold;" layout="row" layout-align="center center">
+                    <i class="material-icons" style="color: #52a356;font-size: 20px;margin-right: 13px;"><span translate="checkCircle"></span></i>
+                    <div>
+                        <span style="color: #52a356; padding-right: 4px" translate="correctInform" ></span>
+                        <span style="padding-right: 4px">{{ impSuccess }}</span>
+                        <span translate="order"></span>
+                    </div>
+                </div>
+            </div>
+            <div style="font-size: 16px; font-weight:bold;" layout="row" layout-align="center center">
+                <i class="material-icons colorCancel" style="font-size: 20px; margin-right: 13px;"><span translate="canceled"></span></i>
+                <div>
+                    <span class="colorCancel" style="padding-right: 4px" translate="errorFound"> </span>
+                    <span style="padding-right: 4px"> {{ impErr }}</span>
+                    <span translate="order"></span>
+                </div>
+            </div>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row" style="padding:32px 60px 40px 40px;text-align:center;position:relative">
+            <span flex></span>
+            <md-button ng-click="cancel()">
+                <span translate="canceled"></span>
+            </md-button>
+            <md-button ng-click="submit()" class="md-raised" style="background-color: #52a356; color:antiquewhite">
+                <span translate="import"></span>
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>
+
+
+<script>
+    $(document).ready(function () {
+        $('tbody').scroll(function (e) { //detect a scroll event on the tbody
+            $('thead').css("left", -$("tbody").scrollLeft()); //fix the thead relative to the body scrolling
+            $('thead th:nth-child(1)').css("left", $("tbody").scrollLeft()); //fix the first cell of the header
+            $('tbody td:nth-child(1)').css("left", $("tbody").scrollLeft()); //fix the first column of tdbody
+        });
+    });
+</script>
+
+
+<style>
+    .line-style {
+        border: 0;
+        height: 0;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .colorCancel {
+        color: #e01e1e;
+    }
+
+    .colorGrayRow {
+        color: #b3b3b3;
+    }
+</style>

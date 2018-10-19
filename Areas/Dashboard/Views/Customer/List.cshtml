@@ -1,0 +1,587 @@
+﻿@{
+    var projId = Request.QueryString["projId"];
+    ViewBag.NgApp = "CustomerApp";
+    Layout = "~/Views/Shared/_POSLayout.cshtml";
+
+     ViewBag.Title = "POINT OF SALE ";
+}
+
+@section IncludeCSS {
+    @Styles.Render(
+    "~/bundles/css/customerstyle",
+    "~/bundles/css/POSstyle"
+    )
+}
+
+<div ng-init="initId('@projId');">
+
+    <div class="headsort-control clearfix" stickykit>
+        <div id="H1" class="headsort-units" ng-click="H1()" ng-style="hStyles[0]">
+            <span class="unit-amounts">{{all}}</span>
+            <div class="unit-titles"><span translate="all"></span></div>
+        </div>
+        <div id="H7" class="headsort-units" ng-click="H7()" ng-style="hStyles[6]">
+            <span class="unit-amounts">{{like}}</span>
+            <div class="unit-titles"><span translate="interested"></span></div>
+        </div>
+        <div id="H2" class="headsort-units" ng-click="H2()" ng-style="hStyles[1]">
+            <span class="unit-amounts">{{bid}}</span>
+            <div class="unit-titles"><span translate="quote"></span></div>
+        </div>
+        <div id="H3" class="headsort-units" ng-click="H3()" ng-style="hStyles[2]">
+            <span class="unit-amounts">{{book}}</span>
+            <div class="unit-titles"><span translate="reservations"></span></div>
+        </div>
+        <div id="H4" class="headsort-units" ng-click="H4()" ng-style="hStyles[3]">
+            <span class="unit-amounts">{{sign}}</span>
+            <div class="unit-titles"><span translate="contract"></span></div>
+        </div>
+        <div id="H5" class="headsort-units" ng-click="H5()" ng-style="hStyles[4]">
+            <span class="unit-amounts">{{down}}</span>
+            <div class="unit-titles"><span translate="downPayment"></span></div>
+        </div>
+        <div id="H6" class="headsort-units" ng-click="H6()" ng-style="hStyles[5]">
+            <span class="unit-amounts">{{transfer}}</span>
+            <div class="unit-titles"><span translate="transfer"></span></div>
+        </div>
+        <div class="pull-right search-wrap">
+            <div class="quotation-wrap-search">
+                <input id="quotation-search" type="text" class="qtn-srch" placeholder="ค้นหา..." ng-model="textSearch" on-enter="DashboardSearchBox(textSearch)" clear-input />
+                <button class="qtn-btn-search" ng-click="DashboardSearchBox(textSearch)">
+                    <span class="iconline-magnifier"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    
+    <div ng-show="layoutMenus == 1">
+        <div class="customer-list" ng-show="filter[0]&& searchResult=='' &&NotFound==false" ng-repeat="list in AllFilters">
+            <div ng-show="list.Detail.swipe =='center'" ng-swipe-left="list.Detail.swipe = 'left'" ng-swipe-right="list.Detail.swipe = 'right'">
+                <div class="wpr-img-cstmrlst" ng-click="SwitchQtnModal(list)">
+                    <img src="/styles/images/{{list.Detail.sex}}.png" class="img-circle user-img" />
+                </div>
+                <div class="wpr-prsninf-cstmrlst">
+                    <div style="font-size: 22px;">{{list.Name.firstname}} {{list.Name.lastname}}</div>
+                    <div style="color: #969696;"><i class="fa fa-mobile"></i> {{list.Phone}}</div>
+                </div>
+                <div class="wpr-qtninf-cstmrlst">
+                    <div style="font-size: 22px;"><i class="fa fa-home" style="color: #8B8B8B;"></i> {{list.REUnitCode}}</div>
+                    <div class="customer-status" ng-style="list.Styles">{{list.Status}}</div>
+                </div>
+                <div class="wpr-blt-cstmrlst">
+                    <div class="customer-bullet"></div>
+                    <div class="customer-bullet"></div>
+                    <div class="customer-bullet"></div>
+                </div>
+            </div>
+            <div ng-show="list.Detail.swipe == 'left'" ng-swipe-right="list.Detail.swipe ='center'">
+                <div class="wpr-img-cstmrlst" ng-click="SwitchQtnModal(list)">
+                    <img src="/styles/images/{{list.Detail.sex}}.png" class="img-circle user-img" />
+                </div>
+                <div class="wpr-prsninf-cstmrlst">
+                    <div style="font-size: 22px;">{{list.Name.firstname}} {{list.Name.lastname}}</div>
+                    <div style="color: #969696;"><i class="fa fa-mobile"></i> {{list.Phone}}</div>
+                </div>
+                <div class="wpr-qtninf-cstmrlst swp-left-ctmrlst">
+                    <div style="font-size: 22px;"><i class="fa fa-home" style="color: #8B8B8B;"></i> {{list.REUnitCode}}</div>
+                    <div class="customer-status" ng-style="list.Styles">{{list.Status}}</div>
+                </div>
+                <div class="wpr-blt-cstmrlst">
+                    <div class="customer-bullet"></div>
+                    <div class="customer-bullet"></div>
+                    <div class="customer-bullet"></div>
+                </div>
+
+                <div class="swp-left-status">
+                    <span translate="status"></span>
+                </div>
+                <div class="swp-left-bin">
+                    <span translate="status"></span>
+                    @*<i class="iconline-trash"></i>*@
+                </div>
+
+            </div>
+            <div ng-show="list.Detail.swipe == 'right'" ng-swipe-left="list.Detail.swipe ='center'" class="swp-right-wrap">
+                <div class="swp-right-call">
+                    @*<i class="iconline-call-out"></i>*@
+                    <span translate="status"></span>
+                </div>
+                <div class="swp-right-letter">
+                    @*<i class="iconline-envelope"></i>*@
+                    <span translate="status"></span>
+                </div>
+                <div class="wpr-img-cstmrlst" ng-click="SwitchQtnModal(list)">
+                    <img src="/styles/images/{{list.Detail.sex}}.png" class="img-circle user-img" />
+                </div>
+
+                <div class="wpr-prsninf-cstmrlst swp-right-prsninf">
+                    <div style="font-size: 22px;">{{list.Name.firstname}} {{list.Name.lastname}}</div>
+                    <div style="color: #969696;"><i class="fa fa-mobile"></i> {{list.Phone}}</div>
+                </div>
+                <div class="wpr-qtninf-cstmrlst swp-right-qtninf">
+                    <div style="font-size: 22px;"><i class="fa fa-home" style="color: #8B8B8B;"></i> {{list.REUnitCode}}</div>
+                    <div class="customer-status" ng-style="list.Styles">{{list.Status}}</div>
+                </div>
+                <div class="wpr-blt-cstmrlst">
+                    <div class="customer-bullet"></div>
+                    <div class="customer-bullet"></div>
+                    <div class="customer-bullet"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="customer-list" ng-show="filter[1]&& searchResult=='' &&NotFound==false" ng-repeat="list in BidFilters">
+            <div ng-show="list.Detail.swipe =='center'" ng-swipe-left="list.Detail.swipe = 'left'" ng-swipe-right="list.Detail.swipe = 'right'">
+                <div class="wpr-img-cstmrlst" ng-click="SwitchQtnModal(list)">
+                    <img src="/styles/images/{{list.Detail.sex}}.png" class="img-circle user-img" />
+                </div>
+                <div class="wpr-prsninf-cstmrlst">
+                    <div style="font-size: 22px;">{{list.Name.firstname}} {{list.Name.lastname}}</div>
+                    <div style="color: #969696;"><i class="fa fa-mobile"></i> {{list.Phone}}</div>
+                </div>
+                <div class="wpr-qtninf-cstmrlst">
+                    <div style="font-size: 22px;"><i class="fa fa-home" style="color: #8B8B8B;"></i> {{list.REUnitCode}}</div>
+                    <div class="customer-status" ng-style="list.Styles">{{list.Status}}</div>
+                </div>
+                <div class="wpr-blt-cstmrlst">
+                    <div class="customer-bullet"></div>
+                    <div class="customer-bullet"></div>
+                    <div class="customer-bullet"></div>
+                </div>
+            </div>
+            <div ng-show="list.Detail.swipe == 'left'" ng-swipe-right="list.Detail.swipe ='center'">
+                Delete
+            </div>
+            <div ng-show="list.Detail.swipe == 'right'" ng-swipe-left="list.Detail.swipe ='center'">
+                tel
+            </div>
+        </div>
+        <div class="customer-list" ng-show="filter[6]&& searchResult==''&&NotFound==false" ng-repeat="list in Likes">
+            <div>
+                <div class="wpr-img-cstmrlst" ng-click="SwitchQtnModal(list)">
+                    <img src="/styles/images/{{list.Detail.sex}}.png" class="img-circle user-img" />
+                </div>
+                <div class="wpr-prsninf-cstmrlst">
+                    <div style="font-size: 22px;">{{list.Name.firstname}} {{list.Name.lastname}}</div>
+                    <div style="color: #969696;"><i class="fa fa-mobile"></i> {{list.Phone}}</div>
+                </div>
+                <div class="wpr-qtninf-cstmrlst">
+                    <div style="font-size: 22px;"><i class="fa fa-home" style="color: #8B8B8B;"></i> {{list.REUnitCode}}</div>
+                    <div class="customer-status" ng-style="list.Styles">{{list.Status}}</div>
+                </div>
+                <div class="wpr-blt-cstmrlst">
+                    <div class="customer-bullet"></div>
+                    <div class="customer-bullet"></div>
+                    <div class="customer-bullet"></div>
+                </div>
+            </div>
+        </div>
+        <div class="customer-list" ng-show="filter[2]&& searchResult=='' &&NotFound==false" ng-repeat="list in BookFilters">
+            <div ng-show="list.Detail.swipe =='center'" ng-swipe-left="list.Detail.swipe = 'left'" ng-swipe-right="list.Detail.swipe = 'right'">
+                <div class="wpr-img-cstmrlst" ng-click="SwitchQtnModal(list)">
+                    <img src="/styles/images/{{list.Detail.sex}}.png" class="img-circle user-img" />
+                </div>
+                <div class="wpr-prsninf-cstmrlst">
+                    <div style="font-size: 22px;">{{list.Name.firstname}} {{list.Name.lastname}}</div>
+                    <div style="color: #969696;"><i class="fa fa-mobile"></i> {{list.Phone}}</div>
+                </div>
+                <div class="wpr-qtninf-cstmrlst">
+                    <div style="font-size: 22px;"><i class="fa fa-home" style="color: #8B8B8B;"></i> {{list.REUnitCode}}</div>
+                    <div class="customer-status" ng-style="list.Styles">{{list.Status}}</div>
+                </div>
+                <div class="wpr-blt-cstmrlst">
+                    <div class="customer-bullet"></div>
+                    <div class="customer-bullet"></div>
+                    <div class="customer-bullet"></div>
+                </div>
+            </div>
+            <div ng-show="list.Detail.swipe == 'left'" ng-swipe-right="list.Detail.swipe ='center'">
+                Delete
+            </div>
+            <div ng-show="list.Detail.swipe == 'right'" ng-swipe-left="list.Detail.swipe ='center'">
+                tel
+            </div>
+        </div>
+
+        <div class="customer-list" ng-show="filter[3]&& searchResult==''&&NotFound==false" ng-repeat="list in SignFilters">
+            <div ng-show="list.Detail.swipe =='center'" ng-swipe-left="list.Detail.swipe = 'left'" ng-swipe-right="list.Detail.swipe = 'right'">
+                <div class="wpr-img-cstmrlst" ng-click="SwitchQtnModal(list)">
+                    <img src="/styles/images/{{list.Detail.sex}}.png" class="img-circle user-img" />
+                </div>
+                <div class="wpr-prsninf-cstmrlst">
+                    <div style="font-size: 22px;">{{list.Name.firstname}} {{list.Name.lastname}}</div>
+                    <div style="color: #969696;"><i class="fa fa-mobile"></i> {{list.Phone}}</div>
+                </div>
+                <div class="wpr-qtninf-cstmrlst">
+                    <div style="font-size: 22px;"><i class="fa fa-home" style="color: #8B8B8B;"></i> {{list.REUnitCode}}</div>
+                    <div class="customer-status" ng-style="list.Styles">{{list.Status}}</div>
+                </div>
+                <div class="wpr-blt-cstmrlst">
+                    <div class="customer-bullet"></div>
+                    <div class="customer-bullet"></div>
+                    <div class="customer-bullet"></div>
+                </div>
+            </div>
+            <div ng-show="list.Detail.swipe == 'left'" ng-swipe-right="list.Detail.swipe ='center'">
+                <span translate="delete"></span>>
+            </div>
+            <div ng-show="list.Detail.swipe == 'right'" ng-swipe-left="list.Detail.swipe ='center'">
+                <span translate="profile.Tel"></span>>
+            </div>
+        </div>
+
+        <div class="customer-list" ng-show="filter[4]&& searchResult==''&&NotFound==false" ng-repeat="list in DownFilters">
+            <div ng-show="list.Detail.swipe =='center'" ng-swipe-left="list.Detail.swipe = 'left'" ng-swipe-right="list.Detail.swipe = 'right'">
+                <div class="wpr-img-cstmrlst" ng-click="SwitchQtnModal(list)">
+                    <img src="/styles/images/{{list.Detail.sex}}.png" class="img-circle user-img" />
+                </div>
+                <div class="wpr-prsninf-cstmrlst">
+                    <div style="font-size: 22px;">{{list.Name.firstname}} {{list.Name.lastname}}</div>
+                    <div style="color: #969696;"><i class="fa fa-mobile"></i> {{list.Phone}}</div>
+                </div>
+                <div class="wpr-qtninf-cstmrlst">
+                    <div style="font-size: 22px;"><i class="fa fa-home" style="color: #8B8B8B;"></i> {{list.REUnitCode}}</div>
+                    <div class="customer-status" ng-style="list.Styles">{{list.Status}}</div>
+                </div>
+                <div class="wpr-blt-cstmrlst">
+                    <div class="customer-bullet"></div>
+                    <div class="customer-bullet"></div>
+                    <div class="customer-bullet"></div>
+                </div>
+            </div>
+            <div ng-show="list.Detail.swipe == 'left'" ng-swipe-right="list.Detail.swipe ='center'">
+                <span translate="delete"></span>>
+            </div>
+            <div ng-show="list.Detail.swipe == 'right'" ng-swipe-left="list.Detail.swipe ='center'">
+                <span translate="profile.Tel"></span>>
+            </div>
+        </div>
+
+        <div class="customer-list" ng-show="filter[5]&& searchResult==''&&NotFound==false" ng-repeat="list in TransferFilters">
+            <div ng-show="list.Detail.swipe =='center'" ng-swipe-left="list.Detail.swipe = 'left'" ng-swipe-right="list.Detail.swipe = 'right'">
+                <div class="wpr-img-cstmrlst" ng-click="SwitchQtnModal(list)">
+                    <img src="/styles/images/{{list.Detail.sex}}.png" class="img-circle user-img" />
+                </div>
+                <div class="wpr-prsninf-cstmrlst">
+                    <div style="font-size: 22px;">{{list.Name.firstname}} {{list.Name.lastname}}</div>
+                    <div style="color: #969696;"><i class="fa fa-mobile"></i> {{list.Phone}}</div>
+                </div>
+                <div class="wpr-qtninf-cstmrlst">
+                    <div style="font-size: 22px;"><i class="fa fa-home" style="color: #8B8B8B;"></i> {{list.REUnitCode}}</div>
+                    <div class="customer-status" ng-style="list.Styles">{{list.Status}}</div>
+                </div>
+                <div class="wpr-blt-cstmrlst">
+                    <div class="customer-bullet"></div>
+                    <div class="customer-bullet"></div>
+                    <div class="customer-bullet"></div>
+                </div>
+            </div>
+            <div ng-show="list.Detail.swipe == 'left'" ng-swipe-right="list.Detail.swipe ='center'">
+                <span translate="delete"></span>>
+            </div>
+            <div ng-show="list.Detail.swipe == 'right'" ng-swipe-left="list.Detail.swipe ='center'">
+                <span translate="profile.Tel"></span>>
+            </div>
+        </div>
+
+        <div class="customer-list" ng-repeat="list in searchResult">
+            <div ng-show="list.Detail.swipe =='center'" ng-swipe-left="list.Detail.swipe = 'left'" ng-swipe-right="list.Detail.swipe = 'right'">
+                <div class="wpr-img-cstmrlst" ng-click="SwitchQtnModal(list)">
+                    <img src="/styles/images/{{list.Detail.sex}}.png" class="img-circle user-img" />
+                </div>
+                <div class="wpr-prsninf-cstmrlst">
+                    <div style="font-size: 22px;">{{list.Name.firstname}} {{list.Name.lastname}}</div>
+                    <div style="color: #969696;"><i class="fa fa-mobile"></i> {{list.Phone}}</div>
+                </div>
+                <div class="wpr-qtninf-cstmrlst">
+                    <div style="font-size: 22px;"><i class="fa fa-home" style="color: #8B8B8B;"></i> {{list.REUnitCode}}</div>
+                    <div class="customer-status" ng-style="list.Styles">{{list.Status}}</div>
+                </div>
+                <div class="wpr-blt-cstmrlst">
+                    <div class="customer-bullet"></div>
+                    <div class="customer-bullet"></div>
+                    <div class="customer-bullet"></div>
+                </div>
+            </div>
+            <div ng-show="list.Detail.swipe == 'left'" ng-swipe-right="list.Detail.swipe ='center'">
+                <span translate="delete"></span>>
+            </div>
+            <div ng-show="list.Detail.swipe == 'right'" ng-swipe-left="list.Detail.swipe ='center'">
+                <span translate="profile.Tel"></span>>
+            </div>
+        </div>
+    </div>
+    <div ng-show="layoutMenus==2">
+        <div class="customer-list" ng-show="filter[0] && searchResult==''&&NotFound==false" ng-repeat="list in AllFilters">
+            <div class="wpr-img-cstmrlst">
+                <img src="/styles/images/paper.png" class="img-circle user-img" />
+            </div>
+            <div class="wpr-prsninf-cstmrlst">
+                <div style="font-size: 22px;">{{list.QTCode}}</div>
+                <div style="color: #969696;"><i class="iconline-calendar"></i> {{list.QTDate}}</div>
+            </div>
+            <div class="wpr-qtninf-cstmrlst">
+                <div style="font-size: 22px;"><i class="icon-banknote" style="color: #8B8B8B;"></i> {{list.NetPrice|number:0}}</div>
+                <div class="customer-status" ng-style="list.Styles">{{list.Status}}</div>
+            </div>
+            <div class="wpr-blt-cstmrlst">
+                <div class="customer-bullet"></div>
+                <div class="customer-bullet"></div>
+                <div class="customer-bullet"></div>
+            </div>
+        </div>
+
+        <div class="customer-list" ng-show="filter[1]&& searchResult=='' &&NotFound==false" ng-repeat="list in BidFilters">
+            <div class="wpr-img-cstmrlst">
+                <img src="/styles/images/paper.png" class="img-circle user-img" />
+            </div>
+            <div class="wpr-prsninf-cstmrlst">
+                <div style="font-size: 22px;">{{list.QTCode}}</div>
+                <div style="color: #969696;"><i class="iconline-calendar"></i> {{list.QTDate}}</div>
+            </div>
+            <div class="wpr-qtninf-cstmrlst">
+                <div style="font-size: 22px;"><i class="icon-banknote" style="color: #8B8B8B;"></i> {{list.NetPrice|number:0}}</div>
+                <div class="customer-status" ng-style="list.Styles">{{list.Status}}</div>
+            </div>
+            <div class="wpr-blt-cstmrlst">
+                <div class="customer-bullet"></div>
+                <div class="customer-bullet"></div>
+                <div class="customer-bullet"></div>
+            </div>
+        </div>
+
+        <div class="customer-list" ng-show="filter[2]&& searchResult=='' &&NotFound==false" ng-repeat="list in BookFilters">
+            <div class="wpr-img-cstmrlst">
+                <img src="/styles/images/paper.png" class="img-circle user-img" />
+            </div>
+            <div class="wpr-prsninf-cstmrlst">
+                <div style="font-size: 22px;">{{list.QTCode}}</div>
+                <div style="color: #969696;"><i class="iconline-calendar"></i> {{list.QTDate}}</div>
+            </div>
+            <div class="wpr-qtninf-cstmrlst">
+                <div style="font-size: 22px;"><i class="icon-banknote" style="color: #8B8B8B;"></i> {{list.NetPrice|number:0}}</div>
+                <div class="customer-status" ng-style="list.Styles">{{list.Status}}</div>
+            </div>
+            <div class="wpr-blt-cstmrlst">
+                <div class="customer-bullet"></div>
+                <div class="customer-bullet"></div>
+                <div class="customer-bullet"></div>
+            </div>
+        </div>
+
+        <div class="customer-list" ng-show="filter[3]&& searchResult==''&&NotFound==false" ng-repeat="list in SignFilters">
+            <div class="wpr-img-cstmrlst">
+                <img src="/styles/images/paper.png" class="img-circle user-img" />
+            </div>
+            <div class="wpr-prsninf-cstmrlst">
+                <div style="font-size: 22px;">{{list.QTCode}}</div>
+                <div style="color: #969696;"><i class="iconline-calendar"></i> {{list.QTDate}}</div>
+            </div>
+            <div class="wpr-qtninf-cstmrlst">
+                <div style="font-size: 22px;"><i class="icon-banknote" style="color: #8B8B8B;"></i> {{list.NetPrice|number:0}}</div>
+                <div class="customer-status" ng-style="list.Styles">{{list.Status}}</div>
+            </div>
+            <div class="wpr-blt-cstmrlst">
+                <div class="customer-bullet"></div>
+                <div class="customer-bullet"></div>
+                <div class="customer-bullet"></div>
+            </div>
+        </div>
+
+        <div class="customer-list" ng-show="filter[4]&& searchResult==''&&NotFound==false" ng-repeat="list in DownFilters">
+            <div class="wpr-img-cstmrlst">
+                <img src="/styles/images/paper.png" class="img-circle user-img" />
+            </div>
+            <div class="wpr-prsninf-cstmrlst">
+                <div style="font-size: 22px;">{{list.QTCode}}</div>
+                <div style="color: #969696;"><i class="iconline-calendar"></i> {{list.QTDate}}</div>
+            </div>
+            <div class="wpr-qtninf-cstmrlst">
+                <div style="font-size: 22px;"><i class="icon-banknote" style="color: #8B8B8B;"></i> {{list.NetPrice|number:0}}</div>
+                <div class="customer-status" ng-style="list.Styles">{{list.Status}}</div>
+            </div>
+            <div class="wpr-blt-cstmrlst">
+                <div class="customer-bullet"></div>
+                <div class="customer-bullet"></div>
+                <div class="customer-bullet"></div>
+            </div>
+        </div>
+
+        <div class="customer-list" ng-show="filter[5]&& searchResult==''&&NotFound==false" ng-repeat="list in TransferFilters">
+            <div class="wpr-img-cstmrlst">
+                <img src="/styles/images/paper.png" class="img-circle user-img" />
+            </div>
+            <div class="wpr-prsninf-cstmrlst">
+                <div style="font-size: 22px;">{{list.QTCode}}</div>
+                <div style="color: #969696;"><i class="iconline-calendar"></i> {{list.QTDate}}</div>
+            </div>
+            <div class="wpr-qtninf-cstmrlst">
+                <div style="font-size: 22px;"><i class="icon-banknote" style="color: #8B8B8B;"></i> {{list.NetPrice|number:0}}</div>
+                <div class="customer-status" ng-style="list.Styles">{{list.Status}}</div>
+            </div>
+            <div class="wpr-blt-cstmrlst">
+                <div class="customer-bullet"></div>
+                <div class="customer-bullet"></div>
+                <div class="customer-bullet"></div>
+            </div>
+        </div>
+
+        <div class="customer-list" ng-repeat="list in searchResult">
+            <div class="wpr-img-cstmrlst">
+                <img src="/styles/images/paper.png" class="img-circle user-img" />
+            </div>
+            <div class="wpr-prsninf-cstmrlst">
+                <div style="font-size: 22px;">{{list.QTCode}}</div>
+                <div style="color: #969696;"><i class="iconline-calendar"></i> {{list.QTDate}}</div>
+            </div>
+            <div class="wpr-qtninf-cstmrlst">
+                <div style="font-size: 22px;"><i class="icon-banknote" style="color: #8B8B8B;"></i> {{list.NetPrice|number:0}}</div>
+                <div class="customer-status" ng-style="list.Styles">{{list.Status}}</div>
+            </div>
+            <div class="wpr-blt-cstmrlst">
+                <div class="customer-bullet"></div>
+                <div class="customer-bullet"></div>
+                <div class="customer-bullet"></div>
+            </div>
+        </div>
+    </div>
+    <div ng-show="layoutMenus==3">
+        <div class="customer-list" ng-show="filter[0] && searchResult==''&&NotFound==false" ng-repeat="list in AllFilters">
+            <div class="wpr-img-cstmrlst">
+                <img src="/styles/images/paper2.png" class="img-circle user-img" />
+            </div>
+            <div class="wpr-prsninf-cstmrlst">
+                <div style="font-size: 22px;">{{list.Code}}</div>
+                <div style="color: #969696;"><i class="iconline-calendar"></i> {{list.Date}}</div>
+            </div>
+            <div class="wpr-qtninf-cstmrlst">
+                <div style="font-size: 22px;"><i class="icon-banknote" style="color: #8B8B8B;"></i> {{list.Amount|number:0}}</div>
+                <div class="customer-status" ng-style="list.Styles">{{list.Status}}</div>
+            </div>
+            <div class="wpr-blt-cstmrlst">
+                <div class="customer-bullet"></div>
+                <div class="customer-bullet"></div>
+                <div class="customer-bullet"></div>
+            </div>
+        </div>
+
+        <div class="customer-list" ng-show="filter[1]&& searchResult=='' &&NotFound==false" ng-repeat="list in BidFilters">
+            <div class="wpr-img-cstmrlst">
+                <img src="/styles/images/paper2.png" class="img-circle user-img" />
+            </div>
+            <div class="wpr-prsninf-cstmrlst">
+                <div style="font-size: 22px;">{{list.Code}}</div>
+                <div style="color: #969696;"><i class="iconline-calendar"></i> {{list.Date}}</div>
+            </div>
+            <div class="wpr-qtninf-cstmrlst">
+                <div style="font-size: 22px;"><i class="icon-banknote" style="color: #8B8B8B;"></i> {{list.Amount|number:0}}</div>
+                <div class="customer-status" ng-style="list.Styles">{{list.Status}}</div>
+            </div>
+            <div class="wpr-blt-cstmrlst">
+                <div class="customer-bullet"></div>
+                <div class="customer-bullet"></div>
+                <div class="customer-bullet"></div>
+            </div>
+        </div>
+
+        <div class="customer-list" ng-show="filter[2]&& searchResult=='' &&NotFound==false" ng-repeat="list in BookFilters">
+            <div class="wpr-img-cstmrlst">
+                <img src="/styles/images/paper2.png" class="img-circle user-img" />
+            </div>
+            <div class="wpr-prsninf-cstmrlst">
+                <div style="font-size: 22px;">{{list.Code}}</div>
+                <div style="color: #969696;"><i class="iconline-calendar"></i> {{list.Date}}</div>
+            </div>
+            <div class="wpr-qtninf-cstmrlst">
+                <div style="font-size: 22px;"><i class="icon-banknote" style="color: #8B8B8B;"></i> {{list.Amount|number:0}}</div>
+                <div class="customer-status" ng-style="list.Styles">{{list.Status}}</div>
+            </div>
+            <div class="wpr-blt-cstmrlst">
+                <div class="customer-bullet"></div>
+                <div class="customer-bullet"></div>
+                <div class="customer-bullet"></div>
+            </div>
+        </div>
+
+        <div class="customer-list" ng-show="filter[3]&& searchResult==''&&NotFound==false" ng-repeat="list in SignFilters">
+            <div class="wpr-img-cstmrlst">
+                <img src="/styles/images/paper2.png" class="img-circle user-img" />
+            </div>
+            <div class="wpr-prsninf-cstmrlst">
+                <div style="font-size: 22px;">{{list.Code}}</div>
+                <div style="color: #969696;"><i class="iconline-calendar"></i> {{list.Date}}</div>
+            </div>
+            <div class="wpr-qtninf-cstmrlst">
+                <div style="font-size: 22px;"><i class="icon-banknote" style="color: #8B8B8B;"></i> {{list.Amount|number:0}}</div>
+                <div class="customer-status" ng-style="list.Styles">{{list.Status}}</div>
+            </div>
+            <div class="wpr-blt-cstmrlst">
+                <div class="customer-bullet"></div>
+                <div class="customer-bullet"></div>
+                <div class="customer-bullet"></div>
+            </div>
+        </div>
+
+        <div class="customer-list" ng-show="filter[4]&& searchResult==''&&NotFound==false" ng-repeat="list in DownFilters">
+            <div class="wpr-img-cstmrlst">
+                <img src="/styles/images/paper2.png" class="img-circle user-img" />
+            </div>
+            <div class="wpr-prsninf-cstmrlst">
+                <div style="font-size: 22px;">{{list.Code}}</div>
+                <div style="color: #969696;"><i class="iconline-calendar"></i> {{list.Date}}</div>
+            </div>
+            <div class="wpr-qtninf-cstmrlst">
+                <div style="font-size: 22px;"><i class="icon-banknote" style="color: #8B8B8B;"></i> {{list.Amount|number:0}}</div>
+                <div class="customer-status" ng-style="list.Styles">{{list.Status}}</div>
+            </div>
+            <div class="wpr-blt-cstmrlst">
+                <div class="customer-bullet"></div>
+                <div class="customer-bullet"></div>
+                <div class="customer-bullet"></div>
+            </div>
+        </div>
+
+        <div class="customer-list" ng-show="filter[5]&& searchResult==''&&NotFound==false" ng-repeat="list in TransferFilters">
+            <div class="wpr-img-cstmrlst">
+                <img src="/styles/images/paper2.png" class="img-circle user-img" />
+            </div>
+            <div class="wpr-prsninf-cstmrlst">
+                <div style="font-size: 22px;">{{list.Code}}</div>
+                <div style="color: #969696;"><i class="iconline-calendar"></i> {{list.Date}}</div>
+            </div>
+            <div class="wpr-qtninf-cstmrlst">
+                <div style="font-size: 22px;"><i class="icon-banknote" style="color: #8B8B8B;"></i> {{list.Amount|number:0}}</div>
+                <div class="customer-status" ng-style="list.Styles">{{list.Status}}</div>
+            </div>
+            <div class="wpr-blt-cstmrlst">
+                <div class="customer-bullet"></div>
+                <div class="customer-bullet"></div>
+                <div class="customer-bullet"></div>
+            </div>
+        </div>
+
+        <div class="customer-list" ng-repeat="list in searchResult">
+            <div class="wpr-img-cstmrlst">
+                <img src="/styles/images/paper2.png" class="img-circle user-img" />
+            </div>
+            <div class="wpr-prsninf-cstmrlst">
+                <div style="font-size: 22px;">{{list.Code}}</div>
+                <div style="color: #969696;"><i class="iconline-calendar"></i> {{list.Date}}</div>
+            </div>
+            <div class="wpr-qtninf-cstmrlst">
+                <div style="font-size: 22px;"><i class="icon-banknote" style="color: #8B8B8B;"></i> {{list.Amount|number:0}}</div>
+                <div class="customer-status" ng-style="list.Styles">{{list.Status}}</div>
+            </div>
+            <div class="wpr-blt-cstmrlst">
+                <div class="customer-bullet"></div>
+                <div class="customer-bullet"></div>
+                <div class="customer-bullet"></div>
+            </div>
+        </div>
+    </div>
+    <div ng-show="NotFound" style="text-align: center;color: #D84E4E;margin: 25px;font-size: 30px;">
+        <span class="iconline-close"></span> <span translate="noItemFound"></span>...
+    </div>
+
+</div>

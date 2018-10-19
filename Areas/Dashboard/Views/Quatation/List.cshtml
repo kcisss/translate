@@ -1,0 +1,212 @@
+﻿@{
+    var projId = Request.QueryString["projId"];
+    ViewBag.NgApp = "CustomerApp";
+    Layout = "~/Views/Shared/_POSLayout.cshtml";
+}
+
+@section IncludeCSS {
+    @Styles.Render(
+    "~/bundles/css/customerstyle",
+    "~/bundles/css/POSstyle"
+    )
+}
+
+<div ng-init="initId('@projId');">
+
+    @*!!==new headsort==!!*@
+    <div class="headsort-control clearfix">
+        <div id="H1" class="headsort-units" ng-click="H1()" ng-style="hStyles[0]">
+            <span class="unit-amounts">
+                {{all}}
+                @*<span class="notify-headsort">
+                        <span class="amount">1</span>
+                    </span>*@
+            </span>
+            <div class="unit-titles"><span translate="all"></span></div>
+        </div>
+        <div id="H2" class="headsort-units" ng-click="H2()" ng-style="hStyles[1]">
+            <span class="unit-amounts">
+                {{bid}}
+                @*<span class="notify-headsort">
+                        <span class="amount">1</span>
+                    </span>*@
+            </span>
+            <div class="unit-titles"><span translate="quote"></span></div>
+        </div>
+        <div id="H3" class="headsort-units" ng-click="H3()" ng-style="hStyles[2]">
+            <span class="unit-amounts">
+                {{book}}
+                @*<span class="notify-headsort">
+                        <span class="amount">1</span>
+                    </span>*@
+            </span>
+            <div class="unit-titles"><span translate="reservations"></span></div>
+        </div>
+        <div id="H4" class="headsort-units" ng-click="H4()" ng-style="hStyles[3]">
+            <span class="unit-amounts">
+                {{sign}}
+                @*<span class="notify-headsort">
+                        <span class="amount">1</span>
+                    </span>*@
+            </span>
+            <div class="unit-titles"><span translate="contract"></span></div>
+        </div>
+        <div id="H5" class="headsort-units" ng-click="H5()" ng-style="hStyles[4]">
+            <span class="unit-amounts">
+                {{down}}
+                @*<span class="notify-headsort">
+                        <span class="amount">1</span>
+                    </span>*@
+            </span>
+            <div class="unit-titles"><span translate="downPayment"></span></div>
+        </div>
+        <div id="H6" class="headsort-units" ng-click="H6()" ng-style="hStyles[5]">
+            <span class="unit-amounts">
+                {{transfer}}
+                @*<span class="notify-headsort">
+                        <span class="amount">1</span>
+                    </span>*@
+            </span>
+            <div class="unit-titles"><span translate="transfer"></span></div>
+        </div>
+
+        <div class="pull-right">
+            <div class="quotation-wrap-search">
+                <input id="quotation-search" type="text" class="qtn-srch" placeholder="ค้นหา..." ng-model="textSearch" on-enter="DashboardSearchBox(textSearch)" clear-input />
+                <button class="qtn-btn-search" ng-click="DashboardSearchBox(textSearch)">
+                    <span class="iconline-magnifier"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="customer-list" ng-show="filter[0] && searchResult==''&&NotFound==false" ng-repeat="list in AllFilters">
+        <div class="wpr-img-cstmrlst">
+        </div>
+        <div class="wpr-prsninf-cstmrlst">
+            <div style="font-size: 22px;">{{list.Name.firstname}} {{list.Name.lastname}}</div>
+            <div style="color: #969696;"><i class="fa fa-mobile"></i> {{list.Phone}}</div>
+        </div>
+        <div class="wpr-qtninf-cstmrlst">
+            <div style="font-size: 22px;"><i class="fa fa-home" style="color: #8B8B8B;"></i> {{list.REUnitCode}}</div>
+            <div class="customer-status" ng-style="list.Styles">{{list.Status}}</div>
+        </div>
+        <div class="wpr-blt-cstmrlst">
+            <div class="customer-bullet"></div>
+            <div class="customer-bullet"></div>
+            <div class="customer-bullet"></div>
+        </div>
+    </div>
+
+    <div id="customer-list" ng-show="filter[1]&& searchResult=='' &&NotFound==false" ng-repeat="list in BidFilters">
+        <div class="wpr-img-cstmrlst">
+        </div>
+        <div class="wpr-prsninf-cstmrlst">
+            <div style="font-size: 22px;">{{list.Name.firstname}} {{list.Name.lastname}}</div>
+            <div style="color: #969696;"><i class="fa fa-mobile"></i> {{list.Phone}}</div>
+        </div>
+        <div class="wpr-qtninf-cstmrlst">
+            <div style="font-size: 22px;"><i class="fa fa-home" style="color: #8B8B8B;"></i> {{list.REUnitCode}}</div>
+            <div class="customer-status" ng-style="list.Styles">{{list.Status}}</div>
+        </div>
+        <div class="wpr-blt-cstmrlst">
+            <div class="customer-bullet"></div>
+            <div class="customer-bullet"></div>
+            <div class="customer-bullet"></div>
+        </div>
+    </div>
+
+    <div id="customer-list" ng-show="filter[2]&& searchResult=='' &&NotFound==false" ng-repeat="list in BookFilters">
+        <div class="wpr-img-cstmrlst">
+        </div>
+        <div class="wpr-prsninf-cstmrlst">
+            <div style="font-size: 22px;">{{list.Name.firstname}} {{list.Name.lastname}}</div>
+            <div style="color: #969696;"><i class="fa fa-mobile"></i> {{list.Phone}}</div>
+        </div>
+        <div class="wpr-qtninf-cstmrlst">
+            <div style="font-size: 22px;"><i class="fa fa-home" style="color: #8B8B8B;"></i> {{list.REUnitCode}}</div>
+            <div class="customer-status" ng-style="list.Styles">{{list.Status}}</div>
+        </div>
+        <div class="wpr-blt-cstmrlst">
+            <div class="customer-bullet"></div>
+            <div class="customer-bullet"></div>
+            <div class="customer-bullet"></div>
+        </div>
+    </div>
+
+    <div id="customer-list" ng-show="filter[3]&& searchResult==''&&NotFound==false" ng-repeat="list in SignFilters">
+        <div class="wpr-img-cstmrlst">
+        </div>
+        <div class="wpr-prsninf-cstmrlst">
+            <div style="font-size: 22px;">{{list.Name.firstname}} {{list.Name.lastname}}</div>
+            <div style="color: #969696;"><i class="fa fa-mobile"></i> {{list.Phone}}</div>
+        </div>
+        <div class="wpr-qtninf-cstmrlst">
+            <div style="font-size: 22px;"><i class="fa fa-home" style="color: #8B8B8B;"></i> {{list.REUnitCode}}</div>
+            <div class="customer-status" ng-style="list.Styles">{{list.Status}}</div>
+        </div>
+        <div class="wpr-blt-cstmrlst">
+            <div class="customer-bullet"></div>
+            <div class="customer-bullet"></div>
+            <div class="customer-bullet"></div>
+        </div>
+    </div>
+
+    <div id="customer-list" ng-show="filter[4]&& searchResult==''&&NotFound==false" ng-repeat="list in DownFilters">
+        <div class="wpr-img-cstmrlst">
+        </div>
+        <div class="wpr-prsninf-cstmrlst">
+            <div style="font-size: 22px;">{{list.Name.firstname}} {{list.Name.lastname}}</div>
+            <div style="color: #969696;"><i class="fa fa-mobile"></i> {{list.Phone}}</div>
+        </div>
+        <div class="wpr-qtninf-cstmrlst">
+            <div style="font-size: 22px;"><i class="fa fa-home" style="color: #8B8B8B;"></i> {{list.REUnitCode}}</div>
+            <div class="customer-status" ng-style="list.Styles">{{list.Status}}</div>
+        </div>
+        <div class="wpr-blt-cstmrlst">
+            <div class="customer-bullet"></div>
+            <div class="customer-bullet"></div>
+            <div class="customer-bullet"></div>
+        </div>
+    </div>
+
+    <div id="customer-list" ng-show="filter[5]&& searchResult==''&&NotFound==false" ng-repeat="list in TransferFilters">
+        <div class="wpr-img-cstmrlst">
+        </div>
+        <div class="wpr-prsninf-cstmrlst">
+            <div style="font-size: 22px;">{{list.Name.firstname}} {{list.Name.lastname}}</div>
+            <div style="color: #969696;"><i class="fa fa-mobile"></i> {{list.Phone}}</div>
+        </div>
+        <div class="wpr-qtninf-cstmrlst">
+            <div style="font-size: 22px;"><i class="fa fa-home" style="color: #8B8B8B;"></i> {{list.REUnitCode}}</div>
+            <div class="customer-status" ng-style="list.Styles">{{list.Status}}</div>
+        </div>
+        <div class="wpr-blt-cstmrlst">
+            <div class="customer-bullet"></div>
+            <div class="customer-bullet"></div>
+            <div class="customer-bullet"></div>
+        </div>
+    </div>
+
+    <div id="customer-list" ng-repeat="list in searchResult">
+        <div class="wpr-img-cstmrlst">
+        </div>
+        <div class="wpr-prsninf-cstmrlst">
+            <div style="font-size: 22px;">{{list.Name.firstname}} {{list.Name.lastname}}</div>
+            <div style="color: #969696;"><i class="fa fa-mobile"></i> {{list.Phone}}</div>
+        </div>
+        <div class="wpr-qtninf-cstmrlst">
+            <div style="font-size: 22px;"><i class="fa fa-home" style="color: #8B8B8B;"></i> {{list.REUnitCode}}</div>
+            <div class="customer-status" ng-style="list.Styles">{{list.Status}}</div>
+        </div>
+        <div class="wpr-blt-cstmrlst">
+            <div class="customer-bullet"></div>
+            <div class="customer-bullet"></div>
+            <div class="customer-bullet"></div>
+        </div>
+    </div>
+
+    <div ng-show="NotFound" style="text-align: center;color: #D84E4E;margin: 25px;font-size: 30px;">
+        <span class="iconline-close"></span> <span translate="noItemFound"></span>...
+    </div>
+</div>

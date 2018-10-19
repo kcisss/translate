@@ -1,0 +1,63 @@
+﻿<style>
+    .header {
+        color: white;
+        border-left: 2px solid rgba(231,45,80,1);
+        text-align: center;
+        height: 40px;
+        line-height: 40px;
+        font-size: 15px;
+    }
+
+    .detail {
+        font-size: 13px;
+        padding-left: 16px;
+    }
+
+    md-list-item._md-no-proxy, md-list-item ._md-no-style {
+        padding: 0px;
+    }
+
+    .md-datepicker-button{
+        display: none;
+    }
+</style>
+
+<md-toolbar class="md-whiteframe-2dp" style="min-height:48px;">
+    <md-content style="background:transparent;">
+        <md-list layout-padding style="padding: 0px 8px;height: 48px;">
+            <md-list-item class="md-2-line" style="min-height: 48px;height: 48px;padding:0px;">
+                <div class="md-list-item-text" layout="row">
+                    <span flex="20" class="header" style="border-left: 0px;" translate="issue"></span>
+                    <span flex="20" class="header">WBS</span>
+                    <span flex="20" class="header" translate="unit"></span>
+                    <span flex="20" class="header" translate="description"></span>
+                    <span flex="20" class="header" translate="assignTo"></span>
+                    <span flex="20" class="header" translate="deadLine"></span>
+                </div>
+            </md-list-item>
+        </md-list>
+    </md-content>
+</md-toolbar>
+<md-content class="style-3">
+    <md-list layout-padding style="background:white">
+        <md-list-item class="md-2-line" ng-repeat="issue in issues" style="padding:0px;">
+            <div class="md-list-item-text" layout="row" layout-align="start center">
+                <span class="detail" flex="20">
+                    <md-checkbox style="margin:0px;width:22px;" ng-model="data.cb1" aria-label="Checkbox 1">
+                    </md-checkbox>
+                    {{issue.subject}}
+                </span>
+                <span class="detail" flex="20">{{issue.wbs}}</span>
+                <span class="detail" flex="20">{{issue.unit}}</span>
+                <span class="detail" flex="20">{{issue.detail}}</span>
+                <span class="detail" flex="20">{{issue.assign}}</span>
+                <span class="detail" flex="20" style="text-align:center;padding:0px;">
+                    <md-datepicker ng-model="issue.duedate" md-placeholder="Enter date"
+                                   md-open-on-focus>
+                    </md-datepicker>
+                </span>
+            </div>
+            <md-divider ng-if="!$last"></md-divider>
+        </md-list-item>
+    </md-list>
+</md-content>

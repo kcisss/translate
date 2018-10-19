@@ -1,0 +1,33 @@
+﻿@{
+    ViewBag.title = "Ploy - Quotation";
+    ViewBag.NgApp = "QuotationApp";
+    Layout = "~/Views/Shared/_AllNewMasterLayout.cshtml";
+}
+@section IncludeScripts {
+    <script src="~/Content/src/modules/POS/Quotation/scripts/QuotationApp.js"></script>
+    <script src="~/Content/src/modules/POS/Quotation/scripts/QuotationCtrl.js"></script>
+    <script src="~/Content/src/modules/POS/Quotation/scripts/EditQuotationCtrl.js"></script>
+    <script src="~/Content/src/modules/POS/Quotation/scripts/PrintQuotationCtrl.js"></script>
+    <script src="~/Content/src/modules/POS/Quotation/scripts/BottomSheet.js"></script>
+
+    <script src="~/Content/src/modules/POS/Quotation/scripts/QuotationApproverCtrl.js"></script>
+    <script src="~/Content/src/modules/POS/Quotation/scripts/OTPCtrl.js"></script>
+    <script src="~/Content/src/modules/POS/Quotation/scripts/_QVAL.js"></script>
+
+    <script src="~/Content/src/ploy/BankList.js"></script>
+
+    <script src="~/Content/src/modules/POS/Quotation/scripts/downPaymentDialogCtrl.js"></script>
+    <script src="~/Content/src/modules/POS/Quotation/scripts/otherPaymentDialogCtrl.js"></script>
+    <script src="~/Content/src/modules/POS/Quotation/scripts/promotionDialogCtrl.js"></script>
+    <script src="~/Content/src/modules/POS/Quotation/scripts/QuotationServ.js"></script>
+    <script src="~/Content/src/modules/POS/Quotation/scripts/selectREUnitPlanController.js"></script>
+    <script src="~/Content/src/modules/POS/Quotation/scripts/additionpricedialog.js"></script>
+    <script src="~/Content/src/modules/POS/Quotation/scripts/AddBookMoneydialog.js"></script>
+    <script src="~/Content/src/modules/POS/Plan/scripts/printCtrl.js"></script>
+}
+@section IncludeCSS {
+}
+@*<div ng-view></div>*@
+<md-content flex layout="column" class="bg">
+    <div ng-view flex layout="column"></div>
+</md-content>

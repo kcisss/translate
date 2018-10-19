@@ -1,0 +1,83 @@
+﻿@{
+    ViewBag.Title = "รายงานกิจกรรมและผลตอบรับ";
+    ViewBag.NgApp = "PivotAnalysisApp";
+
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+}
+
+@section IncludeCSS {
+    @Styles.Render(
+        "~/bundles/css/daterangepicker",
+        "~/bundles/Style/PivotTable"
+    )
+    <link rel="stylesheet" href="/Styles/css/POSStyle.css" />
+    <link href="~/Content/src/modules/Common/PivotAnalysis/PivotAnlysisStyle.css" rel="stylesheet" />
+}
+@section IncludeScripts{
+    @Scripts.Render(
+        "~/bundles/daterangepicker",
+        "~/bundles/Script/PivotTable",
+        "~/bundles/Common/PivotAnalysis/ActivityAndResponseReport",
+                "~/bundles/master-project",
+                "~/bundles/master-worker"
+    )
+}
+
+<div ng-controller="ActivityAndResponseReportMainCtrl" class="use-print-service">
+    <md-content set-height="80" style="overflow:auto; ">
+        <md-subheader class="md-primary line-buttom">
+            <div  layout-align="start">
+                <a href="/Common/PivotAnalysis/List" style="font-size: 18px; margin-top: 5px;">
+                    <i class="fa fa-money"></i> <span translate="activitiesFeedback"></span>
+                </a>
+                <div class="pull-right" style="position:relative;z-index:88;height:30px;" >
+                    <div class="input-group  daterangepicker">
+                        <input ng-model="filterObj.date" ng-change="filterFunc()" class="span12 md-input" type="text" date-range-picker placeholder="Select date" />
+                    </div>
+                    <select ng-model="filterObj.Project" ng-change="filterFunc()" ng-options="project.Name for project in projects track by project.Id"></select>
+                    <select ng-model="filterObj.Worker" ng-change="filterFunc()" ng-options="worker.Name for worker in workers track by worker.Id"></select>
+                </div>
+                <md-button class='mrm' aria-label="Raw data" style='position:relative;z-index:888;top:-5px;height:30px'
+                           ng-click="go('/Common/PivotAnalysis/ActivityAndResponseReport/RawData')">
+                    <span translate="allInformation"></span> <i class="fa fa-external-link"></i>
+                </md-button>
+                <md-button style="position:relative;z-index:888;top:-5px;height: 30px;" ng-click="print('.pvtRendererArea')"><i class="fa fa-print"></i></md-button>
+                <md-button class="md-fab bg-pink md-fab-top-right animated zoomInDown" aria-label="+" style="" ng-click="showDialog($event)">
+                    <i class="fa fa-save"></i>
+                    <md-tooltip><span translate="save"></span></md-tooltip>
+                </md-button>
+            </div>
+        </md-subheader>
+        <md-card ng-show="coreResult.length != 0">
+            <md-card-content>
+                <h2 class="md-title">
+                    <i class="fa fa-bar-chart"></i> {{settingData.Name}}
+                </h2>
+                <p ng-show="settingData.Id">
+                    <span translate="lastModified"></span> {{settingData.LastModifiedTimeStamp}}
+                </p>
+            </md-card-content>
+        </md-card>
+        <md-card ng-show="coreResult.length == 0">
+            <md-card-content>
+                <p translate="noInformationDuringSearch">
+                </p>
+            </md-card-content>
+        </md-card>
+        <span ng-hide="coreResult" translate="pleaseWait"></span>
+        <div id="output" style="margin: 10px;"></div>
+    </md-content>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-body">
+                    <i class="big-icon fa pull-left fa-spinner text-pink fa-pulse" style="margin-top: 2px;"></i>
+                    <p style="margin-top: 3px; padding-left: 53px;">{{loadMsg}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,45 @@
+﻿@{
+    ViewBag.Title = "Index";
+    ViewBag.NgApp = "ServiceProjectApp";
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+}
+
+@section IncludeScripts{
+  
+    @Scripts.Render(
+        "~/bundles/master-app",
+        "~/bundles/master-menu",
+        "~/bundles/master-project",
+        "~/bundles/master-worker",
+        "~/bundles/service-projectList"
+        
+        )
+}
+
+
+    @Styles.Render("~/bundles/css/POSStyle", "~/bundles/css/lmlstyle")
+  
+<!--Index-->
+<div style="overflow:scroll" set-height=72 ng-controller="MainCtrl">
+    <div class="header-project">
+        <div class="title-project"><span style="font-size: 25px; padding: 15px;"></span><span translate="selectProject"></span></div>
+    </div>
+    <div ng-repeat="project in projectList">
+        <div class="col-lg-3 col-md-3 col-sm-4 xlg-screen">
+            <div class="project-thumbnail subtle-shadow">
+                <a style="width:100%" href="/service/project#!/{{project.Id}}/">
+                    <div class="pic bg-grayE">
+                        <img src="{{IMGHOST}}/{{project.CoverPhoto}}" class="img-responsive thumbnail-ctrl" />
+                    </div>
+                    <div class="project-name">
+                        {{project.Name}}
+                        @*  <a class="pull-right muted" ng-click="ShowDelete('โครงการ',list.Id)" style="font-size:80%;margin:5px 5px 0px 0px;text-decoration:none;color:#999">
+                                <span class="icon-trash"></span>
+                            </a>*@
+                    </div>
+                </a>
+            </div>
+        </div>
+
+    </div>
+</div>

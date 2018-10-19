@@ -1,0 +1,130 @@
+﻿<md-dialog>
+    <md-toolbar>
+        <div class="md-toolbar-tools darkToolbar">
+            <h2 translate="addBankApp"></h2>
+        </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+        <div class="md-dialog-content title" layout="row">
+            <h3 class="space md-primary"><span translate="unit"></span> {{data.ReUnitCode}}</h3>
+            <h3><span translate="project"></span> {{data.ProjectName}}</h3>
+        </div>
+        <div class="choice">
+            <div layout="column">
+                <div layout="row">
+                    <div class="loanChoice space" ng-class="{'selectLoan':selectLoan == 'loanWithBank'}" ng-click="selectLoan = 'loanWithBank'">
+                        <i class="material-icons checkLoan" ng-show="selectLoan == 'loanWithBank'">
+                            <span translate="check"></span>
+                        </i>
+                        <div layout="column" layout-align="center center">
+                            <i class="material-icons sizeIcon"><span translate="payment"></span></i>
+                            <h3 translate="loanBank"></h3>
+                        </div>
+                    </div>
+                    <div class="loanChoice space" ng-hide="payByCash" ng-class="{'selectLoan':selectLoan == 'payByCash'}" ng-click="selectLoan = 'payByCash'">
+                        <i class="material-icons checkLoan" ng-show="selectLoan == 'payByCash'">
+                            <span translate="check"></span>
+                        </i>
+                        <div layout="column" layout-align="center center">
+                            <div style="width:100%; height:40px; text-align:center; padding-top:6px;">
+                                <img src="/content/src/modules/mortgage/Share/Pic/ic_bank_gray.png" ng-hide="selectLoan == 'payByCash'" />
+                                <img src="/content/src/modules/mortgage/Share/Pic/ic_bank_pink.png" ng-show="selectLoan == 'payByCash'" />
+                            </div>
+                            <h3 translate="payCash"></h3>
+                        </div>
+                    </div>
+                </div>
+                <div ng-show="selectLoan == 'loanWithBank'">
+                    <md-select placeholder="กรุณาเลือกธนาคาร" ng-model="listBankForSave" multiple>
+                        <md-select-header>
+                            <md-checkbox ng-click="selectAll=!selectAll;checkSelectAll()" ng-checked="checkToggleAll()" aria-label="Checkbox 1"><span translate="selectAll"></span></md-checkbox>
+                        </md-select-header>
+                        <md-divider></md-divider>
+                        <md-option ng-value="bank.Id" ng-repeat="bank in bankList" ng-disabled="checkBank(bank.Id)" ng-selected="checkBank(bank.Id)">
+                                <img style="width:22px; margin-right:8px;" ng-src="{{bank.Logo != null ? bank.Logo : ''}}">
+                                <span>{{bank.ThaiName}}</span>
+                                <span> ({{bank.CodeName}})</span>
+                        </md-option>
+                    </md-select>
+                </div>
+            </div>
+        </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+        <span flex></span>
+        <md-button ng-click="cancel()" ng-disabled="postAPI">
+            <span translate="canceled"></span>
+        </md-button>
+        <md-button ng-click="submit()" class="md-primary" ng-disabled="checkLengthBankDetail() == listBankForSave.length && selectLoan != 'payByCash'"
+                   layout="column" layout-align="center center" aria-label="submit">
+            <div ng-if="!postAPI"><span translate="agreed"></span></div>
+            <md-progress-circular ng-if="postAPI" ng-disabled="!postAPI" class="md-hue-2" md-diameter="20px"></md-progress-circular>
+        </md-button>
+    </md-dialog-actions>
+</md-dialog>
+<style>
+    .loanChoice {
+        background-color: white;
+        color: #b5b4b4;
+        border-radius: 10px;
+        width: 200px;
+        cursor: pointer;
+    }
+
+    .selectLoan {
+        color: #ff4365;
+        border: 1px solid #ff4365;
+    }
+
+    .checkLoan {
+        background-color: #ff4365;
+        color: white;
+        border-radius: 50%;
+        position: absolute;
+        margin: -8px;
+    }
+
+    .choice {
+        padding: 20px;
+        background-color: #f5f5f5;
+        height: 160px;
+    }
+
+    md-dialog {
+        width: 600px;
+    }
+
+    .sizeIcon {
+        font-size: 40px;
+    }
+
+    .title {
+        padding: 0 24px !important;
+    }
+
+    .space {
+        margin-right: 30px;
+    }
+
+    .darkToolbar {
+        background-color: #424242
+    }
+
+    md-select {
+        min-width: 200px;
+    }
+
+    .md-primary {
+        color: #ff4365;
+    }
+
+    md-checkbox {
+        margin: 11px !important;
+    }
+
+    ._md-select-value > span{
+        max-width:100% !important;
+    }
+</style>

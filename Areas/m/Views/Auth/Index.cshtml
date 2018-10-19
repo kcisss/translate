@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html ng-app="authApp">
+<head>
+    <script>
+        var _globalmodel = "@MvcApplication.GlobalConfigs()";
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <title>Ploy - Login</title>
+
+    <link rel="icon" sizes="192x192" href="/Content/src/mobile/share/modules/globalMApp/img/ployicon-highres.png">
+    <link rel="apple-touch-icon" sizes="128x128" href="/Content/src/mobile/share/modules/globalMApp/img/ployicon.png">
+    <link rel="apple-touch-icon-precomposed" sizes="128x128" href="/Content/src/mobile/share/modules/globalMApp/img/ployicon.png">
+
+    @*ngMaterial Style*@
+    <link href="~/Content/angular-material.css" rel="stylesheet" />
+
+    @*Global Style Set*@
+    <link href="~/Content/src/mobile/share/modules/globalMApp/style/style.css" rel="stylesheet" />
+    <link href="~/Content/src/mobile/modules/auth/styles/style.css" rel="stylesheet" />
+</head>
+<body ng-cloak layout="column">
+    <div ng-view></div>
+
+    @*ngMaterial Set*@
+    <script src="~/Scripts/angular.js"></script>
+    <script src="~/Scripts/angular-animate.js"></script>
+    <script src="~/Scripts/angular-aria.js"></script>
+    <script src="~/Scripts/angular-messages.js"></script>
+    <script src="~/Scripts/angular-material/angular-material.js"></script>
+
+    @*Global Other Liblary Set*@
+    <script src="~/Scripts/angular-cookies.js"></script>
+    <script src="~/Scripts/angular-route.js"></script>
+    <script src="~/Scripts/underscore.js"></script>
+    <script src="~/Scripts/underscore.string.js"></script>
+    <script src="~/Content/src/ploy/UnderScoreConfig.js"></script> 
+    <script src="~/Scripts/angular-translate.js"></script>
+    <script src="~/Scripts/angular-translate-loader-static-files.js"></script>
+    <script src="~/Scripts/angular-translate-storage-cookie.js"></script>
+    <script src="~/Scripts/angular-translate-storage-local.js"></script>
+    <script src="~/Scripts/angular-local-storage.min.js"></script>
+
+    @*Module App Set*@
+    <script src="~/Content/src/mobile/modules/auth/scripts/app.js"></script>
+    <script src="~/Content/src/mobile/modules/auth/scripts/ctrl.js"></script>
+    <script src="~/Content/src/mobile/modules/auth/scripts/serv.js"></script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+﻿<md-dialog aria-label="ข้อมูลผู้กู้" style="width: 990px;">
+    <form ng-cloak>
+        <md-toolbar style="background-color: rgb(255, 67, 101);">
+            <div class="md-toolbar-tools">
+                <h2 translate="addContractorInform"></h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon md-svg-src="navigation:close" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div layout="column" layout-align="center center" style="padding: 52px 0px 0px 0px;">
+                <md-input-container style="width: 650px;" class="md-icon-float">
+                    <md-icon style="color:indianred" md-svg-src="action:perm_identity" aria-label="perm_identity"></md-icon>
+                    <label translate="nameSurnameContractor"> <span style="color:red">*</span></label>
+                    <input ng-model="user.customerName">
+                </md-input-container>
+
+                <div layout="row">
+                    <md-input-container style="width: 400px;" class="md-icon-float">
+                        <md-icon style="color:indianred" md-svg-src="action:settings_phone" aria-label="settings_phone"></md-icon>
+                        <label translate="profile.Tel"> <span style="color:red">*</span></label>
+                        <input  ng-model="user.customerPhone">
+                    </md-input-container>
+                    <md-input-container style="width: 200px;">
+                        <label translate="status"></label>
+                        <md-select ng-model="user.customerMaritalStatus">
+                            <!--<md-option><em>None</em></md-option>-->
+                            <md-option ng-repeat="state in states" ng-value="state.status">
+                                {{state.name}}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+                </div>
+                <div layout="row" style="width: 600px;">
+                    <md-input-container flex="50">
+                        <label translate="nameUnit"></label>
+                        <input ng-model="unit.Code">
+                    </md-input-container>
+                    <md-input-container flex="50">
+                        <label translate="housePrice"></label>
+                        <input ng-model="unit.SellingPrice">
+                    </md-input-container>
+                    <md-input-container flex="50">
+                        <label translate="houseNum"></label>
+                        <input ng-model="unit.AddressNo">
+                    </md-input-container>
+                </div>
+            </div>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row" style="padding: 18px 33px;">
+            <span style="color:red" ng-show="Err">*<span translate="pleaseFillInform"></span></span>
+            <span flex></span>
+            <md-button ng-click="cancel()">
+                <span translate="canceled"></span>
+            </md-button>
+            <md-button ng-click="save('save')" class="md-primary md-raised" style="background-color: #239245;padding: 8px 30px;">
+                <span translate="save"></span>
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

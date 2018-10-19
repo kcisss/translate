@@ -1,0 +1,107 @@
+﻿@{
+    ViewBag.title = "Ploy - โครงการ";
+    ViewBag.NgApp = "ProjectApp";
+    Layout = "~/Views/Shared/_AllNewMasterLayout.cshtml";
+}
+@section IncludeScripts {
+    @*Additional Liblary*@
+    @*<script src="~/Scripts/jquery-3.0.0.js"></script>*@
+    <script src="~/Scripts/md-data-table.js"></script>
+    <script src="~/Scripts/ng-file-upload.js"></script>
+    <script src="~/Scripts/checklist-model.js"></script>
+    <script src="~/Scripts/fixed-table-header.js"></script>
+    <script src="~/Scripts/bower_components/ng-img-crop/compile/unminified/ng-img-crop.js"></script>
+    <script src="~/Scripts/angu-fixed-header-table.js"></script>
+    <script src="~/Scripts/scrollglue.js"></script>
+    <script src="~/Scripts/xlsx/xlsx.core.min.js"></script>
+    <script src="~/Scripts/xlsx/Blob.js"></script>
+    <script src="~/Scripts/xlsx/FileSaver.js"></script>
+
+    @*Module Script*@
+    <script src="~/Content/src/modules/Listmanager/Project/scripts/app.js"></script>
+    <script src="~/Content/src/modules/Listmanager/Project/scripts/allunitCtrl.js"></script>
+    <script src="~/Content/src/modules/Listmanager/Project/scripts/projectListCtrl.js"></script>
+    <script src="~/Content/src/modules/Listmanager/Project/scripts/projectFormCtrl.js"></script>
+    <script src="~/Content/src/modules/Listmanager/Project/scripts/downCtrl.js"></script>
+    <script src="~/Content/src/modules/Listmanager/Project/scripts/mapCtrl.js"></script>
+    <script src="~/Content/src/modules/Listmanager/Project/scripts/mediaCtrl.js"></script>
+    <script src="~/Content/src/modules/Listmanager/Project/scripts/noteCtrl.js"></script>
+    <script src="~/Content/src/modules/Listmanager/Project/scripts/otherPaymentCtrl.js"></script>
+    <script src="~/Content/src/modules/Listmanager/Project/scripts/planCtrl.js"></script>
+    <script src="~/Content/src/modules/Listmanager/Project/scripts/planPinCtrl.js"></script>
+    <script src="~/Content/src/modules/Listmanager/Project/scripts/projectApproverCtrl.js"></script>
+    <script src="~/Content/src/modules/Listmanager/Project/scripts/promotionCtrl.js"></script>
+    <script src="~/Content/src/modules/Listmanager/Project/scripts/unitPlanCtrl.js"></script>
+    <script src="~/Content/src/modules/Listmanager/Project/scripts/landRegistrationCtrl.js"></script>
+    <script src="~/Content/src/modules/Listmanager/Project/scripts/reunitListCtrl.js"></script>
+    <script src="~/Content/src/modules/Listmanager/Project/scripts/REUnitFormCtrl.js"></script>
+    <script src="~/Content/src/modules/Listmanager/Project/scripts/additionprice.js"></script>
+    <script src="~/Content/src/modules/Listmanager/Project/scripts/serv.js"></script>
+    <script src="~/Content/src/modules/Listmanager/Project/scripts/serv2.js"></script>
+
+    @*Genaral Data*@
+    <script src="~/Content/src/ploy/service/MasterData/AddressServ.js"></script>
+}
+@section IncludeCSS {
+    @*Additional Liblary*@
+    <link href="~/Scripts/md-data-table.css" rel="stylesheet" />
+    <link href="~/Scripts/bower_components/ng-img-crop/compile/unminified/ng-img-crop.css" rel="stylesheet" />
+    <link href="~/Scripts/Expand-Collapse.css" rel="stylesheet" />
+
+    @*Module Style*@
+    <link href="~/Content/src/modules/Listmanager/Project/styles/style.css" rel="stylesheet" />
+}
+<div layout="row" ng-controller="LeftCtrl" flex>
+    <md-sidenav class="md-sidenav-left"
+                md-component-id="left"
+                md-is-locked-open="$mdMedia('gt-md')"
+                md-disable-backdrop
+                md-whiteframe="4"
+                style="width:265px;"
+                ng-hide="currPath == '/list' || currPath == '/form'">
+        <md-content id="style-3" style="font-size:14px;">
+            <md-subheader class="md-primary" style="color: #757575;"><span translate="mainPart"></span></md-subheader>
+            <md-list-item ng-href="{{leftMenu.url}}" ng-repeat="leftMenu in leftMenus1" ng-class="{ active_list: isActive(leftMenu.url) }" class="list-no-margin">
+                <md-icon md-svg-icon="{{leftMenu.icon}}"></md-icon>
+                <p> {{ leftMenu.name }} </p>
+                <div ng-show="isActive(leftMenu.url)"></div>
+            </md-list-item>
+            <md-divider></md-divider>
+            <md-subheader class="md-primary" style="color: #757575;"><span translate="anAdditional"></span></md-subheader>
+            <md-list-item ng-href="{{leftMenu.url}}" ng-repeat="leftMenu in leftMenus2" ng-class="{ active_list: isActive(leftMenu.url) }" class="list-no-margin">
+                <md-icon md-svg-icon="{{leftMenu.icon}}"></md-icon>
+                <p> {{ leftMenu.name }} </p>
+                <div ng-show="isActive(leftMenu.url)"></div>
+            </md-list-item>
+            <md-divider></md-divider>
+            <md-subheader class="md-primary" style="color: #757575;"><span translate="setting"></span></md-subheader>
+            <md-list-item ng-href="{{leftMenu.url}}" ng-repeat="leftMenu in leftMenus3" ng-class="{ active_list: isActive(leftMenu.url) }" class="list-no-margin">
+                <md-icon md-svg-icon="{{leftMenu.icon}}"></md-icon>
+                <p> {{ leftMenu.name }} </p>
+                <div ng-show="isActive(leftMenu.url)"></div>
+            </md-list-item>
+            <md-divider></md-divider>
+            <md-subheader class="md-primary" style="color: #757575;"><span translate="generalItems"></span></md-subheader>
+            <md-list-item ng-href="{{leftMenu.url}}" ng-repeat="leftMenu in leftMenus4" ng-class="{ active_list: isActive(leftMenu.url) }" class="list-no-margin">
+                <md-icon md-svg-icon="{{leftMenu.icon}}"></md-icon>
+                <p> {{ leftMenu.name }} </p>
+                <div ng-show="isActive(leftMenu.url)"></div>
+            </md-list-item>
+        </md-content>
+        <md-button class="md-icon-button"
+                   aria-label="show sidebar"
+                   hide-gt-md
+                   style="position: absolute;bottom: 0px;right: 0px;"
+                   ng-click="toggleLeft()">
+            <md-icon md-svg-icon="navigation:chevron_left"></md-icon>
+        </md-button>
+    </md-sidenav>
+    <md-content flex layout="column" class="bg">
+        <div ng-view flex layout="column"></div>
+    </md-content>
+    <md-button class="md-icon-button md-primary md-raised" aria-label="show sidebar" hide-gt-md
+               style="position: absolute;bottom: 10px;left: 4px;"
+               ng-click="toggleLeft()">
+        <md-icon md-svg-icon="navigation:chevron_right"></md-icon>
+    </md-button>
+</div>

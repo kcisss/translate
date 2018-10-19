@@ -1,0 +1,515 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        .a4page {
+            /*position: relative;*/
+            width: 210mm;
+            height: 297mm;
+            box-sizing: border-box;
+            padding: 1mm 15mm 1mm 15mm;
+            box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+            margin: 3px auto;
+            line-height: 25px;
+            font-family: 'AngsanaUPC';
+            font-size: 14pt;
+            text-align: justify;
+        }
+
+        .a4head {
+            /*border-bottom: 1px solid black !important;*/
+            text-align: center;
+            /*font-size: 18pt;*/
+            /*text-decoration: underline;*/
+            /*line-height: 25px;*/
+        }
+
+        .a4body {
+            height: 250mm;
+        }
+
+        .a4foot {
+        }
+
+        .textinbody {
+            text-indent: 50px;
+        }
+
+        td {
+            height: 10px;
+        }
+
+        #a {
+            margin-top: -10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="a4page">
+        <div class="a4body">
+            <!--<div style="height: 245mm;">-->
+            <p style="text-align: right;">สัญญาเลขที่ <strong>{{quotation.REUnitCode}}</strong></p>
+            <p style="text-align: center;">&nbsp;<br /><strong>สัญญาจะซื้อจะขายที่ดินพร้อมสิ่งปลูกสร้าง</strong><br /><strong>บ้านพิศาลเลียบวงแหวน-พระราม 2</strong></p>
+            <p style="text-align: right;">&nbsp;ทำที่&nbsp;บริษัท พิศาลเพลซ จำกัด</p>
+            <p>สำนักงานเลขที่ 133&nbsp; ถนน พระรามที่ 2 ตำบล/แขวง แสมดำ อำเภอ/เขต บางขุนเทียน จังหวัด กรุงเทพมหานคร</p>
+            <p style="text-align: right;">วันที่ <strong><span style="text-decoration: underline;">{{quotation.ContractDueDate| bdate}}</span></strong></p>
+            <p class="textinbody"><span style="font-size: 14pt;">สัญญาฉบับนี้ทำขึ้นระหว่าง <strong><span style="text-decoration: underline;">{{quotation.CustomerName}}</span>&nbsp;<span style="text-decoration: underline;">{{customField.ContractName2}}{{customField.ContractName3}}</span></strong> อายุ&nbsp;<strong><span style="text-decoration: underline;">{{quotation.CustomerAge}}{{customField.AgeContractName2}}{{customField.AgeContractName3}}</span></strong> ปี อยู่บ้านเลขที่ <strong><span style="text-decoration: underline;">{{quotation.CustomerAddress}}{{customField.AddressContractName2}}{{customField.AddressContractName3}}</span></strong> ซึ่งต่อไปในสัญญานี้เรียกว่า <strong>&ldquo;ผู้จะซื้อ&rdquo;</strong> ฝ่ายหนึ่ง กับ&nbsp;<strong>บริษัท พิศาลเพลซ&nbsp;</strong><strong>จำกัด</strong>&nbsp;โดย นายวิสิทธิ์ พิศาลคุณากิจ ซึ่งมี นางสาวกิตติมา พิศาลคุณากิจ หรือ นางสาวสาธิณี พิศาลคุณากิจ เป็นผู้รับมอบอำนาจทำการแทน (ตามสำเนาหนังสือมอบอำนาจ แนบท้ายสัญญา) ซึ่งต่อไปในสัญญานี้ เรียกว่า <strong>&ldquo;ผู้จะขาย&rdquo;</strong> อีกฝ่ายหนึ่ง ทั้งสองฝ่ายตกลงทำสัญญากัน โดยมีข้อความดังต่อไปนี้</span></p>
+            <div class="textinbody">
+                <p><strong>ข้อ 1 <span style="text-decoration: underline;">คำรับรองของผู้จะขาย , ราคาและข้อตกลงจะซื้อจะขาย</span></strong></p>
+                <p id="a">1.1 ผู้จะซื้อตกลงที่จะซื้อและผู้จะขายตกลงที่จะขายที่ดินพร้อมสิ่งปลูกสร้าง &ldquo;บ้านพิศาลเลียบวงแหวน-พระราม 2&rdquo; บางส่วนของโฉนดเลขที่ <strong><span style="text-decoration: underline;">{{quotation.TitleDeed}}</span></strong> เลขที่ดิน <span style="text-decoration: underline;"><strong>{{quotation.ParcelNo}}</strong></span>&nbsp;หน้าสำรวจ <strong><span style="text-decoration: underline;">{{quotation.DealingFileNo}}</span>&nbsp;</strong>ตำบล/แขวงแสมดำ อำเภอ/เขตบางขุนเทียน จังหวัดกรุงเทพมหานคร โดยได้รับอนุญาตให้ทำการจัดสรรที่ดิน ตามพระราชบัญญัติการจัดสรรที่ดิน พ.ศ. 2543 ใบอนุญาตเลขที่ <strong><span style="text-decoration: underline;">{{quotation.LandAllocationPermitNo}}</span></strong>&nbsp;ลงวันที่ <span style="text-decoration: underline;"><strong>{{quotation.LandAllocationPermitDate}}</strong></span>&nbsp;เนื้อที่ประมาณ <strong><span style="text-decoration: underline;">{{quotation.UnitLandPrice|number:2}}</span></strong> ตารางวา รวมราคาที่ดินพร้อมสิ่งปลูกสร้างคิดเป็นเงินทั้งสิ้น <span style="font-size: 21.3333px;"><strong><u>{{quotation.NetPrice|number:0}}</u></strong></span>&nbsp;บาท <span style="font-size: 21.3333px;"><strong><u>({{quotation.NetPrice|bahttext}})</u></strong></span>&nbsp;ตามผังสังเขปของที่ดินและแบบบ้าน เลขที่&nbsp; <strong><span style="text-decoration: underline;">{{quotation.REUnitCode}}</span></strong>&nbsp;แนบท้ายสัญญานี้</p>
+                <p id="a">1.2 ในกรณีที่จำนวนเนื้อที่ซึ่งปรากฏตามโฉนดที่ได้แบ่งแยกเรียบร้อยแล้ว มีจำนวนเนื้อที่เพิ่มขึ้นหรือ ลดลงจากจำนวนที่ระบุไว้ในสัญญา คู่สัญญาตกลงคิดราคาที่ดินส่วนเพิ่มขึ้นหรือลดลงในราคา ตารางวาละ <strong><span style="text-decoration: underline;">60,000</span></strong> บาท (&nbsp;<span style="text-decoration: underline;"><strong>หกหมื่นบาทถ้วน</strong></span> ) และให้นำราคาที่ดินในส่วนที่เพิ่มขึ้นหรือลดลงไปคิดเพิ่มหรือหักกับราคาจะซื้อจะขายตามสัญญาข้อ 1.1 (แล้วแต่กรณี) ในวันจดทะเบียนโอนกรรมสิทธิ์</p>
+            </div>
+        </div>
+        <div class="a4foot">
+            <table style="text-align: center; width: 100%;">
+                <tbody>
+                    <tr>
+                        <td><span style="font-family: 'Angsana New'; font-size: 14pt;">ลงชื่อ.......................................................ผู้จะซื้อ</span></td>
+                        <td><span style="font-family: 'Angsana New'; font-size: 14pt;">ลงชื่อ.......................................................ผู้จะขาย</span></td>
+                    </tr>
+                    <tr>
+                        <td><span style="font-family: 'Angsana New'; font-size: 14pt;">({{quotation.CustomerName}})</span></td>
+                        <td><span style="font-family: 'Angsana New'; font-size: 14pt;">(<span style="text-indent: 50px;">&nbsp;นางสาวกิตติมา พิศาลคุณากิจ&nbsp;</span>)</span></td>
+                    </tr>
+                </tbody>
+            </table>
+            <p style="float: left;">วันที่เริ่มใช้&nbsp;01/12/2560</p>
+            <p style="float: right;">(P.1/6) FM-MKS-17 Rev.04</p>
+        </div>
+    </div>
+    <div class="a4page">
+        <div class="a4body" style="padding-top: 5mm;">
+            <!--<div style="height: 250mm;">-->
+            <div class="textinbody">
+                <p><strong>ข้อ 2 <span style="text-decoration: underline;">การชำระเงินและการโอนกรรมสิทธิ์</span></strong></p>
+                <p id="a">ก่อนวันทำสัญญาผู้จะซื้อได้วางเงินจองไว้เป็นจำนวนเงิน <strong><span style="text-decoration: underline;">{{quotation.QuotationBookAmount|number:0}}</span></strong> บาท <strong><span style="text-decoration: underline;">(</span><span style="text-decoration: underline;"><span style="font-size: 21.3333px;">{{quotation.QuotationBookAmount|bahttext}}</span></span></strong><span style="font-size: 16pt;"><strong><span style="text-decoration: underline;">)</span></strong> และในวันทำสัญญานี้ ผู้จะซื้อได้ชำระเงินให้กับผู้จะขายเป็นจำนวนเงิน <strong><span style="text-decoration: underline;">{{quotation.QuotationContractAmount|number:0}}</span></strong> บาท <strong><span style="text-decoration: underline;">({{quotation.QuotationContractAmount|bahttext}})</span></strong> ซึ่งผู้จะขายได้รับเรียบร้อยแล้ว</span></p>
+                <p id="a">ส่วนที่ยังคงค้างชำระอยู่อีกเป็นจำนวนเงิน <span style="font-size: 21.3333px;"><strong><u>{{quotation.NetPrice-quotation.QuotationBookAmount-quotation.QuotationContractAmount|number:0}}</u></strong></span>&nbsp;บาท <span style="font-size: 21.3333px;"><strong><u>({{quotation.NetPrice-quotation.QuotationBookAmount-quotation.QuotationContractAmount|bahttext}})</u></strong></span>&nbsp;ผู้จะซื้อตกลงจะชำระเงินให้แก่ผู้จะขาย ณ สำนักงานโครงการของผู้จะขาย โดยแบ่งเป็นงวดดังนี้</p>
+                <table style="font-family: 'Angsana New', sans-serif; font-size: 17.3333px; border-collapse: collapse; text-align: start; text-indent: 0px; width: 690px;" border="1">
+                    <tbody>
+                        <tr>
+                            <td style="width: 78px; text-align: center;"><span style="font-family: 'Angsana New'; font-size: 14pt;"><strong>งวดที่</strong></span></td>
+                            <td style="width: 135px; text-align: center;"><span style="font-family: 'Angsana New'; font-size: 14pt;"><strong>กำหนดชำระ</strong></span></td>
+                            <td style="width: 133.938px; text-align: center;"><span style="font-family: 'Angsana New'; font-size: 14pt;"><strong>จำนวนเงิน</strong></span></td>
+                            <td style="width: 197.063px; text-align: center;"><span style="font-family: 'Angsana New'; font-size: 14pt;"><strong>จำนวนเงินเป็นตัวอักษร</strong></span></td>
+                        </tr>
+                        <tr data-ng-repeat="quotationLine in quotationLines | orderBy:'DueDate'">
+                            <td style="width: 78px; text-align: center;"><span style="font-family: 'Angsana New'; font-size: 14pt;">{{$index+1}}</span></td>
+                            <td style="width: 135px; text-align: center;"><span style="font-family: 'Angsana New'; font-size: 14pt;">{{quotationLine.DueDate |&nbsp;bdate}}</span></td>
+                            <td style="width: 133.938px; text-align: center;" align="right"><span style="font-family: 'Angsana New'; font-size: 14pt;">{{quotationLine.Amount | number:2}}</span></td>
+                            <td style="width: 197.063px; text-align: center;" align="right"><span style="font-family: 'Angsana New'; font-size: 14pt;">{{quotationLine.Amount | bahttext}}</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p><strong><span style="text-decoration: underline;">งวดสุดท้าย</span></strong> ผู้จะซื้อจะต้องชำระเงิน <strong><span style="text-decoration: underline;">{{quotation.RightTransfer|number:0}}</span></strong> บาท <strong>( <span style="text-decoration: underline;">{{quotation.RightTransfer|bahttext}}</span> )</strong> ให้แก่ผู้จะขายใน<strong><span style="text-decoration: underline;">วันจดทะเบียนโอนกรรมสิทธิ์</span></strong> ที่ดินพร้อมสิ่งปลูกสร้างตามสัญญานี้ เมื่อการก่อสร้างแล้วเสร็จ ภายในวันที่ <strong><span style="text-decoration: underline;">{{quotation.RightTransferDueDate|bdate}}</span></strong> โดยจะต้องชำระเป็นเงินสด หรือแคชเชียร์เช็คของธนาคารในกรุงเทพมหานคร</p>
+                <p><strong>ข้อ 3 <span style="text-decoration: underline;">หลักฐานการชำระเงิน</span></strong></p>
+                <p id="a">ในการชำระเงินค่าที่ดินพร้อมสิ่งปลูกสร้างแต่ละครั้ง ผู้จะขายจะออกใบเสร็จรับเงิน โดยระบุหมายเลขห้อง ที่ชำระ งวดที่ชำระ และจำนวนเงิน พร้อมลงลายมือชื่อผู้รับเงิน ให้แก่ผู้จะซื้อเก็บไว้เป็นหลักฐาน</p>
+            </div>
+        </div>
+        <div class="a4foot">
+            <table style="text-align: center; width: 100%;">
+                <tbody>
+                    <tr>
+                        <td><span style="font-family: 'Angsana New'; font-size: 14pt;">ลงชื่อ.......................................................ผู้จะซื้อ</span></td>
+                        <td><span style="font-family: 'Angsana New'; font-size: 14pt;">ลงชื่อ.......................................................ผู้จะขาย</span></td>
+                    </tr>
+                    <tr>
+                        <td><span style="font-family: 'Angsana New'; font-size: 14pt;">({{quotation.CustomerName}})</span></td>
+                        <td><span style="font-family: 'Angsana New'; font-size: 14pt;">(<span style="text-indent: 50px;">&nbsp;นางสาวกิตติมา พิศาลคุณากิจ&nbsp;</span>)</span></td>
+                    </tr>
+                </tbody>
+            </table>
+            <p style="float: left;">วันที่เริ่มใช้&nbsp;01/12/2560</p>
+            <p style="float: right;">(P.2/6) FM-MKS-17 Rev.04</p>
+        </div>
+    </div>
+    <div class="a4page">
+        <div class="a4body">
+            <!--<div style="height: 240mm;">-->
+            <div class="textinbody">
+                <p><strong>ข้อ 4 <span style="text-decoration: underline;">ภาระผูกพัน , การจดทะเบียนโอนกรรมสิทธิ์</span></strong></p>
+                <p id="a">ขณะที่ทำสัญญา ที่ดินพร้อมสิ่งปลูกสร้างดังกล่าวข้างต้น ได้จำนองไว้กับธนาคาร&nbsp;<strong><span style="text-decoration: underline;">{{customField.MortgageBank}}</span></strong> โดยเป็นประกันหนี้จำนองเป็นจำนวนเงิน&nbsp;<strong><span style="text-decoration: underline;">{{customField.MortgageAmountNumber}}</span></strong> บาท <strong>( <span style="text-decoration: underline;">{{customField.MortgageAmountText}}</span> )</strong></p>
+                <p id="a">หลังการทำสัญญา ผู้จะขายจะไม่กระทำการใดๆ อันเป็นเหตุให้ที่ดินพร้อมสิ่งปลูกสร้างที่จะขายนั้นเกิดภาระผูกพันเพิ่มขึ้น</p>
+                <p id="a">4.1 ผู้จะขายจะจดทะเบียนโอนกรรมสิทธิ์ที่ดินพร้อมสิ่งปลูกสร้างตามสัญญาให้แก่ผู้จะซื้อโดยปราศจากบุริมสิทธิ์ในมูลซื้อขายอสังหาริมทรัพย์ และภาระการจำนองในที่ดินพร้อมสิ่งปลูกสร้าง</p>
+                <p id="a">4.2 ถ้าผู้จะขายไม่สามารถปฏิบัติได้ ผู้จะซื้อมีสิทธิ์ที่จะชำระหนี้บุริมสิทธิ์ในมูลซื้อขายอสังหาริมทรัพย์หรือหนี้จำนองต่อผู้ทรงบุริมสิทธิ์ หรือผู้รับจำนองได้โดยตรง และให้ถือว่าเป็นการชำระราคาที่ดินพร้อมสิ่งปลูกสร้างแก่ผู้จะขายด้วย</p>
+                <p id="a">4.3 เมื่อผู้จะซื้อได้ชำระราคาที่ดินพร้อมสิ่งปลูกสร้างตามข้อ 4.2 ครบถ้วนแล้ว ผู้จะซื้อสามารถนำหลักฐานเป็นหนังสือที่แสดงว่าได้ชำระราคาดังกล่าวพร้อมด้วยหนังสือแสดงสิทธิในที่ดิน ไปขอจดทะเบียนโอนกรรมสิทธิ์ที่ดินพร้อมสิ่งปลูกสร้างต่อพนักงานเจ้าหน้าที่ได้</p>
+                <p id="a">ในกรณีที่ผู้จะซื้อไม่สามารถนำหนังสือแสดงสิทธิในที่ดินมาแสดงต่อพนักงานเจ้าหน้าที่ได้ เพราะผู้จะขายหรือบุคคลอื่นยึดถือหรือครอบครองไว้ ผู้จะซื้อมีสิทธิ์ร้องขอให้พนักงานเจ้าหน้าที่เรียกหนังสือแสดงสิทธิในที่ดินจากผู้จะขายหรือบุคคลที่ยึดถือหรือครอบครองไว้ เพื่อมาดำเนินการจดทะเบียนโอนกรรมสิทธิ์ที่ดินพร้อมสิ่งปลูกสร้างได้</p>
+                <p><strong>ข้อ 5 <span style="text-decoration: underline;">ค่าใช้จ่ายในการจดทะเบียนโอนกรรมสิทธิ์</span></strong></p>
+                <p id="a">5.1 ค่าดำเนินการรังวัดแบ่งแยกโฉนดที่ดิน ค่าภาษีเงินได้ ค่าอากรแสตมป์ และค่าภาษีธุรกิจเฉพาะที่ดินพร้อมสิ่งปลูกสร้าง ผู้จะขายเป็นผู้ชำระ</p>
+                <p id="a">5.2 ค่าธรรมเนียมและค่าใช้จ่ายในการจดทะเบียนโอนกรรมสิทธิ์ที่ดินพร้อมสิ่งปลูกสร้าง ผู้จะซื้อและผู้จะขาย จะเป็นผู้ชำระเท่ากันทั้งสองฝ่าย (ชำระกันคนละครึ่งของค่าธรรมเนียมโอน) ค่าจดทะเบียนจำนอง (ถ้ามี) ผู้จะซื้อเป็นผู้ชำระ</p>
+                <p><strong>ข้อ 6 <span style="text-decoration: underline;">การก่อสร้างอาคาร การขยายระยะเวลาการปฏิบัติตามสัญญา</span></strong></p>
+                <p id="a">6.1 ผู้จะขายจะดำเนินการก่อสร้างสิ่งปลูกสร้างตามสัญญานี้ตามใบอนุญาตก่อสร้างอาคารเลขที่ <strong><span style="text-decoration: underline;">{{quotation.ConstructionPermitNo}}</span></strong>&nbsp;ลงวันที่ <strong><span style="text-decoration: underline;">{{quotation.ConstructionPermitDate}}</span></strong>&nbsp;โดยจัดหาวัสดุที่มีคุณภาพตามแบบแปลนการก่อสร้างที่แนบท้ายสัญญานี้แล้วในข้อ 1. และจะจัดหาผู้ควบคุมงานที่มีความรู้ความสามารถ เพื่อควบคุมการก่อสร้างอย่างใกล้ชิด</p>
+                <p id="a">6.2 ผู้จะขายสัญญาว่า จะรักษาความสะอาดตลอดระยะเวลาที่ทำการก่อสร้างและยินยอมให้ผู้จะซื้อหรือตัวแทนของผู้จะซื้อเข้าตรวจตราอาคารที่ก่อสร้างได้ ตลอดเวลาทำการโดยแจ้งให้ผู้จะขายทราบล่วงหน้าแต่ต้องไม่ขัดขวางหรือรบกวนการก่อสร้าง</p>
+                <p id="a">6.3 ในกรณีที่เกิดเหตุสุดวิสัยใดๆ ที่ไม่อาจหลีกเลี่ยงได้ และเป็นเหตุให้การก่อสร้างต้องหยุดชะงักลงโดยมิใช่ความผิดของผู้จะขาย หรือผู้รับจ้างก่อสร้าง หรือตัวแทนของผู้จะขาย หรือมีพฤติการณ์ที่ผู้จะขายไม่ต้องรับผิดชอบ<span style="text-decoration: underline;">ให้ขยายระยะเวลาแล้วเสร็จตามสัญญาออกไปเท่ากับเวลาที่เสียไปเพราะเหตุดังกล่าว</span> โดยผู้จะขายต้องแจ้งเหตุดังกล่าวพร้อมหลักฐานเป็นหนังสือให้ผู้จะซื้อทราบภายใน 10 วัน นับแต่เหตุการณ์นั้นได้สิ้นสุดลง</p>
+            </div>
+        </div>
+        <div class="a4foot">
+            <table style="text-align: center; width: 100%;">
+                <tbody>
+                    <tr>
+                        <td><span style="font-size: 14pt; font-family: 'Angsana New';">ลงชื่อ.......................................................ผู้จะซื้อ</span></td>
+                        <td><span style="font-size: 14pt; font-family: 'Angsana New';">ลงชื่อ.......................................................ผู้จะขาย</span></td>
+                    </tr>
+                    <tr>
+                        <td><span style="font-size: 14pt; font-family: 'Angsana New';">({{quotation.CustomerName}})</span></td>
+                        <td><span style="font-size: 14pt; font-family: 'Angsana New';">(<span style="text-indent: 50px;">&nbsp;นางสาวกิตติมา พิศาลคุณากิจ&nbsp;</span>)</span></td>
+                    </tr>
+                </tbody>
+            </table>
+            <p style="float: left;">วันที่เริ่มใช้&nbsp;01/12/2560</p>
+            <p style="float: right;">(P.3/6) FM-MKS-17 Rev.04</p>
+        </div>
+    </div>
+    <div class="a4page">
+        <!--<div class="a4body">-->
+        <div style="height: 245mm;">
+            <div class="textinbody">
+                <p>หากผู้จะขายไม่มีหนังสือเป็นลายลักษณ์อักษรให้ผู้จะซื้อทราบ ให้ถือว่าผู้จะขายได้สละสิทธิ์ในการที่จะขอขยายระยะเวลาทำงานก่อสร้างออกไปโดยไม่มีเงื่อนไขใด ๆ ทั้งสิ้น</p>
+                <p><strong>ข้อ 7 <span style="text-decoration: underline;">เบี้ยปรับ ดอกเบี้ยผิดนัด และการบอกเลิกสัญญา</span></strong></p>
+                <p id="a">7.1 หากผู้จะขาย ไม่สามารถก่อสร้างสิ่งปลูกสร้างให้แล้วเสร็จ และโอนกรรมสิทธิ์ภายในกำหนดเวลาในท้ายสัญญาข้อ 2 ผู้จะซื้อสามารถปรับผู้จะขายเป็นรายวัน ในอัตราร้อยละ <strong><span style="text-decoration: underline;">0.01</span></strong> ของราคาที่ดินพร้อมสิ่งปลูกสร้างคิดเป็นเงินวันละ <strong><span style="text-decoration: underline;">{{quotation.SellingPrice*0.01/100|number:2}}</span></strong> บาท &nbsp;<strong>(&nbsp;<span style="text-decoration: underline;"><span style="font-size: 21.3333px;">{{quotation.SellingPrice*0.01/100|bahttext}}</span></span>&nbsp;)</strong> นับแต่วันที่จะต้องโอนกรรมสิทธิ์จนถึงวันที่พนักงานเจ้าหน้าที่ โอนกรรมสิทธิ์ที่ดินพร้อมสิ่งปลูกสร้างได้ <span style="text-decoration: underline;">แต่รวมกันแล้วต้องไม่เกินร้อยละสิบของราคาที่ดินพร้อมสิ่งปลูกสร้าง</span></p>
+                <p id="a">ในระหว่างที่มีการปรับนั้นถ้าภายใน 90 วัน นับจากวันโอนกรรมสิทธิ์ตามสัญญา การก่อสร้างยังไม่มีความคืบหน้ากว่าเดิม ผู้จะซื้อมีสิทธิ์บอกเลิกสัญญาได้และเรียกเงินที่ผู้จะซื้อได้ชำระไปแล้วทั้งหมดคืนจากผู้จะขายพร้อมดอกเบี้ยในอัตรา<span style="text-decoration: underline;">ร้อยละ 7.5 ต่อปี</span> ของเงินที่ได้ชำระแล้ว</p>
+                <p id="a">7.2 <span style="text-decoration: underline;">หากผู้จะซื้อ</span> ผิดสัญญาการจ่ายเงินเป็นงวดตามกำหนดในข้อ 2 ติดต่อกัน 3 งวด และผู้จะขายได้บอก กล่าวเป็นลายลักษณ์อักษรให้ผู้จะซื้อปฏิบัติตามสัญญาภายในเวลาไม่น้อยกว่า 30 วัน แต่ผู้จะซื้อยังละเลยไม่ปฏิบัติ ตามหนังสือบอกกล่าวซึ่งได้รับแล้ว ผู้จะขายมีสิทธิ์ยกเลิกสัญญา และริบเงินที่ได้รับชำระมาแล้วทันที โดยมิต้องบอก กล่าวล่วงหน้าอีก หรือฟ้องร้องบังคับให้ปฏิบัติตามสัญญาและเรียกค่าเสียหายได้ ถ้าผู้จะซื้อร้องขอให้สัญญาคงไว้ ผู้จะซื้อยินยอมให้ผู้จะขายเรียกดอกเบี้ยผิดนัดในอัตรา<span style="text-decoration: underline;">ร้อยละ 7.5 ต่อปี</span> ของจำนวนเงินที่ค้างชำระนั้น <span style="text-decoration: underline;">แต่รวมกันแล้ว ต้องไม่เกินร้อยละสิบของราคาที่ดินพร้อมสิ่งปลูกสร้าง</span></p>
+                <p><strong>ข้อ 8 <span style="text-decoration: underline;">ความรับผิดชอบในความชำรุดบกพร่อง</span></strong></p>
+                <p id="a">ความรับผิดชอบในเรื่องความชำรุดบกพร่อง จะต้องเกิดจากคุณภาพของวัสดุอุปกรณ์หรือการก่อสร้าง ไม่รวมถึงการใช้งานผิดปกติ หรือเกิดจากเหตุสุดวิสัยใด อันมิใช่ความผิดของผู้จะขาย โดยผู้จะขายจะดำเนินการแก้ไข ให้แล้วเสร็จภายใน 30 วัน นับจากวันที่ได้รับแจ้งจากผู้จะซื้อ</p>
+                <p id="a">8.1 โครงสร้างของอาคารอันได้แก่ เสาเข็ม ฐานราก เสาคาน พื้น โครงหลังคา และผนังที่รับน้ำหนัก รับประกันภายในระยะเวลา 5 ปี นับแต่วันโอนกรรมสิทธิ์</p>
+                <p id="a">8.2 กรณีที่เป็นส่วนควบหรืออุปกรณ์ อันเป็นส่วนประกอบที่สำคัญของอาคารนอกจากข้อ 8.1 รับประกัน ภายในระยะเวลา 1 ปี นับแต่วันโอนกรรมสิทธิ์</p>
+                <p id="a">8.3 รั้วและกำแพง รับประกันภายในระยะเวลา 1 ปี นับแต่วันโอนกรรมสิทธิ์</p>
+                <p><strong>ข้อ 9 <span style="text-decoration: underline;">สาธารณูปโภคและบริการสาธารณะ</span></strong></p>
+                <p id="a">9.1 ผู้จะขาย จะเป็นผู้จัดให้มีสาธารณูปโภค และบริการสาธารณะในโครงการ เพื่อประโยชน์ร่วมกัน ของผู้จะซื้อและจะช่วยดูแลรักษาไว้เพื่อมอบให้แก่กรรมการหมู่บ้าน หรือนิติบุคคลบ้านจัดสรรต่อไป ซึ่งก่อนการจัดตั้ง นิติบุคคลบ้านจัดสรร ผู้จะขายจะมีหนังสือแจ้งให้ผู้จะซื้อทราบล่วงหน้าไม่น้อยกว่า 6 เดือน</p>
+            </div>
+        </div>
+        <div class="a4foot">
+            <table style="text-align: center; width: 100%;">
+                <tbody>
+                    <tr>
+                        <td><span style="font-size: 14pt; font-family: 'Angsana New';">ลงชื่อ.......................................................ผู้จะซื้อ</span></td>
+                        <td><span style="font-size: 14pt; font-family: 'Angsana New';">ลงชื่อ.......................................................ผู้จะขาย</span></td>
+                    </tr>
+                    <tr>
+                        <td><span style="font-size: 14pt; font-family: 'Angsana New';">({{quotation.CustomerName}})</span></td>
+                        <td><span style="font-size: 14pt; font-family: 'Angsana New';">(<span style="text-indent: 50px;">&nbsp;นางสาวกิตติมา พิศาลคุณากิจ&nbsp;</span>)</span></td>
+                    </tr>
+                </tbody>
+            </table>
+            <p style="float: left;">วันที่เริ่มใช้&nbsp;01/12/2560</p>
+            <p style="float: right;">(P.4/6) FM-MKS-17 Rev.04</p>
+        </div>
+    </div>
+    <div class="a4page">
+        <!--<div class="a4body">-->
+        <div style="height: 240mm;">
+            <div class="textinbody">
+                <p>9.2 ผู้จะขาย เป็นผู้ดำเนินการจัดให้มีการติดตั้งมาตรวัดปริมาตรและปริมาณการใช้สาธารณูปโภค (น้ำ , ไฟ) สำหรับที่ดินพร้อมสิ่งปลูกสร้างที่จะซื้อจะขายตามสัญญานี้ โดยผู้จะขายจะโอนสิทธิ์มาตรวัดปริมาตรและปริมาณ การใช้สาธารณูปโภค ( น้ำ , ไฟ ) ให้เป็นชื่อของผู้จะซื้อภายใน 30 วัน นับแต่วันจดทะเบียนโอนกรรมสิทธิ์ที่ดิน พร้อมสิ่งปลูกสร้าง ทั้งนี้ ค่าธรรมเนียมและค่าใช้จ่ายในการติดตั้งผู้จะขายเป็นผู้ชำระ และเรียกเก็บเฉพาะค่าประกัน การใช้ประปา ไฟฟ้า พร้อมค่าธรรมเนียมในการโอนเปลี่ยนชื่อให้เป็นของผู้จะซื้อในวันจดทะเบียนโอนกรรมสิทธิ์</p>
+                <p id="a">9.3 ผู้จะซื้อยินยอมที่จะออกค่าใช้จ่ายในการบริการต่างๆ ที่ผู้จะขายได้จัดทำขึ้น เพื่อประโยชน์ร่วมกันของผู้จะซื้อราย อื่นๆ เช่น การรักษาความปลอดภัย การบำรุงรักษาความสะอาดถนน ท่อระบายน้ำ ตลอดจนไฟฟ้าและแสงสว่าง และค่าซ่อมแซมต่างๆ ที่เกี่ยวกับประโยชน์ส่วนรวมเป็นเงินตารางวาละ 25 บาท / ต่อเดือน เก็บล่วงหน้า 3 ปี ในวันโอนกรรมสิทธิ์</p>
+                <p id="a">9.4 เพื่อให้โครงการมีความเป็นระเบียบเรียบร้อย และเพื่อประโยชน์สุขร่วมกันของผู้พักอาศัยในโครงการ ผู้จะซื้อยินดีปฏิบัติดังนี้</p>
+                <div id="a" style="margin-left: 50px;">
+                    <p id="a">9.4.1 ผู้จะซื้อยินดีปฏิบัติตามกฎระเบียบใดๆ ที่ผู้อยู่อาศัยได้กำหนดร่วมกัน</p>
+                    <p id="a">9.4.2 ผู้จะซื้อจะใช้ที่ดินพร้อมสิ่งปลูกสร้างเพื่อการพักอาศัยตามปกติดังเช่นวิญญูชนพึงกระทำ จะไม่ก่อให้เกิดความไม่สงบเรียบร้อยเสียหายต่อชุมชนในโครงการ</p>
+                    <p id="a">9.4.3 หากผู้จะซื้อผิดสัญญาข้อนี้ ผู้จะซื้อยินดีรับผิดชอบในความเสียหายใดๆ ที่เกิดขึ้นจากการกระทำของตนหรือจากการกระทำของบริวารของตนเองโดยปราศจากเงื่อนไขใดๆ ทั้งสิ้น</p>
+                </div>
+                <p><strong>ข้อ10&nbsp;<span style="text-decoration: underline;"> ในกรณีที่ผู้จะซื้อมีความประสงค์จะขอกู้เงินจากสถาบันการเงิน</span></strong></p>
+                <p id="a">เพื่อนำเงินกู้มาชำระหนี้ส่วนที่เหลือให้แก่ผู้จะขาย ผู้จะขายจะติดต่อสถาบันการเงินให้ตามที่ผู้จะขายกำหนด โดยผู้จะซื้อจะต้อง<span style="text-decoration: underline;"><strong>จัดเตรียมเอกสารประกอบการยื่นกู้และนำส่งให้แก่ผู้จะขายก่อนการชำระเงินงวดสุดท้าย 2 งวด</strong></span> หากเลยกำหนดเวลาดังกล่าวถือว่าผู้จะซื้อไม่มีความประสงค์จะให้ผู้จะขายติดต่อสถาบันการเงินให้ และพร้อมที่จะไปจดทะเบียนโอนกรรมสิทธิ์ด้วยเงินสด หรือแคชเชียร์เช็คของธนาคารในกรุงเทพมหานคร</p>
+                <p id="a">อนึ่ง ในกรณีที่ผู้จะซื้อขอกู้เงินจากสถาบันการเงินตามวรรคแรกแล้ว หากสถาบันการเงินนั้นไม่อนุมัติการขอกู้ ของผู้จะซื้อหรืออนุมัติให้ไม่เต็มตามจำนวนที่ขอไว้ไม่ว่าด้วยเหตุใดก็ตาม ผู้จะซื้อจะยกเอาเหตุดังกล่าวมาเพื่อปฏิเสธ การชำระเงินงวดสุดท้าย หรือชำระช้ากว่ากำหนดไว้ในสัญญานี้ไม่ได้</p>
+                <p><strong>ข้อ 11 <span style="text-decoration: underline;">ผู้จะซื้อจะให้ผู้จะขายจดทะเบียนโอนกรรมสิทธิ์ตามสัญญานี้ให้บุคคลอื่นไม่ได้</span></strong><br />( <span style="text-decoration: underline;">ยกเว้น</span> คู่สมรส บิดามารดา บุตร หรือบุตรบุญธรรมที่ชอบด้วยกฎหมาย ) โดยมีหนังสือแจ้งให้ผู้จะขายทราบก่อน วันนัดจดทะเบียนโอนกรรมสิทธิ์ตามท้ายสัญญาข้อ 2 ไม่น้อยกว่า 15 วัน</p>
+                <p id="a">กรณีที่ผู้จะซื้อมีความประสงค์จะขอกู้เงินจากสถาบันการเงินและ<span style="text-decoration: underline;">ให้จดทะเบียนโอนกรรมสิทธิ์แก่บุคคลตามข้อยกเว้น</span> ข้างต้น ให้ผู้จะซื้อมีหนังสือแจ้งให้ผู้จะขายทราบก่อนการชำระเงินงวดสุดท้าย 2 งวด และปฏิบัติตามสัญญา ข้อ 10</p>
+                <p id="a">กรณีผู้จะขายยินยอมให้ผู้จะซื้อจดทะเบียนโอนกรรมสิทธิ์เป็นของบุคคลอื่น ต้องให้ผู้จะขายยินยอมเป็นลายลักษณ์อักษรแก่ผู้จะซื้อ และผู้จะซื้อต้องชำระค่าเปลี่ยนชื่อโอนกรรมสิทธิ์ให้แก่บุคคลอื่นเป็นเงินจำนวน 20,000 บาท ( สองหมื่นบาทถ้วน ) ต่อแปลง</p>
+            </div>
+        </div>
+        <div class="a4foot" style="padding-top: 5mm;">
+            <table style="text-align: center; width: 100%;">
+                <tbody>
+                    <tr>
+                        <td><span style="font-family: 'Angsana New'; font-size: 14pt;">ลงชื่อ.......................................................ผู้จะซื้อ</span></td>
+                        <td><span style="font-family: 'Angsana New'; font-size: 14pt;">ลงชื่อ.......................................................ผู้จะขาย</span></td>
+                    </tr>
+                    <tr>
+                        <td><span style="font-family: 'Angsana New'; font-size: 14pt;">({{quotation.CustomerName}})</span></td>
+                        <td><span style="font-family: 'Angsana New'; font-size: 14pt;">(<span style="text-indent: 50px;">&nbsp;นางสาวกิตติมา พิศาลคุณากิจ&nbsp;</span>)</span></td>
+                    </tr>
+                </tbody>
+            </table>
+            <p style="float: left;">วันที่เริ่มใช้ 01/12/2560</p>
+            <p style="float: right;">(P.5/6) FM-MKS-17 Rev.04</p>
+        </div>
+    </div>
+    <div class="a4page">
+        <!--<div class="a4body">-->
+        <div style="height: 220mm;">
+            <div class="textinbody">
+                <p><strong>ข้อ 12 <span style="text-decoration: underline;">คำบอกกล่าว</span></strong></p>
+                <p id="a">12.1 ผู้จะซื้อตกลงให้ถือว่าที่อยู่ข้างต้นของผู้จะซื้อตามสัญญาฉบับนี้เป็นภูมิลำเนาเฉพาะการของผู้จะซื้อ&nbsp; หากผู้จะขายมีหนังสือ&nbsp; &nbsp; หรือเอกสารใดๆ ส่งไปยังผู้จะซื้อตามภูมิลำเนาดังกล่าวโดยไปรษณีย์ลงทะเบียนตอบรับให้ ถือว่าผู้จะซื้อได้รับทราบโดยชอบแล้ว</p>
+                <p id="a">12.2 การบอกกล่าวใดๆ ตามสัญญานี้ต้องทำเป็นหนังสือและแจ้งไปยังคู่สัญญาอีกฝ่ายหนึ่งตามที่อยู่ข้างต้น โดยไปรษณีย์ลงทะเบียนตอบรับ และให้ถือว่าคู่สัญญาฝ่ายที่รับแจ้งได้รับแจ้งแล้วตามวันที่ส่งไปรษณีย์</p>
+                <p id="a">หากคู่สัญญาฝ่ายหนึ่งฝ่ายใดย้ายที่อยู่ ต้องแจ้งให้อีกฝ่ายหนึ่งทราบเป็นหนังสือส่งไปรษณีย์ลงทะเบียนตอบรับ ภายใน 7 วัน นับจากวันย้ายที่อยู่</p>
+                <p id="a">12.3 คู่สัญญาตกลงให้ถือว่าเอกสารต่างๆที่แนบท้ายสัญญาซึ่งคู่สัญญาได้ลงนามรับทราบไว้ทุกแผ่นแล้วนั้น เป็นส่วนหนึ่งของสัญญาด้วยดังนี้</p>
+                <table style="width: 90%;">
+                    <tbody>
+                        <tr>
+                            <td><span style="font-family: 'Angsana New'; font-size: 14pt;">1. สำเนาหนังสือผู้รับมอบอำนาจทำการแทน</span></td>
+                            <td><span style="font-family: 'Angsana New'; font-size: 14pt;">จำนวน 1 หน้า</span></td>
+                        </tr>
+                        <tr>
+                            <td><span style="font-family: 'Angsana New'; font-size: 14pt;">2. สำเนาหนังสือใบอนุญาตให้ทำการจัดสรรที่ดิน</span></td>
+                            <td><span style="font-family: 'Angsana New'; font-size: 14pt;">จำนวน 1 หน้า</span></td>
+                        </tr>
+                        <tr>
+                            <td><span style="font-family: 'Angsana New'; font-size: 14pt;">3. สำเนาผังสังเขปของที่ดินและแบบบ้านพร้อมรายการวัสดุประกอบแบบ</span></td>
+                            <td><span style="font-family: 'Angsana New'; font-size: 14pt;">จำนวน 2 หน้า</span></td>
+                        </tr>
+                        <tr>
+                            <td><span style="font-family: 'Angsana New'; font-size: 14pt;">4. สำเนาเอกสารการโฆษณาที่มีการกำหนดราคา</span></td>
+                            <td><span style="font-family: 'Angsana New'; font-size: 14pt;">จำนวน 1 หน้า</span></td>
+                        </tr>
+                        <tr>
+                            <td><span style="font-family: 'Angsana New'; font-size: 14pt;">5. สำเนาหนังสือรับจองซื้อที่ดินพร้อมปลูกสร้าง</span></td>
+                            <td><span style="font-family: 'Angsana New'; font-size: 14pt;">จำนวน 1 หน้า</span></td>
+                        </tr>
+                        <tr>
+                            <td><span style="font-family: 'Angsana New'; font-size: 14pt;">6. อื่น ๆ</span></td>
+                            <td><span style="font-family: 'Angsana New'; font-size: 14pt;">&nbsp;</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p>ในกรณีที่ข้อความในเอกสารแนบท้ายสัญญาข้างต้น ขัดหรือแย้งกับข้อความในสัญญานี้ให้ใช้ข้อความ ในสัญญานี้บังคับ</p>
+                <p>สัญญานี้ทำขึ้นเป็นสองฉบับ มีข้อความถูกต้องตรงกัน คู่สัญญาทั้งสองฝ่ายได้อ่านและเข้าใจข้อความใน สัญญาโดยตลอดดีแล้ว จึงลงลายมือชื่อพร้อมประทับตรา ( ถ้ามี ) ไว้เป็นสำคัญต่อหน้าพยานและเก็บไว้ ฝ่ายละ หนึ่งฉบับ</p>
+            </div>
+        </div>
+        <div class="a4foot">
+            <table style="text-align: center; width: 100%;">
+                <tbody>
+                    <tr>
+                        <td><span style="font-size: 14pt; font-family: 'Angsana New';">ลงชื่อ.......................................................ผู้จะซื้อ</span></td>
+                        <td><span style="font-size: 14pt; font-family: 'Angsana New';">ลงชื่อ.......................................................ผู้จะขาย</span></td>
+                    </tr>
+                    <tr>
+                        <td><span style="font-size: 14pt; font-family: 'Angsana New';">({{quotation.CustomerName}})</span></td>
+                        <td><span style="font-size: 14pt; font-family: 'Angsana New';">(<span style="text-indent: 50px;">&nbsp;นางสาวกิตติมา พิศาลคุณากิจ&nbsp;</span>)</span></td>
+                    </tr>
+                </tbody>
+            </table>
+            <table style="text-align: center; width: 100%; padding-top: 10mm;">
+                <tbody>
+                    <tr>
+                        <td><span style="font-family: 'Angsana New'; font-size: 14pt;">ลงชื่อ&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;พยาน</span></td>
+                        <td><span style="font-family: 'Angsana New'; font-size: 14pt;">ลงชื่อ&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;..&hellip;&hellip;พยาน</span></td>
+                    </tr>
+                    <tr>
+                        <td><span style="font-family: 'Angsana New'; font-size: 14pt;">({{customField.Witness1}} )</span></td>
+                        <td><span style="font-family: 'Angsana New'; font-size: 14pt;">({{customField.Witness2}})</span></td>
+                    </tr>
+                </tbody>
+            </table>
+            <p style="float: left;">วันที่เริ่มใช้&nbsp;01/12/2560</p>
+            <p style="float: right;">(P.6/6) FM-MKS-17 Rev.04</p>
+        </div>
+    </div>
+    <div class="a4page">
+        <!--<div class="a4body">-->
+        <div style="height: 240mm;">
+            <p align="center"><strong>บันทึกแนบท้ายสัญญา</strong></p>
+            <p align="right">ทำที่ บริษัท พิศาลเพลซ จำกัด</p>
+            <p align="center">สำนักงานเลขที่ 133 ถนน พระรามที่ 2 ตำบล/แขวง แสมดำ อำเภอ/เขต บางขุนเทียน จังหวัด กรุงเทพมหานคร</p>
+            <p align="right">วันที่ <strong><span style="text-decoration: underline;">{{quotation.ContractDueDate| bdate}}</span></strong></p>
+            <div class="textinbody">
+                <p>บันทึกฉบับนี้ทำขึ้นระหว่าง บริษัท พิศาลเพลซ จำกัด ในฐานะ &ldquo; ผู้จะขาย &rdquo; ตามสัญญาจะซื้อจะขายที่ดินพร้อมสิ่งปลูกสร้าง บ้านพิศาล-เลียบวงแหวน-พระราม 2 .ลงวันที่ <strong><span style="text-decoration: underline;">{{quotation.ContractDueDate| bdate}}</span></strong> ฝ่ายหนึ่ง กับ <strong><span style="text-decoration: underline;">{{quotation.CustomerName}}</span></strong> &nbsp;ในฐานะ &ldquo; ผู้จะซื้อ &rdquo; ตามสัญญาดังกล่าว อีกฝ่ายหนึ่ง ทั้งสองฝ่ายตกลงกันดังนี้</p>
+                <p><span style="&quot;padding-left: 0.1px;">1. ความหมายและขอบเขตการให้บริการในเรื่องค่าบริการสาธารณะ</span><span style="padding-left: 0.1px;">ค่าบริการสาธารณะ หมายถึง ค่ายามรักษาความปลอดภัย ค่าบริหาร ค่ากระแสไฟฟ้าส่องสว่าง ค่าน้ำประปา ค่าใช้จ่าย อื่นๆ ที่เกี่ยวกับประโยชน์ส่วนรวมของโครงการ</span></p>
+                <p>ขอบเขตการให้บริการ</p>
+                <table style="width: 754px; height: 97px;">
+                    <tbody>
+                        <tr style="height: 25.375px;">
+                            <td style="width: 355.938px; height: 25.375px;"><span style="font-family: 'Angsana New'; font-size: 14pt;">- ระบบยามรักษาความปลอดภัย</span></td>
+                            <td style="width: 389.063px; height: 25.375px;"><span style="font-family: 'Angsana New'; font-size: 14pt;">- ไฟแสงสว่างภายในโครงการเพื่อความปลอดภัย</span></td>
+                        </tr>
+                        <tr style="height: 25px;">
+                            <td style="width: 355.938px; height: 25px;"><span style="font-family: 'Angsana New'; font-size: 14pt;">- จัดเก็บขยะมูลฝอย ( บ้านพักอาศัย )</span></td>
+                            <td style="width: 389.063px; height: 25px;"><span style="font-family: 'Angsana New'; font-size: 14pt;">- ความสะอาดส่วนกลาง,ทางระบายน้ำ และกวาดถนน</span></td>
+                        </tr>
+                        <tr style="height: 25px;">
+                            <td style="width: 355.938px; height: 25px;"><span style="font-family: 'Angsana New'; font-size: 14pt;">- ตัดแต่งต้นไม้ เพื่อความสวยงามและปลอดภัย</span></td>
+                            <td style="width: 389.063px; height: 25px;"><span style="font-family: 'Angsana New'; font-size: 14pt;">&nbsp;</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p style="line-height: 0px; padding-left: 5px;">- งานบริการอื่นๆ ค่าซ่อมแซมต่างๆ ที่เกี่ยวกับประโยชน์ส่วนรวมโครงการ</p>
+                <p>2. รายละเอียดการให้บริการสาธารณะ และการจัดเก็บค่าบริการสาธารณะ</p>
+                <p>ในวันโอนกรรมสิทธิ์ที่ดินพร้อมสิ่งปลูกสร้าง ผู้จะซื้อตกลงชำระค่าบริการสาธารณะเป็นระยะเวลา 36 เดือน ในอัตราตารางวาละ 25 บาท&nbsp; ต่อ เดือน รวมเป็นเงิน <span style="text-decoration: underline;"><strong>{{25*36*quotation.UnitLandPrice|number:2}}</strong></span><span style="font-size: 15pt;">.- บาท (&nbsp;</span><span style="text-decoration: underline;"><strong style="font-size: 21.3333px;">{{36*25*quotation.UnitLandPrice|bahttext}}</strong></span><span style="font-size: 15pt;">&nbsp;) โดยมอบหมายให้ผู้จะขายเก็บรักษาและใช้จ่ายเงินจำนวนดังกล่าว เพื่อให้บริการสาธารณะของโครงการ นับจากวันโอนกรรมสิทธิ์ที่ดินพร้อมสิ่งปลูกสร้าง และเมื่อได้มีการจัดตั้งคณะกรรมการหมู่บ้าน ( ถ้ามี ) หรือ นิติบุคคลบ้านจัดสรรก่อนกำหนดเวลาดังกล่าว ผู้จะขายจะส่งมอบเงินที่เหลือคืนให้แก่คณะกรรมการหมู่บ้าน หรือนิติบุคคลบ้านจัดสรรแล้วแต่กรณีในอัตราที่เรียกเก็บดังกล่าวข้างต้น ซึ่งในอนาคตหากมีการเปลี่ยนแปลงอัตราค่าบริการบริษัทฯ , คณะกรรมการหมู่บ้าน หรือนิติบุคคลบ้านจัดสรร จะได้แจ้งเพื่อเรียกเก็บตามความเหมาะสมต่อไป</span></p>
+                <p>เมื่อครบ&nbsp;3 ปี แล้ว หากปรากฏว่ายังไม่ได้ทำการจัดตั้งนิติบุคคลบ้านจัดสรร ผู้จะขายจะเรียกเก็บเพิ่มในอัตราและระยะเวลาที่จะได้กำหนด ณ ขณะนั้น / หรือที่ได้รับอนุญาตฯ</p>
+            </div>
+        </div>
+        <div class="a4foot" style="padding-top: 4mm;">
+            <table style="text-align: center; width: 100%;">
+                <tbody>
+                    <tr>
+                        <td><span style="font-family: 'Angsana New'; font-size: 14pt;">ลงชื่อ.......................................................ผู้จะซื้อ</span></td>
+                        <td><span style="font-family: 'Angsana New'; font-size: 14pt;">ลงชื่อ.......................................................ผู้จะขาย</span></td>
+                    </tr>
+                    <tr>
+                        <td><span style="font-family: 'Angsana New'; font-size: 14pt;">({{quotation.CustomerName}})</span></td>
+                        <td><span style="font-family: 'Angsana New'; font-size: 14pt;">(<span style="text-indent: 50px;">&nbsp;นางสาวกิตติมา พิศาลคุณากิจ&nbsp;</span>)</span></td>
+                    </tr>
+                </tbody>
+            </table>
+            <p style="float: left;">วันที่เริ่มใช้ 01/12/2560</p>
+            <p style="float: right;">(P.1/3)FM-MKS-104 Rev.00</p>
+        </div>
+    </div>
+    <div class="a4page">
+        <!-- <div class="a4head">&nbsp;</div> --> <!-- <div class="a4head">&nbsp;</div> --> <!--<div class="a4body">-->
+        <div style="height: 245mm;">
+            <div class="textinbody">
+                <p>ค่าบริการสาธารณะประเภทยามรักษาความปลอดภัย ในระหว่างที่ผู้จะขายบริหารจัดการอยู่ หากมีความเสียหายเกิดขึ้นในทรัพย์สินที่เคลื่อนที่ได้ ผู้จะขายจะรับผิดชอบเฉพาะทรัพย์สินที่ผู้จะซื้อได้ขึ้น ทะเบียนเฉพาะเจาะจงเป็นลายลักษณ์อักษรไว้กับผู้จะขายเท่านั้น ทั้งความเสียหายที่เกิดขึ้นไม่ได้เกิดจากความประมาทเลินเล่อของผู้จะซื้อเอง</p>
+                <p>ทรัพย์สินที่เคลื่อนที่ได้ในวรรคก่อนไม่รวมถึงทรัพย์สินที่มีขนาดเล็กเคลื่อนย้ายได้ง่าย ทรัพย์สินที่มีผู้ครอบครองอยู่แล้วเช่นมีหลักฐานการเบิกไปใช้ หรือของมีค่าต่างๆ เช่น เงิน ทองนาค ธนบัตร เช็ค เพชร พลอย อัญมณี มุก ปากกา นาฬิกา แว่นตา กล้องถ่ายรูป พระเครื่อง เหรียญ โบราณวัตถุ ศิลปวัตถุ แหวน อาหารเครื่องดื่ม อาภรณ์เครื่องประดับหรือของมีค่าอื่นๆ ที่ติดไปกับตัวได้ตลอดเวลา เอกสารสำคัญต่างๆ โน้ตบุ๊ค ทรัพย์สินล้อเลื่อนทุกชนิดยางอะไหล่รวมทั้งทรัพย์สินต่างๆ ที่อยู่ในรถและความเสียหายนอกรถ หรือทรัพย์สินอื่นๆ ที่ไม่สามารถมองเห็นถึงความแตกต่างได้ชัดเจนเป็นลักษณะเฉพาะตัว</p>
+                <p>3. เรื่องความเป็นระเบียบเรียบร้อยในโครงการ เรื่องการแก้ไขแผนผัง</p>
+                <p>&ldquo; ผู้จะซื้อ &rdquo; จะทำการใดๆ เกี่ยวกับตัวบ้าน ไม่ว่าส่วนใดส่วนหนึ่งซึ่งมีผลให้รูปร่าง รูปทรงเปลี่ยนแปลงไปหรือปรับเปลี่ยนวัสดุอุปกรณ์ต่าง ๆ หรืออื่นๆ อันเป็นเหตุให้กระทบกับการรับประกันผลงานในครั้งนี้ &ldquo;ผู้จะซื้อ&rdquo; จะกระทำไม่ได้ หากผู้จะซื้อฝ่าฝืนให้ถือว่าการรับประกันทั้งสองกรณีข้างต้นสิ้นสุดลงทันที เว้นแต่ &ldquo;ผู้จะซื้อ&rdquo; จะแจ้งให้ผู้จะขายทราบ และได้รับความยินยอมจากผู้จะขายเป็นลายลักษณ์อักษร และได้รับอนุญาตจากหน่วยงานราชการที่เกี่ยวข้อง ทั้งต้องปฏิบัติตามระเบียบของผู้จะขายโดยเคร่งครัด</p>
+                <p>ในกรณีที่ผู้จะขายมีความจำเป็นจะต้องทำการแก้ไขแบบผังโครงการเพื่อความเหมาะสม และเป็นระเบียบเรียบร้อยและความสวยงามของโครงการ หรือเพื่อประโยชน์ของผู้จะซื้อส่วนใหญ่ของโครงการ หรือเพื่อเป็นไปตามกฎระเบียบหรือคำสั่งใด ๆ ของทางราชการ หรือเหตุจำเป็นใด ๆ ที่ผู้จะขายได้พิจารณาเห็นสมควรแล้ว หรือเป็นการขยายโครงการ ผู้จะซื้อยินดีให้ผู้จะขายทำการแก้ไขแบบผังโครงการ หรือย้ายแปลงที่ดินที่ทำสัญญาจะซื้อจะขายนี้ ใหม่ได้ โดยที่ดินแปลงใหม่จะต้องมีขนาด ทำเล ราคา และสภาพของที่ดินใกล้เคียงกับที่ดินแปลงเดิม ทั้งนี้มิให้ถือว่าฝ่ายใดฝ่ายหนึ่งผิดสัญญาจะซื้อจะขายนี้</p>
+                <p>ผู้จะซื้อรับทราบว่าที่ดินจัดสรร พร้อมสิ่งปลูกสร้างที่เป็นที่ดินในโครงการจัดสรร เพื่อวัตถุประสงค์ในการพักอาศัยเท่านั้น ดังนั้นผู้จะซื้อตกลงที่จะไม่ใช้เพื่อวัตถุประสงค์อื่น อันเป็นเหตุให้เกิดความเดือดร้อนรำคาญหรือไม่ถูกต้องตามระเบียบของทางราชการหรือที่ผู้จะขายกำหนดไว้ หรืออันเป็นเหตุให้เกิดอันตรายต่อชีวิต สุขภาพ และทรัพย์สินของผู้อยู่อาศัยในโครงการ หากผู้จะซื้อละเมิดข้อตกลงนี้ ผู้จะซื้อจะต้องรับผิดชอบต่อความเสียหายใดๆ ที่เกี่ยวข้องเองทั้งสิ้น</p>
+                <p>4. การรับประกันการก่อสร้างบ้าน</p>
+                <p>ผู้จะขายจะทำการรับประกันการก่อสร้างบ้าน ในกรณีดังต่อไปนี้</p>
+                <p>1. กรณีเป็นโครงสร้างของสิ่งปลูกสร้าง เช่น เสาเข็ม ฐานราก เสาคาน พื้น โครงสร้างหลังคา และผนังที่รับน้ำหนัก เป็นต้น &ldquo;บริษัทฯ &rdquo; รับประกันภายในระยะเวลา 5 ปี นับตั้งแต่วันที่โอนกรรมสิทธิ์</p>
+                <p>2. กรณีที่เป็นส่วนควบหรืออุปกรณ์อันเป็นส่วนประกอบที่สำคัญของสิ่งปลูกสร้าง นอกจากข้อ 1. &ldquo;บริษัทฯ &rdquo; รับประกันภายในระยะเวลา 1 ปี นับตั้งแต่วันที่โอนกรรมสิทธิ์</p>
+                <p>3. รั้ว กำแพง ภายในระยะเวลา 1 ปี นับแต่วันที่โอนกรรมสิทธิ์</p>
+                <p>&nbsp;</p>
+                <p>&nbsp;</p>
+                <p>&nbsp;</p>
+                <p>&nbsp;</p>
+                <p>&nbsp;</p>
+                <p>&nbsp;</p>
+                <p>&nbsp;</p>
+            </div>
+        </div>
+        <table style="text-align: center; width: 100%;">
+            <tbody>
+                <tr>
+                    <td><span style="font-family: 'Angsana New'; font-size: 14pt;">ลงชื่อ.......................................................ผู้จะซื้อ</span></td>
+                    <td><span style="font-family: 'Angsana New'; font-size: 14pt;">ลงชื่อ.......................................................ผู้จะขาย</span></td>
+                </tr>
+                <tr>
+                    <td><span style="font-family: 'Angsana New'; font-size: 14pt;">({{quotation.CustomerName}})</span></td>
+                    <td><span style="font-family: 'Angsana New'; font-size: 14pt;">(<span style="text-indent: 50px;">&nbsp;นางสาวกิตติมา พิศาลคุณากิจ&nbsp;</span>)</span></td>
+                </tr>
+            </tbody>
+        </table>
+        <p style="float: left;">วันที่เริ่มใช้ 01/12/2560</p>
+        <p style="float: right;">(P.2/3)FM-MKS-104 Rev.00</p>
+    </div>
+    <div class="a4page">
+        <div class="a4head">&nbsp;</div>
+        <!--<div class="a4body">-->
+        <div style="height: 240mm;">
+            <div class="textinbody">
+                <p>&ldquo; ผู้จะซื้อ &rdquo;&nbsp; จะทำการใดๆ&nbsp; เกี่ยวกับตัวบ้าน&nbsp; ไม่ว่าส่วนใดส่วนหนึ่งซึ่งมีผลให้รูปร่าง รูปทรงเปลี่ยนแปลงไปหรือปรับเปลี่ยนวัสดุอุปกรณ์ต่าง ๆ&nbsp; หรืออื่นๆ&nbsp; อันเป็นเหตุให้กระทบกับการรับประกันผลงานในครั้งนี้&nbsp; &nbsp; &ldquo;ผู้จะซื้อ&rdquo;&nbsp; &nbsp;จะกระทำไม่ได้&nbsp; หากผู้จะซื้อฝ่าฝืนให้ถือว่าการรับประกันทั้งสองกรณีข้างต้นสิ้นสุดลงทันที เว้นแต่&nbsp; &nbsp;&ldquo;ผู้จะซื้อ&rdquo;&nbsp; &nbsp;จะแจ้งให้ผู้จะขายทราบ&nbsp; &nbsp; และได้รับความยินยอมจากผู้จะขายเป็นลายลักษณ์อักษร&nbsp; และได้รับอนุญาตจากหน่วยงานราชการที่เกี่ยวข้อง ทั้งต้องปฏิบัติตามระเบียบของผู้จะขายโดยเคร่งครัด</p>
+                <p>ในกรณีหน่วยงานราชการเข้าตรวจสอบ หรือให้แก้ไขหรือมีคำสั่งอย่างใด ๆ อันเนื่องมาจากการกระทำดังกล่าว &ldquo;ผู้จะขาย&rdquo; จะไม่รับผิดชอบใด ๆ ทั้งสิ้น &ldquo;ผู้จะซื้อ&rdquo; จะต้องปฏิบัติตามข้อบัญญัติต่าง ๆ ของทางราชการทุกประการและรับผิดชอบหากเกิดความเสียหายด้วยตนเองทุกประการ</p>
+                <p>การซ่อมแซม การต่อเติม ตกแต่งต่าง ๆ หรืออื่น ๆ ที่เกี่ยวกับบ้านในโครงการ &ldquo;ผู้จะซื้อ&rdquo; จะต้องจัดเก็บสิ่งของ วัสดุอุปกรณ์เหลือใช้ต่าง ๆ ให้เรียบร้อย โดยไม่ให้เกิดความสกปรก ปัญหาการอุดตัน การส่งเสียงรบกวนหรืออื่นๆ หรือเกิดการร้องเรียนหรือปัญหาใด ๆ ในโครงการจากการกระทำดังกล่าว หากปรากฏว่าเกิดปัญหาใด ๆ ขึ้น &ldquo;ผู้จะซื้อ&rdquo; จะเป็นผู้รับผิดชอบเองทั้งสิ้น</p>
+                <p>ทั้งสองฝ่ายต่างได้อ่านและเข้าใจข้อความในบันทึกฉบับนี้โดยตลอดดีแล้ว จึงได้ลงลายมือชื่อไว้เป็นหลักฐานต่อหน้าพยาน<br /><br /></p>
+            </div>
+            <br /><br /><br /><br />
+            <div style="padding-top: 12mm;">
+                <table style="width: 72.3585%; text-align: center; margin-left: 150px;">
+                    <tbody>
+                        <tr>
+                            <td style="width: 100%;"><span style="font-size: 14pt; font-family: 'Angsana New';">ลงชื่อ....................................................................... ผู้จะซื้อ</span></td>
+                        </tr>
+                        <tr>
+                            <td style="width: 100%;"><span style="font-size: 14pt; font-family: 'Angsana New';">( {{quotation.CustomerName}} )</span></td>
+                        </tr>
+                        <tr>
+                            <td style="width: 100%; padding-top: 40px;"><span style="font-size: 14pt; font-family: 'Angsana New';">ลงชื่อ....................................................................... ผู้จะขาย</span></td>
+                        </tr>
+                        <tr>
+                            <td style="width: 100%;"><span style="font-size: 14pt; font-family: 'Angsana New';">(&nbsp;<span style="text-indent: 50px;">นางสาวกิตติมา พิศาลคุณากิจ</span>&nbsp;)</span></td>
+                        </tr>
+                        <tr>
+                            <td style="width: 100%; padding-top: 40px;"><span style="font-size: 14pt; font-family: 'Angsana New';">ลงชื่อ....................................................................... พยาน</span></td>
+                        </tr>
+                        <tr>
+                            <td style="width: 100%;"><span style="font-size: 14pt; font-family: 'Angsana New';">( {{customField.witness1}} )</span></td>
+                        </tr>
+                        <tr>
+                            <td style="width: 100%; padding-top: 40px;"><span style="font-size: 14pt; font-family: 'Angsana New';">ลงชื่อ....................................................................... พยาน</span></td>
+                        </tr>
+                        <tr>
+                            <td style="width: 100%;"><span style="font-size: 14pt; font-family: 'Angsana New';">( {{customField.witness2}} )</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <p style="float: left; margin-top: 15mm;">วันที่เริ่มใช้ 01/12/2560</p>
+        <p style="float: right; margin-top: 15mm;">(P.3/3)FM-MKS-104 Rev.00</p>
+    </div>
+    <div class="a4page">
+        <!--<div class="a4body">-->
+        <div style="height: 235mm;">
+            <p style="text-align: right;">&nbsp;</p>
+            <p style="text-align: center;">&nbsp;<strong>บันทึกแนบท้าย</strong></p>
+            <table style="text-align: center; width: 708px;">
+                <tbody>
+                    <tr>
+                        <td style="width: 336px; text-align: left;"><span style="text-align: justify; font-size: 14pt; font-family: 'Angsana New';">&nbsp;โครงการ&nbsp; &nbsp; บ้านพิศาล&nbsp; เลียบวงแหวน-พระราม 2<br />&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; แปลง&nbsp; <strong>{{quotation.REUnitCode}}</strong>&nbsp; &nbsp; &nbsp;&nbsp;<br /></span></td>
+                        <td style="width: 101.938px;"><span style="font-family: 'Angsana New'; font-size: 14pt;">&nbsp;</span></td>
+                        <td style="width: 263.063px; text-align: right;"><span style="font-family: 'Angsana New'; font-size: 14pt;">&nbsp;<span style="text-align: justify;">เลขที่ <strong>{{quotation.REUnitCode}}</strong></span>&nbsp;</span></td>
+                    </tr>
+                </tbody>
+            </table>
+            <p style="text-align: right;"><br />ทำที่&nbsp; &nbsp; บริษัท พิศาลเพลซ จำกัด<br />วันที่<strong> {{quotation.ContractDueDate| bdate}}<br /><br /></strong></p>
+            <p class="textinbody" style="text-align: justify;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; บันทึกฉบับนี้ทำขึ้นระหว่าง&nbsp; บริษัท พิศาลเพลซจำกัด&nbsp; โดย นายวิสิทธิ์ พิศาลคุณากิจ&nbsp; ซึ่งมี&nbsp; นางสาวกิตติมา&nbsp; &nbsp; พิศาลคุณากิจ&nbsp; หรือ&nbsp; &nbsp; &nbsp; นางสาวสาธิณี&nbsp; &nbsp; พิศาลคุณากิจ&nbsp; &nbsp; &nbsp;เป็นผู้รับมอบอำนาจทำการแทน&nbsp; &nbsp; (ตามสำเนาหนังสือมอบอำนาจ แนบท้ายสัญญา)&nbsp; ในฐานะ&nbsp; "ผู้จะขาย"&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;ตามสัญญาจะซื้อจะขายที่ดินพร้อมสิ่งปลูกสร้าง โครงการเลียบวงแหวน-พระราม 2&nbsp; &nbsp;ฉบับเลขที่&nbsp; &nbsp; <strong>{{quotation.REUnitCode}}</strong>&nbsp; &nbsp; &nbsp; ลงวันที&nbsp; &nbsp;<strong> {{quotation.ContractDueDate|bdate}}</strong>&nbsp; &nbsp; &nbsp; &nbsp;ฝ่ายหนึ่งกับ <strong>{{quotation.CustomerName}}</strong> ในฐานะ "ผู้จะซื้อ" ตามสัญญาดังกล่าว อีกฝ่ายหนึ่งทั้งสองฝ่าย&nbsp; &nbsp;ตกลงกันดังนี้</p>
+            <p class="textinbody" style="text-align: justify;">1.&nbsp; ทางโครงการมีโปรโมชั่นในวันโอนกรรมสิทธิ์</p>
+            <table style="height: 120px; width: 690px;" border="1">
+                <tbody data-ng-repeat="CampaignInfoTable in promotionstable">
+                    <tr>
+                        <td style="width: 47px;" align="center"><strong><span style="font-family: 'Angsana New'; font-size: 14pt;">ลำดับ</span></strong></td>
+                        <td style="width: 309.938px;" align="center"><strong><span style="font-family: 'Angsana New'; font-size: 14pt;">รายการ</span></strong></td>
+                        <td style="width: 339.063px;" align="center"><strong><span style="font-family: 'Angsana New'; font-size: 14pt;">มูลค่า</span></strong></td>
+                    </tr>
+                    <tr data-ng-repeat="Promotion in CampaignInfoTable.PromotionItems">
+                        <td style="width: 47px;" align="center"><span style="font-family: 'Angsana New'; font-size: 14pt;">{{ $index+1 }}</span></td>
+                        <td style="width: 309.938px;"><span style="font-family: 'Angsana New'; font-size: 14pt;">{{ Promotion.Name }}</span></td>
+                        <td style="width: 339.063px;" align="right"><span style="font-family: 'Angsana New'; font-size: 14pt;">{{ Promotion.Cost | number}}</span></td>
+                    </tr>
+                    <tr>
+                        <td style="width: 356.938px;" colspan="2" align="center"><span style="font-family: 'Angsana New'; font-size: 14pt;">รวม</span></td>
+                        <td style="width: 339.063px;" align="right"><span style="font-family: 'Angsana New'; font-size: 14pt;">{{CampaignInfoTable.CampaignInfoTotal | number}}</span></td>
+                    </tr>
+                </tbody>
+            </table>
+            <p class="textinbody" style="text-align: justify;">&nbsp;</p>
+            <div class="textinbody">&nbsp;</div>
+            <div class="textinbody">&nbsp;</div>
+            <div class="textinbody">
+                <div>
+                    <table style="text-indent: 0px; text-align: center; width: 694px;">
+                        <tbody>
+                            <tr>
+                                <td style="width: 347px; text-align: left;"><span style="text-align: justify; font-size: 14pt; font-family: 'Angsana New';">&nbsp; &nbsp; &nbsp; ลงชื่อ....................................................................ผู้จะขาย<br /></span></td>
+                                <td style="width: 13.9375px;"><span style="font-family: 'Angsana New'; font-size: 14pt;">&nbsp;</span></td>
+                                <td style="width: 329.063px; text-align: center;"><span style="font-family: 'Angsana New'; font-size: 14pt;">ลงชื่อ.................................................ผู้จะซื้อ</span></td>
+                            </tr>
+                            <tr>
+                                <td style="width: 347px; text-align: center;"><span style="text-align: justify; font-size: 14pt; font-family: 'Angsana New';">(&nbsp; &nbsp;)</span></td>
+                                <td style="width: 13.9375px;"><span style="font-family: 'Angsana New'; font-size: 14pt;">&nbsp;</span></td>
+                                <td style="width: 329.063px; text-align: center;"><span style="font-size: 14pt; font-family: 'Angsana New';">(&nbsp; &nbsp;)</span></td>
+                            </tr>
+                            <tr>
+                                <td style="width: 347px; text-align: center;">&nbsp;</td>
+                                <td style="width: 13.9375px;">&nbsp;</td>
+                                <td style="width: 329.063px; text-align: center;">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td style="width: 347px; text-align: center;"><span style="text-align: justify; font-size: 14pt; font-family: 'Angsana New';">&nbsp;ลงชื่อ....................................................................พยาน</span></td>
+                                <td style="width: 13.9375px;">&nbsp;</td>
+                                <td style="width: 329.063px; text-align: center;"><span style="font-size: 14pt; font-family: 'Angsana New';">&nbsp;ลงชื่อ....................................................................พยาน</span></td>
+                            </tr>
+                            <tr>
+                                <td style="width: 347px; text-align: center;"><span style="text-align: justify; font-size: 14pt; font-family: 'Angsana New';">ลงชื่อ&nbsp;&nbsp;{{customField.witness1}}&nbsp;พยาน</span></td>
+                                <td style="width: 13.9375px;">&nbsp;</td>
+                                <td style="width: 329.063px; text-align: center;"><span style="font-size: 14pt; font-family: 'Angsana New';">ลงชื่อ&nbsp;&nbsp;{{customField.witness2}}&nbsp;พยาน</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>i

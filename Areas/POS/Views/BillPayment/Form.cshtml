@@ -1,0 +1,386 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml" lang="th">
+<head>
+    <meta charset="utf-8" />
+    <title>Ploy - Pay-In Slip</title>
+    <link href="~/Scripts/ngMaterialComponents/angular-material.css" rel="stylesheet" />
+    <link href="~/Content/src/modules/POS/BillPayment/Form/style.css" rel="stylesheet" />
+</head>
+<body ng-app="payInSlipApp" ng-controller="payInSlipCtrl" id="style-3">
+    <md-content class="bg-content" layout="column" layout-align="top center">
+        <md-button class="md-fab md-accent"
+                   ng-click="print()"
+                   aria-label="Print"
+                   style="position: fixed;right: 15px;bottom: 15px;"
+                   ng-disabled="isLoading">
+            <md-icon md-svg-icon="action:print"></md-icon>
+        </md-button>
+        <div class="a4" ng-repeat="Item in Items" layout="column" id="{{$index}}">
+            <div layout="column" style="padding: 18px 40px 15px 40px">
+                <div layout="row" style="padding: 10px 0px;">
+                    <div flex="19" style="width: 130px;margin-right: 10px;text-align: center;">
+                        <img ng-src="{{companyconfig.Logo}}" alt="Logo" style="height: 90px;" />
+                    </div>
+                    <div layout="column" flex>
+                        <div style="font-size:14px; font-weight:bold;" layout="column">
+                            <span>{{companyconfig.Name}}</span>
+                            <span>{{companyconfig.CompNameEng}}</span>
+                        </div>
+                        <div style="font-size:12px;" layout="column">
+                            <span>{{companyconfig.Address}}</span>
+                            <span>{{companyconfig.AddressEng}}</span>
+                            <span><span translate="profile.Tel"></span>{{companyconfig.CompTel}} <span translate="faxNo"></span>{{companyconfig.CompFax}}</span>
+                        </div>
+                    </div>
+                    <div flex="45" layout="column" layout-align="start end">
+                        <table style="height: 41px;">
+                            <tr>
+                                <td style="font-size:11px;border: 0px solid #000;padding: 0px 3px;line-height: 18px;" layout="column">
+                                    <span translate="taxpayerIden"></span>
+                                    <!-- <span>Taxpayer Identification No.</span>z -->
+                                </td>
+                                <td style="font-size:13px; font-weight:bold;padding: 0px 15px;">
+                                    <span>{{companyconfig.TaxIDNo | setformat:'taxid'}}</span>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div style="border-top:1px solid #000;"></div>
+                <div style="font-size:11px;font-style: italic;margin-top:3px;" layout="row">
+                    <div>
+                        <span translate="part1Customer"></span>
+                    </div>
+                    <div flex></div>
+                    <div style="font-size: 16px;font-style: initial;font-weight: bold;margin-top: 8px;">
+                        <span translate="paySlip"></span>
+                    </div>
+                </div>
+                <div style="font-size:13px;margin-top:12px;">
+                    <div layout="row">
+                        <div layout="column" flex>
+                            <div layout="row" style="margin-bottom:5px;">
+                                <span translate="customerName"></span>
+                                <div layout="column" flex style="padding-left: 5px;text-align: center;">
+                                    <span style="font-weight:bold;">{{Item.CustomerName}}</span>
+                                    <div style="border-bottom:1px dotted #000;" flex></div>
+                                </div>
+                            </div>
+                            <div layout="row" style="margin-bottom:5px;">
+                                @*<span>รหัสลูกค้า / Customer ID</span>
+                                    <div layout="column" flex style="padding-left: 5px;text-align: center;">
+                                        <span style="font-weight:bold;">{{}}</span>
+                                        <div style="border-bottom:1px dotted #000;" flex></div>
+                                    </div>*@
+                                <span translate="docDate"></span>
+                                <div layout="column" flex style="padding-left: 5px;text-align: center;">
+                                    <span style="font-weight:bold;">{{Item.DocDate | date:'dd/MM/yyyy'}}</span>
+                                    <div style="border-bottom:1px dotted #000;" flex></div>
+                                </div>
+                            </div>
+                            <div layout="row" style="margin-bottom:5px;">
+                                <span translate="project"></span>
+                                <div layout="column" flex style="padding-left: 5px;text-align: center;">
+                                    <span style="font-weight:bold;">{{Item.ProjectName}}</span>
+                                    <div style="border-bottom:1px dotted #000;" flex></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div layout="column" flex="45" style="padding-left:10px;">
+                            <div layout="row" style="margin-bottom:5px; color:#fff;">
+                                <span translate="docDate"></span>
+                                <div layout="column" flex style="padding-left: 5px;text-align: center;">
+                                    <span style="font-weight:bold;">16/05/2016</span>
+                                    <div style="border-bottom:1px dotted #fff;" flex></div>
+                                </div>
+                            </div>
+                            <div layout="row" style="margin-bottom:5px;">
+                                <span translate="paymentDate"></span>
+                                <div layout="column" flex style="padding-left: 5px;text-align: center;">
+                                    <span style="font-weight:bold;">{{Item.DueDate  | date:'dd/MM/yyyy'}}</span>
+                                    <div style="border-bottom:1px dotted #000;" flex></div>
+                                </div>
+                            </div>
+                            <div layout="row" style="margin-bottom:5px;">
+                                <span translate="lotNo"></span>
+                                <div layout="column" flex style="padding-left: 5px;text-align: center;">
+                                    <span style="font-weight:bold;">{{Item.REUnitCode}}</span>
+                                    <div style="border-bottom:1px dotted #000;" flex></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div layout="row" style="margin-bottom:5px;">
+                        <span translate="address"></span>
+                        <div layout="column" flex style="padding-left: 5px;text-align: center;">
+                            <span style="font-weight:bold;">{{Item.Address}}</span>
+                            <div style="border-bottom:1px dotted #000;" flex></div>
+                        </div>
+                    </div>
+                </div>
+                <table style="font-weight:bold; font-size:13px; width:100%;margin-top:7px;">
+                    <tr align="center" style="height: 35px; background-color: rgba(255, 64, 129, 0.13);">
+                        <td width="105"><span translate="numberNo"></span></td>
+                        <td><span translate="description2"></span></td>
+                        <td width="210"><span translate="amountTHB"></span></td>
+                    </tr>
+                    <tr style="height: 35px;">
+                        <td align="center">1</td>
+                        <td><span translate="payment"></span>{{Item.Description}}</td>
+                        <td align="right">{{Item.Amount | number:2}}.-</td>
+                    </tr>
+                    <tr style="height: 35px;">
+                        <td colspan="2" style="padding:0px;">
+                            <div style="width: 339px;
+                                        display: inline-table;
+                                        text-align: center;">({{Item.Amount | bahttext}})</div>
+                            <div style="background-color: rgba(255, 64, 129, 0.13);
+                                         height: 35px;
+                                         display: inline-table;
+                                         line-height: 35px;
+                                         width: 153px;
+                                         text-align: center;"><span translate="totalMoney"></span></div>
+                        </td>
+                        <td align="right" style="background-color: rgba(255, 64, 129, 0.13);">{{Item.Amount | number:2}}</td>
+                    </tr>
+                </table>
+                <div layout="row" style="margin-top:10px;">
+                    <div layout="column" flex="55" style="font-style: italic;font-weight:bold;margin-top: 10px;">
+                        <div style="font-size:13px;">
+                            ** <span translate="verifyAmount"></span>
+                        </div>
+                        <span style="font-size:11px;">
+                            ** <span translate="verifyAmount"></span>
+                        </span>
+                        <div style="font-size:13px;margin-top:25px;">
+                            ** <span translate="keepSlip"></span>
+                        </div>
+                        <span style="font-size:11px;">
+                            ** <span translate="keepSlip"></span>
+                        </span>
+                    </div>
+                    <div flex></div>
+                    <div layout="column" flex="45">
+                        <div style="border:1px solid #000;padding:5px;width: 288px;margin-left:32px;" layout="column">
+                            <div style="font-size:14px;font-weight:bold;">
+                                <span translate="forBankOff"></span>
+                            </div>
+                            <div style="font-size:13px;margin-top:13px;">
+                                <span translate="payee"></span>.........................................................
+                            </div>
+                            <div style="font-size:13px;margin-top:13px;">
+                                <span translate="date"></span>.............................................................
+                            </div>
+                            <div style="font-size:12px;font-style: italic;font-weight:bold;margin-top:13px;text-align: right;">
+                                (<span translate="signedStamped"></span>)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <img src="http://www.clipartbest.com/cliparts/di7/oRK/di7oRKq5T.png" alt="scissors" style="width: 20px; position: relative; top: 6px;left: 113px;" />
+            <div style="border-top:1px dotted #000;"></div>
+            <div layout="column" style="padding: 18px 40px 15px 40px">
+                <div layout="row" style="padding: 10px 0px;">
+                    <div flex="19" style="width: 130px;margin-right: 10px;text-align: center;">
+                        <img ng-src="{{companyconfig.Logo}}" alt="Logo" style="height: 90px;" />
+                    </div>
+                    <div layout="column" flex>
+                        <div style="font-size:14px; font-weight:bold;" layout="column">
+                            <span>{{companyconfig.Name}}</span>
+                            <span>{{companyconfig.CompNameEng}}</span>
+                        </div>
+                        <div style="font-size:12px;" layout="column">
+                            <span>{{companyconfig.Address}}</span>
+                            <span>{{companyconfig.AddressEng}}</span>
+                            <span><span translate="profile.Tel"></span>{{companyconfig.CompTel}} <span translate="faxNo"></span>{{companyconfig.CompFax}}</span>
+                        </div>
+                    </div>
+                    <div flex="45" layout="column" layout-align="end end">
+
+                    </div>
+                </div>
+                <div style="border-top:1px solid #000;"></div>
+                <div layout="row" style="font-size:11px;font-style: italic;margin-top: 0px;height: 18px;line-height: 15px;">
+                    <div>
+                        <span translate="part2Customer"></span>
+                    </div>
+                    <div flex></div>
+                    <div style="background-color: rgba(255, 64, 129, 0.13);">
+                        <span translate="bankCharged"></span> {{companyconfig.FeeInside}} <span translate="bath"></span> / <span translate="outsourcedItem"></span> {{companyconfig.FeeOutside}} <span translate="bath"></span> / <span translate="order"></span>
+                    </div>
+                </div>
+                <div layout="row">
+                    <div layout="column" flex="50">
+                        <div style="font-size: 16px;font-weight: bold;margin-top: 8px;">
+                            <span translate="paySlip"></span>
+                        </div>
+                        <div layout="row" style="margin-bottom:5px;margin-top: 8px;">
+                            <span style="font-size:13px;" translate="date"></span>
+                            <div layout="column" flex style="padding-left: 5px;text-align: center;">
+                                <span style="font-size:13px; font-weight:bold;"></span>
+                                <div style="border-bottom:1px dotted #000;" flex></div>
+                            </div>
+                            <span style="font-size:13px;" translate="depository"></span>
+                            <div layout="column" flex style="padding-left: 5px;text-align: center;">
+                                <span style="font-size:13px; font-weight:bold;"></span>
+                                <div style="border-bottom:1px dotted #000;" flex></div>
+                            </div>
+                        </div>
+                        <div layout="row" style="margin-bottom:5px;">
+                            <span style="font-size:13px;" translate="nameOfCustomer"></span>
+                            <div layout="column" flex style="padding-left: 5px;text-align: center;">
+                                <span style="font-size:13px; font-weight:bold;">{{Item.CustomerName}}</span>
+                                <div style="border-bottom:1px dotted #000;" flex></div>
+                            </div>
+                        </div>
+                        <div layout="row" style="margin-bottom:5px;">
+                            <span style="font-size:13px;" translate="custNo"></span>
+                            <div layout="column" flex style="padding-left: 5px;text-align: center;">
+                                <span style="font-size:13px; font-weight:bold;">{{Item.PaymentRef1}}</span>
+                                <div style="border-bottom:1px dotted #000;" flex></div>
+                            </div>
+                        </div>
+                        <div layout="row" style="margin-bottom:5px;">
+                            <span style="font-size:13px;" translate="refNo2"></span>
+                            <div layout="column" flex style="padding-left: 5px;text-align: center;">
+                                <span style="font-size:13px; font-weight:bold;">{{Item.PaymentRef2}}</span>
+                                <div style="border-bottom:1px dotted #000;" flex></div>
+                            </div>
+                        </div>
+                        <div layout="row" style="margin-bottom:5px;">
+                            <span style="font-size:13px;" translate="settlement"></span>
+                            <div layout="column" flex style="padding-left: 5px;text-align: center;">
+                                <span style="font-size:13px; font-weight:bold;">{{Item.DueDate | date:'dd/MM/yyyy'}}</span>
+                                <div style="border-bottom:1px dotted #000;" flex></div>
+                            </div>
+                        </div>
+                        <div layout="row" style="font-size:13px; font-weight:bold;">
+                            <div style="border: 1px solid #000;
+                                            height: 15px;
+                                            width: 15px;
+                                            margin-right: 5px;">
+                            </div>
+                            <div style="margin-right: 5px;">
+                                <span translate="cheque"></span>
+                            </div>
+                            <div style="border: 1px solid #000;height: 15px;width: 15px;margin-right: 5px;">
+                            </div>
+                            <div>
+                                <span translate="cash"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div layout="column" flex="50" layout-align="start end">
+                        <div style="border: 1px solid #000;
+                                    font-weight: bold;
+                                    margin-top: 8px;
+                                    width: 340px;
+                                    padding: 5px;" layout="column">
+                            <div style="font-size: 14px;"><span translate="takeToAcc"></span>{{companyconfig.Name}}</div>
+                            <div layout="row" style="margin-top:3px;" ng-repeat="bankaccount in bankaccounts">
+                                <div style="border: 1px solid #000;
+                                            height: 15px;
+                                            width: 15px;
+                                            margin-top: 10px;">
+                                </div>
+                                <img ng-src="{{bankaccount.Code | banklogo}}" style="height: 29px;margin: 0px 7px;" />
+                                <div layout="column">
+                                    <div style="font-size: 13px;">
+                                        <span translate="plc"></span> {{bankaccount.CallName}}
+                                    </div>
+                                    <div style="font-size: 12px;font-weight: 100;">
+                                        <span translate="accNum"></span> {{bankaccount.AcctNumber | setformat:'acct'}} <span translate="compCode"></span> {{bankaccount.CompCode}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <table style="font-weight:bold; font-size:13px; width:100%;margin-top:10px;">
+                        <tr align="center" style="height: 28px; background-color: rgba(255, 64, 129, 0.13);">
+                            <td style="width: 165px;">
+                                <span translate="chequeNo"></span>
+                            </td>
+                            <td style="width: 119px;">
+                                <span translate="checkDate"></span>
+                            </td>
+                            <td style="width: 170px;">
+                                <span translate="bankName"></span>
+                            </td>
+                            <td style="width: 100px;">
+                                <span translate="branch"></span>
+                            </td>
+                            <td><span translate="baht"></span></td>
+                        </tr>
+                        <tr style="height: 28px;">
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr style="height: 28px; background-color: rgba(255, 64, 129, 0.13);" align="center">
+                            <td colspan="4"><span translate="amounWord"></span></td>
+                            <td><span translate="baht"></span></td>
+                        </tr>
+                        <tr style="height: 28px;">
+                            <td colspan="4" align="center">( {{Item.Amount | bahttext}} )</td>
+                            <td align="right">{{Item.Amount | number:2}}</td>
+                        </tr>
+                    </table>
+                </div>
+                <div layout="row" style="margin-top:7px;">
+                    <div layout="column" flex="55">
+                        <div layout="row" style="margin-bottom:5px;">
+                            <span style="font-size:13px;" translate="depositBy"></span>
+                            <div layout="column" flex style="padding-left: 5px; padding-right: 40px;text-align: center;">
+                                <span style="font-size:13px; font-weight:bold;"></span>
+                                <div style="border-bottom:1px dotted #000;" flex></div>
+                            </div>
+                        </div>
+                        <div layout="row" style="margin-bottom:5px;">
+                            <span style="font-size:13px;" translate="telephone"></span>
+                            <div layout="column" flex style="padding-left: 5px; padding-right: 40px;text-align: center;">
+                                <span style="font-size:13px; font-weight:bold;"></span>
+                                <div style="border-bottom:1px dotted #000;" flex></div>
+                            </div>
+                        </div>
+                        <div style="height: 1.1cm;margin-top: 1px;">
+                            <io-barcode code="|{{companyconfig.TaxIDNo}} 01 {{Item.PaymentRef1}} {{Item.PaymentRef2}} {{Item.AmountCode}}" type="CODE128B" style="height:100%;"></io-barcode>
+                            <div style="width:100%;text-align:center;margin-top: 5px;">
+                                <span style="font-size:12px;">| {{companyconfig.TaxIDNo}} 01 {{Item.PaymentRef1}} {{Item.PaymentRef2}} {{Item.AmountCode}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div layout="column" flex="45" layout-align="start end">
+                        <div layout="column" style="border: 1px solid #000;
+                                                    text-align: center;
+                                                    width: 288px;
+                                                    height: 85px;
+                                                    padding: 10px 0px;" layout-align="end center">
+                            <div style="margin-bottom:9px;">
+                                ..................................................
+                            </div>
+                            <div style="font-size:13px;">
+                                <span translate="bankSignature"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </md-content>
+    <script src="~/Scripts/ngMaterialComponents/angular.js"></script>
+    <script src="~/Scripts/ngMaterialComponents/angular-animate.js"></script>
+    <script src="~/Scripts/ngMaterialComponents/angular-aria.js"></script>
+    <script src="~/Scripts/ngMaterialComponents/angular-messages.js"></script>
+    <script src="~/Scripts/ngMaterialComponents/angular-material.js"></script>
+    <script src="~/Scripts/angular-io-barcode.js"></script>
+    <script src="~/Scripts/underscore.js"></script>
+    <script src="~/Scripts/underscore.string.js"></script>
+    <script src="~/Content/src/ploy/UnderScoreConfig.js"></script>
+    <script src="~/Content/src/modules/POS/BillPayment/Form/ctrl.js"></script>
+    <script src="~/Content/src/ploy/BankList.js"></script>
+</body>
+</html>

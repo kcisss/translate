@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "Ploy - Work Of Sales";
+    ViewBag.NgApp = "WorkofSalesApp";
+    Layout = "~/Views/Shared/_AllNewMasterLayout.cshtml";
+}
+
+@section IncludeScripts{
+    @*Addition Module Libs*@
+    <script src="~/Scripts/angular-filter.js"></script>
+    <script src="~/Scripts/angular-count-to.min.js"></script>
+
+    @*Module Controller *@
+    <script src="~/Content/src/modules/POS/WorkofSales/Scripts/wosApp.js"></script>
+    <script src="~/Content/src/modules/POS/WorkofSales/Scripts/WorkListController.js"></script>
+    <script src="~/Content/src/modules/POS/WorkofSales/Scripts/SaleActCpnCtrl.js"></script>
+    <script src="~/Content/src/modules/POS/WorkofSales/Scripts/ExpireQuotationCtrl.js"></script>
+
+}
+
+@section IncludeCSS {
+    @*Addition Module Libs*@
+    <link href="~/Content/src/modules/POS/Start/styles/loading.css" rel="stylesheet" />
+
+    @*Module Style*@
+}
+
+<md-content flex layout="column" class="bg">
+    <div ng-view flex layout="column"></div>
+</md-content>

@@ -1,0 +1,45 @@
+﻿@{
+    ViewBag.Title = "POS - Plan";
+    ViewBag.NgApp = "PlanApp";
+    Layout = "~/Views/Shared/_AllNewMasterLayout.cshtml";
+}
+@section IncludeScripts{
+    @*Addition Module Libs*@
+    @*<script src="~/Scripts/jquery-3.0.0.js"></script>*@
+    <script src="~/Scripts/angular-count-to.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-filter/0.5.11/angular-filter.min.js"></script>
+    <script src="~/Scripts/ngPrint/ngPrint.js"></script>
+
+    @*Module Scripts*@
+    <script src="~/Content/src/modules/POS/Share/scripts/app.js"></script>
+    <script src="~/Content/src/modules/POS/Share/scripts/serv.js"></script>
+
+    <script src="~/Content/src/modules/POS/Plan/scripts/printCtrl.js"></script>
+    <script src="~/Content/src/modules/POS/Plan/scripts/SpoofBookCtrl.js"></script>
+    <script src="~/Content/src/modules/POS/Plan/scripts/reunitInformationCtrl.js"></script>
+    <script src="~/Content/src/share/modules/globalApp/shareController/selectPlanDialogCtrl.js"></script>
+    <script src="~/Content/src/share/modules/globalApp/shareController/addCustomerDialogCtrl.js"></script>
+
+    <script src="~/Content/src/modules/POS/Plan/scripts/PlanApp.js"></script>
+    <script src="~/Content/src/modules/POS/Plan/scripts/PlanCtrl.js"></script>
+    <script src="~/Content/src/modules/POS/Plan/scripts/PlanServ.js"></script>
+
+    @*<script src="~/Content/src/modules/POS/Plan/scripts/PlanActionCtrl.js"></script>
+    <script src="~/Content/src/modules/POS/Share/scripts/printController.js"></script>*@
+
+}
+@section IncludeCSS {
+    @*Addition Module Libs*@
+    @*<link href="~/Scripts/ngPrint/ngPrint.css" rel="stylesheet" />*@
+    <link href="~/Scripts/Expand-Collapse.css" rel="stylesheet" />
+
+    @*Module Style*@
+    <link href="~/Content/src/modules/POS/Plan/styles/style.css" rel="stylesheet" />
+    <link href="~/Content/src/modules/POS/Plan/styles/SelectUnit.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/solid.css" integrity="sha384-TbilV5Lbhlwdyc4RuIV/JhD8NR+BfMrvz4BL5QFa2we1hQu6wvREr3v6XSRfCTRp" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/fontawesome.css" integrity="sha384-ozJwkrqb90Oa3ZNb+yKFW2lToAWYdTiF1vt8JiH5ptTGHTGcN7qdoR1F95e0kYyG" crossorigin="anonymous">
+}
+
+<md-content style="height:100%">
+    <div flex style="height:100%" ng-view></div>
+</md-content>

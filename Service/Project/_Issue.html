@@ -1,0 +1,62 @@
+﻿<!-- File name : _issue.html -->
+<div class="modal modal-big" tabindex="-1" role="dialog" >
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-toggle="modal" data-target="#modalCancel" ng-click="$hide()">x</button>
+                <h2 class="modal-title text-center text-basecolor"><i class="fa fa-flag"></i> <span translate="addEditProb"></span> {{header}}</h2>
+            </div>
+            <div class="modal-body fixmodalbody pl0 pr0 pt0 clearfix">
+
+
+                <div class="row pll prl mtl">
+
+                    <div class="field  mbxl col-md-12">
+                        <label aria-hidden="true" translate="problemName"></label>
+                        <input type="text" class="form-control col-md-12" ng-model="Issue.Subject"  style="max-width: 100%;box-sizing:border-box;" >
+                    </div>
+                    <div class="field  mbxl col-md-12">
+                        <label ng-show="Issue.Note" class="show-hide ng-hide" aria-hidden="true" translate="description"></label>
+                        <textarea  ng-model="Issue.Note" placeholder="รายละเอียด" style="width:100%" />
+                    </div>
+                </div>
+                <div class="row pll prl">
+                    <div class="field  mbxl col-md-6">
+                        <label ng-show="Issue.AssignToContractor" class="show-hide ng-hide" aria-hidden="true" translate="contractorWorker"></label>
+
+                        <input class="md-input" type="text" ng-model="Issue.AssignToContractor"  placeholder="ผู้รับเหมา / คนงาน" />
+                    </div>
+                    <div class="field  mbxl col-md-6" ng-show="DisplayDate">
+                        <label ng-show="Issue.DueDate" class="show-hide ng-hide" aria-hidden="true" translate="deadLine"></label>
+
+                        <input class="md-input" type="text" ng-model="Issue.DueDate"  autoclose="true" placeholder="กำหนดเสร็จ" bs-datepicker autoclose data-date-format="dd/MM/yyyy" />
+                    </div>
+                </div>
+                <div  >
+                    <label translate="caretaker"></label>
+                    <select class="md-input" ng-model="Issue.WorkerId" ng-change="SetWorker(Issue)" style="width:100%">
+                        <option ng-repeat="w in Worker" value="{{w.Id}}" ng-selected="{{w.Id==Issue.WorkerId}}">
+                            {{w.Code}} : {{w.Name}}
+                        </option>
+                    </select>
+                </div>
+                <div class="row pll prl">
+                    <div class="col-md-12">
+                        <h4 translate="category"></h4>
+                        <div ng-repeat="type in TypeList" class="col-md-6" ><a >
+                            <i class="fa fa-edit" ng-class=" {
+                            'fa-signal':type.value == 0,
+                            'fa-warning' : type.value == 1,
+                            'fa-thumbs-o-up' : type.value == 2,
+                            'fa-question-circle' :type.value == 3,
+                            'fa-times-circle' : type.value == 4
+                            }"></i></a><input class=" " type="radio" ng-model="Issue.Type" ng-click="selectType(type,Issue)" value="type.value" ng-value="type.value">{{type.name}} </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success pull-right" ng-click="saveIssue(Issue)"><span translate="save"></span></button>
+            </div>
+        </div>
+    </div>
+</div>

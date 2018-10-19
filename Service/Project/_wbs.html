@@ -1,0 +1,94 @@
+﻿ <!-- File name : _wbs.html -->
+<div ng-controller="issueAndWbsListCtrl">
+    <style type="text/css">
+            body {
+                overflow: hidden;
+            }
+    </style>
+    <md-content content-padding set-height="1" class="no-scroll" >
+    <md-subheader>
+    <!--{{project.Name}}-->
+    <div >
+        <a href="/Service/ProjectList/" class="text-pink mrm" style="position: relative; z-index: 90; font-size:25px; top:auto; cursor: pointer">โครงการ</a>
+        <a bs-dropdown="DropdownProjectList" style="position:relative;z-index:90;top:auto; cursor:pointer" class="mrm">{{project.Name}} <i class="fa fa-sort-desc"></i></a>
+    </div>
+    <a class="logo bg-pink pal show-on-stick" href="/Service/ProjectList/">
+    <img alt="Ploy" src="/Styles/images/ployicon.png">
+    </a>
+    <div class="pull-right">
+        <a href="/service/project/#!/{{param.projectId}}" class="text-gray5 bg-grayE switch-view" bs-tooltip title="Unit view" data-placement="bottom">
+        <i class="fa fa-list"></i>
+        </a>
+        <a href="/service/project/#!/{{param.projectId}}/wbs"  class=" bg-grayE switch-view active" bs-tooltip title="Wbs view" data-placement="bottom">
+        <i class="fa fa-table"></i>
+        </a>
+        <a href="/service/project/#!/{{param.projectId}}/issue"  class="text-gray5 bg-grayE switch-view" bs-tooltip title="Issue view" data-placement="bottom" >
+        <i class="fa fa-exclamation-circle"></i>
+        </a>
+    </div>
+    <div class="pull-right mrl" style="height:30px;margin-top:-8px;">
+        <a class="btn btn-bgcolor  switch-view" style="padding:5px 20px" ng-click="plan()"><span translate="plan2"></span></a>
+        <a  class="btn btn-success  switch-view" style="padding:5px 20px" ng-click="finish()"><span translate="succeed"></span></a>
+    </div>
+    </md-subheader>
+    <style type="text/css">
+                   table {
+                     table-layout: fixed;
+                   }
+                
+    </style>
+    <div class="scroll-content-hor" set-height="120">
+        <table >
+            <tr>
+                <td class="pa0">
+                    <table class="table mb0 table-bordered ">
+                        <tr style="font-size : 22px;" class="bg-grayE">
+                            <th class="col1 bg-grayE" rowspan="2" style="width:120px" translate="unit"></th>
+                            <th class="col2 bg-grayE" rowspan="2" style="width:120px" translate="documentType"></th>
+                            <th class="col3 bg-grayE" rowspan="2" style="width:120px" translate="deliveryDate"></th>
+                            <th ng-repeat="wbs in wbsList" colspan="{{wbs.Children.length}}" style="width:{{wbs.Children.length}}*100px">
+                                <div>{{wbs.Name}} </div>
+                                <!--({{wbs.Children.length}})-->
+                            </th>
+                        </tr>
+                        <tr class="bg-grayE">
+                            <td ng-repeat="child in childrenList" style="width:100px">
+                            {{child.Name}}
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td  class="pa0">
+                    <div set-height="230" class="scroll-content-ver">
+                        <table class="table table-bordered ">
+                            <tr ng-repeat="r in resultList" >
+                                <td class="col1" style="width:120px;"> <a href="#!/{{param.projectId}}/unit/{{r.id}}">{{r.code}}</a></td>
+                                <td class="col2" style="width:120px">{{r.stage}}</td>
+                                <td class="col3" style="width:120px">
+                                    <a class="md-button-raised pull-left pam mts" ng-click="addDeleveryDate(r)">
+                                    <i class="fa fa-edit" ng-class="{
+                                    'fa-edit':r.displayDeliveryDate,
+                                    'fa-plus':!r.displayDeliveryDate
+                                    }">
+                                    </i>
+                                    </a>
+                                    <div class="ptm">
+                                        {{r.displayDeliveryDate}}
+                                    </div>
+                                </td>
+                                <td style="width:100px" ng-repeat="rr in r.wbsIssueList" ng-class="{'bg-pink':rr.compareDayNum <= 0,'bg-paleOrange':rr.compareDayNum > 0 ,'bg-green':rr.IsDone,'bg-yellow':rr.notdue,'is-selected':rr.selected}" ng-click="Select(rr)">
+                                    <span class="pull-right text-gray5" ng-show="rr.openIssue">{{rr.openIssue}} <i class="fa fa-exclamation-circle"></i></span>
+                                    <span class="text-center block text-lg pull-left">{{rr.compareDay | dudayToThai}}</span> 
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </td>
+            </tr>
+
+        </table>
+    </div>
+    </md-content>
+</div>

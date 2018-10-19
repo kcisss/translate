@@ -1,0 +1,33 @@
+﻿<div style="width:50%;float:left;margin-left:10%">
+    <md-dialog>
+        <div style="height:5%;background-color:#1d3132; padding-left:2%;float:left;">
+            <div style="float:left;">
+                <h4 style="color:#ffffff" translate="selBankDel"></h4>
+            </div>
+            <div style="margin-top:1%;margin-left:60%;float:left;padding-top:0.5%;">
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon style="color:#ffffff" md-svg-icon="navigation:close" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </div>
+        <div style="float:left;padding: 3% 3% 3% 3%;background-color:#DCDCDC;" >
+            <div layout="column" style="float:left;background-color:#ffffff;width:100%;padding: 1% 1% 1% 1%">
+                <p style="padding-left:10%"><span><strong translate="nameOfCustomer"> :</strong> {{Bank.CustomerName}}</span><span style="padding-left:5%"><strong translate="selectedUnit">  :</strong> {{Bank.unit}}</span><span style="padding-left:5%"><strong translate="project"> :</strong> {{Bank.ProjectName}}</span></p>
+                <div ng-repeat="Bank2 in Bank.Bank">
+                    <i class="material-icons" ng-click="deleteAddNewBankList(Bank2.Id)" style="outline: none;cursor: pointer;margin-top: 9px;"><span translate="delete"></span></i>
+                    <img src="{{Bank2.Logo}}" style="width:20px;height:20px;margin-top:1%;" />  {{Bank2.ThaiName}}
+                    <div ng-show="$last" ng-click="deleteAddNewBankAppAll()" align="center" style="outline: none;cursor: pointer;margin-top: 14px;">
+                        <span style="font-size: 11px;position: relative; top: -8px;" translate="deleteAll"></span>
+                        <i class="material-icons"  style="font-size: 23px;"><span translate="canceled"></span></i>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <div style="float:left;height:3%" align="right">
+            <md-button ng-click="cancel()" class="md-primary">
+                <span translate="agreed"></span>
+            </md-button>
+        </div>
+    </md-dialog>
+</div>

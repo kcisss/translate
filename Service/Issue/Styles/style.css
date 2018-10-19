@@ -1,0 +1,26 @@
+﻿.style-3::-webkit-scrollbar-track {
+    width: 7px;
+}
+
+.style-3::-webkit-scrollbar {
+    width: 7px;
+}
+
+.style-3::-webkit-scrollbar-thumb {
+    border-radius: 12px;
+    border: 4px solid rgba(255,255,255,0);
+    background-clip: content-box;
+    background-color: rgb(177, 177, 177);
+}
+
+.table1 th:hover {
+    cursor: pointer;
+}
+
+.table1 tbody > tr {
+    transition: background-color .25s ease;
+}
+
+    .table1 tbody > tr:hover {
+        background-color: #f2f2f2;
+    }

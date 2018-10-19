@@ -1,0 +1,59 @@
+﻿<md-dialog aria-label="Mango (Fruit)" md-theme="ploypink" style="width:60%;">
+    <form ng-cloak>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2 translate="editHistory"></h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="close()">
+                    <md-icon md-svg-src="navigation:close" aria-label="Close dialog" style="outline:none;" ng-click="close()"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content>
+            <md-list>
+                <md-list-item ng-repeat="comment in commentList">
+                    <div style="font-size:14px;width:100%;" layout="column">
+                        <div layout="row">
+                            <div flex="10" layout="row" layout-align="center start">
+                                <img ng-src="{{comment.WorkerImage}}" class="md-avatar" style="position:absolute;" />
+                            </div>
+                            <div flex="90">
+                                <span style="color:#536DFE;">{{comment.CreateBy}}</span>
+                                <div color="#212121;" style="word-break: break-all;">{{comment.Text}}</div>
+                                <div>{{showTextImage($index)}}</div>
+                            </div>
+                        </div>
+                        <div layout="row">
+                            <div flex="10"></div>
+                            <div style="font-size:13px;color:#757575;">
+                                {{dateFromNow(comment.DateTime)}}
+                                <md-tooltip>{{dateFormat(comment.DateTime)}}</md-tooltip>
+                            </div>
+                        </div>
+                    </div>
+                    <md-divider></md-divider>
+                </md-list-item>
+            </md-list>
+        </md-dialog-content>
+        <md-dialog-actions>
+            <md-divider></md-divider>
+            <div layout="row" layout-align="space-between center">
+                <div>
+                    <span translate="editComments"></span>
+                </div>
+                <div>
+                    <md-button ng-click="close()">
+                        <span translate="close"></span>
+                    </md-button>
+                </div>  
+            </div>
+
+        </md-dialog-actions>
+    </form>
+</md-dialog>
+<style>
+    md-list-item._md-no-proxy, md-list-item ._md-no-style {
+        padding: 16px;
+    }
+</style>

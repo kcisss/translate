@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "PLOY - Pivot Analysis";
+    ViewBag.NgApp = "PivotAnalysisApp";
+    Layout = "~/Views/Shared/_AllNewMasterLayout.cshtml";
+}
+@section IncludeScripts{
+    @*Glob App*@
+    <script src="~/Scripts/ui-grid/csv.js"></script>
+    <script src="~/Scripts/ui-grid/ui-grid.js"></script>
+
+    <script src="~/Scripts/jquery-3.0.0.min.js"></script>
+    <script src="~/Scripts/pivottable/jquery-ui.min.js"></script>
+
+    <script src="~/Scripts/pivottable/pivot.min.js"></script>
+    <script src="~/Scripts/pivottable/c3.min.js"></script>
+    <script src="~/Scripts/pivottable/c3_renderers.min.js"></script>
+    <script src="~/Scripts/pivottable/d3.min.js"></script>
+    <script src="~/Scripts/pivottable/d3_renderers.min.js"></script>
+    <script src="~/Scripts/pivottable/export_renderers.min.js"></script>
+    <script src="~/Scripts/pivottable/gchart_renderers.min.js"></script>
+    @*Module App*@
+    <script src="~/Content/src/modules/Common/PivotAnalysis/scripts/PivotAnalysisApp.js"></script>
+    <script src="~/Content/src/modules/Common/PivotAnalysis/scripts/PivotAnalysisListCtrl.js"></script>
+    <script src="~/Content/src/modules/Common/PivotAnalysis/scripts/PivotAnalysisServ.js"></script>
+}
+@section IncludeCSS {
+    <link href="~/Scripts/ui-grid/ui-grid.css" rel="stylesheet" />
+    <link href="~/Scripts/pivottable/pivot.min.css" rel="stylesheet" />
+
+    <link href="~/Content/src/modules/Common/PivotAnalysis/styles/PivotAnlysisStyle.css" rel="stylesheet" />
+}
+<div ng-view layout="row" flex></div>

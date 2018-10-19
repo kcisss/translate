@@ -1,0 +1,148 @@
+﻿@{
+    Layout = "~/Views/Shared/_MasterLayout99.cshtml";
+    ViewBag.NgApp = "ContractApp";
+    ViewBag.Title = "เอกสาร";
+}
+@section IncludeScripts {
+    @Scripts.Render("~/bundles/TinyMCE",
+        "~/bundles/master-print",
+        "~/bundles/master-project",
+        "~/bundles/master-worker",
+        "~/bundles/POS/Contract/Contract",
+        "~/bundles/Service/SMS/SMSApp"
+    )
+    <script src="~/Scripts/bindonce.js"></script>
+    <script src="~/Scripts/moment-range.js"></script>
+    <script src="~/Scripts/angular-date-range-picker.js"></script>
+    <script src="~/Content/src/ploy/BankList.js"></script>
+}
+@section IncludeCSS {
+    @Styles.Render(
+        "~/bundles/css/lmlstyle"
+    )
+    <link href="~/Scripts/angular-date-range-picker.css" rel="stylesheet" />
+    <style>
+         .page_for_printarea {
+             width: 210mm;
+             min-height: 297mm;
+             padding: 0 10px;
+             margin: 10mm auto;
+             border: 1px #D3D3D3 solid;
+             border-radius: 5px;
+             background: white;
+             box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+         }
+
+        .table1 table, th, td {
+            height: auto !important;
+        }
+    </style>
+}
+<div ng-controller="ContractCtrl" class="use-print-service">
+    <md-content>
+        <div class="ptl plm prm">
+            <md-button ng-click="backToCustomerDetail()"  style="height:35px;">
+                <i class="fa fa-arrow-left text-black"></i>
+                <md-tooltip><span translate="back"></span></md-tooltip>
+            </md-button>
+            <span class="form-section-title text-pink" style="position:relative;top:-11px;">
+                <span ng-show="!disSelectContract" class="ng-hide" translate="create"></span> <span translate="document"></span>
+            </span>
+            <span ng-show="disSelectContract" class="ng-hide ng-cloak mll" style="font-size:27px;position:relative;top:-11px;">
+                <span class="text-blue">{{selectContract.formContract.Name}}</span>
+                <span class='bg-grayE text-sm' style="position:relative;top:-3px;padding:3px;border-radius:3px;"> <span translate="status"></span> {{statusLabel.label}} </span>
+                <a href="{{contract.Attachment}}" ng-show="checkAttachment!=null" style="position:relative;top:-3px;padding:3px;border-radius:3px;left:3px;" class='bg-grayE text-sm'><i class="fa fa-paperclip"></i></a>
+                <span class="mll"><i class="fa fa-home"></i> {{selectContract.quotation.REUnitCode}}</span>
+                <span class="mlm"><i class="fa fa-user text-blue"></i> {{quotation.CustomerName}}</span>
+            </span>
+        </div>
+        <md-button class="md-fab md-fab-top-right right bg-pink"
+                   ng-click="showBottomActions($event)"
+                   aria-label="action"
+                   style="margin-top: 20px;"
+                   ng-hide="contractDocStatus == 6 || hideSaveBtn == true || !showCustomForm">
+            <i class="fa fa-play text-white"></i>
+            <md-tooltip>Action</md-tooltip>
+        </md-button>
+        <div class="bg-aliceBlue pal">
+            <div class="row ng-hide" ng-hide="disSelectContract">
+                <div class=" col-sm-4 mbl">
+                    <label>
+                        <span translate="document"></span> <span ng-show="statusLabel.label"></span>
+                    </label>
+                    <select class="important-input plm pts bg-white col-xs-12 col-xs-12" ng-options="formContract.Name for formContract in formContracts" ng-model="selectContract.formContract" ng-disabled="disSelectContract"></select>
+                </div>
+                <div class="col-sm-4 mbl" ng-show="selectContract.formContract">
+                    <label>
+                        <span translate="forUnitQuotation"></span>
+                    </label>
+                    <select class="important-input plm pts bg-white col-md-12 col-xs-12" ng-options="quotations.Show for quotations in quotations" ng-model="selectContract.quotation" ng-disabled="disSelectContract"></select>
+
+                </div>
+                <div class="col-sm2" ng-show="selectContract.formContract && selectContract.quotation">
+                    <md-button style="height:30px;margin-top:30px;" class="bg-green mtxl" ng-click="selected()" ng-disabled="disSelectContract">
+                        <i class="fa fa-check" style="font-size:11px;margin-right:5px;"></i><span translate="sDocuments "></span>
+                    </md-button>
+                    {{errMsg}}
+                </div>
+            </div>
+            <div ng-show="showCustomForm" class="ng-hide">
+                <div style="font-size:22px;" class="text-baseColor"> <span ng-show="disSelectContract" translate="modify"></span><span ng-show="!disSelectContract" translate="fillIn"></span><span translate="customData"></span></div>
+                <md-card-content class="ptl pll prl">
+                    <div class="row mts mbl">
+                        <div class="col-sm-6 field" ng-show="contract.PrintCopy != undefined">
+                            <label class="control-label">
+                                <span translate="chooseACopy"></span>
+                            </label>
+                            <select ng-options="printCopy.val for printCopy in additionDataSources.printCopy.name track by printCopy.id"
+                                    ng-model="sampleData.printCopy" class="md-input col-sm-12"></select>
+                        </div>
+                    </div>
+                    <div disable-all="cantEdit">
+                        <div class="row mts mbl">
+                            <div class="col-sm-6 field">
+                                <label class="control-label">
+                                    <span translate="documentData"></span>
+                                </label>
+                                <input ng-model="sampleData.docDate" type="text" bs-datepicker autoclose="true" ng-disabled="cantEdit" />
+                            </div>
+                            <div class="col-sm-6 field">
+                                <label class="control-label">
+                                    <span translate="contactEnd"></span>
+                                </label>
+                                <input ng-model="sampleData.expireDate" type="text" bs-datepicker autoclose="true" ng-disabled="cantEdit" />
+                            </div>
+                        </div>
+                        <md-button style="height:30px;" class="md-raised" data-toggle="collapse" data-animation="am-fade-and-slide-top" data-target="#copy-value">
+                            <span translate="copyDataDoc"></span>
+                        </md-button>
+                        <div id="copy-value" class="bg-grayE collapse mtl" style="height: 55px;padding: 11px;">
+                            <div>
+                                <span translate="copyDataKey"></span> <select ng-options="(forCopyValue.fcName +'('+forCopyValue.FormContractId + '): '+ forCopyValue.Code) for forCopyValue in forCopyValues" ng-model="selectCopyValue"></select>
+                                <button ng-click="copyValue(selectCopyValue)"><span translate="copy"></span></button>
+                            </div>
+                        </div>
+                        <div class="row  mtm mbl">
+                            <div class="col-sm-6 field  mtm mbl" ng-repeat="customField in additionDataSources.customFields">
+                                <label class="control-label">
+                                    {{customField.label}}:
+                                </label>
+                                <input ng-if="customField.type!='worker' && customField.type!='date'" type="{{customField.type}}" class="md-input" ng-model="sampleData.customField[customField.prop]" ng-disabled="cantEdit" />
+                                <select ng-if="customField.type=='worker'" ng-options="worker.Name as worker.Name for worker in workers" class="md-input col-sm-12" ng-model="sampleData.customField[customField.prop]" ng-disabled="cantEdit"></select>
+                                <input ng-if="customField.type=='date'" type="text" bs-datepicker autoclose="true" ng-model="sampleData.customField[customField.prop]" ng-disabled="cantEdit" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="md-actions"  layout-align="end">
+                        <md-button class="md-primary bg-green" style="color:white" ng-click="showPreview()">
+                            <i class="fa fa-refresh"></i> <span translate="updateInfor"></span>
+                            <md-tooltip><span translate="updateSampleData"></span></md-tooltip>
+                        </md-button>
+                    </div>
+                </md-card-content>
+            </div>
+        </div>
+        <div id="printArea" class="page_for_printarea"></div>
+        <div ng-show="hidePrint2" id="printArea2"></div>
+    </md-content>
+</div>

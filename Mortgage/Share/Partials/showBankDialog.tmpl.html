@@ -1,0 +1,32 @@
+﻿<div style="width:50%;float:left;margin-left:10%">
+    <md-dialog>
+        <div style="height:5%;background-color:#1d3132; padding-left:2%;float:left;">
+            <div style="float:left;">
+                <h4 style="color:#ffffff" translate="registeredBank"></h4>
+            </div>
+            <div style="margin-top:1%;margin-left:60%;float:left;padding-top:0.5%;">
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon style="color:#ffffff" md-svg-icon="navigation:close" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </div>
+        <div>
+            <div style="float:left;padding: 3% 3% 3% 3%;background-color:#DCDCDC;width:94%;" ng-repeat="show in showbank">
+                <div layout="column" style="float:left;background-color:#ffffff;width:100%;padding: 1% 1% 1% 1%">
+                    <p style="padding-left:10%"><span><strong translate="nameOfCustomer"> :</strong> {{show.CustomerName}}</span><span style="padding-left:5%"><strong translate="unit">  :</strong> {{show.unitCode}}</span><span style="padding-left:5%"><strong translate="project"> :</strong> {{show.ProjectName}}</span></p>
+                    <p translate="registeredBankAccount"></p>
+                    <span ng-repeat="id in show.bankId" ng-init="tmp = testshowbank(id)">
+                        <img ng-src="{{tmp.Logo}}" style="width:20px;height:20px;margin-top:1%;" />
+                        {{tmp.ThaiName}}
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div style="float:left;height:3%" align="right">
+            <md-button ng-click="cancel()" class="md-primary">
+                <span translate="agreed"></span>
+            </md-button>
+        </div>
+    </md-dialog>
+</div>
+

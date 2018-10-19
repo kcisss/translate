@@ -1,0 +1,66 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title><span translate="graph"></span></title>
+    
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.10.0/angular-material.min.css">
+    
+</head>
+<body ng-app="myapp" ng-controller="myctrl" >
+    <form>
+        <button ng-click="GetQ()"><span translate="get"></span></button>
+        <button ng-click="Insert()"><span translate="insert"></span></button>
+        <button ng-click="Update()"><span translate="update"></span></button>
+    </form>
+    {{msg.success}}
+
+
+    <p>Toast can be dismissed with a swipe, a timer, or a button.</p>
+    <div layout="row" layout-sm="column" layout-align="space-around">
+        <div style="width:50px"></div>
+        <md-button ng-click="showCustomToast()">
+            <span translate="showCustom"></span>
+        </md-button>
+        <md-button ng-click="showSimpleToast()">
+            <span translate="showSimple"></span>
+        </md-button>
+        <md-button class="md-raised" ng-click="showActionToast()">
+            <span translate="showAction"></span>
+        </md-button>
+        <div style="width:50px"></div>
+    </div>
+    <div>
+        <br />
+        <b>Toast Position: "{{getToastPosition()}}"</b>
+        <br />
+        <md-checkbox ng-repeat="(name, isSelected) in toastPosition"
+                     ng-model="toastPosition[name]">
+            {{name}}
+        </md-checkbox>
+        <md-button class="md-primary md-fab md-fab-bottom-right">
+            FAB
+        </md-button>
+        <md-button class="md-accent md-fab md-fab-top-right">
+            FAB
+        </md-button>
+    </div>
+
+
+    <!-- Angular Material Dependencies -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-aria.min.js"></script>
+
+
+    <!-- Angular Material Javascript now available via Google CDN; version 0.10 used here -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/0.10.0/angular-material.min.js"></script>
+    <script src="~/Content/src/modules/Graph/app.js"></script>
+</body>
+</html>

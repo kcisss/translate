@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "VariationDeal";
+    ViewBag.NgApp = "VariationDealApp";
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+}
+
+@Scripts.Render(
+        "~/bundles/variationapp",
+        "~/bundles/pos-app",
+        "~/bundles/pos-vd"
+    )
+
+<div ng-controller="MainCtrl">
+    <a href="#!/VariationDeal/new">new VD</a>
+    <a href="/Dashboard/VariationDeal"><span translate="back"></span></a>
+    <div ng-view>
+
+    </div>
+</div>
+

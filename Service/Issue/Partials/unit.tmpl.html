@@ -1,0 +1,156 @@
+﻿<md-dialog aria-label="Mango (Fruit)" md-theme="ploypink" style="width:100%;" ng-cloak>
+    <form ng-cloak>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2 translate="addProblem"></h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon md-svg-src="navigation:close" aria-label="Close dialog" style="outline:none;" ng-click="close()"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <div>
+                    <md-input-container class="md-block" style="padding-bottom:24px;">
+                        <label translate="problemName"></label>
+                        <input ng-model="issue.Name" style="font-size:14px;">
+                    </md-input-container>
+                    <md-input-container class="md-block">
+                        <label translate="description"></label>
+                        <textarea ng-model="issue.Description" rows="3" md-select-on-focus></textarea>
+                    </md-input-container>
+                </div>
+                <div layout="row" layout-align="center center">
+                    <div flex="50">
+                        <md-input-container class="md-block">
+                            <label translate="contractorWorker"></label>
+                            <input ng-model="issue.ContractorName" style="font-size:14px;">
+                        </md-input-container>
+                    </div>
+                    <div flex="50">
+                        <md-input-container class="md-block" ng-hide="issue.Type=='1' || issue.Type=='2'">
+                            <label translate="deadLine"></label>
+                            <md-datepicker ng-model="issue.Duedate" md-placeholder="Enter date"></md-datepicker>
+                        </md-input-container>
+                    </div>
+                </div>
+                <div>
+                    <md-input-container class="md-block" style="padding-bottom:27px;">
+                        <label translate="caretaker"></label>
+                        <md-select aria-label="selectProject"
+                                   ng-model="issue.WorkerId"
+                                   placeholder="ผู้ดูแล"
+                                   data-md-container-class="selectdemoSelectHeader">
+                            <md-select-header class="demo-select-header">
+                                <input ng-model="workerSearch"
+                                       type="search"
+                                       placeholder="ค้นหาผู้ดูแล"
+                                       class="demo-header-searchbox md-text"
+                                       ng-keydown="onSearchChange($event)">
+                            </md-select-header>
+                            <md-option ng-repeat="worker in workers | filter:workerSearch" ng-value="worker.Id">{{worker.Name}}</md-option>
+                        </md-select>
+                    </md-input-container>
+                </div>
+                <div style="padding-bottom:27px;">
+                    <span translate="category"></span>
+                    <md-radio-group md-theme="blue" ng-model="issue.Type" layout="row" layout-align="center start">
+                        <div flex="50">
+                            <md-radio-button value="1" class="md-primary" style="padding:8px 0px 8px 0px;">
+                                <md-icon md-svg-src="editor:border_color" aria-label="icon"></md-icon>
+                                <span translate="progress"></span>
+                            </md-radio-button>
+                            <md-radio-button value="2" class="md-primary" style="padding:8px 0px 8px 0px;">
+                                <md-icon md-svg-src="action:thumb_up" aria-label="icon"></md-icon>
+                                <span translate="great"></span>
+                            </md-radio-button>
+                            <md-radio-button value="3" class="md-primary" style="padding:8px 0px 8px 0px;">
+                                <md-icon md-svg-src="navigation:close" aria-label="icon"></md-icon>
+                                <span translate="bug"></span>
+                            </md-radio-button>
+                        </div>
+                        <div flex="50">
+                            <md-radio-button value="4" class="md-primary" style="padding:8px 0px 8px 0px;">
+                                <md-icon md-svg-src="alert:error" aria-label="icon"></md-icon>
+                                <span translate="wantEdit"></span>
+                            </md-radio-button>
+                            <md-radio-button value="5" class="md-primary" style="padding:8px 0px 8px 0px;">
+                                <md-icon md-svg-src="action:input" aria-label="icon"></md-icon>
+                                <span translate="requestInformation"></span>
+                            </md-radio-button>
+                        </div>
+                    </md-radio-group>
+                </div>
+                <div>
+                    <md-input-container class="md-block" style="padding-bottom:27px;">
+                        <label>WorkFlow</label>
+                        <md-select aria-label="WorkFlow"
+                                   ng-model="issue.WorkFlowId"
+                                   placeholder="WorkFlow"
+                                   data-md-container-class="selectdemoSelectHeader"
+                                   ng-change="selectWorkflow()">
+                            <md-select-header class="demo-select-header">
+                                <input ng-model="workFlowSearch"
+                                       type="search"
+                                       placeholder="WorkFlow"
+                                       class="demo-header-searchbox md-text"
+                                       ng-keydown="onSearchChange($event)" />
+                            </md-select-header>
+                            <md-option ng-repeat="workFlow in workFlows.WorkStages | filter:workFlowSearch" ng-value="workFlow.Id">{{workFlow.Name}}</md-option>
+                        </md-select>
+                    </md-input-container>
+
+                    <md-input-container class="md-block" style="padding-bottom:27px;">
+                        <label>WBS</label>
+                        <md-select aria-label="WBS"
+                                   ng-model="WBS"
+                                   placeholder="WorkStage"
+                                   data-md-container-class="selectdemoSelectHeader"
+                                   ng-change="selectWBS()"
+                                   ng-disabled="WBSDisabled">
+                            <md-select-header class="demo-select-header">
+                                <input ng-model="WBSsearch"
+                                       type="search"
+                                       placeholder="WBS"
+                                       class="demo-header-searchbox md-text"
+                                       ng-keydown="onSearchChange($event)"
+                                       ng-change="selectWBS()">
+                            </md-select-header>
+                            <md-option ng-repeat="WBS in WBSALL | filter:WBSsearch" ng-value="WBS.Id">{{WBS.Name}}</md-option>
+                        </md-select>
+                    </md-input-container>
+
+                    <md-input-container class="md-block" style="padding-bottom:27px;">
+                        <label translate="wbsChildren"></label>
+                        <md-select aria-label="WBS Children"
+                                   ng-model="issue.WbsId"
+                                   placeholder="WBS Children"
+                                   data-md-container-class="selectdemoSelectHeader"
+                                   ng-disabled="WBSitem">
+                            <md-select-header class="demo-select-header">
+                                <input ng-model="WBSChildrensearch"
+                                       type="search"
+                                       placeholder="WBS"
+                                       class="demo-header-searchbox md-text"
+                                       ng-keydown="onSearchChange($event)">
+                            </md-select-header>
+                            <md-option ng-repeat="children in WBSChildrenALL | filter:WBSChildrensearch" ng-value="children.Id">{{children.Name}}</md-option>
+                        </md-select>
+                    </md-input-container>
+                </div>
+                <div>
+                    <span translate="picture"></span>
+                    <div ng-include="'/content/src/modules/listmanager/share/partials/uploadImg.html'"></div>
+                </div>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions>
+            <md-divider></md-divider>
+            <md-button ng-disabled="checkDisableAddIssue" ng-click="add()">
+                <span translate="agreed"></span>
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

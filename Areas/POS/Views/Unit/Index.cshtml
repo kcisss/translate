@@ -1,0 +1,56 @@
+﻿@{
+    ViewBag.Title = "POS - Unit";
+    ViewBag.NgApp = "UnitApp";
+    Layout = "~/Views/Shared/_AllNewMasterLayout.cshtml";
+}
+@section IncludeScripts{
+    <script src="~/Scripts/angular-sanitize.min.js"></script>
+    <script src="~/Scripts/angular-filter.js"></script>
+    <script src="~/Scripts/angular-count-to.min.js"></script>
+    <script src="~/Scripts/xlsx/xlsx.core.min.js"></script>
+    <script src="~/Scripts/xlsx/Blob.js"></script>
+    <script src="~/Scripts/xlsx/FileSaver.js"></script>
+    <script src="~/Content/src/ploy/BankList.js"></script>
+
+    @*Global Filter Include*@
+    <script src="~/Content/src/share/modules/globalApp/globalFilter/globalFilterEnum.js"></script>
+    <script src="~/Content/src/share/modules/globalApp/globalFilter/globalFilterService.js"></script>
+    <script src="~/Content/src/share/modules/globalApp/globalFilter/globalFilterClientService.js"></script>
+    <script src="~/Content/src/share/modules/globalApp/globalFilter/globalFilterController.js"></script>
+
+    <script src="~/Content/src/share/modules/globalApp/allNewMortgageServ.js"></script>
+    <script src="~/Content/src/modules/POS/Unit/Scripts/UnitApp.js"></script>
+    <script src="~/Content/src/modules/POS/Unit/Scripts/UnitServ.js"></script>
+
+    <!-- Include Function -->
+    <script src="~/Content/src/modules/POS/Unit/Scripts/ChangeUnitDialogCtrl.js"></script>
+
+    <!-- External Controller -->
+    <script src="~/Content/src/modules/POS/Share/scripts/EditPaymentCtrl.js"></script>
+    <script src="~/Content/src/modules/POS/Unit/Scripts/EditListPaymentCtrl.js"></script>
+    <script src="~/Content/src/modules/POS/Share/scripts/AddQuotationLineController.js"></script>
+    <script src="~/Content/src/modules/POS/Unit/Scripts/ReceiveMoneyCtrl.js"></script>
+    <script src="~/Content/src/modules/POS/Unit/Scripts/CancelQuotationCtrl.js"></script>
+    <script src="~/Content/src/modules/POS/Unit/Scripts/AddActUnitCtrl.js"></script>
+    <script src="~/Content/src/modules/POS/Unit/Scripts/AddNoteCtrl.js"></script>
+    <script src="~/Content/src/modules/POS/Unit/Scripts/ChangingController.js"></script>
+    <script src="~/Content/src/modules/POS/Unit/Scripts/EditBankApplication.js"></script>
+    <script src="~/Content/src/modules/POS/Unit/Scripts/editGradeDialogCtrl.js"></script>
+    <script src="~/Content/src/modules/POS/Unit/Scripts/UnitListCtrl.js"></script>
+    <script src="~/Content/src/modules/POS/Unit/Scripts/UnitDetailCtrl.js"></script>
+    <script src="~/Content/src/modules/POS/Unit/Scripts/LeftPanelCtrl.js"></script>
+    <script src="~/Content/src/modules/POS/Unit/Scripts/PaymentListCtrl.js"></script>
+    <script src="~/Content/src/modules/POS/Unit/Scripts/ActivitiesUnitCtrl.js"></script>
+    <script src="~/Content/src/modules/POS/Unit/Scripts/DcumentListCtrl.js"></script>
+    <script src="~/Content/src/modules/POS/Unit/Scripts/DocListOther.js"></script>
+    <script src="~/Content/src/modules/POS/Unit/Scripts/MortgageDetailCtrl.js"></script>
+    <script src="~/Content/src/modules/Mortgage/Share/Scripts/addBankAplicationDialogCtrl.js"></script>
+}
+@section IncludeCSS {
+    <link href="~/Content/src/modules/POS/Unit/Styles/StyleSheet.css" rel="stylesheet" />
+    <link href="~/Content/src/modules/POS/Start/styles/loading.css" rel="stylesheet" />
+    <link href="~/Content/src/modules/POS/Unit/Styles/Act.css" rel="stylesheet" />
+}
+<md-content flex layout="column" class="bg">
+    <div ng-view flex layout="column"></div>
+</md-content>   
